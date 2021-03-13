@@ -1,0 +1,17 @@
+---
+version: "2.1"
+services:
+  bazarr:
+    image: ghcr.io/linuxserver/bazarr
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/bazarr/config:/config
+      - /mnt/disk0/movies:/movies
+      - /mnt/disk0/tvseries:/tv
+    ports:
+      - 6767:6767
+    restart: unless-stopped
