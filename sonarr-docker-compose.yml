@@ -9,7 +9,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - /opt/sonarr:/config
+      - /opt/sonarr/config:/config
       - /mnt/disk0/tvseries:/tv
       - /mnt/disk0/downloads:/downloads
     ports:
