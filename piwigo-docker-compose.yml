@@ -1,0 +1,15 @@
+---
+version: "2.1"
+services:
+  piwigo:
+    image: ghcr.io/linuxserver/piwigo
+    container_name: piwigo
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/piwigo/config:/config
+    ports:
+      - 8888:80
+    restart: unless-stopped
