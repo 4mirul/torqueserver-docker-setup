@@ -1,0 +1,17 @@
+---
+version: "2.1"
+services:
+  lidarr:
+    image: ghcr.io/linuxserver/lidarr
+    container_name: lidarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/lidarr/config:/config
+      - /mnt/disk0/music:/music
+      - /mnt/disk0/downloads:/downloads
+    ports:
+      - 8686:8686
+    restart: unless-stopped
