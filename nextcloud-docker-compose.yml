@@ -1,16 +1,16 @@
 ---
 version: "2.1"
 services:
-nextcloud:
-image: ghcr.io/linuxserver/nextcloud
-container_name: nextcloud
-environment:
-  - PUID=1000
-  - PGID=1000
-  - TZ=Asia/Kuala_Lumpur
-volumes:
-  - /opt/nextcloud/config:/config
-  - /mnt/disk0/shared:/data
-ports:
-  - 4443:443
-restart: unless-stopped
+  nextcloud:
+    image: ghcr.io/linuxserver/nextcloud
+    container_name: nextcloud
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/nextcloud/config:/config
+      - /mnt/disk0/shared_data:/data
+    ports:
+      - 4443:443
+    restart: unless-stopped
