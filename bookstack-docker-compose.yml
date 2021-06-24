@@ -10,7 +10,7 @@ services:
       - APP_URL=http://192.168.0.105:6875
       - DB_HOST=bookstack_db
       - DB_USER=bookstack
-      - DB_PASS=bookstack
+      - DB_PASS=password
       - DB_DATABASE=bookstackapp
     volumes:
       - /opt/bookstack/config:/config
@@ -29,7 +29,7 @@ services:
       - TZ=Asia/Kuala_Lumpur
       - MYSQL_DATABASE=bookstackapp
       - MYSQL_USER=bookstack
-      - MYSQL_PASSWORD=bookstack
+      - MYSQL_PASSWORD=password
     volumes:
-      - /opt/mariadb/config:/config
+      - /opt/bookstackdb/config:/config
     restart: unless-stopped
