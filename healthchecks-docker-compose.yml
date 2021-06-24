@@ -7,7 +7,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - SITE_ROOT=h.4mirul.com
+      - SITE_ROOT=192.168.0.105:8001
       - SITE_NAME=cyan
       #- DEFAULT_FROM_EMAIL=<DEFAULT_FROM_EMAIL>
       #- EMAIL_HOST=<EMAIL_HOST>
