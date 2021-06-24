@@ -1,0 +1,23 @@
+---
+version: "2.1"
+services:
+  librespeed:
+    image: ghcr.io/linuxserver/librespeed
+    container_name: librespeed
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - PASSWORD=password
+      - CUSTOM_RESULTS=false #optional
+      - DB_TYPE=mysql #optional
+      - DB_NAME=librespeed #optional
+      - DB_HOSTNAME=192.168.0.105 #optional
+      - DB_USERNAME=librespeed #optional
+      - DB_PASSWORD=password #optional
+      - DB_PORT=3306 #optional
+    volumes:
+      - /opt/librespeed/config:/config
+    ports:
+      - 2280:80
+    restart: unless-stopped
