@@ -9,12 +9,12 @@ services:
       - PGID=1000
       - MYSQL_ROOT_PASSWORD=password
       - TZ=Asia/Kuala_Lumpur
-      #- MYSQL_DATABASE=USER_DB_NAME #optional
-      #- MYSQL_USER=MYSQL_USER #optional
-      #- MYSQL_PASSWORD=DATABASE_PASSWORD #optional
+      - MYSQL_DATABASE=mariadb #optional
+      - MYSQL_USER=yuu #optional
+      - MYSQL_PASSWORD=password #optional
       #- REMOTE_SQL=http://URL1/your.sql,https://URL2/your.sql #optional
     volumes:
       - /opt/mariadb/config:/config
     ports:
-      - 3307:3306
+      - 3306:3306
     restart: unless-stopped
