@@ -1,16 +1,16 @@
 ---
 version: "2.1"
 services:
-  heimdall:
-    image: ghcr.io/linuxserver/heimdall
-    container_name: heimdall
+  nginx:
+    image: ghcr.io/linuxserver/nginx
+    container_name: nginx
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - /opt/heimdall/config:/config
+      - /opt/nginx/config:/config
     ports:
-      - 8888:80
-      - 3443:443
+      - 80:80
+      - 443:443
     restart: unless-stopped
