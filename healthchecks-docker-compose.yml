@@ -20,7 +20,7 @@ services:
       - SUPERUSER_PASSWORD=password
       - REGENERATE_SETTINGS=True
     volumes:
-      - /opt/heathchecks/config:/config
+      - /opt/healthchecks/config:/config
     ports:
       - 8001:8000
     restart: unless-stopped
