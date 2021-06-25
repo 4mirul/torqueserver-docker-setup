@@ -1,0 +1,17 @@
+---
+version: "2.1"
+services:
+  headphones:
+    image: ghcr.io/linuxserver/headphones
+    container_name: headphones
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/headphones/config:/config
+      - /mnt/disk0/downloads:/downloads
+      - /mnt/disk0/music:/music
+    ports:
+      - 8183:8181
+    restart: unless-stopped
