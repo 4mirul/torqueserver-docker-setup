@@ -13,15 +13,15 @@ services:
       - URL=4mirul.com
       - SUBDOMAINS=wiki,h
       - VALIDATION=http
-#       - CERTPROVIDER= #optional
-#       - DNSPLUGIN=cloudflare #optional
-#       - PROPAGATION= #optional
-#       - DUCKDNSTOKEN= #optional
-#       - EMAIL= #optional
-        - ONLY_SUBDOMAINS=true #optional
-#       - EXTRA_DOMAINS= #optional
-#       - STAGING=false #optional
-#       - MAXMINDDB_LICENSE_KEY= #optional
+    #       - CERTPROVIDER= #optional
+    #       - DNSPLUGIN=cloudflare #optional
+    #       - PROPAGATION= #optional
+    #       - DUCKDNSTOKEN= #optional
+    #       - EMAIL= #optional
+    #        - ONLY_SUBDOMAINS=true #optional
+    #       - EXTRA_DOMAINS= #optional
+    #       - STAGING=false #optional
+    #       - MAXMINDDB_LICENSE_KEY= #optional
     volumes:
       - /opt/swag/config:/config
     ports:
