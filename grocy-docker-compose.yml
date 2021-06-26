@@ -1,0 +1,15 @@
+---
+version: "2.1"
+services:
+  grocy:
+    image: ghcr.io/linuxserver/grocy
+    container_name: grocy
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/grocy/config:/config
+    ports:
+      - 9283:80
+    restart: unless-stopped
