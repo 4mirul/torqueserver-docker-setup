@@ -1,0 +1,15 @@
+---
+version: "2.1"
+services:
+  darktable:
+    image: ghcr.io/linuxserver/darktable
+    container_name: darktable
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/darktable/config:/config
+    ports:
+      - 3000:3000
+    restart: unless-stopped
