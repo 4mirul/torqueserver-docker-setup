@@ -25,6 +25,6 @@ services:
     volumes:
       - /opt/swag/config:/config
     ports:
-      - 4443:443
+      - 5443:443
       - 8090:80 #optional
     restart: unless-stopped
