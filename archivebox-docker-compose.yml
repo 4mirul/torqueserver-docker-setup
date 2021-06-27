@@ -19,6 +19,9 @@ services:
     ports:
       - 8001:8000
     environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
       - ALLOWED_HOSTS=* # add any config options you want as env vars
       - MEDIA_MAX_SIZE=750m
       # - SEARCH_BACKEND_ENGINE=sonic     # uncomment these if you enable sonic below
