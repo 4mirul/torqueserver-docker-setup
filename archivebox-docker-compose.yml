@@ -57,6 +57,18 @@ services:
       disable: True
     restart: unless-stopped
 
+  scheduler1:
+    image: archivebox/archivebox:latest
+    command: schedule --foreground --every=day --depth=0 'https://www.4mirul.com/'
+    environment:
+      - USE_COLOR=True
+      - SHOW_PROGRESS=True
+    volumes:
+      - /opt/archivebox/data:/data
+    healthcheck:
+      disable: True
+    restart: unless-stopped
+
   # Example: Put Nginx in front of the ArchiveBox server for SSL termination
   # nginx:
   #     image: nginx:alpine
