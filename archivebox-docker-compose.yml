@@ -55,6 +55,7 @@ services:
       - /opt/archivebox/data:/data
     healthcheck:
       disable: True
+    restart: unless-stopped
 
   # Example: Put Nginx in front of the ArchiveBox server for SSL termination
   # nginx:
