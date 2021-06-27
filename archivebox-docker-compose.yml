@@ -48,9 +48,7 @@ services:
   scheduler:
     image: archivebox/archivebox:latest
     # command: schedule --foreground --every=day --depth=0 'http://h.4mirul.com/';schedule --foreground --every=day --depth=0 'https://www.4mirul.com/'
-    command: bash -c "
-      schedule --foreground --every=day --depth=0 'http://h.4mirul.com/'
-      && schedule --foreground --every=day --depth=0 'https://www.4mirul.com/'"
+    command: schedule --foreground --every=day --depth=0 'http://h.4mirul.com/' && schedule --foreground --every=day --depth=0 'https://www.4mirul.com/'
     environment:
       - USE_COLOR=True
       - SHOW_PROGRESS=True
