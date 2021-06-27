@@ -10,13 +10,13 @@ services:
     depends_on:
       - db
     restart: always
-  db:
-    image: mariadb:10
-    restart: always
-    environment:
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=gitea
-      - MYSQL_USER=gitea
-      - MYSQL_PASSWORD=password
-    volumes:
-      - /opt/giteadb/db/:/var/lib/mysql
+#   db:
+#     image: mariadb:10
+#     restart: always
+#     environment:
+#       - MYSQL_ROOT_PASSWORD=password
+#       - MYSQL_DATABASE=gitea
+#       - MYSQL_USER=gitea
+#       - MYSQL_PASSWORD=password
+#     volumes:
+#       - /opt/giteadb/db/:/var/lib/mysql
