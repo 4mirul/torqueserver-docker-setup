@@ -52,7 +52,7 @@ services:
       - USE_COLOR=True
       - SHOW_PROGRESS=False
     volumes:
-      - ./data:/data
+      - /opt/archivebox/data:/data
 
   # Example: Put Nginx in front of the ArchiveBox server for SSL termination
   # nginx:
