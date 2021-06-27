@@ -7,8 +7,8 @@ services:
     ports:
       - "3003:3000"
       - "2222:22"
-    depends_on:
-      - db
+    #     depends_on:
+    #       - db
     restart: always
 #   db:
 #     image: mariadb:10
