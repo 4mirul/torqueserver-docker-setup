@@ -47,7 +47,16 @@ services:
   # host machine, add tasks and see more info with archivebox schedule --help
   scheduler:
     image: archivebox/archivebox:latest
-    command: schedule --foreground --every=day --depth=0 'http://h.4mirul.com/ https://www.4mirul.com/'
+    command: schedule --foreground --every=day --depth=0 'http://h.4mirul.com/'
+    environment:
+      - USE_COLOR=True
+      - SHOW_PROGRESS=True
+    volumes:
+      - /opt/archivebox/data:/data
+
+  scheduler:
+    image: archivebox/archivebox:latest
+    command: schedule --foreground --every=day --depth=0 'https://www.4mirul.com/'
     environment:
       - USE_COLOR=True
       - SHOW_PROGRESS=True
