@@ -6,6 +6,7 @@ docker run -d \
   -p 2342:2342 \
   -e PHOTOPRISM_UPLOAD_NSFW="true" \
   -e PHOTOPRISM_ADMIN_PASSWORD="password" \
-  -v /photoprism/storage \
+  -v /opt/photoprism/storage:/photoprism/storage \
   -v /mnt/disk0/pictures/photoprism:/photoprism/originals \
+  --restart unless-stopped \
   photoprism/photoprism
