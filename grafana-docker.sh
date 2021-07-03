@@ -7,3 +7,4 @@ docker run -d -p 3333:3000 --name grafana grafana/grafana
 # Node Exporter for Prometheus Dashboard EN v20201010 - 11074
 # Node Exporter Full - 1860
 # Prometheus Blackbox Exporter - 7587
+# PI-Hole Exporter - 10176
