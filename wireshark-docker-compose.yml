@@ -14,5 +14,5 @@ services:
     volumes:
       - /opt/wireshark/config:/config
     ports:
-      - 3000:3000 #optional
+      - 3007:3000 #optional
     restart: unless-stopped
