@@ -35,4 +35,4 @@ services:
       - privileged
       - device=/dev/kmsg
     expose:
-      - 8086
+      - 8080
