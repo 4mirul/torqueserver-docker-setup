@@ -1,5 +1,5 @@
-VERSION=v0.37.5 # use the latest release version from https://github.com/google/cadvisor/releases
-sudo docker run \
+VERSION=v0.37.5
+docker run \
   --volume=/:/rootfs:ro \
   --volume=/var/run:/var/run:ro \
   --volume=/sys:/sys:ro \
