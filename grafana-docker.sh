@@ -1,5 +1,5 @@
 # https://grafana.com/docs/grafana/latest/installation/docker/
-docker run -d -p 3333:3000 --name grafana grafana/grafana
+docker run -d -p 3333:3000 --name grafana --restart unless-stopped grafana/grafana
 
 # dashboard id
 # Radarr v3 - 12896

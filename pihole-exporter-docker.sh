@@ -6,4 +6,5 @@ docker run \
   -e 'INTERVAL=30s' \
   -e 'PORT=9617' \
   -p 9617:9617 \
+  --restart unless-stopped
   ekofr/pihole-exporter:latest

@@ -10,4 +10,5 @@ docker run \
   --name=cadvisor \
   --privileged \
   --device=/dev/kmsg \
+  --restart unless-stopped
   gcr.io/cadvisor/cadvisor:$VERSION

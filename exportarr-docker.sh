@@ -4,6 +4,7 @@ docker run --name exportarr_sonarr \
   -e APIKEY="<api-key>" \
   --restart unless-stopped \
   -p 9707:9707 \
+  --restart unless-stopped
   -d ghcr.io/onedr0p/exportarr:latest exportarr sonarr
 
 docker run --name exportarr_radarr \
@@ -12,6 +13,7 @@ docker run --name exportarr_radarr \
   -e APIKEY="<api-key>" \
   --restart unless-stopped \
   -p 9708:9708 \
+  --restart unless-stopped
   -d ghcr.io/onedr0p/exportarr:latest exportarr radarr
 
 docker run --name exportarr_lidarr \
@@ -20,4 +22,5 @@ docker run --name exportarr_lidarr \
   -e APIKEY="<api-key>" \
   --restart unless-stopped \
   -p 9709:9709 \
+  --restart unless-stopped
   -d ghcr.io/onedr0p/exportarr:latest exportarr lidarr
