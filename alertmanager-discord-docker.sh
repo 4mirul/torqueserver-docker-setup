@@ -1,0 +1,1 @@
+docker run -d -p 9094:9094 -e DISCORD_WEBHOOK=<webhook> --name alertmanager-discord benjojo/alertmanager-discord
