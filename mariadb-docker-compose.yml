@@ -17,4 +17,6 @@ services:
       - /opt/mariadb/config:/config
     ports:
       - 3306:3306
+    expose:
+      - 3306
     restart: unless-stopped
