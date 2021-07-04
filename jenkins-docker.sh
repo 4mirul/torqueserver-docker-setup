@@ -1,0 +1,1 @@
+docker run --name myjenkins -p 8087:8080 -p 50000:50000 -v /opt/jenkins:/var/jenkins_home jenkinsci/jenkins
