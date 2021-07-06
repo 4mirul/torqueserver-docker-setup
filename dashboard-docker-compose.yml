@@ -4,10 +4,7 @@ services:
   dashboard:
     image: phntxx/dashboard:latest
     restart: unless-stopped
-    #     environment:
-    #       - CLOUDFLARE_ZONE_ID=[OPTIONAL CLOUDFLARE V4 ZONE ID]
-    #       - CLOUDFLARE_PURGE_TOKEN=[OPTIONAL CLOUDFLARE PURGE TOKEN]
     volumes:
       - /opt/dashboard/data:/app/data
     ports:
-      - 8082:8080
+      - 8889:8080
