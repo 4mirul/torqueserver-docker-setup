@@ -28,7 +28,7 @@ services:
       # - SEARCH_BACKEND_HOST_NAME=sonic
       # - SEARCH_BACKEND_PASSWORD=SecretPassword
     volumes:
-      - /opt/archivebox/data:/data
+      - ${DISK0}/docker/archivebox/data:/data
       # - ./archivebox:/app/archivebox    # for developers working on archivebox
     restart: unless-stopped
 

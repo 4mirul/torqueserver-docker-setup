@@ -1,13 +1,27 @@
-# cyan-docker
+# cyan-docker-setup
 
 - docker
 - docker-compose
-- docker-swarm
+- .env required for some
+- make sure include PUID and PGID
+- make sure set container name, timezone and network(if needed)
 
-make sure time zone correct and got name
+## quick copy
+
+`--name placeholder`
 
 `-e TIME_ZONE="Asia/Kuala_Lumpur"`
 
-`--name any`
+## references
 
-`-v /etc/localtime:/etc/localtime:ro`
+[linuxserver docker-compose](https://docs.linuxserver.io/general/docker-compose)
+
+[docker-compose cheatsheet](https://devhints.io/docker-compose)
+
+[docker cheatsheet](https://github.com/collabnix/dockerlabs/blob/master/docker/cheatsheet/README.md)
+
+[docker compose reference](https://docs.docker.com/compose/reference/)
+
+[docker networking](https://docs.docker.com/compose/networking/)
+
+[understanding PUID and PGID](https://docs.linuxserver.io/general/understanding-puid-and-pgid)

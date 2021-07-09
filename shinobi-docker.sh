@@ -1,11 +1,11 @@
 docker run -d \
 	--link mariadb:db \
 	-p 8085:8080 \
-	-e ADMIN_USER=admin@admin.admin \
-	-e ADMIN_PASSWORD=password \
+  -e ADMIN_USER=admin@shinobi.video \
+  -e ADMIN_PASSWORD=admin \
 	-e MYSQL_USER=shinobi\
 	-e MYSQL_PASSWORD=password\
-	-e MYSQL_HOST=shinobi \
+	-e MYSQL_HOST=192.168.0.105 \
 	-e MYSQL_DATABASE=shinobi \
 	-e MYSQL_ROOT_PASSWORD=password \
 	-e MYSQL_ROOT_USER=root \
@@ -15,10 +15,10 @@ docker run -d \
 	-e PLUGINKEY_OPENALPR=SomeOpenALPRkeySoPeopleDontMessWithYourShinobi \
 	-e MOTION_HOST=localhost \
 	-e MOTION_PORT=8080 \
-	-v /etc/localtime:/etc/localtime:ro \
-	-v /etc/timezone:/etc/timezone:ro \
+  -e TZ=Asia/Kuala_Lumpur \
 	-v /mnt/disk0/docker/shinobi/config:/config \
 	-v /mnt/disk0/docker/shinobi/datadir:/var/lib/mysql \
 	-v /mnt/disk0/docker/shinobi/videos:/opt/shinobi/videos \
 	-v /dev/shm/shinobiDockerTemp:/dev/shm/streams \
+  --net mariadb_default \
 migoller/shinobidocker:microservice-debian

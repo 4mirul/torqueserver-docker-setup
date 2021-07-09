@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/airsonic
 ---
 version: "2.1"
 services:
@@ -11,11 +12,11 @@ services:
       # - CONTEXT_PATH=<URL_BASE> #optional
       # - JAVA_OPTS=<options> #optional
     volumes:
-      - /opt/airsonic/config:/config
-      - /mnt/disk0/music:/music
-      - /mnt/disk0/playlists:/playlists
-      - /mnt/disk0/podcasts:/podcasts
-      # - /mnt/disk0/othermedia:/media #optional
+      - ${DISK0}/docker/airsonic/config:/config
+      - ${DISK0}/music:/music
+      - ${DISK0}/playlists:/playlists
+      - ${DISK0}/podcasts:/podcasts
+      # - ${DISK0}/othermedia:/media #optional
     ports:
       - 4040:4040
     devices:
