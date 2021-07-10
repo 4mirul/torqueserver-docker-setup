@@ -1,0 +1,23 @@
+# https://github.com/Readarr/Readarr
+version: "3.3"
+services:
+  readarr:
+    image: hotio/readarr:unstable
+    container_name: readarr
+    ports:
+      - 8787:8787
+    volumes:
+      - ${DISK0}/docker/readarr/config:/config
+      - ${DISK0}/books:/books
+      - ${DISK0}/audiobooks:/audiobooks
+      - ${DISK0}/downloads:/data/downloads
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: servarr

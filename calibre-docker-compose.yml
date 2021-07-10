@@ -1,0 +1,23 @@
+# https://hub.docker.com/r/linuxserver/calibre
+---
+version: "2.1"
+services:
+  calibre:
+    image: ghcr.io/linuxserver/calibre
+    container_name: calibre
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - PASSWORD=${PASS} #optional
+      # - CLI_ARGS= #optional
+    volumes:
+      - ${DISK0}/docker/calibre:/config
+    ports:
+      - 8383:8080
+      - 8082:8081
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: servarr

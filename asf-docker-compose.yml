@@ -1,0 +1,15 @@
+# https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Docker
+version: "3"
+services:
+  asf:
+    image: justarchi/archisteamfarm:latest
+    container_name: asf
+    ports:
+      - 1242:1242
+    volumes:
+      - ${DISK0}/docker/asf/config:/app/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    restart: unless-stopped

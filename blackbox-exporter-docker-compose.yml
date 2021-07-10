@@ -1,7 +1,7 @@
 # https://github.com/prometheus/blackbox_exporter
 version: "3"
 services:
-  prometheus:
+  blackbox_exporter:
     image: prom/blackbox-exporter:master
     container_name: blackbox_exporter
     environment:
