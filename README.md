@@ -12,6 +12,12 @@
 
 `-e TIME_ZONE="Asia/Kuala_Lumpur"`
 
+```.sh
+volumes:
+- "/etc/timezone:/etc/timezone:ro"
+- "/etc/localtime:/etc/localtime:ro"
+```
+
 ## references
 
 [linuxserver docker-compose](https://docs.linuxserver.io/general/docker-compose)
