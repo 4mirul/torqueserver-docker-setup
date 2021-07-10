@@ -1,15 +1,30 @@
+# https://docs.gitea.io/en-us/install-with-docker/
 version: "2"
 services:
   web:
-    image: gitea/gitea:1.12.4
+    image: gitea/gitea:1.14.4
+    container_name: gitea
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - GITEA__database__DB_TYPE=mysql
+      - GITEA__database__HOST=${MARIADB}:3306
+      - GITEA__database__NAME=gitea
+      - GITEA__database__USER=gitea
+      - GITEA__database__PASSWD=${PASS}
     volumes:
-      - /opt/gitea/data:/data
+      - ${DISK0}/docker/gitea/data:/data
     ports:
       - "3003:3000"
       - "2222:22"
     #     depends_on:
     #       - db
-    restart: always
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: mariadb
 #   db:
 #     image: mariadb:10
 #     restart: always

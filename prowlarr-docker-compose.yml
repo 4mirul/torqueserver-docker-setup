@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/prowlarr
 ---
 version: "2.1"
 services:
@@ -9,7 +10,11 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - /opt/prowlarr/config:/config
+      - ${DISK0}/docker/prowlarr/config:/config
     ports:
       - 9696:9696
     restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: servarr

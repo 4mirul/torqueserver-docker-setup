@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/librespeed
 ---
 version: "2.1"
 services:
@@ -8,16 +9,20 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - PASSWORD=password
-      - CUSTOM_RESULTS=false #optional
+      - PASSWORD=${PASS}
+      - CUSTOM_RESULTS=true #optional
       - DB_TYPE=mysql #optional
       - DB_NAME=librespeed #optional
-      - DB_HOSTNAME=192.168.0.105 #optional
+      - DB_HOSTNAME=${MARIADB} #optional
       - DB_USERNAME=librespeed #optional
-      - DB_PASSWORD=password #optional
+      - DB_PASSWORD=${DB_PASS} #optional
       - DB_PORT=3306 #optional
     volumes:
-      - /opt/librespeed/config:/config
+      - ${DISK0}/docker/librespeed/config:/config
     ports:
       - 2280:80
     restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: mariadb

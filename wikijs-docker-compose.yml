@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/wikijs
 ---
 version: "2.1"
 services:
@@ -9,8 +10,8 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - /opt/wikijs/config:/config
-      - /opt/wikijs/data:/data
+      - ${DISK0}/docker/wikijs/config:/config
+      - ${DISK0}/docker/wikijs/data:/data
     ports:
       - 3006:3000
     restart: unless-stopped

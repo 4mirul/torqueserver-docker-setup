@@ -1,0 +1,24 @@
+# watchtower, automatic update container to the latest image - https://containrrr.dev/watchtower/
+# docker run -d \
+#   --name watchtower \
+#   -v /var/run/docker.sock:/var/run/docker.sock \
+#   -e WATCHTOWER_NOTIFICATIONS=slack \
+#   -e WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL="<discord-webhooks>/slack" \ #replace <discord-webhooks> with the correct webhook
+#   --restart unless-stopped \
+#   containrrr/watchtower -i 1800
+# https://github.com/containrrr/watchtower
+version: "3"
+services:
+  watchtower:
+    image: containrrr/watchtower
+    command: -i 1800
+    container_name: watchtower
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - WATCHTOWER_NOTIFICATIONS=slack
+      - WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL=${WATCHTOWER_WEBHOOK}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped

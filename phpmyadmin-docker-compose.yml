@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/phpmyadmin
 ---
 version: "2.1"
 services:
@@ -11,7 +12,11 @@ services:
       - PMA_ARBITRARY=1 #optional
       #- PMA_ABSOLUTE_URI=http://192.168.0.105:8808/ #optional
     volumes:
-      - /opt/phpmyadmin/config:/config
+      - ${DISK0}/docker/phpmyadmin/config:/config
     ports:
       - 8808:80
     restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: mariadb

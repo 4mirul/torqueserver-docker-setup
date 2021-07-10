@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/ombi
 ---
 version: "2.1"
 services:
@@ -8,9 +9,13 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - BASE_URL=/ombi #optional
+      # - BASE_URL=/ombi #optional
     volumes:
-      - /opt/ombi/config:/config
+      - ${DISK0}/docker/ombi/config:/config
     ports:
       - 3579:3579
     restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: servarr

@@ -9,7 +9,11 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - /opt/overseerr/config:/config
+      - ${DISK0}/docker/overseerr/config:/config
     ports:
       - 5055:5055
     restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: servarr

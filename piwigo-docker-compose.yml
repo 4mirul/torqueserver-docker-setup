@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/piwigo
 ---
 version: "2.1"
 services:
@@ -9,7 +10,12 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - /opt/piwigo/config:/config
+      - ${DISK0}/docker/piwigo/config:/config
+      - ${DISK0}/piwigo/gallery:/gallery
     ports:
-      - 8888:80
+      - 8778:80
     restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: mariadb

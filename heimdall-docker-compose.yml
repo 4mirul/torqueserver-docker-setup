@@ -1,3 +1,4 @@
+# https://fleet.linuxserver.io/image?name=linuxserver/heimdall
 ---
 version: "2.1"
 services:
@@ -9,8 +10,8 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - /opt/heimdall/config:/config
+      - ${DISK0}/docker/heimdall/config:/config
     ports:
       - 8888:80
-      - 3443:443
+      # - 3443:443
     restart: unless-stopped

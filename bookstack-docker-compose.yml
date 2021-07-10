@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/bookstack
 ---
 version: "2"
 services:
@@ -8,32 +9,37 @@ services:
       - PUID=1000
       - PGID=1000
       - APP_URL=
-      - DB_HOST=bookstack_db
+      - DB_HOST=${MARIADB}
       - DB_USER=bookstack
-      - DB_PASS=password
+      - DB_PASS=${DB_PASS}
       - DB_DATABASE=bookstack
     volumes:
-      - /opt/bookstack/config:/config
+      - ${DISK0}/docker/bookstack/config:/config
     ports:
       - 6875:80
     restart: unless-stopped
-    depends_on:
-      - bookstack_db
-  bookstack_db:
-    image: ghcr.io/linuxserver/mariadb
-    container_name: bookstack_db
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - MYSQL_ROOT_PASSWORD=password
-      - TZ=Asia/Kuala_Lumpur
-      - MYSQL_DATABASE=bookstack
-      - MYSQL_USER=bookstack
-      - MYSQL_PASSWORD=password
-    volumes:
-      - /opt/bookstackdb/config:/config
-    ports:
-      - 3308:3306
-    expose:
-      - 3308
-    restart: unless-stopped
+    # depends_on:
+    #   - bookstack_db
+networks:
+  default:
+    external: true
+    name: mariadb
+
+  # bookstack_db:
+  #   image: ghcr.io/linuxserver/mariadb
+  #   container_name: bookstack_db
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - MYSQL_ROOT_PASSWORD=password
+  #     - TZ=Asia/Kuala_Lumpur
+  #     - MYSQL_DATABASE=bookstack
+  #     - MYSQL_USER=bookstack
+  #     - MYSQL_PASSWORD=password
+  #   volumes:
+  #     - /opt/bookstackdb/config:/config
+  #   ports:
+  #     - 3308:3306
+  #   expose:
+  #     - 3308
+  #   restart: unless-stopped

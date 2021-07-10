@@ -1,0 +1,19 @@
+# https://github.com/prometheus/blackbox_exporter
+version: "3"
+services:
+  prometheus:
+    image: prom/blackbox-exporter:master
+    container_name: blackbox_exporter
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    ports:
+      - 9115:9115
+    volumes:
+      - /opt/blackbox_exporter:/config
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: grafana

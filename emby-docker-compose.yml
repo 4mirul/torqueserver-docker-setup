@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/emby
 ---
 version: "2.1"
 services:
@@ -9,12 +10,11 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - /opt/emby/config:/config
-      - /mnt/disk0/tvseries:/data/tvshows
-      - /mnt/disk0/movies:/data/movies
+      - ${DISK0}/docker/emby/config:/config
+      - ${DISK0}/tvseries:/data/tvshows
+      - ${DISK0}/movies:/data/movies
       # - /opt/vc/lib:/opt/vc/lib #optional
     ports:
-      # - 8096:8096
       - 8097:8096
       # - 8920:8920 #optional
     devices:

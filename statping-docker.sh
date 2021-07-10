@@ -1,1 +1,0 @@
-docker run -it --name statping -p 8282:8080 --restart unless-stopped statping/statping

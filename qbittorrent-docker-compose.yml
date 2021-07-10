@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/qbittorrent
 ---
 version: "2.1"
 services:
@@ -10,10 +11,14 @@ services:
       - TZ=Asia/Kuala_Lumpur
       - WEBUI_PORT=8080
     volumes:
-      - /opt/qbittorrent/config:/config
-      - /mnt/disk0/downloads:/downloads
+      - ${DISK0}/docker/qbittorrent/config:/config
+      - ${DISK0}/downloads:/downloads
     ports:
       - 6881:6881
       - 6881:6881/udp
       - 8080:8080
     restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: servarr

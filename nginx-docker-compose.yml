@@ -9,7 +9,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - /opt/nginx/config:/config
+      - ${DISK0}/nginx/config:/config
     ports:
       - 80:80
       - 443:443

@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/sonarr
 ---
 version: "2.1"
 services:
@@ -9,9 +10,13 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - /opt/sonarr/config:/config
-      - /mnt/disk0/tvseries:/tv
-      - /mnt/disk0/downloads:/downloads
+      - ${DISK0}/docker/sonarr/config:/config
+      - ${DISK0}/tvseries:/tv
+      - ${DISK0}/downloads:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: servarr

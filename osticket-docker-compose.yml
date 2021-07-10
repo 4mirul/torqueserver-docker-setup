@@ -1,0 +1,24 @@
+# https://hub.docker.com/r/osticket/osticket
+version: "3"
+services:
+  osticket:
+    image: osticket/osticket
+    container_name: osticket
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - MYSQL_HOST=${MARIADB}
+      - MYSQL_DATABASE=osticket
+      - MYSQL_USER=osticket
+      - MYSQL_PASSWORD=${PASS}
+      # CHANGE ME
+      - INSTALL_SECRET=secret
+      - LANGUAGE=en
+    ports:
+      - "5335:80"
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: mariadb

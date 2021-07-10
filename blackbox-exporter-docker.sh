@@ -1,1 +1,0 @@
-docker run -p 9115:9115 --name blackbox_exporter --restart unless-stopped -v /opt/blackbox_exporter:/config prom/blackbox-exporter:master --config.file=/config/blackbox.yml

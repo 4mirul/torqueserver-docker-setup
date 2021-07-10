@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/jellyfin
 ---
 version: "2.1"
 services:
@@ -8,13 +9,17 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - JELLYFIN_PublishedServerUrl=192.168.0.105 #optional
+      # - JELLYFIN_PublishedServerUrl=cyan:8096 #optional
     volumes:
-      - /opt/jellyfin/config:/config
-      - /mnt/disk0/tvseries:/data/tvshows
-      - /mnt/disk0/movies:/data/movies
+      - ${DISK0}/docker/jellyfin/config:/config
+      - ${DISK0}/tvseries:/data/tvshows
+      - ${DISK0}/movies:/data/movies
     ports:
       - 8096:8096
     devices:
       - /dev/dri:/dev/dri #optional
     restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: servarr

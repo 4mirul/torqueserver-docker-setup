@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/jackett
 ---
 version: "2.1"
 services:
@@ -10,8 +11,12 @@ services:
       - TZ=Asia/Kuala_Lumpur
       - AUTO_UPDATE=true #optional
     volumes:
-      - /opt/jackett/config:/config
-      - /mnt/disk0/downloads:/downloads
+      - ${DISK0}/docker/jackett/config:/config
+      - ${DISK0}/downloads:/downloads
     ports:
       - 9117:9117
     restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: servarr

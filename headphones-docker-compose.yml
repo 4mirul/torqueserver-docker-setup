@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/headphones
 ---
 version: "2.1"
 services:
@@ -9,9 +10,9 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - /opt/headphones/config:/config
-      - /mnt/disk0/downloads:/downloads
-      - /mnt/disk0/music:/music
+      - ${DISK0}/docker/headphones/config:/config
+      - ${DISK0}/downloads:/downloads
+      - ${DISK0}/music:/music
     ports:
       - 8183:8181
     restart: unless-stopped

@@ -1,11 +1,15 @@
+# https://github.com/alexta69/metube
 version: "3"
 services:
   metube:
     image: alexta69/metube
     container_name: metube
-    restart: unless-stopped
-    user: "1000:1001"
-    ports:
-      - "8081:8081"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
     volumes:
-      - /mnt/disk0/downloads:/downloads
+      - ${DISK0}/downloads:/downloads
+    ports:
+      - 8081:8081
+    restart: unless-stopped

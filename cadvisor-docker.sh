@@ -1,5 +1,9 @@
+# https://github.com/google/cadvisor
 VERSION=v0.37.5
-docker run \
+docker run -d \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Asia/Kuala_Lumpur \
   --volume=/:/rootfs:ro \
   --volume=/var/run:/var/run:ro \
   --volume=/sys:/sys:ro \
@@ -10,5 +14,5 @@ docker run \
   --name=cadvisor \
   --privileged \
   --device=/dev/kmsg \
-  --restart unless-stopped
+  --restart unless-stopped \
   gcr.io/cadvisor/cadvisor:$VERSION

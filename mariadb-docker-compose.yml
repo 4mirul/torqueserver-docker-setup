@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/mariadb
 ---
 version: "2.1"
 services:
@@ -7,16 +8,20 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - TZ=Asia/Kuala_Lumpur
       - MYSQL_DATABASE=mariadb #optional
       - MYSQL_USER=mariadb #optional
-      - MYSQL_PASSWORD=password #optional
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD} #optional
       #- REMOTE_SQL=http://URL1/your.sql,https://URL2/your.sql #optional
     volumes:
-      - /opt/mariadb/config:/config
+      - ${DISK0}/docker/mariadb/config:/config
     ports:
       - 3306:3306
     expose:
       - 3306
     restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: mariadb

@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/radarr
 ---
 version: "2.1"
 services:
@@ -9,9 +10,13 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - /opt/radarr/config:/config
-      - /mnt/disk0/movies:/movies
-      - /mnt/disk0/downloads:/downloads
+      - ${DISK0}/docker/radarr/config:/config
+      - ${DISK0}/movies:/movies
+      - ${DISK0}/downloads:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: servarr

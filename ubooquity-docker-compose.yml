@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/ubooquity
 ---
 version: "2.1"
 services:
@@ -10,10 +11,10 @@ services:
       - TZ=Asia/Kuala_Lumpur
       - MAXMEM=1024
     volumes:
-      - /opt/ubooquity/config:/config
-      - /mnt/disk0/books:/books
-      - /mnt/disk0/comics:/comics
-      - /mnt/disk0/files:/files
+      - ${DISK0}/docker/ubooquity/config:/config
+      - ${DISK0}/books:/books
+      - ${DISK0}/comics:/comics
+      - ${DISK0}/files:/files
     ports:
       - 2202:2202
       - 2203:2203

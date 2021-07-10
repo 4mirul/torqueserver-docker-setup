@@ -1,15 +1,20 @@
+# https://docs.organizr.app/books/installation/page/docker
 version: "3.6"
 services:
   organizr:
     container_name: organizr
     hostname: organizr
     image: organizr/organizr:latest
-    restart: unless-stopped
     ports:
       - 8089:80
     volumes:
-      - /opt/organizr/config:/config
+      - ${DISK0}/docker/organizr/config:/config
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: servarr

@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/couchpotato
 ---
 version: "2.1"
 services:
@@ -9,9 +10,9 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - /opt/couchpotato/config:/config
-      - /mnt/disk0/downloads:/downloads
-      - /mnt/disk0/movies:/movies
+      - ${DISK0}/docker/couchpotato/config:/config
+      - ${DISK0}/downloads:/downloads
+      - ${DISK0}/movies:/movies
     ports:
       - 5050:5050
     restart: unless-stopped

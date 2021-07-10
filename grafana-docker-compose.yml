@@ -1,0 +1,27 @@
+# https://grafana.com/docs/grafana/latest/installation/docker/
+version: "3"
+services:
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - GF_PATHS_PLUGINS=/opt/plugins
+    volumes:
+      - ${DISK0}/docker/grafana/plugins:/opt/plugins
+    ports:
+      - "3004:3000"
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: grafana
+# dashboard id
+# Radarr v3 - 12896
+# Sonarr v3 - 12530
+# Node Exporter for Prometheus Dashboard EN v20201010 - 11074
+# Node Exporter Full - 1860
+# Prometheus Blackbox Exporter - 7587
+# PI-Hole Exporter - 10176

@@ -1,3 +1,4 @@
+# https://github.com/prometheus/node_exporter
 ---
 version: "3.8"
 
@@ -8,6 +9,10 @@ services:
     command:
       - "--path.rootfs=/host"
     network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
     pid: host
     restart: unless-stopped
     volumes:

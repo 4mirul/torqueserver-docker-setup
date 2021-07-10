@@ -1,3 +1,4 @@
+# https://shinobi.video/
 docker run -d \
 	--link mariadb:db \
 	-p 8085:8080 \
@@ -20,5 +21,5 @@ docker run -d \
 	-v /mnt/disk0/docker/shinobi/datadir:/var/lib/mysql \
 	-v /mnt/disk0/docker/shinobi/videos:/opt/shinobi/videos \
 	-v /dev/shm/shinobiDockerTemp:/dev/shm/streams \
-  --net mariadb_default \
+  --net mariadb \
 migoller/shinobidocker:microservice-debian

@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/plex
 ---
 version: "2.1"
 services:
@@ -9,9 +10,10 @@ services:
       - PUID=1000
       - PGID=1000
       - VERSION=docker
+      # - PLEX_CLAIM= ${PLEX_CLAIM}
     volumes:
-      - /opt/plex/config:/config
-      - /mnt/disk0/tvseries:/tv
-      - /mnt/disk0/movies:/movies
+      - ${DISK0}/docker/plex/config:/config
+      - ${DISK0}/tvseries:/tv
+      - ${DISK0}/movies:/movies
       - /dev/dri:/dev/dri
     restart: unless-stopped

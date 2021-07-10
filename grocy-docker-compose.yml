@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/grocy
 ---
 version: "2.1"
 services:
@@ -9,7 +10,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - /opt/grocy/config:/config
+      - ${DISK0}/docker/grocy/config:/config
     ports:
       - 9283:80
     restart: unless-stopped

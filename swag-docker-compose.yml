@@ -1,3 +1,4 @@
+# https://github.com/linuxserver/docker-swag
 ---
 version: "2.1"
 services:
@@ -10,21 +11,21 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - URL=4mirul.com
-      - SUBDOMAINS=wiki,h
+      - URL=yourdomain.url
+      - SUBDOMAINS=www,
       - VALIDATION=http
-    #       - CERTPROVIDER= #optional
-    #       - DNSPLUGIN=cloudflare #optional
-    #       - PROPAGATION= #optional
-    #       - DUCKDNSTOKEN= #optional
-    #       - EMAIL= #optional
-    #        - ONLY_SUBDOMAINS=true #optional
-    #       - EXTRA_DOMAINS= #optional
-    #       - STAGING=false #optional
-    #       - MAXMINDDB_LICENSE_KEY= #optional
+      - CERTPROVIDER= #optional
+      - DNSPLUGIN=cloudflare #optional
+      - PROPAGATION= #optional
+      - DUCKDNSTOKEN= #optional
+      - EMAIL= #optional
+      - ONLY_SUBDOMAINS=false #optional
+      - EXTRA_DOMAINS= #optional
+      - STAGING=false #optional
+      - MAXMINDDB_LICENSE_KEY= #optional
     volumes:
-      - /opt/swag/config:/config
+      - /path/to/appdata/config:/config
     ports:
-      - 5443:443
-      - 8090:80 #optional
+      - 443:443
+      - 80:80 #optional
     restart: unless-stopped

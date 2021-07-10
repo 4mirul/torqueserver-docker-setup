@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/nzbget
 ---
 version: "2.1"
 services:
@@ -9,8 +10,12 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - /opt/nzbget/config:/config
-      - /mnt/disk0/downloads:/downloads
+      - ${DISK0}/docker/nzbget/config:/config
+      - ${DISK0}/downloads:/downloads
     ports:
       - 6789:6789
     restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: servarr

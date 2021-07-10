@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/calibre-web
 ---
 version: "2.1"
 services:
@@ -10,8 +11,8 @@ services:
       - TZ=Asia/Kuala_Lumpur
       - DOCKER_MODS=linuxserver/calibre-web:calibre
     volumes:
-      - /opt/calibreweb/config:/config
-      - /mnt/disk0/books:/books
+      - ${DISK0}/docker/calibreweb/config:/config
+      - ${DISK0}/books:/books
     ports:
       - 8083:8083
     restart: unless-stopped

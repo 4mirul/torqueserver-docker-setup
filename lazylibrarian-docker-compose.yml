@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/lazylibrarian
 ---
 version: "2.1"
 services:
@@ -10,9 +11,9 @@ services:
       - TZ=Asia/Kuala_Lumpur
       - DOCKER_MODS=linuxserver/calibre-web:calibre|linuxserver/mods:lazylibrarian-ffmpeg #optional
     volumes:
-      - /opt/lazylibrarian/config:/config
-      - /mnt/disk0/downloads:/downloads
-      - /mnt/disk0/books:/books
+      - ${DISK0}/docker/lazylibrarian/config:/config
+      - ${DISK0}/downloads:/downloads
+      - ${DISK0}/books:/books
     ports:
       - 5299:5299
     restart: unless-stopped

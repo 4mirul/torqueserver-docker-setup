@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/linuxserver/wireshark
 ---
 version: "2.1"
 services:
@@ -12,7 +13,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - /opt/wireshark/config:/config
+      - ${DISK0}/docker/wireshark/config:/config
     ports:
-      - 3007:3000 #optional
+      - 3000:3000 #optional
     restart: unless-stopped
