@@ -9,16 +9,8 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - PIHOLE_HOSTNAME=${CYAN}
-      - PIHOLE_PORT=8088
-      - PIHOLE_API_TOKEN="${PIHOLE_API}"
-      - INTERVAL=30s
+      - PIHOLE_PASSWORD=${PIHOLE_PASS}
       - PORT=9617
-    # logging:
-    # driver: "json-file"
-    # options:
-    # max-size: 10m
-    # max-file: "3"
-    # labels: "pihole-exporter"
     ports:
       - "9617:9617"
     restart: unless-stopped
