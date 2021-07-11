@@ -3,7 +3,7 @@ version: "3"
 services:
   pi-hole-exporter:
     image: ekofr/pihole-exporter:latest
-    container_name: pihole-exporter
+    container_name: pihole_exporter
     environment:
       - PUID=1000
       - PGID=1000
@@ -21,9 +21,6 @@ services:
     # labels: "pihole-exporter"
     ports:
       - "9617:9617"
-    networks:
-      default:
-        ipv4_address: ${PIHOLE_EXPORTER_IP}
     restart: unless-stopped
 networks:
   default:
