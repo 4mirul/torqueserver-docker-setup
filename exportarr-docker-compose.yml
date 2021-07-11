@@ -1,0 +1,49 @@
+# https://github.com/onedr0p/exportarr
+version: "3"
+services:
+  sonarr_exportarr:
+    image: ghcr.io/onedr0p/exportarr:latest
+    command: exportarr sonarr
+    container_name: sonarr_exportarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - PORT=9707
+      - URL=http://${CYAN}:8989
+      - APIKEY=${SONARR_APIKEY}
+    ports:
+      - 9707:9707
+    restart: unless-stopped
+  radarr_exportarr:
+    image: ghcr.io/onedr0p/exportarr:latest
+    command: exportarr radarr
+    container_name: radarr_exportarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - PORT=9708
+      - URL=http://${CYAN}:7878
+      - APIKEY=${RADARR_APIKEY}
+    ports:
+      - 9708:9708
+    restart: unless-stopped
+  lidarr_exportarr:
+    image: ghcr.io/onedr0p/exportarr:latest
+    command: exportarr lidarr
+    container_name: lidarr_exportarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - PORT=9709
+      - URL=http://${CYAN}:8686
+      - APIKEY=${LIDARR_APIKEY}
+    ports:
+      - 9709:9709
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: grafana
