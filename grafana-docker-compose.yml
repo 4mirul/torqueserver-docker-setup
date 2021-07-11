@@ -23,3 +23,4 @@ networks:
 # Node Exporter Full - 1860
 # Prometheus Blackbox Exporter - 7587
 # PI-Hole Exporter - 10176
+# Wireguard - 12177
