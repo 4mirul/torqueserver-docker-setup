@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - ${DISK0}/docker/nextcloud/config:/config
+      - /opt/nextcloud/config:/config
       - ${DISK0}/nextcloud:/data
     ports:
       - 4443:443

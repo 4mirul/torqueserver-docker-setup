@@ -9,7 +9,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - ${DISK0}/docker/dashboard/data:/app/data
+      - /opt/dashboard/data:/app/data
     ports:
       - 8889:8080
     restart: unless-stopped

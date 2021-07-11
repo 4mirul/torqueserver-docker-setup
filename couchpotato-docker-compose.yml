@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - ${DISK0}/docker/couchpotato/config:/config
+      - /opt/couchpotato/config:/config
       - ${DISK0}/downloads:/downloads
       - ${DISK0}/movies:/movies
     ports:

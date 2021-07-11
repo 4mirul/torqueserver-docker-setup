@@ -87,7 +87,7 @@ services:
       # Mounting an import folder is optional (see docs):
       # - "~/Import:/photoprism/import"
       # Permanent storage for settings, index & sidecar files (DON'T REMOVE):
-      - "${DISK0}/docker/photoprism/storage:/photoprism/storage"
+      - "/opt/photoprism/storage:/photoprism/storage"
     restart: unless-stopped
 
   # mariadb:

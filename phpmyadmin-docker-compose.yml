@@ -12,7 +12,7 @@ services:
       - PMA_ARBITRARY=1 #optional
       #- PMA_ABSOLUTE_URI=http://192.168.0.105:8808/ #optional
     volumes:
-      - ${DISK0}/docker/phpmyadmin/config:/config
+      - /opt/phpmyadmin/config:/config
     ports:
       - 8808:80
     restart: unless-stopped

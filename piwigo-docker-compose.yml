@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - ${DISK0}/docker/piwigo/config:/config
+      - /opt/piwigo/config:/config
       - ${DISK0}/piwigo/gallery:/gallery
     ports:
       - 8778:80

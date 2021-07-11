@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - ${DISK0}/docker/emby/config:/config
+      - /opt/emby/config:/config
       - ${DISK0}/tvseries:/data/tvshows
       - ${DISK0}/movies:/data/movies
       # - /opt/vc/lib:/opt/vc/lib #optional

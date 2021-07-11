@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - ${DISK0}/docker/sonarr/config:/config
+      - /opt/sonarr/config:/config
       - ${DISK0}/tvseries:/tv
       - ${DISK0}/downloads:/downloads
     ports:

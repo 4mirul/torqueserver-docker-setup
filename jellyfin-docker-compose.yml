@@ -11,7 +11,7 @@ services:
       - TZ=Asia/Kuala_Lumpur
       # - JELLYFIN_PublishedServerUrl=cyan:8096 #optional
     volumes:
-      - ${DISK0}/docker/jellyfin/config:/config
+      - /opt/jellyfin/config:/config
       - ${DISK0}/tvseries:/data/tvshows
       - ${DISK0}/movies:/data/movies
     ports:

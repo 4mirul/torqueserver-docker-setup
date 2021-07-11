@@ -7,7 +7,7 @@ services:
     ports:
       - 8787:8787
     volumes:
-      - ${DISK0}/docker/readarr/config:/config
+      - /opt/readarr/config:/config
       - ${DISK0}/books:/books
       - ${DISK0}/audiobooks:/audiobooks
       - ${DISK0}/downloads:/data/downloads

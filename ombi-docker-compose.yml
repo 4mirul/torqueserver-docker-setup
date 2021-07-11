@@ -11,7 +11,7 @@ services:
       - TZ=Asia/Kuala_Lumpur
       # - BASE_URL=/ombi #optional
     volumes:
-      - ${DISK0}/docker/ombi/config:/config
+      - /opt/ombi/config:/config
     ports:
       - 3579:3579
     restart: unless-stopped

@@ -10,7 +10,7 @@ services:
       - TZ=Asia/Kuala_Lumpur
       - GF_PATHS_PLUGINS=/opt/plugins
     volumes:
-      - ${DISK0}/docker/grafana/plugins:/opt/plugins
+      - /opt/grafana/plugins:/opt/plugins
     ports:
       - "3004:3000"
     restart: unless-stopped

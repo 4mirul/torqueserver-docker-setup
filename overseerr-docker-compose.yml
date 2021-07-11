@@ -9,7 +9,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - ${DISK0}/docker/overseerr/config:/config
+      - /opt/overseerr/config:/config
     ports:
       - 5055:5055
     restart: unless-stopped

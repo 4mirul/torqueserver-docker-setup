@@ -12,7 +12,7 @@ services:
       - VERSION=docker
       # - PLEX_CLAIM= ${PLEX_CLAIM}
     volumes:
-      - ${DISK0}/docker/plex/config:/config
+      - /opt/plex/config:/config
       - ${DISK0}/tvseries:/tv
       - ${DISK0}/movies:/movies
       - /dev/dri:/dev/dri

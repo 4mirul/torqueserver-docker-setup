@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - ${DISK0}/docker/grocy/config:/config
+      - /opt/grocy/config:/config
     ports:
       - 9283:80
     restart: unless-stopped

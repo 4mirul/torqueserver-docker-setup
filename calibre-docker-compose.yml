@@ -12,7 +12,7 @@ services:
       - PASSWORD=${PASS} #optional
       # - CLI_ARGS= #optional
     volumes:
-      - ${DISK0}/docker/calibre:/config
+      - /opt/calibre:/config
     ports:
       - 8383:8080
       - 8082:8081

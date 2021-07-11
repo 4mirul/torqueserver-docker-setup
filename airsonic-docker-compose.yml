@@ -12,7 +12,7 @@ services:
       # - CONTEXT_PATH=<URL_BASE> #optional
       # - JAVA_OPTS=<options> #optional
     volumes:
-      - ${DISK0}/docker/airsonic/config:/config
+      - /opt/airsonic/config:/config
       - ${DISK0}/music:/music
       - ${DISK0}/playlists:/playlists
       - ${DISK0}/podcasts:/podcasts

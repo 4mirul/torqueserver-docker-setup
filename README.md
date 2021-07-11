@@ -12,10 +12,10 @@
 
 `-e TIME_ZONE="Asia/Kuala_Lumpur"`
 
-```.sh
+```.txt
 volumes:
-- "/etc/timezone:/etc/timezone:ro"
-- "/etc/localtime:/etc/localtime:ro"
+  - /etc/timezone:/etc/timezone:ro
+  - /etc/localtime:/etc/localtime:ro
 ```
 
 ## references

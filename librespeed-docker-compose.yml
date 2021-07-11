@@ -18,7 +18,7 @@ services:
       - DB_PASSWORD=${DB_PASS} #optional
       - DB_PORT=3306 #optional
     volumes:
-      - ${DISK0}/docker/librespeed/config:/config
+      - /opt/librespeed/config:/config
     ports:
       - 2280:80
     restart: unless-stopped

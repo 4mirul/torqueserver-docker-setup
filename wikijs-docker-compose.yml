@@ -10,8 +10,8 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - ${DISK0}/docker/wikijs/config:/config
-      - ${DISK0}/docker/wikijs/data:/data
+      - /opt/wikijs/config:/config
+      - /opt/wikijs/data:/data
     ports:
       - 3006:3000
     restart: unless-stopped

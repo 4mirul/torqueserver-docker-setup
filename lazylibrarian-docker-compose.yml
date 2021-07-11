@@ -11,7 +11,7 @@ services:
       - TZ=Asia/Kuala_Lumpur
       - DOCKER_MODS=linuxserver/calibre-web:calibre|linuxserver/mods:lazylibrarian-ffmpeg #optional
     volumes:
-      - ${DISK0}/docker/lazylibrarian/config:/config
+      - /opt/lazylibrarian/config:/config
       - ${DISK0}/downloads:/downloads
       - ${DISK0}/books:/books
     ports:

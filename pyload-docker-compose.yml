@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - ${DISK0}/docker/pyload/config:/config
+      - /opt/pyload/config:/config
       - ${DISK0}/downloads:/downloads
     ports:
       - 8008:8000

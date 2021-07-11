@@ -11,7 +11,7 @@ services:
       - TZ=Asia/Kuala_Lumpur
       - MAXMEM=1024
     volumes:
-      - ${DISK0}/docker/ubooquity/config:/config
+      - /opt/ubooquity/config:/config
       - ${DISK0}/books:/books
       - ${DISK0}/comics:/comics
       - ${DISK0}/files:/files

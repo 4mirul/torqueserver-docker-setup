@@ -10,5 +10,5 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - ${DISK0}/docker/ddclient/config:/config
+      - /opt/ddclient/config:/config
     restart: unless-stopped

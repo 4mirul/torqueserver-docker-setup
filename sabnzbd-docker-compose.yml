@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - ${DISK0}/docker/sabnzbd/config:/config
+      - /opt/sabnzbd/config:/config
       - ${DISK0}/downloads:/downloads #optional
       - ${DISK0}/downloads/incomplete:/incomplete-downloads #optional
     ports:

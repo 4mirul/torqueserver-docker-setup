@@ -11,7 +11,7 @@ services:
       - TZ=Asia/Kuala_Lumpur
       - AUTO_UPDATE=true #optional
     volumes:
-      - ${DISK0}/docker/jackett/config:/config
+      - /opt/jackett/config:/config
       - ${DISK0}/downloads:/downloads
     ports:
       - 9117:9117

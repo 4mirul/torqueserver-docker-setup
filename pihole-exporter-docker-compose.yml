@@ -21,6 +21,9 @@ services:
     # labels: "pihole-exporter"
     ports:
       - "9617:9617"
+    networks:
+      default:
+        ipv4_address: ${PIHOLE_EXPORTER_IP}
     restart: unless-stopped
 networks:
   default:

@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - ${DISK0}/docker/heimdall/config:/config
+      - /opt/heimdall/config:/config
     ports:
       - 8888:80
       # - 3443:443

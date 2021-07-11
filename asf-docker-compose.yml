@@ -7,7 +7,7 @@ services:
     ports:
       - 1242:1242
     volumes:
-      - ${DISK0}/docker/asf/config:/app/config
+      - /opt/asf/config:/app/config
     environment:
       - PUID=1000
       - PGID=1000

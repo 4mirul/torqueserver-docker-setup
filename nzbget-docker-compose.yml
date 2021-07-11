@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - ${DISK0}/docker/nzbget/config:/config
+      - /opt/nzbget/config:/config
       - ${DISK0}/downloads:/downloads
     ports:
       - 6789:6789

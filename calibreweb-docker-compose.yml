@@ -11,7 +11,7 @@ services:
       - TZ=Asia/Kuala_Lumpur
       - DOCKER_MODS=linuxserver/calibre-web:calibre
     volumes:
-      - ${DISK0}/docker/calibreweb/config:/config
+      - /opt/calibreweb/config:/config
       - ${DISK0}/books:/books
     ports:
       - 8083:8083

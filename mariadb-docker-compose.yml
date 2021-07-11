@@ -15,7 +15,7 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD} #optional
       #- REMOTE_SQL=http://URL1/your.sql,https://URL2/your.sql #optional
     volumes:
-      - ${DISK0}/docker/mariadb/config:/config
+      - /opt/mariadb/config:/config
     ports:
       - 3306:3306
     expose:

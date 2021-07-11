@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - ${DISK0}/docker/tautulli/config:/config
+      - /opt/tautulli/config:/config
     ports:
       - 8181:8181
     restart: unless-stopped

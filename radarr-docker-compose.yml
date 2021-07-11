@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - ${DISK0}/docker/radarr/config:/config
+      - /opt/radarr/config:/config
       - ${DISK0}/movies:/movies
       - ${DISK0}/downloads:/downloads
     ports:
