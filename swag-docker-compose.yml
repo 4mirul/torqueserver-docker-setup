@@ -1,4 +1,5 @@
 # https://github.com/linuxserver/docker-swag
+# https://docs.linuxserver.io/general/swag
 ---
 version: "2.1"
 services:
