@@ -11,21 +11,25 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - URL=yourdomain.url
-      - SUBDOMAINS=www,
+      - URL=4mirul.com
+      - SUBDOMAINS=h,q,wiki
       - VALIDATION=http
-      - CERTPROVIDER= #optional
-      - DNSPLUGIN=cloudflare #optional
-      - PROPAGATION= #optional
-      - DUCKDNSTOKEN= #optional
-      - EMAIL= #optional
-      - ONLY_SUBDOMAINS=false #optional
-      - EXTRA_DOMAINS= #optional
+      # - CERTPROVIDER= #optional
+      # - DNSPLUGIN=cloudflare #optional
+      # - PROPAGATION= #optional
+      # - DUCKDNSTOKEN= #optional
+      - EMAIL=${EMAIL} #optional
+      - ONLY_SUBDOMAINS=true #optional
+      # - EXTRA_DOMAINS= #optional
       - STAGING=false #optional
-      - MAXMINDDB_LICENSE_KEY= #optional
+      # - MAXMINDDB_LICENSE_KEY= #optional
     volumes:
       - /opt/swag/config:/config
     ports:
       - 443:443
       - 80:80 #optional
     restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: swag
