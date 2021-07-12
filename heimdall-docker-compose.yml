@@ -13,5 +13,9 @@ services:
       - /opt/heimdall/config:/config
     ports:
       - 8888:80
-      # - 3443:443
+      - 3443:443
     restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: swag
