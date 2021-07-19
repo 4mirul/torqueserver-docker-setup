@@ -1,0 +1,26 @@
+version: "3"
+services:
+  app:
+    image: "jc21/nginx-proxy-manager:latest"
+    restart: unless-stopped
+    container_name: npm
+    ports:
+      - "80:80"
+      - "81:81"
+      - "443:443"
+    environment:
+			PUID: "1000"
+			PGID: "1000"
+			TZ: "Asia/Kuala_Lumpur"
+      DB_MYSQL_HOST: "mariadb"
+      DB_MYSQL_PORT: 3306
+      DB_MYSQL_USER: "npm"
+      DB_MYSQL_PASSWORD: "${PASS}"
+      DB_MYSQL_NAME: "npm"
+    volumes:
+      - /opt/npm/data:/data
+      # - ./letsencrypt:/etc/letsencrypt
+networks:
+  default:
+    external: true
+    name: mariadb
