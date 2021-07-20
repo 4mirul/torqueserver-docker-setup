@@ -13,7 +13,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - URL=4mirul.com
-      - SUBDOMAINS=h,q,wiki
+      - SUBDOMAINS=h,q,wiki,plex,jellyfin,overseerr
       - VALIDATION=http
       # - CERTPROVIDER= #optional
       # - DNSPLUGIN=cloudflare #optional
@@ -26,6 +26,9 @@ services:
       # - MAXMINDDB_LICENSE_KEY= #optional
     volumes:
       - /opt/swag/config:/config
+      - /opt/jellyfin/config/log:/jellyfin/log
+      - /opt/overseerr/config/logs:/overseerr/logs
+      - /opt/heimdall/config/log:/heimdall/log
     ports:
       - 443:443
       - 80:80 #optional
