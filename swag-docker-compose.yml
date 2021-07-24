@@ -32,6 +32,16 @@ services:
       - 443:443
       - 80:80 #optional
     restart: unless-stopped
+  authelia:
+    image: authelia/authelia:4.21.0
+    container_name: authelia
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/authelia/config:/config
+    restart: unless-stopped
 networks:
   default:
     external: true
