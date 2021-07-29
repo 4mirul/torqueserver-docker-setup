@@ -9,10 +9,11 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - PASSWORD=${PASS} #optional
+      # - PASSWORD=${PASS} #optional
       # - CLI_ARGS= #optional
     volumes:
-      - /opt/calibre:/config
+      - /opt/calibre/config:/config
+      - ${DISK0}/books:/home #optional
     ports:
       - 8383:8080
       - 8082:8081
