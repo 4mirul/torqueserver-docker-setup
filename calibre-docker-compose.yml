@@ -14,6 +14,7 @@ services:
     volumes:
       - /opt/calibre/config:/config
       - ${DISK0}/books:/home #optional
+      - ${DISK0}/downloads/books:/media/downloads
     ports:
       - 8383:8080
       - 8082:8081
