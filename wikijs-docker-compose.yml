@@ -9,6 +9,12 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
+      - DB_TYPE=mariadb
+      - DB_HOST=mariadb
+      - DB_PORT=3306
+      - DB_USER=wikijs
+      - DB_PASS=${DB_PASS}
+      - DB_NAME=wikijs
     volumes:
       - /opt/wikijs/config:/config
       - /opt/wikijs/data:/data
