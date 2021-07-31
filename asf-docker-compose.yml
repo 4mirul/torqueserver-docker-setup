@@ -13,3 +13,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main

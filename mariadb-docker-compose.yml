@@ -24,4 +24,4 @@ services:
 networks:
   default:
     external: true
-    name: mariadb
+    name: main

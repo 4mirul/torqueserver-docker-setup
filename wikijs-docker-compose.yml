@@ -15,3 +15,7 @@ services:
     ports:
       - 3006:3000
     restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main

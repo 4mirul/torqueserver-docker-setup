@@ -13,7 +13,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - URL=4mirul.com
-      - SUBDOMAINS=h,q,wiki,plex,jellyfin,overseerr
+      - SUBDOMAINS=h,q,wiki,plex,jellyfin,overseerr,heimdall
       - VALIDATION=http
       # - CERTPROVIDER= #optional
       # - DNSPLUGIN=cloudflare #optional
@@ -45,4 +45,4 @@ services:
 networks:
   default:
     external: true
-    name: swag
+    name: main
