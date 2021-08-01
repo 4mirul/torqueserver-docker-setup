@@ -13,7 +13,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - URL=4mirul.com
-      - SUBDOMAINS=h,q,wiki,plex,jellyfin,overseerr,heimdall
+      - SUBDOMAINS=h,q,wiki,plex,jellyfin,overseerr,heimdall,nc
       - VALIDATION=http
       # - CERTPROVIDER= #optional
       # - DNSPLUGIN=cloudflare #optional
@@ -33,7 +33,7 @@ services:
       - 80:80 #optional
     restart: unless-stopped
   authelia:
-    image: authelia/authelia:4.21.0
+    image: authelia/authelia:master
     container_name: authelia
     environment:
       - PUID=1000

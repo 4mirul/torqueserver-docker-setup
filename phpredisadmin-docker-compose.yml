@@ -1,0 +1,21 @@
+---
+version: "3"
+services:
+  phpredisadmin:
+    image: erikdubbelboer/phpredisadmin
+    container_name: phpredisadmin
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      # - ADMIN_USER=admin
+      # - ADMIN_PASS=${PASS}
+      - REDIS_1_HOST=redis
+      - REDIS_1_PORT=6379
+    ports:
+      - 8785:80
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main

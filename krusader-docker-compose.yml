@@ -1,0 +1,23 @@
+# https://registry.hub.docker.com/r/djaydev/krusader
+---
+version: "3"
+services:
+  krusader:
+    image: djaydev/krusader
+    container_name: krusader
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/krusader/config:/config:rw
+      - /home/yuu:/host/home:rw
+      - /opt:/host/share1:rw
+    ports:
+      - 5800:5800
+      - 5900:5900
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main

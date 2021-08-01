@@ -11,11 +11,11 @@ services:
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/nextcloud/config:/config
-      - ${DISK0}/nextcloud:/data
+      - /opt/nextcloud/data:/data
     ports:
       - 4443:443
     restart: unless-stopped
 networks:
   default:
     external: true
-    name: mariadb
+    name: main

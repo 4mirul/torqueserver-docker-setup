@@ -8,7 +8,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - APP_URL= #https://wiki.4mirul.com/
+      - APP_URL=https://wiki.4mirul.com/
       - DB_HOST=mariadb
       - DB_USER=bookstack
       - DB_PASS=${DB_PASS}

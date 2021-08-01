@@ -1,0 +1,20 @@
+# https://registry.hub.docker.com/r/rediscommander/redis-commander#!
+---
+version: "3"
+services:
+  redis-commander:
+    container_name: redis-commander
+    hostname: redis-commander
+    image: rediscommander/redis-commander:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - 8781:8081
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main

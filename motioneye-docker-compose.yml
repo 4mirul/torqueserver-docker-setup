@@ -1,0 +1,21 @@
+# https://github.com/ccrisan/motioneye/wiki/Install-In-Docker
+---
+version: "3"
+services:
+  motioneye:
+    image: ccrisan/motioneye:master-amd64
+    container_name: motioneye
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/motioneye/etc:/etc
+      - /opt/motioneye/var:/var
+    ports:
+      - 8765:8765
+    restart: always
+networks:
+  default:
+    external: true
+    name: main
