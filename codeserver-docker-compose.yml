@@ -6,17 +6,19 @@ services:
     image: ghcr.io/linuxserver/code-server
     container_name: code-server
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=0
+      - PGID=0
       - TZ=Asia/Kuala_Lumpur
       - PASSWORD=${PASS} #optional
       # - HASHED_PASSWORD= #optional
-      - SUDO_PASSWORD=${PASS} #optional
+      - SUDO_PASSWORD=${AD_PASS} #optional
       # - SUDO_PASSWORD_HASH= #optional
       # - PROXY_DOMAIN=code-server.my.domain #optional
     volumes:
       - /opt/codeserver/config:/config
       - /opt:/opt
+      - /mnt/disk:/mnt/disk
+      - /home/yuu:/home/yuu
     ports:
       - 8443:8443
     restart: unless-stopped
