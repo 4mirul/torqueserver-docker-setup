@@ -1,0 +1,20 @@
+# https://github.com/linuxserver/docker-freshrss
+---
+version: "2.1"
+services:
+  freshrss:
+    image: ghcr.io/linuxserver/freshrss
+    container_name: freshrss
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/freshrss/config:/config
+    ports:
+      - 8679:80
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main
