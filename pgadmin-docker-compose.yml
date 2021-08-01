@@ -1,0 +1,19 @@
+---
+version: "2.3"
+services:
+  pgadmin4:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - PGADMIN_DEFAULT_EMAIL=${EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PASS}
+    ports:
+      - "8889:80"
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main

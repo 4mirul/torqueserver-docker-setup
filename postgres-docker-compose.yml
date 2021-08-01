@@ -1,0 +1,22 @@
+---
+version: "3"
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=${PASS}
+      - POSTGRES_DB=default_database
+    volumes:
+      - /opt/postgres/data:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main
