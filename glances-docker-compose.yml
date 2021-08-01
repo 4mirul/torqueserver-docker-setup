@@ -2,10 +2,9 @@
 version: "3"
 services:
   glances:
-    image: nicolargo/glances
+    image: nicolargo/glances:alpine-latest
     container_name: glances
     network_mode: host
-    privileged: true
     pid: host
     environment:
       - PUID=1000
@@ -13,8 +12,7 @@ services:
       - TZ=Asia/Kuala_Lumpur
       - GLANCES_OPT=-w
     volumes:
-      - /opt/glances/conf:/glances/conf
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
-      - 61208-61209:61208-61209
+      - 61208:61208
     restart: always
