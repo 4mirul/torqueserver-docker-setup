@@ -11,7 +11,7 @@ services:
       - PGADMIN_DEFAULT_EMAIL=${EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PASS}
     ports:
-      - "8889:80"
+      - 8889:80
     restart: unless-stopped
 networks:
   default:
