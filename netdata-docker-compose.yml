@@ -1,0 +1,37 @@
+# https://learn.netdata.cloud/docs/agent/packaging/docker/
+---
+version: "3"
+services:
+  netdata:
+    image: netdata/netdata
+    container_name: netdata
+    hostname: netdata # set to fqdn of host
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+    ports:
+      - 19999:19999
+    restart: unless-stopped
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - netdataconfig:/etc/netdata
+      - netdatalib:/var/lib/netdata
+      - netdatacache:/var/cache/netdata
+      - /etc/passwd:/host/etc/passwd:ro
+      - /etc/group:/host/etc/group:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /etc/os-release:/host/etc/os-release:ro
+      - /opt/swag/config/fail2ban/jail.local:/etc/fail2ban/jail.local
+      - /opt/swag/config/log/fail2ban/fail2ban.log:/var/log/fail2ban.log
+      - /opt/swag/config/log/nginx/access.log:/var/log/nginx/access.log
+networks:
+  default:
+    external: true
+    name: main
+volumes:
+  netdataconfig:
+  netdatalib:
+  netdatacache:

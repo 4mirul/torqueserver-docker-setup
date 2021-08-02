@@ -12,6 +12,7 @@ services:
       - /opt/mongo/data:/data
     ports:
       - 27017:27017
+    restart: unless-stopped
   mongo-express:
     image: mongo-express
     container_name: mongo-express
