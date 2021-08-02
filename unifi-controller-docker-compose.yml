@@ -1,0 +1,30 @@
+# https://hub.docker.com/r/linuxserver/unifi-controller
+---
+version: "2.1"
+services:
+  unifi-controller:
+    image: ghcr.io/linuxserver/unifi-controller
+    container_name: unifi-controller
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - MEM_LIMIT=1024M #optional
+      - MEM_STARTUP=1024M #optional
+    volumes:
+      - /opt/unifi-controller/config:/config
+    ports:
+      - 3478:3478/udp
+      - 10001:10001/udp
+      - 8280:8080
+      - 8743:8443
+      # - 1900:1900/udp #optional
+      # - 8843:8843 #optional
+      # - 8880:8880 #optional
+      # - 6789:6789 #optional
+      # - 5514:5514/udp #optional
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main

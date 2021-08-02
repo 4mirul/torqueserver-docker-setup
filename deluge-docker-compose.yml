@@ -1,0 +1,24 @@
+# https://hub.docker.com/r/linuxserver/deluge
+---
+version: "2.1"
+services:
+  deluge:
+    image: ghcr.io/linuxserver/deluge
+    container_name: deluge
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - DELUGE_LOGLEVEL=error #optional
+    volumes:
+      - /opt/deluge/config:/config
+      - ${DISK0}/downloads:/downloads
+    ports:
+      - 8112:8112
+      - 6882:6881
+      - 6882:6881/udp
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main

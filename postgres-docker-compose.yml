@@ -10,7 +10,6 @@ services:
       - TZ=Asia/Kuala_Lumpur
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=${PASS}
-      - POSTGRES_DB=default_database
     volumes:
       - /opt/postgres/data:/var/lib/postgresql/data/
     ports:

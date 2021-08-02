@@ -9,7 +9,13 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - REDIS_URL=redis:6379 #optional
+      - PAPERLESS_REDIS=redis://redis:6379 #optional
+      - PAPERLESS_DBHOST=postgres
+      - PAPERLESS_DBPORT=5432
+      - PAPERLESS_DBNAME=paperless
+      - PAPERLESS_DBUSER=paperless
+      - PAPERLESS_DBPASS=${PASS}
+      - PAPERLESS_DBSSLMODE=disable
     volumes:
       - /opt/paperless-ng/config:/config
       - /opt/paperless-ng/data:/data
