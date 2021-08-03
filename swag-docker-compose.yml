@@ -41,6 +41,8 @@ services:
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/authelia/config:/config
+    ports:
+      - 9091:9091
     restart: unless-stopped
 networks:
   default:
