@@ -5,13 +5,10 @@ services:
   motioneye:
     image: ccrisan/motioneye:master-amd64
     container_name: motioneye
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/motioneye/etc:/etc
-      - /opt/motioneye/var:/var
+      - /opt/motioneye/var/lib/motioneye:/var/lib/motioneye
+      - /etc/localtime:/etc/localtime:ro
     ports:
       - 8765:8765
     restart: always
