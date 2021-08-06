@@ -11,6 +11,8 @@ services:
       - 25:25
       - 465:465
       - 587:587
+      - 993:993
+      - 143:143
     restart: always
     environment:
       POSTFIXADMIN_DB_TYPE: mysqli
