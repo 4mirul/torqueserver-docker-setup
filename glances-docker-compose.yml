@@ -13,6 +13,4 @@ services:
       - GLANCES_OPT=-w
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    ports:
-      - 61208:61208
     restart: always
