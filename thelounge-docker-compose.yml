@@ -1,0 +1,20 @@
+# https://hub.docker.com/r/linuxserver/thelounge
+---
+version: "2.1"
+services:
+  thelounge:
+    image: ghcr.io/linuxserver/thelounge
+    container_name: thelounge
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/thelounge/config:/config
+    ports:
+      - 9009:9000
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main
