@@ -1,0 +1,20 @@
+# https://hub.docker.com/r/linuxserver/znc
+---
+version: "2.1"
+services:
+  znc:
+    image: ghcr.io/linuxserver/znc
+    container_name: znc
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/znc/config:/config
+    ports:
+      - 6501:6501
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main
