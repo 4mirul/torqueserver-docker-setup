@@ -13,7 +13,6 @@ services:
       - /opt/znc/config:/config
     ports:
       - 6501:6501
-      - 6502:6502
     restart: unless-stopped
 networks:
   default:
