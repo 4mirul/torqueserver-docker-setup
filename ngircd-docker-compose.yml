@@ -1,0 +1,20 @@
+# https://hub.docker.com/r/linuxserver/ngircd
+---
+version: "2.1"
+services:
+  ngircd:
+    image: ghcr.io/linuxserver/ngircd
+    container_name: ngircd
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/ngircd/config:/config
+    ports:
+      - 6667:6667
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main
