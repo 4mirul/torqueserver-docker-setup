@@ -28,6 +28,7 @@ services:
       - /opt/swag/config:/config
       - /opt/jellyfin/config/log:/jellyfin/log
       - /opt/overseerr/config/logs:/overseerr/logs
+      - /opt/mediawiki/www
     ports:
       - 443:443
       - 80:80 #optional
