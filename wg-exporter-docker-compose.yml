@@ -1,0 +1,15 @@
+# https://github.com/MindFlavor/prometheus_wireguard_exporter
+---
+version: "3"
+services:
+  wg-exporter:
+    image: mindflavor/prometheus-wireguard-exporter
+    container_name: wg-exporter
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    restart: unless-stopped
