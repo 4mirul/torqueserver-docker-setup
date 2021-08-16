@@ -1,16 +1,16 @@
 # https://github.com/eko/pihole-exporter
 version: "3"
 services:
-  pi-hole-exporter:
+  pihole-exporter:
     image: ekofr/pihole-exporter:latest
-    container_name: pihole_exporter
+    container_name: pihole-exporter
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - PIHOLE_HOSTNAME=${CYAN}
+      - PIHOLE_HOSTNAME=pihole
       - PIHOLE_PASSWORD=${PIHOLE_PASS}
-      - PIHOLE_PORT=8088
+      - PIHOLE_PORT=8087
       - PORT=9617
     ports:
       - 9617:9617
@@ -18,4 +18,4 @@ services:
 networks:
   default:
     external: true
-    name: grafana
+    name: main

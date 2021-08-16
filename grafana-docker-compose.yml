@@ -10,6 +10,9 @@ services:
       - TZ=Asia/Kuala_Lumpur
       - GF_PATHS_PLUGINS=/opt/plugins
     volumes:
+      - grafanalib:/var/lib/grafana
+      - grafanaconfig:/etc/grafana
+      - grafanalog:/var/log/grafana
       - /opt/grafana/plugins:/opt/plugins
     ports:
       - "3004:3000"
@@ -17,7 +20,11 @@ services:
 networks:
   default:
     external: true
-    name: grafana
+    name: main
+volumes:
+  grafanalib:
+  grafanaconfig:
+  grafanalog:
 # dashboard id
 # Node Exporter for Prometheus Dashboard EN v20201010 - 11074
 # Node Exporter Full - 1860
