@@ -2,45 +2,46 @@
 # https://github.com/onedr0p/exportarr/blob/master/examples/compose/docker-compose.yaml
 version: "3.7"
 services:
-  sonarr_exportarr:
+  sonarr-exportarr:
     image: ghcr.io/onedr0p/exportarr:latest
     command: exportarr sonarr
-    container_name: sonarr_exportarr
+    container_name: sonarr-exportarr
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - PORT=9707
-      - URL=http://${CYAN}:8989
+      - URL=http://sonarr:8989
       - APIKEY=${SONARR_APIKEY}
       - ENABLE_ADDITIONAL_METRICS=true
     ports:
       - 9707:9707
     restart: unless-stopped
-  radarr_exportarr:
+  radarr-exportarr:
     image: ghcr.io/onedr0p/exportarr:latest
     command: exportarr radarr
-    container_name: radarr_exportarr
+    container_name: radarr-exportarr
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - PORT=9708
-      - URL=http://${CYAN}:7878
+      - URL=http://radarr:7878
       - APIKEY=${RADARR_APIKEY}
+      - ENABLE_ADDITIONAL_METRICS=true
     ports:
       - 9708:9708
     restart: unless-stopped
-  lidarr_exportarr:
+  lidarr-exportarr:
     image: ghcr.io/onedr0p/exportarr:latest
     command: exportarr lidarr
-    container_name: lidarr_exportarr
+    container_name: lidarr-exportarr
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - PORT=9709
-      - URL=http://${CYAN}:8686
+      - URL=http://lidarr:8686
       - APIKEY=${LIDARR_APIKEY}
     ports:
       - 9709:9709
@@ -48,4 +49,4 @@ services:
 networks:
   default:
     external: true
-    name: grafana
+    name: main
