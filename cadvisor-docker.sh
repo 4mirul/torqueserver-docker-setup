@@ -15,5 +15,5 @@ docker run -d \
   --privileged \
   --device=/dev/kmsg \
   --restart unless-stopped \
-  --net=grafana \
+  --net=main \
   gcr.io/cadvisor/cadvisor:$VERSION
