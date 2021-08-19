@@ -1,22 +1,8 @@
 # cyan-docker-setup
 
-- docker
+- pure docker
 - docker-compose
-- .env required for some
-- make sure include PUID and PGID
-- make sure set container name, timezone and network(if needed)
-
-## quick copy
-
-`--name placeholder`
-
-`-e TIME_ZONE="Asia/Kuala_Lumpur"`
-
-```.txt
-volumes:
-  - /etc/timezone:/etc/timezone:ro
-  - /etc/localtime:/etc/localtime:ro
-```
+- [Portainer](./portainer-docker.md)
 
 ## references
 
