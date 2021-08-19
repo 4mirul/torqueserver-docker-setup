@@ -1,0 +1,35 @@
+# docker run -d -p 8086:8086 \
+#       -v /opt/influxdb/data:/var/lib/influxdb2 \
+#       -v /opt/influxdb/config:/etc/influxdb2 \
+#       -e DOCKER_INFLUXDB_INIT_MODE=setup \
+#       -e DOCKER_INFLUXDB_INIT_USERNAME=user \
+#       -e DOCKER_INFLUXDB_INIT_PASSWORD=password \
+#       -e DOCKER_INFLUXDB_INIT_ORG=org \
+#       -e DOCKER_INFLUXDB_INIT_BUCKET=bucket \
+#       influxdb:2.0
+
+# https://hub.docker.com/_/influxdb/
+version: "3.3"
+services:
+  influxdb:
+    image: influxdb:2.0
+    container_name: influxdb
+    ports:
+      - 8086:8086
+    volumes:
+      - /opt/influxdb/data:/var/lib/influxdb2
+      - /opt/influxdb/config:/etc/influxdb2
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=${PASS}
+      - DOCKER_INFLUXDB_INIT_ORG=org
+      - DOCKER_INFLUXDB_INIT_BUCKET=bucket
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main
