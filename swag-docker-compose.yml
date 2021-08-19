@@ -13,7 +13,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - URL=4mirul.com
-      - SUBDOMAINS=h,q,wiki,plex,jellyfin,overseerr,heimdall,nc,bookstack,wg,irc
+      - SUBDOMAINS=h,q,wiki,plex,jellyfin,overseerr,heimdall,nc,bookstack,wg,irc,freshrss,pi
       - VALIDATION=http
       # - CERTPROVIDER= #optional
       # - DNSPLUGIN=cloudflare #optional
