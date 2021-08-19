@@ -11,7 +11,7 @@ services:
       - TZ=Asia/Kuala_Lumpur
       - PASSWORD=${PASS} #optional
       # - HASHED_PASSWORD= #optional
-      - SUDO_PASSWORD=${AD_PASS} #optional
+      # - SUDO_PASSWORD=${AD_PASS} #optional
       # - SUDO_PASSWORD_HASH= #optional
       # - PROXY_DOMAIN=code-server.my.domain #optional
     volumes:
