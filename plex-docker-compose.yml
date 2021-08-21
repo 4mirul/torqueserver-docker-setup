@@ -15,5 +15,6 @@ services:
       - /opt/plex/config:/config
       - ${DISK0}/tvseries:/tv
       - ${DISK0}/movies:/movies
+      - ${DISK0}/music:/music
       - /dev/dri:/dev/dri
     restart: unless-stopped
