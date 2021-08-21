@@ -1,9 +1,8 @@
 # https://hub.docker.com/_/ghost/
 version: "3.1"
-
 services:
   ghost:
-    image: ghost:4-alpine
+    image: ghost:latest
     container_name: ghost
     restart: always
     ports:
@@ -17,7 +16,7 @@ services:
       database__connection__host: mariadb
       database__connection__port: 3306
       database__connection__user: ghost
-      database__connection__password: ${PASS}
+      database__connection__password: password
       database__connection__database: ghost
       # this url value is just an example, and is likely wrong for your environment!
       url: http://192.168.0.105:8980
