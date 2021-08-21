@@ -11,6 +11,10 @@ services:
     restart: unless-stopped
     cap_add:
       - SYS_PTRACE
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
     security_opt:
       - apparmor:unconfined
     volumes:
@@ -23,6 +27,7 @@ services:
       - /sys:/host/sys:ro
       - /etc/os-release:/host/etc/os-release:ro
       - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - /opt/swag/config/fail2ban/jail.local:/etc/fail2ban/jail.local
       - /opt/swag/config/log/fail2ban/fail2ban.log:/var/log/fail2ban.log
       - /opt/swag/config/log/nginx/access.log:/var/log/nginx/access.log
