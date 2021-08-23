@@ -2,9 +2,9 @@
 ---
 version: "3"
 services:
-  filemanager:
+  filebrowser:
     image: filebrowser/filebrowser
-    container_name: filemanager
+    container_name: filebrowser
     environment:
       - TZ=Asia/Kuala_Lumpur
     volumes:
