@@ -11,8 +11,8 @@ services:
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/radarr/config:/config
-      - ${DISK0}/movies:/movies
-      - ${DISK0}/downloads:/downloads
+      - /mnt/disk1/movies:/movies
+      - /mnt/disk0/downloads:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped

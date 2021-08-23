@@ -9,12 +9,12 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - JELLYFIN_PublishedServerUrl=jellyfin.4mirul.com #optional
+      - JELLYFIN_PublishedServerUrl=jellyfin.torqueserver.com #optional
     volumes:
       - /opt/jellyfin/config:/config
-      - ${DISK0}/tvseries:/data/tvshows
-      - ${DISK0}/movies:/data/movies
-      - ${DISK0}/music:/data/music
+      - /mnt/disk0/tvseries:/data/tvshows
+      - /mnt/disk1/movies:/data/movies
+      - /mnt/disk0/music:/data/music
     ports:
       - 8096:8096
     devices:
