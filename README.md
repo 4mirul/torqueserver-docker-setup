@@ -1,4 +1,4 @@
-# cyan-docker-setup
+# torqueserver-docker-setup
 
 - pure docker
 - docker-compose
