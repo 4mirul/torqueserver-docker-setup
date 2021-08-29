@@ -11,8 +11,10 @@ services:
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/ngircd/config:/config
+      - /opt/ngircd/ssh:/etc/ngircd/ssl
     ports:
       - 6667:6667
+      - 6697:6697
     restart: unless-stopped
 networks:
   default:
