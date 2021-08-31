@@ -11,7 +11,7 @@ services:
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/piwigo/config:/config
-      - ${DISK0}/piwigo/gallery:/gallery
+      - /mnt/disk0/piwigo/gallery:/gallery
     ports:
       - 8778:80
     restart: unless-stopped
