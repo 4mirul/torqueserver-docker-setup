@@ -11,7 +11,3 @@ services:
     ports:
       - 3330:3000
     restart: unless-stopped
-networks:
-  default:
-    external: true
-    name: main
