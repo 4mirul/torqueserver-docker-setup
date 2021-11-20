@@ -11,7 +11,7 @@ services:
       - TZ=Asia/Kuala_Lumpur
       # - SUBFOLDER=/ #optional
     volumes:
-      - /opt/emulatorjs/data:/data
+      - /mnt/disk1/emulatorjs/data:/data
     ports:
       - 3000:3000
       - 8043:80
