@@ -24,6 +24,7 @@ services:
       - /dev/sda:/dev/sda
       - /dev/sdb:/dev/sdb
       - /dev/nvme1n1:/dev/nvme1n1
+      - /dev/nvme0n1:/dev/nvme0n1
     restart: unless-stopped
 networks:
   default:
