@@ -21,8 +21,8 @@ services:
     ports:
       - 8480:8080
     devices:
-      - /dev/sda:/dev/sda
-      - /dev/sdb:/dev/sdb
+      # - /dev/sda:/dev/sda
+      # - /dev/sdb:/dev/sdb
       - /dev/nvme1n1:/dev/nvme1n1
       - /dev/nvme0n1:/dev/nvme0n1
     restart: unless-stopped
