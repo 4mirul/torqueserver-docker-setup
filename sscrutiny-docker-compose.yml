@@ -1,0 +1,31 @@
+# https://hub.docker.com/r/linuxserver/scrutiny
+---
+version: "2.1"
+services:
+  scrutiny:
+    image: lscr.io/linuxserver/scrutiny
+    container_name: scrutiny
+    cap_add:
+      - SYS_RAWIO
+      - SYS_ADMIN #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - SCRUTINY_API_ENDPOINT=http://localhost:8480
+      - SCRUTINY_WEB=true
+      - SCRUTINY_COLLECTOR=true
+    volumes:
+      - /opt/scrutiny/config:/config
+      - /run/udev:/run/udev:ro
+    ports:
+      - 8480:8080
+    devices:
+      - /dev/sda:/dev/sda
+      - /dev/sdb:/dev/sdb
+      - /dev/nvme1n1:/dev/nvme1n1
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main
