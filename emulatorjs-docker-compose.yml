@@ -1,0 +1,23 @@
+# https://hub.docker.com/r/linuxserver/emulatorjs
+---
+version: "2.1"
+services:
+  emulatorjs:
+    image: lscr.io/linuxserver/emulatorjs
+    container_name: emulatorjs
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      # - SUBFOLDER=/ #optional
+    volumes:
+      - /opt/emulatorjs/data:/data
+    ports:
+      - 3000:3000
+      - 80:80
+      - 4001:4001 #optional
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main
