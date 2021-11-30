@@ -1,0 +1,22 @@
+# https://github.com/linuxserver/docker-openvscode-server
+---
+version: "2.1"
+services:
+  openvscode-server:
+    image: lscr.io/linuxserver/openvscode-server
+    container_name: openvscode-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - CONNECTION_TOKEN=supersecrettoken #optional
+      - CONNECTION_SECRET= #optional
+    volumes:
+      - /opt/openvscode/config:/config
+    ports:
+      - 3300:3000
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main
