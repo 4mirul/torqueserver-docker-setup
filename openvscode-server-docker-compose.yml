@@ -13,6 +13,9 @@ services:
       # - CONNECTION_SECRET= #optional
     volumes:
       - /opt/openvscode/config:/config
+      - /opt:/opt
+      - /mnt/disk:/mnt/disk
+      - /home/yuu:/home/yuu
     ports:
       - 3300:3000
     restart: unless-stopped
