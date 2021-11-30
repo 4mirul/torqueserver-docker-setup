@@ -9,8 +9,8 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - CONNECTION_TOKEN=supersecrettoken #optional
-      - CONNECTION_SECRET= #optional
+      # - CONNECTION_TOKEN=supersecrettoken #optional
+      # - CONNECTION_SECRET= #optional
     volumes:
       - /opt/openvscode/config:/config
     ports:
