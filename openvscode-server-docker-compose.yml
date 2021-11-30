@@ -15,6 +15,7 @@ services:
       - /opt/openvscode/config:/config
       - /opt:/opt
       - /mnt/disk:/mnt/disk
+      - /mnt/disk0/work:/mnt/disk0/work
       - /home/yuu:/home/yuu
     ports:
       - 3300:3000
