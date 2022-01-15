@@ -5,7 +5,7 @@ services:
   netdata:
     image: netdata/netdata
     container_name: netdata
-    hostname: netdata # set to fqdn of host
+    hostname: netdata.torqueserver.com # set to fqdn of host
     ports:
       - 19999:19999
     restart: unless-stopped
