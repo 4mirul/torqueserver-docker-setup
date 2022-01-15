@@ -26,7 +26,6 @@ services:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /etc/os-release:/host/etc/os-release:ro
-      - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /opt/swag/config/fail2ban/jail.local:/etc/fail2ban/jail.local
       - /opt/swag/config/log/fail2ban/fail2ban.log:/var/log/fail2ban.log
@@ -34,7 +33,7 @@ services:
 networks:
   default:
     external: true
-    name: main
+    name: main-network
 volumes:
   netdataconfig:
   netdatalib:

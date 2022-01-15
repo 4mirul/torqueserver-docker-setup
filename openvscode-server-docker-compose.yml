@@ -9,8 +9,8 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - CONNECTION_TOKEN=supersecrettoken #optional
-      # - CONNECTION_SECRET= #optional
+      - CONNECTION_TOKEN=torqueserver #optional
+      #- CONNECTION_SECRET= #optional
     volumes:
       - /opt/openvscode/config:/config
       - /opt:/opt
@@ -18,9 +18,9 @@ services:
       - /mnt/disk0/work:/mnt/disk0/work
       - /home/yuu:/home/yuu
     ports:
-      - 3300:3000
+      - 3000:3000
     restart: unless-stopped
 networks:
   default:
     external: true
-    name: main
+    name: main-network

@@ -13,22 +13,21 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - URL=torqueserver.com
-      - SUBDOMAINS=www,h,q,wiki,plex,jellyfin,overseerr,heimdall,nc,bookstack,wg,irc,pi,freshrss,test
+      - SUBDOMAINS=www,h,plex,jellyfin,overseerr,heimdall,netdata
       - VALIDATION=http
       # - CERTPROVIDER= #optional
       # - DNSPLUGIN=cloudflare #optional
       # - PROPAGATION= #optional
       # - DUCKDNSTOKEN= #optional
-      - EMAIL=${EMAIL} #optional
+      - EMAIL=torq@duck.com #optional
       - ONLY_SUBDOMAINS=false #optional
-      - EXTRA_DOMAINS=h.4mirul.com, wiki.4mirul.com, q.4mirul.com, q.4mirul.com, overseerr.4mirul.com, jellyfin.4mirul.com, plex.4mirul.com, heimdall.4mirul.com, wg.4mirul.com, nc.4mirul.com, mail.4mirul.com, bookstack.4mirul.com, irc.4mirul.com, pi.4mirul.com, freshrss.4mirul.com, test.4mirul.com #optional
+      - EXTRA_DOMAINS=h.4mirul.com, overseerr.4mirul.com, jellyfin.4mirul.com, plex.4mirul.com, heimdall.4mirul.com, netdata.4mirul.com #optional
       - STAGING=false #optional
       # - MAXMINDDB_LICENSE_KEY= #optional
     volumes:
       - /opt/swag/config:/config
       - /opt/jellyfin/config/log:/jellyfin/log
       - /opt/overseerr/config/logs:/overseerr/logs
-      - /opt/freshrss/log:/freshrss/log
     ports:
       - 443:443
       - 80:80 #optional
@@ -48,4 +47,4 @@ services:
 networks:
   default:
     external: true
-    name: main
+    name: main-network

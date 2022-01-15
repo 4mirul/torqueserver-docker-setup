@@ -12,7 +12,7 @@ services:
       - WEBUI_PORT=8080
     volumes:
       - /opt/qbittorrent/config:/config
-      - ${DISK0}/downloads:/downloads
+      - /mnt/disk0/downloads:/downloads
     ports:
       - 6881:6881
       - 6881:6881/udp
@@ -21,4 +21,4 @@ services:
 networks:
   default:
     external: true
-    name: main
+    name: main-network

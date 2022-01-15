@@ -6,7 +6,7 @@ services:
     hostname: organizr
     image: organizr/organizr:latest
     ports:
-      - 8089:80
+      - 8088:80
     volumes:
       - /opt/organizr/config:/config
     environment:
@@ -17,4 +17,4 @@ services:
 networks:
   default:
     external: true
-    name: main
+    name: main-network
