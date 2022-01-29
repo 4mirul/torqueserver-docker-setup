@@ -3,8 +3,8 @@
 version: "2.1"
 services:
   wireguard:
-    image: ghcr.io/linuxserver/wireguard
-    container_name: wg
+    image: lscr.io/linuxserver/wireguard
+    container_name: wireguard
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
@@ -12,14 +12,14 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - SERVERURL=wg.4mirul.com #optional
+      - SERVERURL=torqueserver.com #optional
       - SERVERPORT=51820 #optional
-      - PEERS=velvet,orange,red #optional
-      - PEERDNS=${CYAN} #optional
+      - PEERS=1 #optional
+      - PEERDNS=auto #optional
       - INTERNAL_SUBNET=10.13.13.0 #optional
       - ALLOWEDIPS=0.0.0.0/0 #optional
     volumes:
-      - /opt/wg/config:/config
+      - /opt/wireguard/config:/config
       - /lib/modules:/lib/modules
     ports:
       - 51820:51820/udp
@@ -29,4 +29,4 @@ services:
 networks:
   default:
     external: true
-    name: main
+    name: main-network
