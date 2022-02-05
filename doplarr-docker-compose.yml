@@ -1,0 +1,35 @@
+#https://hub.docker.com/r/linuxserver/doplarr
+---
+version: "2.1"
+services:
+  doplarr:
+    image: lscr.io/linuxserver/doplarr
+    container_name: doplarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - DISCORD__TOKEN=${DISCORD_TOKEN}
+      - OVERSEERR__API=${OVERSEERR_API}
+      - OVERSEERR__URL=http://localhost:5055
+      # - RADARR__API=<radarr__api>
+      # - RADARR__URL=http://localhost:7878
+      # - SONARR__API=<sonarr__api>
+      # - SONARR__URL=http://localhost:8989
+      - DISCORD__MAX_RESULTS=25 #optional
+      # - DISCORD__ROLE_ID=<not_set_by_default> #optional
+      - DISCORD__REQUESTED_MSG_STYLE=:embed #optional
+      # - SONARR__QUALITY_PROFILE=<not_set_by_default> #optional
+      # - RADARR__QUALITY_PROFILE=<not_set_by_default> #optional
+      # - SONARR__LANGUAGE_PROFILE=<not_set_by_default> #optional
+      # - OVERSEERR__DEFAULT_ID=<not_set_by_default> #optional
+      - PARTIAL_SEASONS=true #optional
+      # - LOG_LEVEL=:info #optional
+      # - JAVA_OPTS=<not_set_by_default> #optional
+    volumes:
+      - /opt/doplarr/config:/config
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main-network
