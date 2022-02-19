@@ -1,0 +1,21 @@
+# https://github.com/linuxserver/docker-budge/
+---
+version: "2.1"
+services:
+  budge:
+    image: lscr.io/linuxserver/budge
+    container_name: budge
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/budge/config:/config
+    ports:
+      - 8810:80
+      - 5443:443
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main-network
