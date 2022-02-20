@@ -1,3 +1,5 @@
+# https://docs.redis.com/latest/ri/installing/install-docker/
+# https://hub.docker.com/_/redis/
 ---
 version: "3.2"
 services:
