@@ -10,12 +10,28 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - /opt/redis/data:/data
-      - /opt/redis/etc/redis:/usr/local/etc/redis
+      - redisdata:/data
+      - /opt/redis/redis.conf:/usr/local/etc/redis/redis.conf
     ports:
       - 6379:6379
     restart: unless-stopped
+  redisinsight:
+    image: "redislabs/redisinsight:latest"
+    container_name: redisinsight
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - redisinsight:/db
+    ports:
+      - 8001:8001
+    depends_on:
+      - "redis"
 networks:
   default:
     external: true
-    name: main
+    name: main-network
+volumes:
+  redisdata:
+  redisinsight:
