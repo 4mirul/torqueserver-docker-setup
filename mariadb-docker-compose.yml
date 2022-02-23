@@ -38,7 +38,7 @@ services:
       - MARIADB_PASSWORD=${MARIADB_PASSWORD}
       - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
     volumes:
-      - /opt/mariadb/data/mysql:/var/lib/mysql
+      - mysqldata:/var/lib/mysql
     ports:
       - 3306:3306
     restart: unless-stopped
@@ -57,10 +57,13 @@ services:
     volumes:
       - /opt/phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
       - /opt/phpmyadmin/themes:/www/themes/
-      - /opt/phpmyadmin/sessions:/sessions/
+      - phpmyadminsessions:/sessions/
     ports:
       - 8880:80
 networks:
   default:
     external: true
     name: main-network
+volumes:
+  mysqldata:
+  phpmyadminsessions:

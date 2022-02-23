@@ -11,15 +11,15 @@ services:
       PUID: 1000
       PGID: 1000
       TZ: Asia/Kuala_Lumpur
-      WORDPRESS_DB_HOST: mariadb:3306
+      WORDPRESS_DB_HOST: mariadb
       WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
       WORDPRESS_DB_NAME: wordpress
     volumes:
       - wordpress:/var/www/html
 networks:
   default:
     external: true
-    name: main
+    name: main-network
 volumes:
   wordpress:
