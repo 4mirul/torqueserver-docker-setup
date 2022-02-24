@@ -1,25 +1,83 @@
 # https://hub.docker.com/_/wordpress/
-version: "3.1"
+# version: "3.1"
+# services:
+#   wordpress:
+#     image: wordpress
+#     container_name: wordpress
+#     restart: always
+#     ports:
+#       - 8187:80
+#     environment:
+#       PUID: 1000
+#       PGID: 1000
+#       TZ: Asia/Kuala_Lumpur
+#       WORDPRESS_DB_HOST: mariadb
+#       WORDPRESS_DB_USER: wordpress
+#       WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+#       WORDPRESS_DB_NAME: wordpress
+#     volumes:
+#       - wordpress:/var/www/html
+# networks:
+#   default:
+#     external: true
+#     name: main-network
+# volumes:
+#   wordpress:
+
+# https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose
+---
+version: '3'
 services:
-  wordpress:
-    image: wordpress
-    container_name: wordpress
-    restart: always
-    ports:
-      - 8187:80
+  db:
+    image: mysql:8.0
+    container_name: db
+    restart: unless-stopped
     environment:
-      PUID: 1000
-      PGID: 1000
-      TZ: Asia/Kuala_Lumpur
-      WORDPRESS_DB_HOST: mariadb
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
-      WORDPRESS_DB_NAME: wordpress
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes: 
+      - dbdata:/var/lib/mysql
+    command: '--default-authentication-plugin=mysql_native_password'
+  wordpress:
+    depends_on: 
+      - db
+    image: wordpress:5.9.1-fpm-alpine
+    container_name: wordpress
+    restart: unless-stopped
+    environment:
+      - WORDPRESS_DB_HOST=db:3306
+      - WORDPRESS_DB_USER=${MYSQL_USER}
+      - WORDPRESS_DB_PASSWORD=${MYSQL_PASSWORD}
+      - WORDPRESS_DB_NAME=wordpress
     volumes:
       - wordpress:/var/www/html
+  webserver:
+    depends_on:
+      - wordpress
+    image: nginx:1.21.6-alpine
+    container_name: webserver
+    restart: unless-stopped
+    ports:
+      - "8670:80"
+    volumes:
+      - wordpress:/var/www/html
+      - /opt/wordpress-stack/nginx/conf.d:/etc/nginx/conf.d
+      - certbot-etc:/etc/letsencrypt
+  certbot:
+    depends_on:
+      - webserver
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - wordpress:/var/www/html
+    command: certonly --webroot --webroot-path=/var/www/html --email torq@duck.com --agree-tos --no-eff-email --staging -d home.torqueserver.com
+volumes:
+  certbot-etc:
+  wordpress:
+  dbdata:
 networks:
   default:
     external: true
     name: main-network
-volumes:
-  wordpress:
