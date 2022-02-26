@@ -13,7 +13,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - URL=torqueserver.com
-      - SUBDOMAINS=www,h,plex,jellyfin,overseerr,heimdall,netdata
+      - SUBDOMAINS=www,heimdall,jellyfin,netdata,overseerr,plex,h,home
       - VALIDATION=http
       # - CERTPROVIDER= #optional
       # - DNSPLUGIN=cloudflare #optional
@@ -21,7 +21,7 @@ services:
       # - DUCKDNSTOKEN= #optional
       - EMAIL=torq@duck.com #optional
       - ONLY_SUBDOMAINS=false #optional
-      - EXTRA_DOMAINS=h.4mirul.com, overseerr.4mirul.com, jellyfin.4mirul.com, plex.4mirul.com, heimdall.4mirul.com, netdata.4mirul.com #optional
+      # - EXTRA_DOMAINS=h.4mirul.com, overseerr.4mirul.com, jellyfin.4mirul.com, plex.4mirul.com, heimdall.4mirul.com, netdata.4mirul.com #optional
       - STAGING=false #optional
       # - MAXMINDDB_LICENSE_KEY= #optional
     volumes:
@@ -33,7 +33,7 @@ services:
       - 80:80 #optional
     restart: unless-stopped
   authelia:
-    image: authelia/authelia:master
+    image: authelia/authelia:latest
     container_name: authelia
     environment:
       - PUID=1000
