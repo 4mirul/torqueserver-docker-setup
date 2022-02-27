@@ -1,0 +1,22 @@
+# https://github.com/louislam/uptime-kuma
+---
+version: '3'
+services:
+  uptime-kuma:
+    container_name: uptime-kuma
+    image: 'louislam/uptime-kuma:1'
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - 'uptimekumadata:/app/data'
+    ports:
+      - '3001:3001'
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main-network
+volumes:
+  uptimekumadata:
