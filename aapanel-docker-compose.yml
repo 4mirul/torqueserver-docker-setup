@@ -2,6 +2,7 @@
 version: '3'
 services:
   aapanel:
+    container_name: aapanel
     image: 'aapanel/aapanel:lib'
     volumes:
       - 'websitedata:/www/wwwroot'

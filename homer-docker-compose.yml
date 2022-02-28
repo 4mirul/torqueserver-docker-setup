@@ -3,6 +3,7 @@
 version: '3'
 services:
   homer:
+    container_name: homer
     image: 'b4bz/homer:latest'
     environment:
       - PUID=1000
