@@ -1,0 +1,23 @@
+---
+version: '3'
+services:
+  aapanel:
+    image: 'aapanel/aapanel:lib'
+    volumes:
+      - 'websitedata:/www/wwwroot'
+      - 'mysqldata:/www/server/data'
+      - 'vhost:/www/server/panel/vhost'
+    ports:
+      - '8886:8888'
+      - '7722:21'
+      - '7443:443'
+      - '7780:80'
+      - '889:888'
+networks:
+  default:
+    external: true
+    name: main-network
+volumes:
+  websitedata:
+  mysqldata:
+  vhost:
