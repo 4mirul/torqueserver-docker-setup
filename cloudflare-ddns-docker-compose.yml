@@ -2,8 +2,7 @@
 ---
 version: '2'
 services:
-  cloudflare-ddns:
-    container_name: cloudflare-ddns
+  cloudflare-ddns-1:
     image: oznu/cloudflare-ddns:latest
     restart: always
     environment:
@@ -13,6 +12,94 @@ services:
       - API_KEY=${API_KEY}
       - ZONE=4mirul.com
       - SUBDOMAIN=ts
+      - PROXIED=true
+  cloudflare-ddns-2:
+    image: oznu/cloudflare-ddns:latest
+    restart: always
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - API_KEY=${API_KEY}
+      - ZONE=torqueserver.com
+      - SUBDOMAIN=
+      - PROXIED=true
+  cloudflare-ddns-3:
+    image: oznu/cloudflare-ddns:latest
+    restart: always
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - API_KEY=${API_KEY}
+      - ZONE=torqueserver.com
+      - SUBDOMAIN=heimdall
+      - PROXIED=true
+  cloudflare-ddns-4:
+    image: oznu/cloudflare-ddns:latest
+    restart: always
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - API_KEY=${API_KEY}
+      - ZONE=torqueserver.com
+      - SUBDOMAIN=h
+      - PROXIED=true
+  cloudflare-ddns-5:
+    image: oznu/cloudflare-ddns:latest
+    restart: always
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - API_KEY=${API_KEY}
+      - ZONE=torqueserver.com
+      - SUBDOMAIN=jellyfin
+      - PROXIED=true
+  cloudflare-ddns-6:
+    image: oznu/cloudflare-ddns:latest
+    restart: always
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - API_KEY=${API_KEY}
+      - ZONE=torqueserver.com
+      - SUBDOMAIN=plex
+      - PROXIED=true
+  cloudflare-ddns-7:
+    image: oznu/cloudflare-ddns:latest
+    restart: always
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - API_KEY=${API_KEY}
+      - ZONE=torqueserver.com
+      - SUBDOMAIN=overseerr
+      - PROXIED=true
+  cloudflare-ddns-8:
+    image: oznu/cloudflare-ddns:latest
+    restart: always
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - API_KEY=${API_KEY}
+      - ZONE=torqueserver.com
+      - SUBDOMAIN=uptime
+      - PROXIED=true
+  cloudflare-ddns-9:
+    image: oznu/cloudflare-ddns:latest
+    restart: always
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - API_KEY=${API_KEY}
+      - ZONE=torqueserver.com
+      - SUBDOMAIN=home
       - PROXIED=true
 networks:
   default:

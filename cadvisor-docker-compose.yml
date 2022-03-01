@@ -1,0 +1,22 @@
+# https://github.com/google/cadvisor
+---
+version: '3'
+services:
+  cadvisor:
+    container_name: cadvisor
+    image: 'gcr.io/cadvisor/cadvisor:latest'
+    volumes:
+      - '/:/rootfs:ro'
+      - '/var/run:/var/run:ro'
+      - '/sys:/sys:ro'
+      - '/var/lib/docker/:/var/lib/docker:ro'
+      - '/dev/disk/:/dev/disk:ro'
+    ports:
+      - '8980:8080'
+    devices:
+      - /dev/kmsg
+    privileged: true
+networks:
+  default:
+    external: true
+    name: main-network
