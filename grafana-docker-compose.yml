@@ -1,30 +1,31 @@
 # https://grafana.com/docs/grafana/latest/installation/docker/
+# https://hub.docker.com/r/grafana/grafana-oss
 version: "3"
 services:
   grafana:
-    image: grafana/grafana:latest
+    image: grafana/grafana-oss:latest
     container_name: grafana
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - GF_PATHS_PLUGINS=/opt/plugins
+      # - GF_PATHS_PLUGINS=/opt/plugins
     volumes:
-      - grafanalib:/var/lib/grafana
-      - grafanaconfig:/etc/grafana
-      - grafanalog:/var/log/grafana
-      - /opt/grafana/plugins:/opt/plugins
+      - grafana-storage:/var/lib/grafana
+      # - grafanaconfig:/etc/grafana
+      # - grafanalog:/var/log/grafana
+      # - /opt/grafana/plugins:/opt/plugins
     ports:
-      - "3004:3000"
+      - "3003:3000"
     restart: unless-stopped
 networks:
   default:
     external: true
-    name: main
+    name: main-network
 volumes:
-  grafanalib:
-  grafanaconfig:
-  grafanalog:
+  grafana-storage:
+  # grafanaconfig:
+  # grafanalog:
 # dashboard id
 # Node Exporter for Prometheus Dashboard EN v20201010 - 11074
 # Node Exporter Full - 1860

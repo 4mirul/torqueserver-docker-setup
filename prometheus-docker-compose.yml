@@ -1,4 +1,6 @@
 # https://prometheus.io/docs/prometheus/latest/installation/
+# https://github.com/prometheus/prometheus/blob/main/documentation/examples/prometheus.yml
+--- 
 version: "3"
 services:
   prometheus:
@@ -16,4 +18,4 @@ services:
 networks:
   default:
     external: true
-    name: main
+    name: main-network
