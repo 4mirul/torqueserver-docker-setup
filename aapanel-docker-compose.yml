@@ -16,6 +16,7 @@ services:
       - '7443:443'
       - '7780:80'
       - '889:888'
+    restart: unless-stopped
 networks:
   default:
     external: true
