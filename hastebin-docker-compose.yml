@@ -1,0 +1,17 @@
+# https://hub.docker.com/r/rlister/hastebin/#!
+# https://github.com/toptal/haste-server
+---
+version: "3"
+services:
+  hastebin:
+    container_name: hastebin
+    image: rlister/hastebin
+    environment:
+      STORAGE_TYPE: redis
+      STORAGE_HOST: redis
+    ports:
+      - "7777:7777"
+networks:
+  default:
+    external: true
+    name: main-network
