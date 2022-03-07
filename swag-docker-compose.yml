@@ -4,7 +4,7 @@
 version: "2.1"
 services:
   swag:
-    image: ghcr.io/linuxserver/swag:latest
+    image: ghcr.io/linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -13,10 +13,10 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - URL=torqueserver.com
-      - SUBDOMAINS=www,heimdall,jellyfin,netdata,overseerr,plex,h,home
-      - VALIDATION=http
+      - SUBDOMAINS=jellyfin,overseerr,plex,h,home,uptime,hb
+      - VALIDATION=dns
       # - CERTPROVIDER= #optional
-      # - DNSPLUGIN=cloudflare #optional
+      - DNSPLUGIN=cloudflare #optional
       # - PROPAGATION= #optional
       # - DUCKDNSTOKEN= #optional
       - EMAIL=torq@duck.com #optional
