@@ -2,7 +2,8 @@
 ---
 version: '2'
 services:
-  cloudflare-ddns-1:
+  cloudflare-ddns:
+    container_name: cloudflare-ddns
     image: oznu/cloudflare-ddns:latest
     restart: always
     environment:

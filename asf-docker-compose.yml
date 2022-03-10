@@ -13,6 +13,11 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=asf
+      - flame.url=http://192.168.0.105:1242
+      - flame.icon=steam
 networks:
   default:
     external: true

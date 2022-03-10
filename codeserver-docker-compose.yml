@@ -9,7 +9,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      # - PASSWORD=${PASS} #optional
+      - PASSWORD=${PASS} #optional
       # - HASHED_PASSWORD= #optional
       - SUDO_PASSWORD=${SUDO_PASS} #optional
       # - SUDO_PASSWORD_HASH= #optional
@@ -22,6 +22,11 @@ services:
     ports:
       - 8443:8443
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=code-server
+      - flame.url=http://192.168.0.105:8443/
+      - flame.icon=microsoft-visual-studio-code
 networks:
   default:
     external: true
