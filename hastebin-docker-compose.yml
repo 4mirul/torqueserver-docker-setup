@@ -9,6 +9,8 @@ services:
     environment:
       STORAGE_TYPE: redis
       STORAGE_HOST: redis
+      # STORAGE_PASSWORD: ${STORAGE_PASSWORD}
+      # STORAGE_USERNAME: ${STORAGE_USERNAME}
     ports:
       - "7777:7777"
 networks:
