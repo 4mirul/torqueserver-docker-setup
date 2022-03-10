@@ -1,0 +1,31 @@
+# https://github.com/pawelmalak/flame
+---
+version: '3.6'
+services:
+  flame:
+    image: pawelmalak/flame
+    container_name: flame
+    volumes:
+      - flamedata:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock # optional but required for Docker integration
+    ports:
+      - 5005:5005
+    # secrets:
+    #   - password # optional but required for (1)
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - PASSWORD=pass
+      # - PASSWORD_FILE=/run/secrets/password # optional but required for (1)
+    restart: unless-stopped
+# # optional but required for Docker secrets (1)
+# secrets:
+#   password:
+#     file: /path/to/secrets/password
+networks:
+  default:
+    external: true
+    name: main-network
+volumes:
+  flamedata:

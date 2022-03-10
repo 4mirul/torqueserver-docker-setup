@@ -14,6 +14,11 @@ services:
     ports:
       - '3001:3001'
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=uptime-kuma
+      - flame.url=https://uptime.torqueserver.com/status
+      - flame.icon=arrow-up-bold
 networks:
   default:
     external: true

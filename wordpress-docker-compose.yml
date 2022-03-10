@@ -19,6 +19,11 @@ services:
       WORDPRESS_DB_NAME: wordpress
     volumes:
       - wordpress:/var/www/html
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=torqueserver
+      - flame.url=https://www.4mirul.com/
+      - flame.icon=alpha-t
 networks:
   default:
     external: true
