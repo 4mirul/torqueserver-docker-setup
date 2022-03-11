@@ -52,14 +52,19 @@ services:
       # - PMA_ARBITRARY=1
       - PMA_HOST=mariadb
       - PMA_PORT=3306
-      - PMA_USER=root
-      - PMA_PASSWORD=${MARIADB_ROOT_PASSWORD}
+      # - PMA_USER=root
+      # - PMA_PASSWORD=${MARIADB_ROOT_PASSWORD}
     volumes:
       - /opt/phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
       - /opt/phpmyadmin/themes:/www/themes/
       - phpmyadminsessions:/sessions/
     ports:
       - 8880:80
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=phpmyadmin
+      - flame.url=http://192.168.0.105:8880/
+      - flame.icon=database
 networks:
   default:
     external: true

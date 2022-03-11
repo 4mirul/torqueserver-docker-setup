@@ -18,6 +18,11 @@ services:
       - 6881:6881/udp
       - 8080:8080
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=qbittorrent
+      - flame.url=http://192.168.0.105:8080/
+      - flame.icon=vector-radius
 networks:
   default:
     external: true

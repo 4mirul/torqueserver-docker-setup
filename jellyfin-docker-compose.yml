@@ -20,6 +20,11 @@ services:
     devices:
       - /dev/dri:/dev/dri #optional
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=jellyfin
+      - flame.url=https://jellyfin.torqueserver.com/
+      - flame.icon=jellyfish
 networks:
   default:
     external: true

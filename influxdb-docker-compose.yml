@@ -14,6 +14,11 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=influxdb
+      - flame.url=http://192.168.0.105:8086/
+      - flame.icon=chart-line
 networks:
   default:
     external: true

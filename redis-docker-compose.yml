@@ -30,6 +30,11 @@ services:
       - 8001:8001
     depends_on:
       - "redis"
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=redisinsight
+      - flame.url=http://192.168.0.105:8001/
+      - flame.icon=database
 networks:
   default:
     external: true

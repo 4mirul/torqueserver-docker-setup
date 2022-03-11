@@ -13,7 +13,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - URL=torqueserver.com
-      - SUBDOMAINS=jellyfin,overseerr,plex,h,home,uptime,hb
+      - SUBDOMAINS=jellyfin,overseerr,plex,h,home,uptime,hb,flame,code
       - VALIDATION=dns
       # - CERTPROVIDER= #optional
       - DNSPLUGIN=cloudflare #optional

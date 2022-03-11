@@ -16,6 +16,11 @@ services:
     ports:
       - 8989:8989
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=sonarr
+      - flame.url=http://192.168.0.105:8989/
+      - flame.icon=waveform
 networks:
   default:
     external: true

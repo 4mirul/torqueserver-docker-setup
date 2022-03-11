@@ -18,3 +18,8 @@ services:
       - /mnt/disk0/music:/music
       - /dev/dri:/dev/dri
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=plex
+      - flame.url=plex.torqueserver.com/
+      - flame.icon=plex

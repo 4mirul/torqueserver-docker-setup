@@ -31,3 +31,30 @@ networks:
   default:
     external: true
     name: main-network
+
+# version: "2.1"
+# services:
+#   code-server-public:
+#     image: ghcr.io/linuxserver/code-server
+#     container_name: code-server-public
+#     environment:
+#       - PUID=1000
+#       - PGID=1000
+#       - TZ=Asia/Kuala_Lumpur
+#       - PASSWORD=${PASS}
+#       # - PROXY_DOMAIN=torqueserver.com #optional
+#       - DEFAULT_WORKSPACE=/home/yuu/codeserver
+#     volumes:
+#       - /home/yuu/codeserver:/home/yuu/codeserver
+#     ports:
+#       - 8433:8443
+#     restart: unless-stopped
+#     labels:
+#       - flame.type=app # "app" works too
+#       - flame.name=code-server-public
+#       - flame.url=https://code.torqueserver.com/
+#       - flame.icon=microsoft-visual-studio-code
+# networks:
+#   default:
+#     external: true
+#     name: main-network

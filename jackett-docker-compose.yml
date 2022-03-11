@@ -16,6 +16,11 @@ services:
     ports:
       - 9117:9117
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=jackett
+      - flame.url=http://192.168.0.105:9117/
+      - flame.icon=tshirt-crew
 networks:
   default:
     external: true

@@ -26,6 +26,11 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
     ports:
       - '8008:80'
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=pgadmin4
+      - flame.url=http://192.168.0.105:8008/
+      - flame.icon=database
 networks:
   default:
     external: true

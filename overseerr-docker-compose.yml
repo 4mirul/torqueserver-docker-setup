@@ -13,6 +13,11 @@ services:
     ports:
       - 5055:5055
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=overseerr
+      - flame.url=https://overseerr.torqueserver.com/
+      - flame.icon=clover
 networks:
   default:
     external: true

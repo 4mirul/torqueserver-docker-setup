@@ -14,6 +14,11 @@ services:
     ports:
       - 9696:9696
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=prowlarr
+      - flame.url=http://192.168.0.105:9696/
+      - flame.icon=target
 networks:
   default:
     external: true
