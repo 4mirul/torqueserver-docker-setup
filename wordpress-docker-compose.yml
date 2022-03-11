@@ -22,7 +22,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=torqueserver
-      - flame.url=https://www.torqueserver.com/
+      - flame.url=https://torqueserver.com/
       - flame.icon=alpha-t
 networks:
   default:
