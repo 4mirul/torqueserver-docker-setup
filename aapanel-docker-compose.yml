@@ -17,6 +17,11 @@ services:
       - '7780:80'
       - '889:888'
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=aapanel
+      - flame.url=http://192.168.0.200:8886/
+      - flame.icon=alpha-a
 networks:
   default:
     external: true
@@ -25,3 +30,34 @@ volumes:
   websitedata:
   mysqldata:
   vhost:
+
+# ---
+# version: '3'
+# services:
+#   aapanel:
+#     container_name: aapanel
+#     image: 'aapanel/aapanel-arm:lib'
+#     volumes:
+#       - 'websitedata:/www/wwwroot'
+#       - 'mysqldata:/www/server/data'
+#       - 'vhost:/www/server/panel/vhost'
+#     ports:
+#       - '8886:8888'
+#       - '22:21'
+#       - '443:443'
+#       - '80:80'
+#       - '889:888'
+#     restart: unless-stopped
+#     labels:
+#       - flame.type=app # "app" works too
+#       - flame.name=aapanel
+#       - flame.url=http://192.168.0.200:8886/
+#       - flame.icon=alpha-a
+# networks:
+#   default:
+#     external: true
+#     name: main-network
+# volumes:
+#   websitedata:
+#   mysqldata:
+#   vhost:

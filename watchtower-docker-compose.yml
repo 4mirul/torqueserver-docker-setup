@@ -18,7 +18,7 @@ services:
       - TZ=Asia/Kuala_Lumpur
       - WATCHTOWER_NOTIFICATIONS=slack
       - WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL=${WATCHTOWER_WEBHOOK}/slack
-      - WATCHTOWER_POLL_INTERVAL=1800
+      - WATCHTOWER_POLL_INTERVAL=21600
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped

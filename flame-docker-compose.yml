@@ -3,7 +3,7 @@
 version: '3.6'
 services:
   flame:
-    image: pawelmalak/flame
+    image: pawelmalak/flame:latest
     container_name: flame
     volumes:
       - flamedata:/app/data
@@ -16,7 +16,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - PASSWORD=pass
+      - PASSWORD=${PASS}
       # - PASSWORD_FILE=/run/secrets/password # optional but required for (1)
     restart: unless-stopped
 # # optional but required for Docker secrets (1)
