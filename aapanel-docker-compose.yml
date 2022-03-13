@@ -20,7 +20,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=aapanel
-      - flame.url=http://192.168.0.200:8886/
+      - flame.url=http://192.168.0.200:8886/aapanel
       - flame.icon=alpha-a
 networks:
   default:
