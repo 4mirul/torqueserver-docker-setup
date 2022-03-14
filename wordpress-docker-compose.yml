@@ -7,8 +7,6 @@ services:
     image: wordpress
     container_name: wordpress
     restart: always
-    ports:
-      - 8187:80
     environment:
       PUID: 1000
       PGID: 1000

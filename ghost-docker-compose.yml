@@ -2,27 +2,23 @@
 version: "3.1"
 services:
   ghost:
-    image: ghost:latest
     container_name: ghost
-    restart: always
-    ports:
-      - 8980:2368
+    image: ghost:alpine
     environment:
-      PUID: 1000
-      PGID: 1000
-      TZ: Asia/Kuala_Lumpur
-      # see https://ghost.org/docs/config/#configuration-options
-      database__client: mysql
-      database__connection__host: mariadb
-      database__connection__port: 3306
-      database__connection__user: ghost
-      database__connection__password: password
-      database__connection__database: ghost
-      # this url value is just an example, and is likely wrong for your environment!
-      url: http://192.168.0.105:8980
-      # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production (so development mode needs to be explicitly specified if desired)
-      #NODE_ENV: development
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - 'ghostdata:/var/lib/ghost/content'
+    restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=ghost
+      - flame.url=https://ghost.torqueserver.com/
+      - flame.icon=ghost
 networks:
   default:
     external: true
-    name: main
+    name: main-network
+volumes:
+  ghostdata:
