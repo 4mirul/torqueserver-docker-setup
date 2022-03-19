@@ -14,7 +14,12 @@ services:
     ports:
       - 8781:8081
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=redis-commander
+      - flame.url=http://192.168.0.105:8781/
+      - flame.icon=alpha-c
 networks:
   default:
     external: true
-    name: main
+    name: main-network

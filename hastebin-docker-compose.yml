@@ -11,13 +11,12 @@ services:
       STORAGE_HOST: redis
       # STORAGE_PASSWORD: ${STORAGE_PASSWORD}
       # STORAGE_USERNAME: ${STORAGE_USERNAME}
-    ports:
-      - "7777:7777"
     labels:
       - flame.type=app # "app" works too
       - flame.name=hastebin
       - flame.url=https://hb.torqueserver.com/
       - flame.icon=file-code
+    restart: unless-stopped
 networks:
   default:
     external: true

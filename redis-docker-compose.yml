@@ -14,8 +14,6 @@ services:
     volumes:
       - redisdata:/data
       # - /opt/redis/redis.conf:/usr/local/etc/redis/redis.conf
-    ports:
-      - 6379:6379
     restart: unless-stopped
   redisinsight:
     image: "redislabs/redisinsight:latest"
