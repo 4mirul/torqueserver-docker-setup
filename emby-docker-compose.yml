@@ -1,26 +1,28 @@
 # https://hub.docker.com/r/linuxserver/emby
+# https://hub.docker.com/r/emby/embyserver/#!
 ---
-version: "2.1"
+version: "2.3"
 services:
   emby:
-    image: ghcr.io/linuxserver/emby
-    container_name: emby
+    image: emby/embyserver
+    container_name: embyserver
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/emby/config:/config
-      - ${DISK0}/tvseries:/data/tvshows
-      - ${DISK0}/movies:/data/movies
+      - /mnt/disk0/tvseries:/data/tvshows
+      - /mnt/disk1/movies:/data/movies
       # - /opt/vc/lib:/opt/vc/lib #optional
     ports:
       - 8097:8096
-      # - 8920:8920 #optional
+      # - 8920:8920
     devices:
-      - /dev/dri:/dev/dri #optional
-      #- /dev/vchiq:/dev/vchiq #optional
-      #- /dev/video10:/dev/video10 #optional
-      #- /dev/video11:/dev/video11 #optional
-      #- /dev/video12:/dev/video12 #optional
+      - /dev/dri:/dev/dri
+    # runtime: nvidia
     restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main-network
