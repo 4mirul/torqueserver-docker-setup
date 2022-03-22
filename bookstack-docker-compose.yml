@@ -8,7 +8,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - APP_URL=https://bookstack.4mirul.com/
+      - APP_URL=https://bookstack.torqueserver.com/
       - DB_HOST=mariadb
       - DB_USER=bookstack
       - DB_PASS=${DB_PASS}
@@ -21,4 +21,4 @@ services:
 networks:
   default:
     external: true
-    name: main
+    name: main-network

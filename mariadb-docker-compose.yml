@@ -39,8 +39,6 @@ services:
       - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
     volumes:
       - mysqldata:/var/lib/mysql
-    ports:
-      - 3306:3306
     restart: unless-stopped
   phpmyadmin:
     image: phpmyadmin:latest
