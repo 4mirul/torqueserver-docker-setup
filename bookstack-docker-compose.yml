@@ -18,6 +18,11 @@ services:
     ports:
       - 6875:80
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=bookstack
+      - flame.url=https://bookstack.torqueserver.com/
+      - flame.icon=book-open
 networks:
   default:
     external: true
