@@ -33,10 +33,13 @@ services:
       - flame.name=redisinsight
       - flame.url=http://192.168.0.105:8001/
       - flame.icon=database
+    restart: unless-stopped
 networks:
   default:
     external: true
     name: main-network
 volumes:
   redisdata:
+    external: true
   redisinsight:
+    external: true

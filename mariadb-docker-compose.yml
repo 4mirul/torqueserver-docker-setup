@@ -63,10 +63,13 @@ services:
       - flame.name=phpmyadmin
       - flame.url=http://192.168.0.105:8880/
       - flame.icon=database
+    restart: unless-stopped
 networks:
   default:
     external: true
     name: main-network
 volumes:
   mysqldata:
+    external: true
   phpmyadminsessions:
+    external: true
