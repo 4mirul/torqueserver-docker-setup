@@ -18,7 +18,7 @@ services:
       - flame.type=app # "app" works too
       - flame.name=organizr
       - flame.url=http://192.168.0.105:8088/
-      - flame.icon=alpha-o
+      - flame.icon=dock-window
 networks:
   default:
     external: true

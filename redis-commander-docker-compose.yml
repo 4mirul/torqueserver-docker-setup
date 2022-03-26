@@ -18,7 +18,7 @@ services:
       - flame.type=app # "app" works too
       - flame.name=redis-commander
       - flame.url=http://192.168.0.105:8781/
-      - flame.icon=alpha-c
+      - flame.icon=smart-card-reader
 networks:
   default:
     external: true

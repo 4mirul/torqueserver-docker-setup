@@ -21,7 +21,7 @@ services:
       - flame.type=app # "app" works too
       - flame.name=torqueserver
       - flame.url=https://torqueserver.com/
-      - flame.icon=alpha-t
+      - flame.icon=server
 networks:
   default:
     external: true
