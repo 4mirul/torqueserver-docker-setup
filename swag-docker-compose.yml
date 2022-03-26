@@ -13,7 +13,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - URL=torqueserver.com
-      - SUBDOMAINS=jellyfin,overseerr,plex,h,home,uptime,hb,flame,code
+      - SUBDOMAINS=jellyfin,overseerr,plex,h,home,uptime,hb,flame,code,authelia
       - VALIDATION=dns
       # - CERTPROVIDER= #optional
       - DNSPLUGIN=cloudflare #optional
@@ -44,6 +44,11 @@ services:
     ports:
       - 9091:9091
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=authelia
+      - flame.url=https://authelia.torqueserver.com
+      - flame.icon=two-factor-authentication
 networks:
   default:
     external: true
