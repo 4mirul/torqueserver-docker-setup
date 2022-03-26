@@ -11,10 +11,13 @@ services:
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/freshrss/config:/config
-    ports:
-      - 8679:80
-    restart: unless-stopped
+    restart: unless-stoppe
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=freshrss
+      - flame.url=https://freshrss.torqueserver.com/
+      - flame.icon=rss
 networks:
   default:
     external: true
-    name: main
+    name: main-network
