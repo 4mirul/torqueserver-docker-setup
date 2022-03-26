@@ -19,7 +19,7 @@ services:
       - DNSPLUGIN=cloudflare #optional
       # - PROPAGATION= #optional
       # - DUCKDNSTOKEN= #optional
-      - EMAIL=torq@duck.com #optional
+      - EMAIL=admin@torqueserver.com #optional
       - ONLY_SUBDOMAINS=false #optional
       # - EXTRA_DOMAINS=h.4mirul.com, overseerr.4mirul.com, jellyfin.4mirul.com, plex.4mirul.com, heimdall.4mirul.com, netdata.4mirul.com #optional
       - STAGING=false #optional
