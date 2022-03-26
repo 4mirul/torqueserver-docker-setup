@@ -28,9 +28,12 @@ networks:
     name: main-network
 volumes:
   websitedata:
+    external: true
   mysqldata:
+    external: true
   vhost:
-
+    external: true
+    
 # ---
 # version: '3'
 # services:

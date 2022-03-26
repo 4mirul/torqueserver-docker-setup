@@ -1,0 +1,38 @@
+# https://hub.docker.com/_/drupal
+---
+version: '2'    
+
+services:
+  drupal:
+    container_name: drupal
+    image: drupal:latest
+    ports:
+      - 8082:80
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=drupal
+      - flame.url=http://192.168.0.105:8082
+      - flame.icon=drupal
+    volumes:
+      - drupal-modules:/var/www/html/modules 
+      - drupal-profiles:/var/www/html/profiles 
+      - drupal-sites:/var/www/html/sites 
+      - drupal-themes:/var/www/html/themes
+networks:
+  default:
+    external: true
+    name: main-network
+volumes:
+  drupal-modules:
+    external: true
+  drupal-profiles:
+    external: true
+  drupal-sites:
+    external: true
+  drupal-themes:
+    external: true

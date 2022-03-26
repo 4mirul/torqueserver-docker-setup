@@ -8,91 +8,94 @@
 # Documentation:
 #     https://github.com/ArchiveBox/ArchiveBox/wiki/Docker#docker-compose
 
-version: "2.4"
+version: '2.4'
 
 services:
-  archivebox:
-    # build: .                              # for developers working on archivebox
-    image: ${DOCKER_IMAGE:-archivebox/archivebox:master}
-    container_name: archivebox
-    command: server --quick-init 0.0.0.0:8000
-    ports:
-      - 8001:8000
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Kuala_Lumpur
-      - ALLOWED_HOSTS=* # add any config options you want as env vars
-      - MEDIA_MAX_SIZE=750m
-      # - SEARCH_BACKEND_ENGINE=sonic     # uncomment these if you enable sonic below
-      # - SEARCH_BACKEND_HOST_NAME=sonic
-      # - SEARCH_BACKEND_PASSWORD=SecretPassword
-    volumes:
-      - /opt/archivebox/data:/data
-      # - ./archivebox:/app/archivebox    # for developers working on archivebox
-    restart: unless-stopped
+    archivebox:
+        # build: .                              # for developers working on archivebox
+        image: ${DOCKER_IMAGE:-archivebox/archivebox:master}
+        command: server --quick-init 0.0.0.0:8000
+        container_name: archivebox        
+        ports:
+            - 8007:8000
+        environment:
+            - TZ=Asia/Kuala_Lumpur
+            - ALLOWED_HOSTS=*                   # add any config options you want as env vars
+            - MEDIA_MAX_SIZE=750m
+            # - SEARCH_BACKEND_ENGINE=sonic     # uncomment these if you enable sonic below
+            # - SEARCH_BACKEND_HOST_NAME=sonic
+            # - SEARCH_BACKEND_PASSWORD=SecretPassword
+        volumes:
+            - archivebox-data:/data
+            # - ./archivebox:/app/archivebox    # for developers working on archivebox
+        labels:
+          - flame.type=app # "app" works too
+          - flame.name=archivebox
+          - flame.url=http://192.168.0.105:8007
+          - flame.icon=archive
+        restart: unless-stopped
+volumes:
+  archivebox-data:
+    external: true
+    # To run the Sonic full-text search backend, first download the config file to sonic.cfg
+    # curl -O https://raw.githubusercontent.com/ArchiveBox/ArchiveBox/master/etc/sonic.cfg
+    # after starting, backfill any existing Snapshots into the index: docker-compose run archivebox update --index-only
+    # sonic:
+    #    image: valeriansaliou/sonic:v1.3.0
+    #    expose:
+    #        - 1491
+    #    environment:
+    #        - SEARCH_BACKEND_PASSWORD=SecretPassword
+    #    volumes:
+    #        - ./sonic.cfg:/etc/sonic.cfg:ro
+    #        - ./data/sonic:/var/lib/sonic/store
 
-  # To run the Sonic full-text search backend, first download the config file to sonic.cfg
-  # curl -O https://raw.githubusercontent.com/ArchiveBox/ArchiveBox/master/etc/sonic.cfg
-  # after starting, backfill any existing Snapshots into the index: docker-compose run archivebox update --index-only
-  # sonic:
-  #    image: valeriansaliou/sonic:v1.3.0
-  #    expose:
-  #        - 1491
-  #    environment:
-  #        - SEARCH_BACKEND_PASSWORD=SecretPassword
-  #    volumes:
-  #        - ./sonic.cfg:/etc/sonic.cfg:ro
-  #        - ./data/sonic:/var/lib/sonic/store
 
-  ### Optional Addons: tweak these examples as needed for your specific use case
+    ### Optional Addons: tweak these examples as needed for your specific use case
 
-  # Example: Run scheduled imports in a docker instead of using cron on the
-  # host machine, add tasks and see more info with archivebox schedule --help
-  # scheduler:
-  #   image: archivebox/archivebox:latest
-  #   command: schedule --foreground --every=day --depth=0 'http://h.4mirul.com/'
-  #   environment:
-  #     - USE_COLOR=True
-  #     - SHOW_PROGRESS=True
-  #   volumes:
-  #     - /opt/archivebox/data:/data
-  #   healthcheck:
-  #     disable: True
-  #   restart: unless-stopped
+    # Example: Run scheduled imports in a docker instead of using cron on the
+    # host machine, add tasks and see more info with archivebox schedule --help
+    # scheduler:
+    #    image: archivebox/archivebox:latest
+    #    command: schedule --foreground --every=day --depth=1 'https://getpocket.com/users/USERNAME/feed/all'
+    #    environment:
+    #        - USE_COLOR=True
+    #        - SHOW_PROGRESS=False
+    #    volumes:
+    #        - ./data:/data
 
-  # Example: Put Nginx in front of the ArchiveBox server for SSL termination
-  # nginx:
-  #     image: nginx:alpine
-  #     ports:
-  #         - 443:443
-  #         - 80:80
-  #     volumes:
-  #         - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf
-  #         - ./data:/var/www
+    # Example: Put Nginx in front of the ArchiveBox server for SSL termination
+    # nginx:
+    #     image: nginx:alpine
+    #     ports:
+    #         - 443:443
+    #         - 80:80
+    #     volumes:
+    #         - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+    #         - ./data:/var/www
 
-  # Example: run all your ArchiveBox traffic through a WireGuard VPN tunnel
-  # wireguard:
-  #   image: linuxserver/wireguard
-  #   network_mode: 'service:archivebox'
-  #   cap_add:
-  #     - NET_ADMIN
-  #     - SYS_MODULE
-  #   sysctls:
-  #     - net.ipv4.conf.all.rp_filter=2
-  #     - net.ipv4.conf.all.src_valid_mark=1
-  #   volumes:
-  #     - /lib/modules:/lib/modules
-  #     - ./wireguard.conf:/config/wg0.conf:ro
+    # Example: run all your ArchiveBox traffic through a WireGuard VPN tunnel
+    # wireguard:
+    #   image: linuxserver/wireguard
+    #   network_mode: 'service:archivebox'
+    #   cap_add:
+    #     - NET_ADMIN
+    #     - SYS_MODULE
+    #   sysctls:
+    #     - net.ipv4.conf.all.rp_filter=2
+    #     - net.ipv4.conf.all.src_valid_mark=1
+    #   volumes:
+    #     - /lib/modules:/lib/modules
+    #     - ./wireguard.conf:/config/wg0.conf:ro
 
-  # Example: Run PYWB in parallel and auto-import WARCs from ArchiveBox
-  # pywb:
-  #     image: webrecorder/pywb:latest
-  #     entrypoint: /bin/sh 'wb-manager add default /archivebox/archive/*/warc/*.warc.gz; wayback --proxy;'
-  #     environment:
-  #         - INIT_COLLECTION=archivebox
-  #     ports:
-  #         - 8080:8080
-  #     volumes:
-  #         ./data:/archivebox
-  #         ./data/wayback:/webarchive
+    # Example: Run PYWB in parallel and auto-import WARCs from ArchiveBox
+    # pywb:
+    #     image: webrecorder/pywb:latest
+    #     entrypoint: /bin/sh 'wb-manager add default /archivebox/archive/*/warc/*.warc.gz; wayback --proxy;'
+    #     environment:
+    #         - INIT_COLLECTION=archivebox
+    #     ports:
+    #         - 8080:8080
+    #     volumes:
+    #         ./data:/archivebox
+    #         ./data/wayback:/webarchive
