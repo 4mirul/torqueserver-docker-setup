@@ -1,0 +1,23 @@
+version: '3'
+services:
+  couchdb:
+    image: couchdb
+    container_name: couchdb
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    ports:
+      - '5984:5984'
+    volumes:
+      - /opt/couchdb/etc/local.d:/opt/couchdb/etc/local.d
+      - couchdb-data:/home/couchdb/data
+    restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=couchdb
+      - flame.url=http://192.168.0.105:5984/_utils/
+      - flame.icon=database
+volumes:
+  couchdb-data:
+    external: true
