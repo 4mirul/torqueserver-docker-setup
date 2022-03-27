@@ -1,0 +1,35 @@
+# https://hub.docker.com/_/registry
+--- 
+version: '3'
+services:
+  registry:
+    container_name: registry
+    image: 'registry:latest'
+    restart: always
+    ports:
+      - 5000:5000
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/registry:/etc/docker/registry
+  drui:
+    container_name: drui
+    image: joxit/docker-registry-ui:latest
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+      - REGISTRY_TITLE=My Docker Registry
+      - REGISTRY_URL=http://registry:5000
+    depends_on:
+      - registry
+    restart: unless-stopped
+    ports:
+      - 8765:80
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=docker-registry-ui
+      - flame.url=http://192.168.0.105:8765/
+      - flame.icon=folder-image
+networks:
+  default:
+    external: true
+    name: main-network
