@@ -1,6 +1,5 @@
 # torqueserver-docker-setup
 
-- pure docker
 - docker-compose
 
 ## docker
