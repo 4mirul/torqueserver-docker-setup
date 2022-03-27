@@ -12,24 +12,32 @@ services:
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/registry:/etc/docker/registry
-  drui:
-    container_name: drui
-    image: joxit/docker-registry-ui:latest
-    environment:
-      - TZ=Asia/Kuala_Lumpur
-      - REGISTRY_TITLE=My Docker Registry
-      - REGISTRY_URL=http://registry:5000
-    depends_on:
-      - registry
-    restart: unless-stopped
-    ports:
-      - 8765:80
-    labels:
-      - flame.type=app # "app" works too
-      - flame.name=docker-registry-ui
-      - flame.url=http://192.168.0.105:8765/
-      - flame.icon=folder-image
+      - registry-data:/var/lib/registry
+  # registryui:
+  #   container_name: registryui
+  #   image: joxit/docker-registry-ui:latest
+  #   environment:
+  #     - TZ=Asia/Kuala_Lumpur
+  #     - REGISTRY_TITLE=My Docker Registry
+  #     - REGISTRY_URL=https://registry.torqueserver.com/
+  #     - DELETE_IMAGES=true
+  #     - SHOW_CONTENT_DIGEST=true
+  #     - NGINX_PROXY_PASS_URL=https://registry.torqueserver.com/
+  #     - SHOW_CATALOG_NB_TAGS=true
+  #   depends_on:
+  #     - registry
+  #   restart: unless-stopped
+  #   ports:
+  #     - 8765:80
+  #   labels:
+  #     - flame.type=app # "app" works too
+  #     - flame.name=docker-registry-ui
+  #     - flame.url=https://registryui.torqueserver.com/
+  #     - flame.icon=folder-image
 networks:
   default:
     external: true
     name: main-network
+volumes:
+  registry-data:
+    external: true
