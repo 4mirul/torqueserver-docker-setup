@@ -1,0 +1,19 @@
+# https://coder.com/#try-coder
+---
+version: '3'
+services:
+  coder:
+    image: 'codercom/coder:1.29.0'
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - 'coder:/var/run/coder'
+    ports:
+      - '7080:7080'
+    tty: true
+networks:
+  default:
+    external: true
+    name: main-network
+volumes:
+  coder:
+  external: true

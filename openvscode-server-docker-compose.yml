@@ -1,25 +1,22 @@
 # https://github.com/linuxserver/docker-openvscode-server
 ---
-version: "2.1"
+version: '3'
 services:
   openvscode-server:
-    image: lscr.io/linuxserver/openvscode-server
     container_name: openvscode-server
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Kuala_Lumpur
-      - CONNECTION_TOKEN=torqueserver #optional
-      #- CONNECTION_SECRET= #optional
+    image: gitpod/openvscode-server
     volumes:
-      - /opt/openvscode/config:/config
-      - /opt:/opt
-      - /mnt/disk:/mnt/disk
-      - /mnt/disk0/work:/mnt/disk0/work
-      - /home/yuu:/home/yuu
+      - '/home/yuu/openvscode:/home/workspace"'
     ports:
-      - 3000:3000
+      - '3080:3000'
+    init: true
+    tty: true
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=openvscode
+      - flame.url=https://code.torqueserver.com/
+      - flame.icon=microsoft-visual-studio-code
 networks:
   default:
     external: true
