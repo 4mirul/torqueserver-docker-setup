@@ -1,0 +1,43 @@
+# https://github.com/pawelmalak/flame
+---
+version: "3.6"
+
+services:
+  flame:
+    image: pawelmalak/flame
+    volumes:
+      - flame_data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock # optional but required for Docker integration
+    ports:
+      - 5005:5005
+    secrets:
+      - password
+    environment:
+      - PASSWORD_FILE=/run/secrets/password # optional but required for (1)
+    networks:
+      - main_network_overlay
+    # deploy:
+    #   mode: replicated
+    #   replicas: 1
+    #   placement:
+    #     constraints: [node.role == manager]
+    # healthcheck:
+    #   test: ["CMD", "curl", "-f", "http://localhost:5005"]
+    #   interval: 5m
+    #   timeout: 10s
+    #   retries: 3
+    #   start_period: 1m
+
+networks:
+  main_network_overlay:
+    external: true
+
+volumes:
+  flame_data:
+
+secrets:
+  password:
+    file: ./password.txt
+# secrets:
+#   password:
+#     external: true

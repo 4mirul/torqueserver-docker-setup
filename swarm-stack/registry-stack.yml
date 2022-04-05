@@ -1,0 +1,18 @@
+version: "3.3"
+
+services:
+  registry:
+    ports:
+      - "5000:5000"
+    image: "registry:2"
+    volumes:
+      - registry_data:/var/lib/registry
+    networks:
+      - main_network_overlay
+
+networks:
+  main_network_overlay:
+    external: true
+
+volumes:
+  registry_data:
