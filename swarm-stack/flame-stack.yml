@@ -16,17 +16,6 @@ services:
       - PASSWORD_FILE=/run/secrets/password # optional but required for (1)
     networks:
       - main_network_overlay
-    # deploy:
-    #   mode: replicated
-    #   replicas: 1
-    #   placement:
-    #     constraints: [node.role == manager]
-    # healthcheck:
-    #   test: ["CMD", "curl", "-f", "http://localhost:5005"]
-    #   interval: 5m
-    #   timeout: 10s
-    #   retries: 3
-    #   start_period: 1m
 
 networks:
   main_network_overlay:
@@ -38,6 +27,6 @@ volumes:
 secrets:
   password:
     file: ./password.txt
-# secrets:
-#   password:
-#     external: true
+# secrets: # not working, check issues in github
+#   password: # not working, check issues in github
+#     external: true # not working, check issues in github
