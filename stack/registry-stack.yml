@@ -12,7 +12,23 @@ services:
       - registry_data:/var/lib/registry
     networks:
       - main_network_overlay
-
+  
+  docker_registry_ui:
+    image: joxit/docker-registry-ui:latest
+    ports:
+      - 8088:80
+    environment:
+      - REGISTRY_TITLE=My Private Docker Registry
+      - NGINX_PROXY_PASS_URL=http://registry:5000
+      - SINGLE_REGISTRY=true
+    networks:
+      - main_network_overlay
+    labels:
+      - flame.type=application # "app" works too
+      - flame.name=docker-registry-ui
+      - flame.url=http://192.168.0.126:8088/
+      - flame.icon=docker
+      
 networks:
   main_network_overlay:
     external: true
