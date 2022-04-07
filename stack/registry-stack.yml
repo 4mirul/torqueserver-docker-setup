@@ -20,6 +20,8 @@ services:
     environment:
       - REGISTRY_TITLE=My Private Docker Registry
       - NGINX_PROXY_PASS_URL=http://registry:5000
+      - PULL_URL=127.0.0.1:5000
+      - DELETE_IMAGES=true
       - SINGLE_REGISTRY=true
     networks:
       - main_network_overlay
