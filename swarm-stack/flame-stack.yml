@@ -23,6 +23,7 @@ networks:
 
 volumes:
   flame_data:
+    external: true
 
 secrets:
   password:

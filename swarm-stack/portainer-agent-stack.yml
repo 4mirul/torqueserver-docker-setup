@@ -31,6 +31,11 @@ services:
       replicas: 1
       placement:
         constraints: [node.role == manager]
+    labels:
+      - flame.type=application # "app" works too
+      - flame.name=portainer
+      - flame.url=http://192.168.0.126:9000/
+      - flame.icon=docker
 
 networks:
   agent_network:
@@ -39,3 +44,4 @@ networks:
 
 volumes:
   portainer_data:
+    external: true
