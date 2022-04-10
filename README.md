@@ -7,15 +7,16 @@
 
 ## docker install
 
-[Install](https://docs.docker.com/engine/install/)
+- [Install](https://docs.docker.com/engine/install/)
 
 ### raspberry
 
-[install](https://docs.docker.com/engine/install/debian/); or for ubuntu; [install](https://docs.docker.com/engine/install/ubuntu/)
+- [install](https://docs.docker.com/engine/install/debian/)
+- for ubuntu; [install](https://docs.docker.com/engine/install/ubuntu/)
 
 ## portainer
 
-[Install](https://documentation.portainer.io/v2.0/deploy/ceinstalldocker/)
+- [Install](https://documentation.portainer.io/v2.0/deploy/ceinstalldocker/)
 
 ### portainer install
 
