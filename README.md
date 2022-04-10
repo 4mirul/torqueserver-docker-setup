@@ -51,7 +51,7 @@ $ docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /
 
 [Dockerfile cheatsheet](https://devhints.io/dockerfile)
 
-[docker cheatsheet](https://github.com/collabnix/dockerlabs/blob/master/docker/cheatsheet/README.md)
+[docker cheatsheet](https://dockerlabs.collabnix.com/docker/cheatsheet/)
 
 [docker compose reference](https://docs.docker.com/compose/reference/)
 

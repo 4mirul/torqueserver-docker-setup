@@ -1,1 +1,1 @@
-[appwrite](https://appwrite.io/docs/installation)
+[appwrite installation](https://appwrite.io/docs/installation)
