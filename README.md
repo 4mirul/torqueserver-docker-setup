@@ -1,6 +1,6 @@
 # torqueserver-docker-setup
 
-- docker
+- docker cli
 - docker-compose
 - docker swarm
 - kubernetes
