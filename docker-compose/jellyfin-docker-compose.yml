@@ -3,29 +3,31 @@
 version: "2.1"
 services:
   jellyfin:
-    image: ghcr.io/linuxserver/jellyfin
+    image: ghcr.io/linuxserver/jellyfin:latest
     container_name: jellyfin
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - JELLYFIN_PublishedServerUrl=jellyfin.torqueserver.com #optional
+      # - JELLYFIN_PublishedServerUrl=jellyfin.torqueserver.com #optional
     volumes:
       - /opt/jellyfin/config:/config
-      - /mnt/disk0/tvseries:/data/tvshows
-      - /mnt/disk1/movies:/data/movies
-      - /mnt/disk0/music:/data/music
+      - /home/yuu/media/tv:/data/tvshows
+      - /home/yuu/media/movies:/data/movies
+      - /home/yuu/media/music:/data/music
     ports:
       - 8096:8096
+      - 8920:8920
     devices:
       - /dev/dri:/dev/dri #optional
     restart: unless-stopped
     labels:
       - flame.type=app # "app" works too
       - flame.name=jellyfin
-      - flame.url=https://jellyfin.torqueserver.com/
+      # - flame.url=https://jellyfin.torqueserver.com/
+      - flame.url=http://192.168.0.126:8096
       - flame.icon=jellyfish
 networks:
   default:
     external: true
-    name: main-network
+    name: main_network

@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   radarr:
-    image: ghcr.io/linuxserver/radarr
+    image: ghcr.io/linuxserver/radarr:latest
     container_name: radarr
     environment:
       - PUID=1000
@@ -11,17 +11,17 @@ services:
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/radarr/config:/config
-      - /mnt/disk1/movies:/movies
-      - /mnt/disk0/downloads:/downloads
+      - /home/yuu/media/movies:/movies
+      - /home/yuu/downloads:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
     labels:
       - flame.type=app # "app" works too
       - flame.name=radarr
-      - flame.url=http://192.168.0.105:7878/
-      - flame.icon=radar
+      - flame.url=http://192.168.0.126:7878/
+      - flame.icon=filmstrip
 networks:
   default:
     external: true
-    name: main-network
+    name: main_network

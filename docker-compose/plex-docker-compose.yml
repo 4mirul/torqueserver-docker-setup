@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   plex:
-    image: ghcr.io/linuxserver/plex
+    image: ghcr.io/linuxserver/plex:latest
     container_name: plex
     network_mode: host
     environment:
@@ -13,13 +13,14 @@ services:
       # - PLEX_CLAIM= ${PLEX_CLAIM}
     volumes:
       - /opt/plex/config:/config
-      - /mnt/disk0/tvseries:/tv
-      - /mnt/disk1/movies:/movies
-      - /mnt/disk0/music:/music
+      - /home/yuu/media/tv:/tv
+      - /home/yuu/media/movies:/movies
+      - /home/yuu/media/music:/music
       - /dev/dri:/dev/dri
     restart: unless-stopped
     labels:
       - flame.type=app # "app" works too
       - flame.name=plex
-      - flame.url=plex.torqueserver.com/
+      # - flame.url=plex.torqueserver.com/
+      - flame.url=http://192.168.0.126:32400/web/index.html
       - flame.icon=plex

@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   sonarr:
-    image: ghcr.io/linuxserver/sonarr
+    image: ghcr.io/linuxserver/sonarr:latest
     container_name: sonarr
     environment:
       - PUID=1000
@@ -11,17 +11,17 @@ services:
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/sonarr/config:/config
-      - /mnt/disk0/tvseries:/tv
-      - /mnt/disk0/downloads:/downloads
+      - /home/yuu/media/tv:/tv
+      - /home/yuu/downloads:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
     labels:
       - flame.type=app # "app" works too
       - flame.name=sonarr
-      - flame.url=http://192.168.0.105:8989/
-      - flame.icon=waveform
+      - flame.url=http://192.168.0.126:8989/
+      - flame.icon=television-box
 networks:
   default:
     external: true
-    name: main-network
+    name: main_network

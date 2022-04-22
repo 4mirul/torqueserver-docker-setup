@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   qbittorrent:
-    image: ghcr.io/linuxserver/qbittorrent
+    image: ghcr.io/linuxserver/qbittorrent:latest
     container_name: qbittorrent
     environment:
       - PUID=1000
@@ -12,7 +12,7 @@ services:
       - WEBUI_PORT=8080
     volumes:
       - /opt/qbittorrent/config:/config
-      - /mnt/disk0/downloads:/downloads
+      - /home/yuu/downloads:/downloads
     ports:
       - 6881:6881
       - 6881:6881/udp
@@ -21,9 +21,9 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=qbittorrent
-      - flame.url=http://192.168.0.105:8080/
-      - flame.icon=vector-radius
+      - flame.url=http://192.168.0.126:8080/
+      - flame.icon=download
 networks:
   default:
     external: true
-    name: main-network
+    name: main_network
