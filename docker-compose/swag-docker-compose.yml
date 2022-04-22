@@ -4,7 +4,7 @@
 version: "2.1"
 services:
   swag:
-    image: ghcr.io/linuxserver/swag
+    image: ghcr.io/linuxserver/swag:latest
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -13,7 +13,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - URL=torqueserver.com
-      - SUBDOMAINS=jellyfin,overseerr,plex,h,home,uptime,hb,flame,code,authelia
+      - SUBDOMAINS=www,sonarr,radarr,overseerr,plex,jellyfin
       - VALIDATION=dns
       # - CERTPROVIDER= #optional
       - DNSPLUGIN=cloudflare #optional
@@ -28,28 +28,30 @@ services:
       - /opt/swag/config:/config
       - /opt/jellyfin/config/log:/jellyfin/log
       - /opt/overseerr/config/logs:/overseerr/logs
+      - /opt/sonarr/config/logs:/sonarr/logs
+      - /opt/radarr/config/logs:/radarr/logs
     ports:
       - 443:443
       - 80:80 #optional
     restart: unless-stopped
-  authelia:
-    image: authelia/authelia:latest
-    container_name: authelia
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Kuala_Lumpur
-    volumes:
-      - /opt/authelia/config:/config
-    ports:
-      - 9091:9091
-    restart: unless-stopped
-    labels:
-      - flame.type=app # "app" works too
-      - flame.name=authelia
-      - flame.url=https://authelia.torqueserver.com
-      - flame.icon=two-factor-authentication
+  # authelia:
+  #   image: authelia/authelia:latest
+  #   container_name: authelia
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Asia/Kuala_Lumpur
+  #   volumes:
+  #     - /opt/authelia/config:/config
+  #   ports:
+  #     - 9091:9091
+  #   restart: unless-stopped
+  #   labels:
+  #     - flame.type=app # "app" works too
+  #     - flame.name=authelia
+  #     - flame.url=https://authelia.torqueserver.com
+  #     - flame.icon=two-factor-authentication
 networks:
   default:
     external: true
-    name: main-network
+    name: main_network

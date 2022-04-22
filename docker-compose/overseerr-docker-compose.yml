@@ -2,7 +2,7 @@
 version: "2.1"
 services:
   overseerr:
-    image: ghcr.io/linuxserver/overseerr
+    image: ghcr.io/linuxserver/overseerr:latest
     container_name: overseerr
     environment:
       - PUID=1000
@@ -16,9 +16,10 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=overseerr
-      - flame.url=https://overseerr.torqueserver.com/
+      # - flame.url=https://overseerr.torqueserver.com/
+      - flame.url=http://192.168.0.126:5055/
       - flame.icon=clover
 networks:
   default:
     external: true
-    name: main-network
+    name: main_network

@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   code-server:
-    image: ghcr.io/linuxserver/code-server
+    image: ghcr.io/linuxserver/code-server:latest
     container_name: code-server
     environment:
       - PUID=1000
