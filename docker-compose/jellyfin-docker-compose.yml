@@ -24,8 +24,8 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=jellyfin
-      # - flame.url=https://jellyfin.torqueserver.com/
-      - flame.url=http://192.168.0.126:8096
+      - flame.url=https://jellyfin.torqueserver.com/
+      # - flame.url=http://192.168.0.126:8096
       - flame.icon=jellyfish
 networks:
   default:

@@ -19,7 +19,8 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=sonarr
-      - flame.url=http://192.168.0.126:8989/
+      - flame.url=https://sonarr.torqueserver.com/
+      # - flame.url=http://192.168.0.126:8989/
       - flame.icon=television-box
 networks:
   default:
