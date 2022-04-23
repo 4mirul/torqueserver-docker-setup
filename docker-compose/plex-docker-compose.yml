@@ -21,6 +21,6 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=plex
-      # - flame.url=plex.torqueserver.com/
-      - flame.url=http://192.168.0.126:32400/web/index.html
+      - flame.url=plex.torqueserver.com/
+      # - flame.url=http://192.168.0.126:32400/web/index.html
       - flame.icon=plex

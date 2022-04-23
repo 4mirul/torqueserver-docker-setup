@@ -1,10 +1,9 @@
 #https://github.com/pi-hole/docker-pi-hole
-version: "3"
+version: "3.6"
 
 # More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
 services:
   pihole:
-    container_name: pihole
     image: pihole/pihole:latest
     ports:
       - "53:53/tcp"
@@ -12,23 +11,28 @@ services:
       - "67:67/udp"
       - "8087:80/tcp"
     environment:
-      TZ: "Asia/Kuala_Lumpur"
-      WEBPASSWORD: ${PASS}
+      TZ: 'Asia/Kuala_Lumpur'
+      # WEBPASSWORD: 'set a secure password here or it will be random'
     # Volumes store your data between container upgrades
     volumes:
-      - "/opt/pihole/etc/pihole/:/etc/pihole/"
-      - "/opt/pihole/etc/dnsmasq.d/:/etc/dnsmasq.d/"
+      - "etc_pihole:/etc/pihole/"
+      - "etc_dnsmasq.d:/etc/dnsmasq.d/"
     # Recommended but not required (DHCP needs NET_ADMIN)
     #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
     cap_add:
       - NET_ADMIN
-    restart: unless-stopped
     labels:
       - flame.type=app # "app" works too
       - flame.name=pihole
-      - flame.url=http://192.168.0.105:8087/admin/
+      - flame.url=http://192.168.0.126:8087/admin/
       - flame.icon=pi-hole
+
 networks:
-  default:
+  main_network_overlay:
     external: true
-    name: main_network
+
+volumes:
+  etc_pihole:
+    external: true
+  etc_dnsmasq.d:
+    external: true
