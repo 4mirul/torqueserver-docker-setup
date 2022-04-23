@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   bazarr:
-    image: ghcr.io/linuxserver/bazarr
+    image: ghcr.io/linuxserver/bazarr:latest
     container_name: bazarr
     environment:
       - PUID=1000
@@ -11,17 +11,17 @@ services:
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/bazarr/config:/config
-      - /mnt/disk1/movies:/movies
-      - /mnt/disk0/tvseries:/tv
+      - /home/yuu/media/movies:/movies
+      - /home/yuu/media/tv:/tv
     ports:
       - 6767:6767
     restart: unless-stopped
     labels:
       - flame.type=app # "app" works too
       - flame.name=bazarr
-      - flame.url=http://192.168.0.105:6767/
+      - flame.url=http://192.168.0.126:6767/
       - flame.icon=subtitles
 networks:
   default:
     external: true
-    name: main-network
+    name: main_network
