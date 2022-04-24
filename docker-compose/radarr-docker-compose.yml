@@ -22,7 +22,7 @@ services:
       # # - flame.url=http://192.168.0.126:7878/
       # - flame.url=https://radarr.torqueserver.com/
       # - flame.icon=filmstrip
-      - com.centurylinklabs.watchtower.enable=trues
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true

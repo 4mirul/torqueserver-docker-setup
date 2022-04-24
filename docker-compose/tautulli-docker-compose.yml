@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   tautulli:
-    image: ghcr.io/linuxserver/tautulli
+    image: ghcr.io/linuxserver/tautulli:latest
     container_name: tautulli
     environment:
       - PUID=1000
@@ -15,11 +15,12 @@ services:
       - 8181:8181
     restart: unless-stopped
     labels:
-      - flame.type=app # "app" works too
-      - flame.name=tautulli
-      - flame.url=http://192.168.0.105:8181/
-      - flame.icon=chart-timeline  
+      # - flame.type=app # "app" works too
+      # - flame.name=tautulli
+      # - flame.url=http://192.168.0.105:8181/
+      # - flame.icon=chart-timeline 
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
-    name: main-network
+    name: main_network
