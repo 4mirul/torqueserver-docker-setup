@@ -21,6 +21,7 @@ services:
       - flame.name=bazarr
       - flame.url=http://192.168.0.126:6767/
       - flame.icon=subtitles
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true

@@ -18,6 +18,7 @@ services:
       - flame.name=asf
       - flame.url=http://192.168.0.126:1242
       - flame.icon=steam
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
