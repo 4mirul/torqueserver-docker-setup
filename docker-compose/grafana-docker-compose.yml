@@ -12,25 +12,26 @@ services:
       # - GF_PATHS_PLUGINS=/opt/plugins
     volumes:
       - grafana-storage:/var/lib/grafana
-      # - grafanaconfig:/etc/grafana
-      # - grafanalog:/var/log/grafana
+      - grafanaconfig:/etc/grafana
+      - grafanalog:/var/log/grafana
       # - /opt/grafana/plugins:/opt/plugins
     ports:
-      - "3003:3000"
+      - "3000:3000"
     restart: unless-stopped
     labels:
       - flame.type=app # "app" works too
       - flame.name=grafana
-      - flame.url=http://192.168.0.105:3000/
+      - flame.url=http://192.168.0.126:3000/
       - flame.icon=chart-bar
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
-    name: main-network
+    name: main_network
 volumes:
   grafana-storage:
-  # grafanaconfig:
-  # grafanalog:
+  grafanaconfig:
+  grafanalog:
 # dashboard id
 # Node Exporter for Prometheus Dashboard EN v20201010 - 11074
 # Node Exporter Full - 1860

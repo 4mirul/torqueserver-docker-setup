@@ -4,7 +4,7 @@
 version: "3"
 services:
   prometheus:
-    image: prom/prometheus
+    image: prom/prometheus:latest
     container_name: prometheus
     environment:
       - PUID=1000
@@ -18,9 +18,9 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=prometheus
-      - flame.url=http://192.168.0.105:9090/
+      - flame.url=http://192.168.0.126:9090/
       - flame.icon=finance
 networks:
   default:
     external: true
-    name: main-network
+    name: main_network
