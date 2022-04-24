@@ -3,7 +3,7 @@
 version: "3"
 services:
   netdata:
-    image: netdata/netdata
+    image: netdata/netdata:latest
     container_name: netdata
     hostname: netdata.torqueserver.com # set to fqdn of host
     ports:
@@ -26,14 +26,20 @@ services:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /etc/os-release:/host/etc/os-release:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /opt/swag/config/fail2ban/jail.local:/etc/fail2ban/jail.local
-      - /opt/swag/config/log/fail2ban/fail2ban.log:/var/log/fail2ban.log
-      - /opt/swag/config/log/nginx/access.log:/var/log/nginx/access.log
+      # - /var/run/docker.sock:/var/run/docker.sock:ro
+      # - /opt/swag/config/fail2ban/jail.local:/etc/fail2ban/jail.local
+      # - /opt/swag/config/log/fail2ban/fail2ban.log:/var/log/fail2ban.log
+      # - /opt/swag/config/log/nginx/access.log:/var/log/nginx/access.log
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=netdata
+      - flame.url=http://192.168.0.126:19999/
+      - flame.icon=chart-multiline
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
-    name: main-network
+    name: main_network
 volumes:
   netdataconfig:
   netdatalib:
