@@ -17,10 +17,11 @@ services:
       - 9117:9117
     restart: unless-stopped
     labels:
-      - flame.type=app # "app" works too
-      - flame.name=jackett
-      - flame.url=http://192.168.0.126:9117/
-      - flame.icon=tshirt-crew
+      # - flame.type=app # "app" works too
+      # - flame.name=jackett
+      # - flame.url=http://192.168.0.126:9117/
+      # - flame.icon=tshirt-crew
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true

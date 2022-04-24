@@ -19,10 +19,11 @@ services:
       - 8080:8080
     restart: unless-stopped
     labels:
-      - flame.type=app # "app" works too
-      - flame.name=qbittorrent
-      - flame.url=http://192.168.0.126:8080/
-      - flame.icon=download
+      # - flame.type=app # "app" works too
+      # - flame.name=qbittorrent
+      # - flame.url=http://192.168.0.126:8080/
+      # - flame.icon=download
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true

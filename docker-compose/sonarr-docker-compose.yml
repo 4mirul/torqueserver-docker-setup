@@ -17,11 +17,12 @@ services:
       - 8989:8989
     restart: unless-stopped
     labels:
-      - flame.type=app # "app" works too
-      - flame.name=sonarr
-      - flame.url=https://sonarr.torqueserver.com/
-      # - flame.url=http://192.168.0.126:8989/
-      - flame.icon=television-box
+      # - flame.type=app # "app" works too
+      # - flame.name=sonarr
+      # - flame.url=https://sonarr.torqueserver.com/
+      # # - flame.url=http://192.168.0.126:8989/
+      # - flame.icon=television-box
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
