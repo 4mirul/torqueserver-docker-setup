@@ -20,6 +20,7 @@ services:
       - flame.name=prometheus
       - flame.url=http://192.168.0.126:9090/
       - flame.icon=finance
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true

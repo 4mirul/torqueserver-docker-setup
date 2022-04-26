@@ -28,6 +28,7 @@ services:
       - flame.name=pihole
       - flame.url=http://192.168.0.105:8087/admin/
       - flame.icon=pi-hole
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true

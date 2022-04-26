@@ -2,17 +2,15 @@
 ---
 version: "3.8"
 services:
-  node-exporter:
+  node_exporter:
     image: quay.io/prometheus/node-exporter:latest
-    container_name: node-exporter
+    container_name: node_exporter
     command:
       - "--path.rootfs=/host"
     network_mode: host
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Kuala_Lumpur
     pid: host
     restart: unless-stopped
     volumes:
       - "/:/host:ro,rslave"
+    labels:
+      - com.centurylinklabs.watchtower.enable=true

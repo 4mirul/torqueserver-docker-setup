@@ -19,6 +19,7 @@ services:
       - flame.name=organizr
       - flame.url=http://192.168.0.126:8088/
       - flame.icon=dock-window
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true

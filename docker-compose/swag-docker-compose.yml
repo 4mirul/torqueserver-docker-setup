@@ -30,6 +30,8 @@ services:
       - /opt/overseerr/config/logs:/overseerr/logs
       - /opt/sonarr/config/logs:/sonarr/logs
       - /opt/radarr/config/logs:/radarr/logs
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
     ports:
       - 443:443
       - 80:80 #optional
