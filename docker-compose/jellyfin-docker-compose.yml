@@ -27,6 +27,7 @@ services:
       - flame.url=https://jellyfin.torqueserver.com/
       # - flame.url=http://192.168.0.126:8096
       - flame.icon=jellyfish
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true

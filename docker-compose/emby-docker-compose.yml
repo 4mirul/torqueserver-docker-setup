@@ -4,7 +4,7 @@
 version: "2.3"
 services:
   emby:
-    image: emby/embyserver
+    image: emby/embyserver:latest
     container_name: embyserver
     environment:
       - PUID=1000
@@ -12,17 +12,24 @@ services:
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/emby/config:/config
-      - /mnt/disk0/tvseries:/data/tvshows
-      - /mnt/disk1/movies:/data/movies
+      - /home/yuu/media/tv:/data/tvshows
+      - /home/yuu/media/movies:/data/movies
       # - /opt/vc/lib:/opt/vc/lib #optional
     ports:
       - 8097:8096
-      # - 8920:8920
+      - 8920:8920
     devices:
       - /dev/dri:/dev/dri
     # runtime: nvidia
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=emby
+      - flame.url=https://emby.torqueserver.com/
+      # - flame.url=http://192.168.0.126:8096
+      - flame.icon=emby
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
-    name: main-network
+    name: main_network

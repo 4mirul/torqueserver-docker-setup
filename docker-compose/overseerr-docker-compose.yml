@@ -19,6 +19,7 @@ services:
       - flame.url=https://overseerr.torqueserver.com/
       # - flame.url=http://192.168.0.126:5055/
       - flame.icon=clover
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
