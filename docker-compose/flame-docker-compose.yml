@@ -19,6 +19,8 @@ services:
       - PASSWORD=${PASS}
       # - PASSWORD_FILE=/run/secrets/password # optional but required for (1)
     restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
 # # optional but required for Docker secrets (1)
 # secrets:
 #   password:

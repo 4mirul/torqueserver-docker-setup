@@ -1,0 +1,18 @@
+# https://github.com/djmaze/shepherd
+---
+version: "3"
+services:
+  shepherd:
+    image: mazzolino/shepherd
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      placement:
+        constraints:
+        - node.role == manager
+    networks:
+      - main_network_overlay
+
+networks:
+  main_network_overlay:
+    external: true
