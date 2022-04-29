@@ -14,6 +14,8 @@ services:
       - ZONE=torqueserver.com
       - SUBDOMAIN=
       - PROXIED=true
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
