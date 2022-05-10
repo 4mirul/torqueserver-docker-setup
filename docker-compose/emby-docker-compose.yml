@@ -25,8 +25,8 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=emby
-      - flame.url=https://emby.torqueserver.com/
-      # - flame.url=http://192.168.0.126:8096
+      # - flame.url=https://emby.torqueserver.com/
+      - flame.url=http://192.168.0.126:8097
       - flame.icon=emby
       - com.centurylinklabs.watchtower.enable=true
 networks:
