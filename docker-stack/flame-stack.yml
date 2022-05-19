@@ -15,10 +15,10 @@ services:
     environment:
       - PASSWORD_FILE=/run/secrets/password # optional but required for (1)
     networks:
-      - main_network_overlay
+      - overlay_network
 
 networks:
-  main_network_overlay:
+  overlay_network:
     external: true
 
 volumes:
