@@ -11,8 +11,8 @@ services:
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/sonarr/config:/config
-      - /home/yuu/media/tv:/tv
-      - /home/yuu/downloads:/downloads
+      - /mnt/disk0/tvseries:/tv
+      - /mnt/disk0/downloads:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped

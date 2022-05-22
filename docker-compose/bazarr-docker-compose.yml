@@ -11,8 +11,8 @@ services:
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/bazarr/config:/config
-      - /home/yuu/media/movies:/movies
-      - /home/yuu/media/tv:/tv
+      - /mnt/disk1/movies:/movies
+      - /mnt/disk0/tvseries:/tv
     ports:
       - 6767:6767
     restart: unless-stopped

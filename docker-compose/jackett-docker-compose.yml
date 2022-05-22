@@ -12,7 +12,7 @@ services:
       - AUTO_UPDATE=true #optional
     volumes:
       - /opt/jackett/config:/config
-      - /home/yuu/downloads:/downloads
+      - /mnt/disk0/downloads:/downloads
     ports:
       - 9117:9117
     restart: unless-stopped

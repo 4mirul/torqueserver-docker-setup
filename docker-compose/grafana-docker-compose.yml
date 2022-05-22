@@ -21,7 +21,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=grafana
-      - flame.url=http://192.168.0.126:3000/
+      - flame.url=http://192.168.0.105:3000/
       - flame.icon=chart-bar
       - com.centurylinklabs.watchtower.enable=true
 networks:

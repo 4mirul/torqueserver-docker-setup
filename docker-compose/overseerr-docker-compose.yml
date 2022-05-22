@@ -14,11 +14,11 @@ services:
       - 5055:5055
     restart: unless-stopped
     labels:
-      - flame.type=app # "app" works too
-      - flame.name=overseerr
-      - flame.url=https://overseerr.torqueserver.com/
+      #- flame.type=app # "app" works too
+      #- flame.name=overseerr
+      #- flame.url=https://overseerr.torqueserver.com/
       # - flame.url=http://192.168.0.126:5055/
-      - flame.icon=clover
+      #- flame.icon=clover
       - com.centurylinklabs.watchtower.enable=true
 networks:
   default:

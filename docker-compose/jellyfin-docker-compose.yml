@@ -12,9 +12,9 @@ services:
       # - JELLYFIN_PublishedServerUrl=jellyfin.torqueserver.com #optional
     volumes:
       - /opt/jellyfin/config:/config
-      - /home/yuu/media/tv:/data/tvshows
-      - /home/yuu/media/movies:/data/movies
-      - /home/yuu/media/music:/data/music
+      - /mnt/disk0/tvseries:/data/tvshows
+      - /mnt/disk1/movies:/data/movies
+      - /mnt/disk0/music:/data/music
     ports:
       - 8096:8096
       - 8920:8920

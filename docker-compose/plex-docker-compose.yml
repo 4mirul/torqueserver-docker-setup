@@ -13,9 +13,9 @@ services:
       # - PLEX_CLAIM= ${PLEX_CLAIM}
     volumes:
       - /opt/plex/config:/config
-      - /home/yuu/media/tv:/tv
-      - /home/yuu/media/movies:/movies
-      - /home/yuu/media/music:/music
+      - /mnt/disk0/tvseries:/tv
+      - /mnt/disk1/movies:/movies
+      - /mnt/disk0/music:/music
       - /dev/dri:/dev/dri
     restart: unless-stopped
     labels:

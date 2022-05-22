@@ -9,7 +9,7 @@ services:
     # network_mode: "host"
     ports:
       - "53:53/tcp"
-      - "53:53/udp"
+      - "53:53/udp" # to disable dnsamq for ubuntu run the following; `sudo systemctl stop systemd-resolved`; `sudo systemctl disable systemd-resolved`
       - "67:67/udp"
       - "8087:80/tcp"
     environment:
@@ -27,7 +27,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=pihole
-      - flame.url=http://192.168.0.126:8087/admin/
+      - flame.url=http://192.168.0.105:8087/admin/
       - flame.icon=pi-hole
       - com.centurylinklabs.watchtower.enable=true
 networks:
