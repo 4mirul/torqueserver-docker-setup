@@ -14,7 +14,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=glances
-      - flame.url=http://192.168.0.126:61208/
+      - flame.url=http://192.168.0.105:61208/
       - flame.icon=eye
       - com.centurylinklabs.watchtower.enable=true
     volumes:
