@@ -9,17 +9,19 @@ networks:
 
 services:
   loki:
+    container_name: loki
     image: grafana/loki:2.5.0
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
-    networks:
-      - main_network
-
   promtail:
+    container_name: promtail
     image: grafana/promtail:2.5.0
     volumes:
+      - /opt/promtail:/etc/promtail
       - /var/log:/var/log
+      # - /opt/jellyfin/config/log:/srv/log/jellyfin
+      # - /opt/overseerr/config/logs:/srv/log/overseerr
+      # - /opt/sonarr/config/logs:/srv/log/sonarr
+      # - /opt/radarr/config/logs:/srv/log/radarr
     command: -config.file=/etc/promtail/config.yml
-    networks:
-      - main_network
