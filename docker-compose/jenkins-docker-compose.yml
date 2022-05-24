@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
+    ports:
+      - 8180:8080
+      - 50000:50000
+    container_name: jenkins
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/local/bin/docker:/usr/local/bin/docker
+    restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=jenkins
+      - flame.url=http://192.168.0.105:8180/
+      - flame.icon=account-tie
+      - com.centurylinklabs.watchtower.enable=true
+networks:
+  default:
+    external: true
+    name: main_network
+volumes:
+  jenkins_home:
