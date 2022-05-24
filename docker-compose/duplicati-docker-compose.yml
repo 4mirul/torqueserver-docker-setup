@@ -20,7 +20,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=duplicati
-      - flame.url=http://192.168.0.105:8200/
+      - flame.url=torqueserver.home:8200/
       - flame.icon=content-duplicate
       - com.centurylinklabs.watchtower.enable=true
 networks:

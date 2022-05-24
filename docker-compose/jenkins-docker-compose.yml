@@ -16,7 +16,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=jenkins
-      - flame.url=http://192.168.0.105:8180/
+      - flame.url=http://torqueserver.home:8180/
       - flame.icon=account-tie
       - com.centurylinklabs.watchtower.enable=true
 networks:

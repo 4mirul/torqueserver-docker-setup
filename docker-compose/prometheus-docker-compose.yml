@@ -18,7 +18,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=prometheus
-      - flame.url=http://192.168.0.105:9090/
+      - flame.url=http://torqueserver.home:9090/
       - flame.icon=finance
       - com.centurylinklabs.watchtower.enable=true
 networks:

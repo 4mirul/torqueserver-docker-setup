@@ -16,7 +16,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=metube
-      - flame.url=http://192.168.0.105:8081/
+      - flame.url=http://torqueserver.home:8081/
       - flame.icon=youtube
       - com.centurylinklabs.watchtower.enable=true
 networks:
