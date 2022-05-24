@@ -20,8 +20,5 @@ services:
     volumes:
       - /opt/promtail:/etc/promtail
       - /var/log:/var/log
-      # - /opt/jellyfin/config/log:/srv/log/jellyfin
-      # - /opt/overseerr/config/logs:/srv/log/overseerr
-      # - /opt/sonarr/config/logs:/srv/log/sonarr
-      # - /opt/radarr/config/logs:/srv/log/radarr
+      - /var/lib/docker/containers:/var/lib/docker/containers
     command: -config.file=/etc/promtail/config.yml
