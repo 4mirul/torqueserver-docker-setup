@@ -6,55 +6,27 @@ services:
     image: ghcr.io/linuxserver/code-server:latest
     container_name: code-server
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=0
+      - PGID=0
       - TZ=Asia/Kuala_Lumpur
       - PASSWORD=${PASS} #optional
       # - HASHED_PASSWORD= #optional
-      - SUDO_PASSWORD=${SUDO_PASS} #optional
+      # - SUDO_PASSWORD=${SUDO_PASS} #optional
       # - SUDO_PASSWORD_HASH= #optional
       # - PROXY_DOMAIN=code-server.my.domain #optional
-      - DEFAULT_WORKSPACE=/opt
+      - DEFAULT_WORKSPACE=/home/torqueserver
     volumes:
       - /opt/codeserver/config:/config
-      - /opt:/opt
-      - /home/yuu:/home/yuu
+      - /:/home/torqueserver
     ports:
       - 8443:8443
     restart: unless-stopped
     labels:
       - flame.type=app # "app" works too
       - flame.name=code-server
-      - flame.url=http://192.168.0.105:8443/
+      - flame.url=http://torqueserver.home:8443/
       - flame.icon=microsoft-visual-studio-code
 networks:
   default:
     external: true
-    name: main-network
-
-# version: "2.1"
-# services:
-#   code-server-public:
-#     image: ghcr.io/linuxserver/code-server
-#     container_name: code-server-public
-#     environment:
-#       - PUID=1000
-#       - PGID=1000
-#       - TZ=Asia/Kuala_Lumpur
-#       - PASSWORD=${PASS}
-#       # - PROXY_DOMAIN=torqueserver.com #optional
-#       - DEFAULT_WORKSPACE=/home/yuu/codeserver
-#     volumes:
-#       - /home/yuu/codeserver:/home/yuu/codeserver
-#     ports:
-#       - 8433:8443
-#     restart: unless-stopped
-#     labels:
-#       - flame.type=app # "app" works too
-#       - flame.name=code-server-public
-#       - flame.url=https://code.torqueserver.com/
-#       - flame.icon=microsoft-visual-studio-code
-# networks:
-#   default:
-#     external: true
-#     name: main-network
+    name: main_network
