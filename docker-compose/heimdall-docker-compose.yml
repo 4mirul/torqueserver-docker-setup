@@ -18,7 +18,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=heimdall
-      - flame.url=http://torqueserver.home:8888
+      - flame.url=https://h.torqueserver.com/
       - flame.icon=crown
       - com.centurylinklabs.watchtower.enable=true
 networks:

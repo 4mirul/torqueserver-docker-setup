@@ -4,8 +4,8 @@
 version: "3.2"
 services:
   redis:
-    image: "redis:alpine"
-    command: redis-server --requirepass ${REDIS_PASSWORD}
+    image: "redis:7.0.0-alpine"
+    command: redis-server # --requirepass ${REDIS_PASSWORD}
     container_name: redis
     environment:
       - PUID=1000
@@ -31,15 +31,15 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=redisinsight
-      - flame.url=http://192.168.0.105:8001/
+      - flame.url=http://torqueserver.home:8001/
       - flame.icon=database
+      - com.centurylinklabs.watchtower.enable=true
     restart: unless-stopped
 networks:
   default:
     external: true
-    name: main-network
+    name: main_network
 volumes:
   redisdata:
     external: true
   redisinsight:
-    external: true
