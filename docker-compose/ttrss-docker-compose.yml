@@ -1,0 +1,30 @@
+# https://hub.docker.com/r/nventiveux/ttrss/
+---
+version: '3'
+services:
+  ttrss:
+    container_name: ttrss
+    image: 'wangqiru/ttrss'
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - SELF_URL_PATH=http://172.19.0.1:8006/
+      # - DB_HOST="postgres"
+      # - DB_PORT=5432
+      # - DB_NAME=ttrss
+      # - DB_user=ttrss
+      - DB_PASS={DB_PASS}
+    ports:
+      - '8006:80'
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=Tiny Tiny RSS
+      - flame.url=http://torqueserver.home:8006/
+      - flame.icon=rss
+      - com.centurylinklabs.watchtower.enable=true
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main_network

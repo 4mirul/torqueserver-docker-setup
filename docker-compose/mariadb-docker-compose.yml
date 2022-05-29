@@ -28,7 +28,7 @@
 version: "3"
 services:
   mariadb:
-    image: mariadb:10.7.3
+    image: mariadb:10.8.3
     container_name: mariadb
     environment:
       - PUID=1000
@@ -61,15 +61,15 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=phpmyadmin
-      - flame.url=http://192.168.0.105:8880/
+      - flame.url=http://torqueserver.home:8880/
       - flame.icon=database
+      - com.centurylinklabs.watchtower.enable=true
     restart: unless-stopped
 networks:
   default:
     external: true
-    name: main-network
+    name: main_network
 volumes:
-  mysqldata:
-    external: true
   phpmyadminsessions:
+  mysqldata:
     external: true
