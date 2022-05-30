@@ -1,0 +1,33 @@
+# https://hub.docker.com/r/deluan/navidrome
+---
+version: "3"
+services:
+  navidrome:
+    image: deluan/navidrome:latest
+    container_name: navidrome
+    ports:
+      - "4533:4533"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      # Optional: put your config options customization here. Examples:
+      # ND_SCANSCHEDULE: 1h
+      # ND_LOGLEVEL: info  
+      # ND_BASEURL: ""
+    volumes:
+      - "navidromedata:/data"
+      - "/mnt/disk0/music:/music:ro"
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=navidrome
+      - flame.url=http://torqueserver.home:4533/
+      - flame.icon=music
+      - com.centurylinklabs.watchtower.enable=true
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main_network
+volumes:
+  navidromedata:
