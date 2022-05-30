@@ -24,7 +24,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=airsonic
-      - flame.url=http://torqueserver.home:4040/
+      - flame.url=https://airsonic.torqueserver.com/
       - flame.icon=music
       - com.centurylinklabs.watchtower.enable=true
 networks:
