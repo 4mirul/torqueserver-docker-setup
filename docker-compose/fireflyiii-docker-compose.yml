@@ -1,0 +1,26 @@
+# https://docs.firefly-iii.org/firefly-iii/installation/docker/
+---
+version: '3.3'
+
+services:
+  fireflyiii:
+    container_name: fireflyiii
+    image: fireflyiii/core:latest
+    restart: always
+    volumes:
+      - firefly_iii_upload:/var/www/html/storage/upload
+    env_file: .env2
+    ports:
+      - 8189:8080
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=fireflyiii
+      - flame.url=http://torqueserver.home:8189/
+      - flame.icon=currency-usd
+      - com.centurylinklabs.watchtower.enable=true
+networks:
+  default:
+    external: true
+    name: main_network
+volumes:
+  firefly_iii_upload:
