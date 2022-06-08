@@ -1,0 +1,27 @@
+# https://raw.githubusercontent.com/joseantmazonsb/linguard/main/docker/docker-compose.yaml
+---
+version: "3.6"
+
+services:
+  linguard:
+    image: "ghcr.io/joseantmazonsb/linguard:stable"
+    container_name: "linguard"
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/linguard/data:/data"  # Optional, provides a way to see and edit the configuration files directly from the host.
+    network_mode: host
+    restart: unless-stopped
+    ports:
+      - "8580:8080"
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=linguard
+      - flame.url=http://torqueserver.home:8580/
+      - flame.icon=vpn
+      - com.centurylinklabs.watchtower.enable=true
