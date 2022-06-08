@@ -12,8 +12,8 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data/
       # - /opt/postgres/postgres.conf:/etc/postgresql/postgresql.conf
-    # ports:
-    #   - 5432:5432
+    ports:
+      - 5432:5432
     restart: unless-stopped
   pgadmin4:
     container_name: pgadmin4
