@@ -40,6 +40,8 @@ services:
     volumes:
       - mysqldata:/var/lib/mysql
     restart: unless-stopped
+    ports:
+      - 3306:3306
   phpmyadmin:
     image: phpmyadmin:latest
     container_name: phpmyadmin
