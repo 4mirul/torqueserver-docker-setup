@@ -14,6 +14,7 @@ services:
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
+    restart: unless-stopped
   promtail:
     container_name: promtail
     image: grafana/promtail:2.5.0
@@ -22,3 +23,4 @@ services:
       - /var/log:/var/log
       - /var/lib/docker/containers:/var/lib/docker/containers
     command: -config.file=/etc/promtail/config.yml
+    restart: unless-stopped

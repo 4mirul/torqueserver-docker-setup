@@ -11,12 +11,14 @@ services:
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/lidarr/config:/config
-      - ${DISK0}/music:/music
-      - ${DISK0}/downloads:/downloads
+      - /mnt/disk0/music:/music
+      - /mnt/disk0/downloads:/downloads
     ports:
       - 8686:8686
     restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
-    name: main
+    name: main_network
