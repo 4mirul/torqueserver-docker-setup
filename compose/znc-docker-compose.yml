@@ -18,7 +18,7 @@ services:
       - flame.type=app # "app" works too
       - flame.name=znc
       - flame.url=http://torqueserver.home:6501/
-      - flame.icon=chat
+      - flame.icon=chat-processing
       - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
