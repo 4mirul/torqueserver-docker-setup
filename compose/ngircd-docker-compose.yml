@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   ngircd:
-    image: ghcr.io/linuxserver/ngircd
+    image: lscr.io/linuxserver/ngircd:latest
     container_name: ngircd
     environment:
       - PUID=1000
@@ -11,12 +11,10 @@ services:
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/ngircd/config:/config
-      - /opt/ngircd/ssh:/etc/ngircd/ssl
     ports:
       - 6667:6667
-      - 6697:6697
     restart: unless-stopped
 networks:
   default:
     external: true
-    name: main
+    name: main_network

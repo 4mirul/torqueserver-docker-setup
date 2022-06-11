@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   znc:
-    image: ghcr.io/linuxserver/znc
+    image: lscr.io/linuxserver/znc:latest
     container_name: znc
     environment:
       - PUID=1000
@@ -14,7 +14,13 @@ services:
     ports:
       - 6501:6501
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=znc
+      - flame.url=http://torqueserver.home:6501/
+      - flame.icon=chat
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
-    name: main
+    name: main_network

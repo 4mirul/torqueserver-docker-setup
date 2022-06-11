@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   thelounge:
-    image: ghcr.io/linuxserver/thelounge
+    image: lscr.io/linuxserver/thelounge:latest
     container_name: thelounge
     environment:
       - PUID=1000
@@ -14,7 +14,13 @@ services:
     ports:
       - 9009:9000
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=thelounge
+      - flame.url=http://torqueserver.home:9009/
+      - flame.icon=chat
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
-    name: main
+    name: main_network
