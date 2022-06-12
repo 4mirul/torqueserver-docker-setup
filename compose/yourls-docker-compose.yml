@@ -7,8 +7,9 @@ services:
     image: yourls
     environment:
       - YOURLS_SITE=http://short.torqueserver.com
-      - YOURLS_USER="admin"
-      - YOURLS_PASS="${PASS}"
+      # - YOURLS_SITE=https://s.trqs.xyz
+      - YOURLS_USER=admin
+      - YOURLS_PASS=${PASS}
       - YOURLS_DB_HOST=mariadb:3306
       - YOURLS_DB_USER=yourls
       - YOURLS_DB_PASS=${DB_PASS}
@@ -22,7 +23,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=yourls
-      # - flame.url=https://trqs.xyz/
+      # - flame.url=https://s.trqs.xyz/
       - flame.url=http://short.torqueserver.com
       - flame.icon=text-short
       - com.centurylinklabs.watchtower.enable=true

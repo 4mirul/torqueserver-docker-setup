@@ -21,7 +21,7 @@ services:
       # - DUCKDNSTOKEN= #optional
       - EMAIL=admin@torqueserver.com #optional
       - ONLY_SUBDOMAINS=false #optional
-      - EXTRA_DOMAINS=trqs.xyz #optional
+      - EXTRA_DOMAINS=trqs.xyz,s.trqs.xyz #optional
       - STAGING=false #optional
       # - MAXMINDDB_LICENSE_KEY= #optional
     volumes:
