@@ -1,0 +1,29 @@
+#https://hub.docker.com/r/linuxserver/homeassistant
+---
+version: "2.1"
+services:
+  homeassistant:
+    image: lscr.io/linuxserver/homeassistant:latest
+    container_name: homeassistant
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/homeassistant/config:/config
+    ports:
+      - 8123:8123 #optional
+    # devices:
+      # - /path/to/device:/path/to/device #optional
+    restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=homeassistant
+      - flame.url=http://torqueserver.home:8123/
+      - flame.icon=home-assistant
+      - com.centurylinklabs.watchtower.enable=true
+networks:
+  default:
+    external: true
+    name: main_network

@@ -1,0 +1,25 @@
+# https://hub.docker.com/r/linuxserver/synclounge
+---
+version: "2.1"
+services:
+  synclounge:
+    image: synclounge/synclounge:latest
+    container_name: synclounge
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+      # - AUTH_LIST=plexuser1,plexuser2,email1,machineid1 #optional
+      # - AUTOJOIN_ENABLED=false #optional
+      # - AUTOJOIN_ROOM=roomname #optional
+    ports:
+      - 8188:8088
+    restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=synclounge
+      - flame.url=http://torqueserver.home:8188/
+      - flame.icon=sync
+      - com.centurylinklabs.watchtower.enable=true
+networks:
+  default:
+    external: true
+    name: main_network

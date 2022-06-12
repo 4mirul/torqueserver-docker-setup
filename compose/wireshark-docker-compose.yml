@@ -14,6 +14,10 @@ services:
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/wireshark/config:/config
-    ports:
-      - 3000:3000 #optional
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=wireshark
+      - flame.url=http://torqueserver.home:3000/
+      - flame.icon=shark
+      - com.centurylinklabs.watchtower.enable=true

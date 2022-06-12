@@ -13,13 +13,19 @@ services:
       - fleet_database_url=jdbc:mariadb://mariadb:3306/fleet
       - fleet_database_username=fleet
       - fleet_database_password=${PASS}
-      - fleet_admin_secret=randomstring #optional
+      # - fleet_admin_secret=randomstring #optional
     volumes:
       - /opt/fleet/config:/config
     ports:
       - 8483:8080
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=fleet
+      - flame.url=http://torqueserver.home:8483/
+      - flame.icon=source-repository
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
-    name: main
+    name: main_network

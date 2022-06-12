@@ -11,17 +11,17 @@ services:
       - TZ=Asia/Kuala_Lumpur
       # - GF_PATHS_PLUGINS=/opt/plugins
     volumes:
-      - grafana-storage:/var/lib/grafana
+      - grafanastorage:/var/lib/grafana
       - grafanaconfig:/etc/grafana
       - grafanalog:/var/log/grafana
       # - /opt/grafana/plugins:/opt/plugins
     ports:
-      - "3000:3000"
+      - "3001:3000"
     restart: unless-stopped
     labels:
       - flame.type=app # "app" works too
       - flame.name=grafana
-      - flame.url=http://torqueserver.home:3000/
+      - flame.url=http://torqueserver.home:3001/
       - flame.icon=chart-bar
       - com.centurylinklabs.watchtower.enable=true
 networks:
@@ -29,9 +29,12 @@ networks:
     external: true
     name: main_network
 volumes:
-  grafana-storage:
+  grafanastorage:
+    external: true
   grafanaconfig:
+    external: true
   grafanalog:
+    external: true
 # dashboard id
 # Node Exporter for Prometheus Dashboard EN v20201010 - 11074
 # Node Exporter Full - 1860
