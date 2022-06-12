@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   papermerge:
-    image: ghcr.io/linuxserver/papermerge
+    image: lscr.io/linuxserver/papermerge:latest
     container_name: papermerge
     environment:
       - PUID=1000
@@ -16,7 +16,13 @@ services:
     ports:
       - 8230:8000
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=papermerge
+      - flame.url=http://torqueserver.home:8230/
+      - flame.icon=file
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
-    name: main
+    name: main_network

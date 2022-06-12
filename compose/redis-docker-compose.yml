@@ -43,3 +43,4 @@ volumes:
   redisdata:
     external: true
   redisinsight:
+    external: true
