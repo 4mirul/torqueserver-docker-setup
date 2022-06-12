@@ -1,0 +1,32 @@
+# https://hub.docker.com/_/yourls/
+---
+version: '3'
+services:
+  yourls:
+    container_name: yourls
+    image: yourls
+    environment:
+      - YOURLS_SITE=http://short.torqueserver.com
+      - YOURLS_USER="admin"
+      - YOURLS_PASS="${PASS}"
+      - YOURLS_DB_HOST=mariadb:3306
+      - YOURLS_DB_USER=yourls
+      - YOURLS_DB_PASS=${DB_PASS}
+      - YOURLS_DB_NAME=yourls
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    restart: unless-stopped
+    ports:
+      - 8641:80
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=yourls
+      # - flame.url=https://trqs.xyz/
+      - flame.url=http://short.torqueserver.com
+      - flame.icon=text-short
+      - com.centurylinklabs.watchtower.enable=true
+networks:
+  default:
+    external: true
+    name: main_network

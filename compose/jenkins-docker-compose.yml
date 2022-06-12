@@ -25,3 +25,4 @@ networks:
     name: main_network
 volumes:
   jenkins_home:
+    external: true
