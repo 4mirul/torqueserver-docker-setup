@@ -1,0 +1,29 @@
+# https://hub.docker.com/r/vaultwarden/server
+---
+version: '3'
+services:
+  vaultwarden:
+    container_name: vaultwarden
+    image: 'vaultwarden/server:latest'
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - 'vaultwarden-data:/data/'
+    ports:
+      - '8543:80'
+    restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=vaultwarden
+      - flame.url=http://torqueserver.home:8543/
+      - flame.icon=lock-question
+      - com.centurylinklabs.watchtower.enable=true
+networks:
+  default:
+    external: true
+    name: main_network
+volumes:
+  vaultwarden-data:
+    external: true
