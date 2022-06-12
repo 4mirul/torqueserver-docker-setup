@@ -4,24 +4,26 @@ version: '3'
 services:
   uptime-kuma:
     container_name: uptime-kuma
-    image: 'louislam/uptime-kuma:1'
+    image: 'louislam/uptime-kuma:latest'
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - 'uptimekumadata:/app/data'
-    ports:
-      - '3001:3001'
+    # ports:
+    #   - '3001:3001'
     restart: unless-stopped
     labels:
       - flame.type=app # "app" works too
       - flame.name=uptime-kuma
-      - flame.url=https://uptime.torqueserver.com/status
+      - flame.url=https://uptime-kuma.torqueserver.com/status/1
       - flame.icon=arrow-up-bold
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
-    name: main-network
+    name: main_network
 volumes:
   uptimekumadata:
+    external: true

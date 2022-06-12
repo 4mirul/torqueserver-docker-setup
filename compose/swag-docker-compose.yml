@@ -13,7 +13,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - URL=torqueserver.com
-      - SUBDOMAINS=www,overseerr,plex,jellyfin,wg,hb,h,airsonic,vaultwarden,short
+      - SUBDOMAINS=*
       - VALIDATION=dns
       # - CERTPROVIDER= #optional
       - DNSPLUGIN=cloudflare #optional
@@ -21,7 +21,7 @@ services:
       # - DUCKDNSTOKEN= #optional
       - EMAIL=admin@torqueserver.com #optional
       - ONLY_SUBDOMAINS=false #optional
-      - EXTRA_DOMAINS=trqs.xyz,s.trqs.xyz #optional
+      - EXTRA_DOMAINS= *.trqs.xyz,trqs.xyz
       - STAGING=false #optional
       # - MAXMINDDB_LICENSE_KEY= #optional
     volumes:

@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   librespeed:
-    image: ghcr.io/linuxserver/librespeed
+    image: lscr.io/linuxserver/librespeed:latest
     container_name: librespeed
     environment:
       - PUID=1000
@@ -11,18 +11,24 @@ services:
       - TZ=Asia/Kuala_Lumpur
       - PASSWORD=${PASS}
       - CUSTOM_RESULTS=true #optional
-      - DB_TYPE=mysql #optional
-      - DB_NAME=librespeed #optional
-      - DB_HOSTNAME=${MARIADB} #optional
-      - DB_USERNAME=librespeed #optional
-      - DB_PASSWORD=${DB_PASS} #optional
-      - DB_PORT=3306 #optional
+      - DB_TYPE=sqlite #optional
+      # - DB_NAME=librespeed #optional
+      # - DB_HOSTNAME=mariadb #optional
+      # - DB_USERNAME=librespeed #optional
+      # - DB_PASSWORD=${DB_PASS} #optional
+      # - DB_PORT=3306 #optional
     volumes:
       - /opt/librespeed/config:/config
     ports:
-      - 2280:80
+      - 8380:80
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=librespeed
+      - flame.url=http://torqueserver.home:8380
+      - flame.icon=gauge
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
-    name: mariadb
+    name: main_network
