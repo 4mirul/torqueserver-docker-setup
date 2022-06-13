@@ -35,7 +35,7 @@ services:
       - API_KEY=${API_KEY}
       - ZONE=trqs.xyz
       - SUBDOMAIN=
-      - PROXIED=true
+      - PROXIED=false
     labels:
       - com.centurylinklabs.watchtower.enable=true
 networks:
