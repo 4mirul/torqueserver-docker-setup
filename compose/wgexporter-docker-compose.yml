@@ -1,0 +1,17 @@
+# https://github.com/MindFlavor/prometheus_wireguard_exporter
+# https://hub.docker.com/r/mindflavor/prometheus-wireguard-exporter
+---
+version: "3"
+services:
+  wgexporter:
+    image: mindflavor/prometheus-wireguard-exporter:3.5.1
+    container_name: wgexporter
+    network_mode: host
+    hostname: wgexporter
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+    labels:
+      - com.centurylinklabs.watchtower.enable=true

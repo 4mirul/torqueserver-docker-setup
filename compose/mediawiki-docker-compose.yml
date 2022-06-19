@@ -10,11 +10,11 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-    # ports:
-    #   - 5080:80
+    ports:
+      - 8482:80
     volumes:
-      - /var/www/html/images
-      #- /opt/mediawiki/LocalSettings.php:/var/www/html/LocalSettings.php # comment this for firsttime setup, then after finish setup, uncomment this
+      - mediawiki_images:/var/www/html/images
+      - /opt/mediawiki/LocalSettings.php:/var/www/html/LocalSettings.php # comment this for firsttime setup, then after finish setup, uncomment this
       # After initial setup, download LocalSettings.php to the same directory as
       # this yaml and uncomment the following line and use compose to restart
       # the mediawiki service
@@ -22,9 +22,13 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=mediawiki
-      - flame.url=https://wiki.torqueserver.com/
-      - flame.icon=wiki
+      - flame.url=http://torqueserver.home:8482
+      - flame.icon=wikipedia
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
-    name: main-network
+    name: main_network
+volumes:
+  mediawiki_images:
+    external: true
