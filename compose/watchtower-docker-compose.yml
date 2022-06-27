@@ -20,6 +20,7 @@ services:
       - WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL=${DISCORD_WEBHOOK}/slack
       - WATCHTOWER_POLL_INTERVAL=43200
       - WATCHTOWER_LABEL_ENABLE=1
+      - WATCHTOWER_CLEANUP=true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     labels:
