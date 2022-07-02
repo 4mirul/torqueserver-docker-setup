@@ -1,37 +1,35 @@
 # https://docs.gitea.io/en-us/install-with-docker/
-version: "2"
+version: "3"
 services:
-  web:
-    image: gitea/gitea:1.14.4
+  gitea:
+    image: gitea/gitea:latest
     container_name: gitea
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - GITEA__database__DB_TYPE=mysql
-      - GITEA__database__HOST=${MARIADB}:3306
+      - GITEA__database__HOST=mariadb:3306
       - GITEA__database__NAME=gitea
       - GITEA__database__USER=gitea
       - GITEA__database__PASSWD=${PASS}
     volumes:
-      - /opt/gitea/data:/data
-    ports:
-      - "3003:3000"
-      - "2222:22"
-    #     depends_on:
-    #       - db
+      - gitea:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    # ports:
+    #   - "2222:22"
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=gitea
+      - flame.url=https://gitea.torqueserver.com/
+      - flame.icon=git
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
-    name: mariadb
-#   db:
-#     image: mariadb:10
-#     restart: always
-#     environment:
-#       - MYSQL_ROOT_PASSWORD=password
-#       - MYSQL_DATABASE=gitea
-#       - MYSQL_USER=gitea
-#       - MYSQL_PASSWORD=password
-#     volumes:
-#       - /opt/giteadb/db/:/var/lib/mysql
+    name: main_network
+volumes:
+  gitea:
+    external: true
