@@ -1,0 +1,45 @@
+# https://shaarli.readthedocs.io/en/master/Docker/
+---
+# Shaarli - Docker Compose example configuration
+#
+# See:
+# - https://shaarli.readthedocs.io/en/master/Docker/#docker-compose
+#
+# Environment variables:
+# - SHAARLI_VIRTUAL_HOST      Fully Qualified Domain Name for the Shaarli instance
+# - SHAARLI_LETSENCRYPT_EMAIL Contact email for certificate renewal
+# - SHAARLI_DOCKER_TAG        Shaarli docker tag to use
+#                             See: https://hub.docker.com/r/shaarli/shaarli/tags
+version: '3'
+
+networks:
+  default:
+    external: true
+    name: main_network
+
+volumes:
+  shaarli-cache:
+    external: true
+  shaarli-data:
+    external: true
+
+services:
+  shaarli:
+    image: shaarli/shaarli:latest
+    container_name: shaarli
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - shaarli-cache:/var/www/shaarli/cache
+      - shaarli-data:/var/www/shaarli/data
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=shaarli
+      - flame.url=http://torqueserver.home:8005/
+      - flame.icon=link
+      - com.centurylinklabs.watchtower.enable=true
+    ports:
+      - "8005:80"
+    restart: unless-stopped

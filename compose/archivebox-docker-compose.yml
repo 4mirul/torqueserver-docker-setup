@@ -6,14 +6,14 @@
 #     docker-compose run archivebox config --set PUBLIC_INDEX=True
 #     docker-compose run archivebox help
 # Documentation:
-#     https://github.com/ArchiveBox/ArchiveBox/wiki/Docker#docker-compose
+#     https://github.com/ArchiveBox/ArchidockerveBox/wiki/Docker#docker-compose
 
 version: '2.4'
 
 services:
     archivebox:
         # build: .                              # for developers working on archivebox
-        image: ${DOCKER_IMAGE:-archivebox/archivebox:master}
+        image: archivebox/archivebox:latest
         command: server --quick-init 0.0.0.0:8000
         container_name: archivebox        
         ports:
@@ -26,16 +26,21 @@ services:
             # - SEARCH_BACKEND_HOST_NAME=sonic
             # - SEARCH_BACKEND_PASSWORD=SecretPassword
         volumes:
-            - archivebox-data:/data
+            - archivebox_data:/data
             # - ./archivebox:/app/archivebox    # for developers working on archivebox
         labels:
           - flame.type=app # "app" works too
           - flame.name=archivebox
-          - flame.url=http://192.168.0.105:8007
+          - flame.url=http://torqueserver.home:8007/
           - flame.icon=archive
+          - com.centurylinklabs.watchtower.enable=true  
         restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main_network
 volumes:
-  archivebox-data:
+  archivebox_data:
     external: true
     # To run the Sonic full-text search backend, first download the config file to sonic.cfg
     # curl -O https://raw.githubusercontent.com/ArchiveBox/ArchiveBox/master/etc/sonic.cfg

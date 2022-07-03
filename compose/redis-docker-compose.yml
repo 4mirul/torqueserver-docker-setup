@@ -31,7 +31,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=redisinsight
-      - flame.url=http://torqueserver.home:8001/
+      - flame.url=http://torqueserver.home:8002/
       - flame.icon=database
       - com.centurylinklabs.watchtower.enable=true
     restart: unless-stopped
