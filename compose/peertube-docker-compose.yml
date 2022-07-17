@@ -1,0 +1,61 @@
+version: "3.3"
+
+services:
+
+  # You can comment this webserver section if you want to use another webserver/proxy
+  webserver:
+    image: chocobozzz/peertube-webserver:latest
+    env_file:
+      - .env
+    ports:
+     - "80:80"
+     - "443:443"
+    volumes:
+      - type: bind
+        # Switch sources if you downloaded the whole repository
+        #source: ../../nginx/peertube
+        source: ./docker-volume/nginx/peertube
+        target: /etc/nginx/conf.d/peertube.template
+      - assets:/var/www/peertube/peertube-latest/client/dist:ro
+      - ./docker-volume/data:/var/www/peertube/storage
+      - certbot-www:/var/www/certbot
+      - ./docker-volume/certbot/conf:/etc/letsencrypt
+    depends_on:
+      - peertube
+    restart: "always"
+
+  peertube:
+    # If you don't want to use the official image and build one from sources:
+    # build:
+    #   context: .
+    #   dockerfile: ./support/docker/production/Dockerfile.bullseye
+    image: chocobozzz/peertube:production-bullseye
+    # Use a static IP for this container because nginx does not handle proxy host change without reload
+    # This container could be restarted on crash or until the postgresql database is ready for connection
+    networks:
+      default:
+        ipv4_address: 172.18.0.42
+    env_file:
+      - .env
+
+    ports:
+     - "1935:1935" # If you don't want to use the live feature, you can comment this line
+    #  - "9000:9000" # If you provide your own webserver and reverse-proxy, otherwise not suitable for production
+    volumes:
+      - assets:/app/client/dist
+      - ./docker-volume/data:/data
+      - ./docker-volume/config:/config
+    depends_on:
+      - postgres
+      - redis
+      - postfix
+    restart: "always"
+
+networks:
+  default:
+    external: true
+    name: main_network
+
+volumes:
+  assets:
+    external: true

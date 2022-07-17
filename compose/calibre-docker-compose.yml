@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   calibre:
-    image: ghcr.io/linuxserver/calibre
+    image: lscr.io/linuxserver/calibre:latest
     container_name: calibre
     environment:
       - PUID=1000
@@ -13,13 +13,19 @@ services:
       # - CLI_ARGS= #optional
     volumes:
       - /opt/calibre/config:/config
-      - ${DISK0}/books:/home #optional
-      - ${DISK0}/downloads/books:/media/downloads
+      - /mnt/disk0/books:/home #optional
+      - /mnt/disk0/downloads/books:/media/downloads
     ports:
       - 8383:8080
       - 8082:8081
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=calibre
+      - flame.url=http://torqueserver.home:8383/
+      - flame.icon=bookshelf
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
-    name: main
+    name: main_network
