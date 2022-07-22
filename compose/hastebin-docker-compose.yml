@@ -17,6 +17,18 @@ services:
       - flame.url=https://hb.torqueserver.com/
       - flame.icon=file-code
       - com.centurylinklabs.watchtower.enable=true
+      # traefik
+      - "traefik.enable=true"
+      ## HTTP Routers
+      - "traefik.http.routers.hastebin-rtr.entrypoints=https"
+      - "traefik.http.routers.hastebin-rtr.rule=Host(`hb.$DOMAINNAME_CLOUD_SERVER`)"
+      - "traefik.http.routers.hastebin-rtr.tls=true"
+      ## Middlewares
+      # - "traefik.http.routers.hastebin-rtr.middlewares=chain-basic-auth@file"
+      # - "traefik.http.routers.hastebin-rtr.middlewares=chain-no-auth@file"
+      ## HTTP Services
+      - "traefik.http.routers.hastebin-rtr.service=hastebin-svc"
+      - "traefik.http.services.hastebin-svc.loadbalancer.server.port=7777"
     restart: unless-stopped
 networks:
   default:

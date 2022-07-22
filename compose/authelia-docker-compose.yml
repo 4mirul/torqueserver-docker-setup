@@ -1,10 +1,11 @@
 # https://github.com/linuxserver/docker-swag
 # https://docs.linuxserver.io/general/swag
+# https://www.smarthomebeginner.com/docker-authelia-tutorial/
 ---
 version: "2.1"
 services:
   authelia:
-    image: authelia/authelia:4.21.0
+    image: authelia/authelia:latest
     container_name: authelia
     environment:
       - PUID=1000
@@ -13,7 +14,21 @@ services:
     volumes:
       - /opt/authelia/config:/config
     restart: unless-stopped
+    labels:
+      # traefik
+      - "traefik.enable=true"
+      ## HTTP Routers
+      - "traefik.http.routers.authelia-rtr.entrypoints=https"
+      - "traefik.http.routers.authelia-rtr.rule=Host(`authelia.$DOMAINNAME_CLOUD_SERVER`)"
+      - "traefik.http.routers.authelia-rtr.tls=true"
+      ## Middlewares
+      # - "traefik.http.routers.authelia-rtr.middlewares=chain-basic-auth@file"
+      # - "traefik.http.routers.authelia-rtr.middlewares=chain-no-auth@file"
+      - "traefik.http.routers.authelia-rtr.middlewares=chain-authelia@file"
+      ## HTTP Services
+      - "traefik.http.routers.authelia-rtr.service=heimdall-svc"
+      - "traefik.http.services.authelia-svc.loadbalancer.server.port=9091"
 networks:
   default:
     external: true
-    name: main
+    name: main_network

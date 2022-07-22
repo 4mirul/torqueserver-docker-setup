@@ -1,6 +1,6 @@
 # https://github.com/pawelmalak/flame
 ---
-version: '3.6'
+version: '3.9'
 services:
   flame:
     image: pawelmalak/flame:latest
@@ -31,3 +31,4 @@ networks:
     name: main_network
 volumes:
   flamedata:
+    external: true

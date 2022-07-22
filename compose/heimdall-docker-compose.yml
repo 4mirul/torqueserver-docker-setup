@@ -21,6 +21,18 @@ services:
       - flame.url=https://h.torqueserver.com/
       - flame.icon=crown
       - com.centurylinklabs.watchtower.enable=true
+      # traefik
+      - "traefik.enable=true"
+      ## HTTP Routers
+      - "traefik.http.routers.heimdall-rtr.entrypoints=https"
+      - "traefik.http.routers.heimdall-rtr.rule=Host(`h.$DOMAINNAME_CLOUD_SERVER`)"
+      - "traefik.http.routers.heimdall-rtr.tls=true"
+      ## Middlewares
+      # - "traefik.http.routers.heimdall-rtr.middlewares=chain-basic-auth@file"
+      # - "traefik.http.routers.heimdall-rtr.middlewares=chain-no-auth@file"
+      ## HTTP Services
+      - "traefik.http.routers.heimdall-rtr.service=heimdall-svc"
+      - "traefik.http.services.heimdall-svc.loadbalancer.server.port=80"
 networks:
   default:
     external: true

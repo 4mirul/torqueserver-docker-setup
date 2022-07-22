@@ -1,0 +1,26 @@
+# https://github.com/amir20/dozzle
+---
+version: "3"
+services:
+  dozzle:
+    container_name: dozzle
+    image: amir20/dozzle:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 9998:8080
+    restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=dozzle
+      - flame.url=http://torqueserver.home:9998/
+      - flame.icon=math-log
+      - com.centurylinklabs.watchtower.enable=true
+networks:
+  default:
+    external: true
+    name: main_network
