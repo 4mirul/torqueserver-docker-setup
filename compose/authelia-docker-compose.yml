@@ -15,18 +15,20 @@ services:
       - /opt/authelia/config:/config
     restart: unless-stopped
     labels:
+      - flame.type=app # "app" works too
+      - flame.name=authelia
+      - flame.url=https://authelia.torqueserver.com/
+      - flame.icon=two-factor-authentication
+      - com.centurylinklabs.watchtower.enable=true
       # traefik
       - "traefik.enable=true"
       ## HTTP Routers
       - "traefik.http.routers.authelia-rtr.entrypoints=https"
       - "traefik.http.routers.authelia-rtr.rule=Host(`authelia.$DOMAINNAME_CLOUD_SERVER`)"
-      - "traefik.http.routers.authelia-rtr.tls=true"
       ## Middlewares
-      # - "traefik.http.routers.authelia-rtr.middlewares=chain-basic-auth@file"
-      # - "traefik.http.routers.authelia-rtr.middlewares=chain-no-auth@file"
       - "traefik.http.routers.authelia-rtr.middlewares=chain-authelia@file"
       ## HTTP Services
-      - "traefik.http.routers.authelia-rtr.service=heimdall-svc"
+      - "traefik.http.routers.authelia-rtr.service=authelia-svc"
       - "traefik.http.services.authelia-svc.loadbalancer.server.port=9091"
 networks:
   default:

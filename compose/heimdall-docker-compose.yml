@@ -29,7 +29,8 @@ services:
       - "traefik.http.routers.heimdall-rtr.tls=true"
       ## Middlewares
       # - "traefik.http.routers.heimdall-rtr.middlewares=chain-basic-auth@file"
-      # - "traefik.http.routers.heimdall-rtr.middlewares=chain-no-auth@file"
+      - "traefik.http.routers.heimdall-rtr.middlewares=chain-no-auth@file"
+      # - "traefik.http.routers.heimdall-rtr.middlewares=chain-authelia@file"
       ## HTTP Services
       - "traefik.http.routers.heimdall-rtr.service=heimdall-svc"
       - "traefik.http.services.heimdall-svc.loadbalancer.server.port=80"
