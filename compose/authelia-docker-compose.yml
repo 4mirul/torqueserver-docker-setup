@@ -11,6 +11,8 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
+    ports:
+      - 9091:9091
     volumes:
       - /opt/authelia/config:/config
     restart: unless-stopped
@@ -25,6 +27,7 @@ services:
       ## HTTP Routers
       - "traefik.http.routers.authelia-rtr.entrypoints=https"
       - "traefik.http.routers.authelia-rtr.rule=Host(`authelia.$DOMAINNAME_CLOUD_SERVER`)"
+      - 'traefik.http.routers.authelia.tls=true'
       ## Middlewares
       - "traefik.http.routers.authelia-rtr.middlewares=chain-authelia@file"
       ## HTTP Services
