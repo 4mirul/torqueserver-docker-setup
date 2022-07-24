@@ -25,7 +25,7 @@ services:
       - "traefik.enable=true"
       ## HTTP Routers
       - "traefik.http.routers.flame-rtr.entrypoints=https"
-      - "traefik.http.routers.flame-rtr.rule=Host(`flame.$DOMAINNAME_CLOUD_SERVER`,`$DOMAINNAME_CLOUD_SERVER`,`www.$DOMAINNAME_CLOUD_SERVER`,`$DOMAINNAME2`,`www.$DOMAINNAME2`)"
+      - "traefik.http.routers.flame-rtr.rule=Host(`flame.$DOMAINNAME_CLOUD_SERVER`,`$DOMAINNAME_CLOUD_SERVER`,`www.$DOMAINNAME_CLOUD_SERVER`)"
       - "traefik.http.routers.flame-rtr.tls=true"
       ## Middlewares
       # - "traefik.http.routers.flame-rtr.middlewares=chain-basic-auth@file"
