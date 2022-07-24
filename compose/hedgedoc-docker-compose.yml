@@ -17,7 +17,7 @@ services:
       - PGID=1000
       - PUID=1000
       - TZ=Asia/Kuala_Lumpur
-      - CMD_DOMAIN=localhost
+      - CMD_DOMAIN=hedgedoc.torqueserver.com
       - CMD_URL_ADDPORT=true #optional
       - CMD_PROTOCOL_USESSL=false #optional
       - CMD_PORT=3000 #optional
