@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   bazarr:
-    image: ghcr.io/linuxserver/bazarr:latest
+    image: lscr.io/linuxserver/bazarr:latest
     container_name: bazarr
     environment:
       - PUID=1000
@@ -17,10 +17,10 @@ services:
       - 6767:6767
     restart: unless-stopped
     labels:
-      # - flame.type=app # "app" works too
-      # - flame.name=bazarr
-      # - flame.url=http://192.168.0.126:6767/
-      # - flame.icon=subtitles
+      - flame.type=app # "app" works too
+      - flame.name=bazarr
+      - flame.url=http://torqueserver.home:6767/
+      - flame.icon=subtitles
       - com.centurylinklabs.watchtower.enable=true
 networks:
   default:

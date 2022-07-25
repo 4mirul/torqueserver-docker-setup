@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   radarr:
-    image: ghcr.io/linuxserver/radarr:latest
+    image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
     environment:
       - PUID=1000
@@ -17,11 +17,10 @@ services:
       - 7878:7878
     restart: unless-stopped
     labels:
-      # - flame.type=app # "app" works too
-      # - flame.name=radarr
-      # # - flame.url=http://192.168.0.126:7878/
-      # - flame.url=https://radarr.torqueserver.com/
-      # - flame.icon=filmstrip
+      - flame.type=app # "app" works too
+      - flame.name=radarr
+      - flame.url=http://torqueserver.home:7878/
+      - flame.icon=filmstrip
       - com.centurylinklabs.watchtower.enable=true
 networks:
   default:

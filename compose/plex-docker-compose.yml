@@ -3,14 +3,24 @@
 version: "2.1"
 services:
   plex:
-    image: ghcr.io/linuxserver/plex:latest
+    image: lscr.io/linuxserver/plex:latest
     container_name: plex
-    network_mode: host
+    # network_mode: host
     environment:
       - PUID=1000
       - PGID=1000
       - VERSION=docker
       # - PLEX_CLAIM= ${PLEX_CLAIM}
+    ports:
+      - "32400:32400/tcp"
+      - "3005:3005/tcp"
+      - "8324:8324/tcp"
+      - "32469:32469/tcp"
+      - "1900:1900/udp"
+      - "32410:32410/udp"
+      - "32412:32412/udp"
+      - "32413:32413/udp"
+      - "32414:32414/udp"
     volumes:
       - /opt/plex/config:/config
       - /mnt/disk0/tvseries:/tv
@@ -37,3 +47,7 @@ services:
       ## HTTP Services
       - "traefik.http.routers.plex-rtr.service=plex-svc"
       - "traefik.http.services.plex-svc.loadbalancer.server.port=32400"
+networks:
+  default:
+    external: true
+    name: main_network

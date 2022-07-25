@@ -15,10 +15,10 @@ services:
       - 8181:8181
     restart: unless-stopped
     labels:
-      # - flame.type=app # "app" works too
-      # - flame.name=tautulli
-      # - flame.url=http://192.168.0.105:8181/
-      # - flame.icon=chart-timeline 
+      - flame.type=app # "app" works too
+      - flame.name=tautulli
+      - flame.url=http://torqueserver.home:8181/
+      - flame.icon=chart-timeline 
       - com.centurylinklabs.watchtower.enable=true
 networks:
   default:

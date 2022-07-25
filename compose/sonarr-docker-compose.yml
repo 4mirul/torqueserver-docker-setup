@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   sonarr:
-    image: ghcr.io/linuxserver/sonarr:latest
+    image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
     environment:
       - PUID=1000
@@ -17,11 +17,11 @@ services:
       - 8989:8989
     restart: unless-stopped
     labels:
-      # - flame.type=app # "app" works too
-      # - flame.name=sonarr
-      # - flame.url=https://sonarr.torqueserver.com/
-      # # - flame.url=http://192.168.0.126:8989/
-      # - flame.icon=television-box
+      - flame.type=app # "app" works too
+      - flame.name=sonarr
+      - flame.url=http://torqueserver.home:8989/
+      # - flame.url=http://192.168.0.126:8989/
+      - flame.icon=television-box
       - com.centurylinklabs.watchtower.enable=true
 networks:
   default:

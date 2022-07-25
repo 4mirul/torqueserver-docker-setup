@@ -2,26 +2,26 @@
 ---
 version: "2.1"
 services:
-  qbittorrent2:
+  qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
-    container_name: qbittorrent2
+    container_name: qbittorrent
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - WEBUI_PORT=8084
+      - WEBUI_PORT=8080
     volumes:
-      - /opt/qbittorrent2/config:/config
-      - /mnt/disk/data1:/downloads
+      - /opt/qbittorrent/config:/config
+      - /mnt/disk0/downloads:/downloads
     ports:
-      - 6882:6881
-      - 6882:6881/udp
-      - 8084:8084
+      - 6881:6881
+      - 6881:6881/udp
+      - 8080:8080
     restart: unless-stopped
     labels:
       - flame.type=app # "app" works too
-      - flame.name=qbittorrent2
-      - flame.url=http://torqueserver.home:8084/
+      - flame.name=qbittorrent
+      - flame.url=http://torqueserver.home:8080/
       - flame.icon=download
       - com.centurylinklabs.watchtower.enable=true
 networks:
