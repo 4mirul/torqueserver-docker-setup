@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   dokuwiki:
-    image: ghcr.io/linuxserver/dokuwiki
+    image: lscr.io/linuxserver/dokuwiki:latest
     container_name: dokuwiki
     environment:
       - PUID=1000
@@ -12,6 +12,16 @@ services:
     volumes:
       - /opt/dokuwiki/config:/config
     ports:
-      - 8088:80
+      - 8688:80
       - 4443:443 #optional
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=dokuwiki
+      - flame.url=http://torqueserver.home:8688/
+      - flame.icon=book-open
+      - com.centurylinklabs.watchtower.enable=true
+networks:
+  default:
+    external: true
+    name: main_network
