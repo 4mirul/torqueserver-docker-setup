@@ -1,5 +1,6 @@
 # https://github.com/midarrlabs/midarr-server
 ---
+version: "3"
 services:
   midarr:
     container_name: midarr
