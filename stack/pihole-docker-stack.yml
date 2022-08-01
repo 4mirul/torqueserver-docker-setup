@@ -24,7 +24,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=pihole
-      - flame.url=http://192.168.0.126:8087/admin/
+      - flame.url=http://torqueserver.home:8087/admin/
       - flame.icon=pi-hole
 
 networks:

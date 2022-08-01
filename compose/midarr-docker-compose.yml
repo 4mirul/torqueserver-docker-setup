@@ -14,8 +14,8 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
 #       App config
-      # - APP_URL=http://torqueserver.home:4000
-      # - APP_MAILER_FROM=admin@torqueserver.com
+      - APP_URL=http://torqueserver.home:4000
+      - APP_MAILER_FROM=admin@torqueserver.com
 #       Database config
       - DB_USERNAME=${POSTGRES_USERNAME}
       - DB_PASSWORD=${POSTGRES_PASSWORD}
