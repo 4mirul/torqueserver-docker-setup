@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   webtop:
-    image: ghcr.io/linuxserver/webtop:alpine-i3
+    image: lscr.io/linuxserver/webtop:arch-i3
     container_name: webtop
     privileged: true #optional
     environment:
@@ -15,6 +15,16 @@ services:
       - /opt/webtop/config:/config
       - /var/run/docker.sock:/var/run/docker.sock #optional
     ports:
-      - 3003:3000
+      - 3033:3000
     shm_size: "1gb" #optional
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=webtop
+      - flame.url=http://torqueserver.home:3033/
+      - flame.icon=arch
+      - com.centurylinklabs.watchtower.enable=true
+networks:
+    default:
+      external: true
+      name: main_network
