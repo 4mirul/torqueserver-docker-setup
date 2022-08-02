@@ -2,8 +2,8 @@
 ---
 version: '2'
 services:
-  cloudflare-ddns1:
-    container_name: cloudflare-ddns1
+  cloudflare-ddns:
+    container_name: cloudflare-ddns
     image: oznu/cloudflare-ddns:latest
     restart: always
     environment:
@@ -16,20 +16,20 @@ services:
       - PROXIED=true
     labels:
       - com.centurylinklabs.watchtower.enable=true
-  cloudflare-ddns2:
-    container_name: cloudflare-ddns2
-    image: oznu/cloudflare-ddns:latest
-    restart: always
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Kuala_Lumpur
-      - API_KEY=${API_KEY}
-      - ZONE=trqs.xyz
-      # - SUBDOMAIN=
-      - PROXIED=false
-    labels:
-      - com.centurylinklabs.watchtower.enable=true
+  # cloudflare-ddns2:
+  #   container_name: cloudflare-ddns2
+  #   image: oznu/cloudflare-ddns:latest
+  #   restart: always
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Asia/Kuala_Lumpur
+  #     - API_KEY=${API_KEY}
+  #     - ZONE=trqs.xyz
+  #     # - SUBDOMAIN=
+  #     - PROXIED=false
+  #   labels:
+  #     - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
