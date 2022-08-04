@@ -9,7 +9,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      # - JELLYFIN_PublishedServerUrl=jellyfin.torqueserver.com #optional
+      - JELLYFIN_PublishedServerUrl=jellyfin.torqueserver.com #optional
     volumes:
       - /opt/jellyfin/config:/config
       - /mnt/disk0/tvseries:/data/tvshows
@@ -17,7 +17,7 @@ services:
       - /mnt/disk0/music:/data/music
     ports:
       - 8096:8096
-      - 8920:8920
+      # - 8920:8920
     devices:
       - /dev/dri:/dev/dri #optional
     restart: unless-stopped
