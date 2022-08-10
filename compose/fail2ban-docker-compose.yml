@@ -1,0 +1,40 @@
+---
+version: "2.1"
+services:
+  fail2ban:
+    image: lscr.io/linuxserver/fail2ban:latest
+    container_name: fail2ban
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/fail2ban/config:/config
+      - /var/log:/var/log:ro
+      # - /path/to/airsonic/airsonic.log:/remotelogs/airsonic/airsonic.log:ro #optional
+      # - /path/to/apache2/log:/remotelogs/apache2:ro #optional
+      # - /path/to/audit/audit.log:/remotelogs/audit/audit.log:ro #optional
+      # - /path/to/authelia/authelia.log:/remotelogs/authelia/authelia.log:ro #optional
+      # - /path/to/emby/embyserver.txt:/remotelogs/emby/embyserver.txt:ro #optional
+      # - /path/to/exim/mainlog:/remotelogs/exim/mainlog:ro #optional
+      # - /path/to/filebrowser/filebrowser.log:/remotelogs/filebrowser/filebrowser.log:ro #optional
+      # - /path/to/gitea/gitea.log:/remotelogs/gitea/gitea.log:ro #optional
+      # - /path/to/homeassistant/home-assistant.log:/remotelogs/homeassistant/home-assistant.log:ro #optional
+      # - /path/to/lighttpd/error.log:/remotelogs/lighttpd/error.log:ro #optional
+      # - /path/to/nextcloud/nextcloud.log:/remotelogs/nextcloud/nextcloud.log:ro #optional
+      # - /path/to/nginx/log:/remotelogs/nginx:ro #optional
+      # - /path/to/nzbget/nzbget.log:/remotelogs/nzbget/nzbget.log:ro #optional
+      - /opt/overseerr/config/logs/overseerr.log:/remotelogs/overseerr/overseerr.log:ro #optional
+      # - /path/to/prowlarr/prowlarr.txt:/remotelogs/prowlarr/prowlarr.txt:ro #optional
+      - /opt/radarr/config/logs/radarr.txt:/remotelogs/radarr/radarr.txt:ro #optional
+      # - /path/to/roundcube/errors:/remotelogs/roundcube/errors:ro #optional
+      # - /path/to/sabnzbd/sabnzbd.log:/remotelogs/sabnzbd/sabnzbd.log:ro #optional
+      - /opt/sonarr/config/logs/sonarr.txt:/remotelogs/sonarr/sonarr.txt:ro #optional
+      # - /path/to/unificontroller/server.log:/remotelogs/unificontroller/server.log:ro #optional
+      # - /path/to/vaultwarden/vaultwarden.log:/remotelogs/vaultwarden/vaultwarden.log:ro #optional
+      # - /path/to/vsftpd/vsftpd.log:/remotelogs/vsftpd/vsftpd.log:ro #optional
+    restart: unless-stopped
