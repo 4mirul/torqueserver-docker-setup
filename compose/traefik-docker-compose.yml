@@ -15,7 +15,7 @@ services:
       - --entrypoints.https.forwardedHeaders.trustedIPs=$CLOUDFLARE_IPS,$LOCAL_IPS
       - --entryPoints.traefik.address=:8080
       - --api=true
-  # - --api.insecure=true
+      - --api.insecure=true
       - --api.dashboard=true
   # - --serversTransport.insecureSkipVerify=true
       - --log=true
@@ -64,7 +64,7 @@ services:
       - '/opt/traefik/logs:/logs'
       - '/var/run/docker.sock:/var/run/docker.sock'
     ports:
-      # - '8789:8080'
+      - '8789:8080'
       - '80:80'
       - '443:443'
     restart: unless-stopped
