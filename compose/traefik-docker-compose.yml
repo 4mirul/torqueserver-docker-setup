@@ -35,8 +35,8 @@ services:
       - --entrypoints.https.http.tls.domains[0].main=$DOMAINNAME_CLOUD_SERVER
       - --entrypoints.https.http.tls.domains[0].sans=*.$DOMAINNAME_CLOUD_SERVER
       - --entrypoints.https.http.tls=true
-      - --entrypoints.https.http.tls.domains[1].main=$DOMAINNAME2 # Pulls main cert for second domain
-      - --entrypoints.https.http.tls.domains[1].sans=*.$DOMAINNAME2 # Pulls wildcard cert for second domain
+      # - --entrypoints.https.http.tls.domains[1].main=$DOMAINNAME2 # Pulls main cert for second domain
+      # - --entrypoints.https.http.tls.domains[1].sans=*.$DOMAINNAME2 # Pulls wildcard cert for second domain
       - --providers.docker.network=main_network
       - --providers.docker.swarmMode=false
       - --providers.file.directory=/rules # Load dynamic configuration from one or more .toml or .yml files in a directory
@@ -48,7 +48,7 @@ services:
       - --certificatesResolvers.dns-cloudflare.acme.dnsChallenge.provider=cloudflare
       - --certificatesResolvers.dns-cloudflare.acme.dnsChallenge.resolvers=1.1.1.1:53,1.0.0.1:53
       - --certificatesResolvers.dns-cloudflare.acme.dnsChallenge.delayBeforeCheck=90 # To delay DNS check and reduce LE hitrate
-      - --metrics.prometheus=true
+      # - --metrics.prometheus=true
     environment:
       - PUID=1000
       - PGID=1000
@@ -71,7 +71,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=traefik
-      - flame.url=https://traefik.torqueserver.com/
+      - flame.url=http://torqueserver.home:8789/
       - flame.icon=arrow-decision
       - com.centurylinklabs.watchtower.enable=true
       - "traefik.enable=true"
@@ -81,18 +81,18 @@ services:
       - "traefik.http.routers.http-catchall.middlewares=redirect-to-https"
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
       # HTTP Routers
-      - "traefik.http.routers.traefik-rtr.entrypoints=https"
-      - "traefik.http.routers.traefik-rtr.rule=Host(`traefik.$DOMAINNAME_CLOUD_SERVER`)"
-      - "traefik.http.routers.traefik-rtr.tls=true" # Some people had 404s without this
+      # - "traefik.http.routers.traefik-rtr.entrypoints=https"
+      # - "traefik.http.routers.traefik-rtr.rule=Host(`traefik.$DOMAINNAME_CLOUD_SERVER`)"
+      # - "traefik.http.routers.traefik-rtr.tls=true" # Some people had 404s without this
       # - "traefik.http.routers.traefik-rtr.tls.certresolver=dns-cloudflare" # Comment out this line after first run of traefik to force the use of wildcard certs
       - "traefik.http.routers.traefik-rtr.tls.domains[0].main=$DOMAINNAME_CLOUD_SERVER"
       - "traefik.http.routers.traefik-rtr.tls.domains[0].sans=*.$DOMAINNAME_CLOUD_SERVER"
-      - "traefik.http.routers.traefik-rtr.tls.domains[1].main=$DOMAINNAME2" # Pulls main cert for second domain
-      - "traefik.http.routers.traefik-rtr.tls.domains[1].sans=*.$DOMAINNAME2" # Pulls wildcard cert for second domain
+      # - "traefik.http.routers.traefik-rtr.tls.domains[1].main=$DOMAINNAME2" # Pulls main cert for second domain
+      # - "traefik.http.routers.traefik-rtr.tls.domains[1].sans=*.$DOMAINNAME2" # Pulls wildcard cert for second domain
       ## Services - API
-      - "traefik.http.routers.traefik-rtr.service=api@internal"
+      # - "traefik.http.routers.traefik-rtr.service=api@internal"
       ## Middlewares
-      - "traefik.http.routers.traefik-rtr.middlewares=chain-basic-auth@file"
+      # - "traefik.http.routers.traefik-rtr.middlewares=chain-basic-auth@file"
       # - "traefik.http.routers.traefik-rtr.middlewares=chain-authelia@file"
 networks:
   default:
