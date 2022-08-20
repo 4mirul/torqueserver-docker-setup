@@ -7,14 +7,12 @@ services:
     image: emby/embyserver:latest
     container_name: embyserver
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Kuala_Lumpur
+      - UID=1000
+      - GID=1000
     volumes:
       - /opt/emby/config:/config
-      - /home/yuu/media/tv:/data/tvshows
-      - /home/yuu/media/movies:/data/movies
-      # - /opt/vc/lib:/opt/vc/lib #optional
+      - /mnt/disk0/tvseries:/data/tvshows
+      - /mnt/disk1/movies:/data/movies
     ports:
       - 8097:8096
       # - 8920:8920
@@ -25,8 +23,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=emby
-      # - flame.url=https://emby.torqueserver.com/
-      - flame.url=http://192.168.0.126:8097
+      - flame.url=http://torqueserver.home:8097
       - flame.icon=emby
       - com.centurylinklabs.watchtower.enable=true
 networks:

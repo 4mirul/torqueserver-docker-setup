@@ -8,33 +8,33 @@ services:
     ports:
       - 4000:4000
     volumes:
-      - /mnt/disk1/movies:/radarr/movies
-      - /mnt/disk0/tvseries:/sonarr/shows
+      - /mnt/disk1/movies:/movies
+      - /mnt/disk0/tvseries:/shows
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-#       App config
-      - APP_URL=http://torqueserver.home:4000
-      - APP_MAILER_FROM=admin@torqueserver.com
-#       Database config
+      # App config
+      # - APP_URL=http://torqueserver.home:4000
+      # - APP_MAILER_FROM=admin@torqueserver.com
+      # Database config
       - DB_USERNAME=${POSTGRES_USERNAME}
       - DB_PASSWORD=${POSTGRES_PASSWORD}
       - DB_DATABASE=midarr
       - DB_HOSTNAME=postgres
-#       Initialise admin account
+      # Initialise admin accounts
       - SETUP_ADMIN_EMAIL=admin@torqueserver.com
       - SETUP_ADMIN_NAME=admin
       - SETUP_ADMIN_PASSWORD=${MIDARR_PASSWORD} # min length 12
-#       Radarr integration
+      # Radarr integration
       - RADARR_BASE_URL=radarr:7878
       - RADARR_API_KEY=${SONARR_API_KEY}
-#       Sonarr integration
+      # Sonarr integration
       - SONARR_BASE_URL=sonarr:8989
       - SONARR_API_KEY=${RADARR_API_KEY}
-#       Sendgrid email integration
+      # Sendgrid email integration
       # - SENDGRID_API_KEY=someApiKey
-    restart: unless-stopped
+    restart: unless-stoppeds
     labels:
       - flame.type=app # "app" works too
       - flame.name=midarr
