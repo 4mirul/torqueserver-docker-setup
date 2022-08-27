@@ -1,0 +1,21 @@
+# https://github.com/usememos/memos
+version: "3.2"
+services:
+  memos:
+    image: neosmemo/memos:latest
+    container_name: memos
+    ports:
+      - "5230:5230"
+    volumes:
+      - /opt/memos:/var/opt/memos
+    restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=memos
+      - flame.url=http://torqueserver.home:5230/
+      - flame.icon=format-list-checks
+      - com.centurylinklabs.watchtower.enable=true
+networks:
+  default:
+    external: true
+    name: main_network

@@ -21,7 +21,7 @@ services:
       - flame.name=lidarr
       - flame.url=http://torqueserver.home:8686/
       - flame.icon=music
-      - com.centurylinklabs.watchtower.ensable=true
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
