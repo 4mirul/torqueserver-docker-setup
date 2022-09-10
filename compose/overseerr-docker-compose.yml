@@ -16,22 +16,22 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=overseerr
-      - flame.url=https://overseerr.torqueserver.com/
+      - flame.url=http://torqueserver.home:5055/
       - flame.icon=eye-circle
       - com.centurylinklabs.watchtower.enable=true
       # traefik
-      - "traefik.enable=true"
+      # - "traefik.enable=true"
       ## HTTP Routers
-      - "traefik.http.routers.overseerr-rtr.entrypoints=https"
-      - "traefik.http.routers.overseerr-rtr.rule=Host(`overseerr.$DOMAINNAME_CLOUD_SERVER`)"
-      - "traefik.http.routers.overseerr-rtr.tls=true"
+      # - "traefik.http.routers.overseerr-rtr.entrypoints=https"
+      # - "traefik.http.routers.overseerr-rtr.rule=Host(`overseerr.$DOMAINNAME_CLOUD_SERVER`)"
+      # - "traefik.http.routers.overseerr-rtr.tls=true"
       ## Middlewares
       # - "traefik.http.routers.overseerr-rtr.middlewares=chain-basic-auth@file"
       # - "traefik.http.routers.overseerr-rtr.middlewares=chain-no-auth@file"
       ## HTTP Services
-      - "traefik.http.routers.overseerr-rtr.service=overseerr-svc"
-      - "traefik.http.services.overseerr-svc.loadbalancer.server.port=5055"
+      # - "traefik.http.routers.overseerr-rtr.service=overseerr-svc"
+      # - "traefik.http.services.overseerr-svc.loadbalancer.server.port=5055"
 networks:
   default:
     external: true
-    name: main_network
+    name: main-network
