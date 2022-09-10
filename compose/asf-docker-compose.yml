@@ -9,8 +9,6 @@ services:
     volumes:
       - /opt/asf/config:/app/config
     environment:
-      - PUID=1000
-      - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     restart: unless-stopped
     labels:

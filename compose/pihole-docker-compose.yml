@@ -9,7 +9,7 @@ services:
     # network_mode: "host"
     ports:
       - "53:53/tcp"
-      - "53:53/udp" # to disable dnsamq for ubuntu run the following; `sudo systemctl stop systemd-resolved`; `sudo systemctl disable systemd-resolved`
+      - "53:53/udp" # to disable dnsamq for ubuntu/debian run the following; `sudo systemctl stop systemd-resolved`; `sudo systemctl disable systemd-resolved`
       - "67:67/udp"
       - "8087:80/tcp"
     environment:
@@ -33,4 +33,4 @@ services:
 networks:
   default:
     external: true
-    name: main_network
+    name: main-network
