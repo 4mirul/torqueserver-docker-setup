@@ -1,6 +1,8 @@
 # https://github.com/midarrlabs/midarr-server
 ---
-version: "3"
+volumes:
+  database-data:
+
 services:
   midarr:
     container_name: midarr
@@ -11,37 +13,58 @@ services:
       - /mnt/disk1/movies:/movies
       - /mnt/disk0/tvseries:/shows
     environment:
-      - PUID=1000
-      - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      # App config
-      # - APP_URL=http://torqueserver.home:4000
-      # - APP_MAILER_FROM=admin@torqueserver.com
-      # Database config
-      - DB_USERNAME=${POSTGRES_USERNAME}
-      - DB_PASSWORD=${POSTGRES_PASSWORD}
-      - DB_DATABASE=midarr
-      - DB_HOSTNAME=postgres
-      # Initialise admin accounts
+#       App config
+      - APP_URL=http://torqueserver.home:4000
+      - APP_MAILER_FROM=admin@torqueserver.com
+        
+#       Database config
+      - DB_USERNAME=my_user
+      - DB_PASSWORD=my_password
+      - DB_DATABASE=my_database
+      - DB_HOSTNAME=postgresql
+
+#       Initialise admin account
       - SETUP_ADMIN_EMAIL=admin@torqueserver.com
       - SETUP_ADMIN_NAME=admin
-      - SETUP_ADMIN_PASSWORD=${MIDARR_PASSWORD} # min length 12
-      # Radarr integration
+      - SETUP_ADMIN_PASSWORD=${LONG_PASS} # minimum length 12
+
+#       Radarr integration
       - RADARR_BASE_URL=radarr:7878
-      - RADARR_API_KEY=${SONARR_API_KEY}
-      # Sonarr integration
+      - RADARR_API_KEY=${RADARR_API_KEY}
+
+#       Sonarr integration
       - SONARR_BASE_URL=sonarr:8989
-      - SONARR_API_KEY=${RADARR_API_KEY}
-      # Sendgrid email integration
+      - SONARR_API_KEY=${SONARR_API_KEY}
+        
+#       Sendgrid email integration
       # - SENDGRID_API_KEY=someApiKey
-    restart: unless-stoppeds
+
+    depends_on:
+      postgresql:
+        condition: service_healthy
+
+    restart: unless-stopped
     labels:
       - flame.type=app # "app" works too
       - flame.name=midarr
       - flame.url=http://torqueserver.home:4000/
       - flame.icon=play
       - com.centurylinklabs.watchtower.enable=true
+
+  postgresql:
+    container_name: postgresql
+    image: postgres
+    volumes:
+      - database-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=my_user
+      - POSTGRES_PASSWORD=my_password
+      - POSTGRES_DB=my_database
+    healthcheck:
+      test: "exit 0"
+
 networks:
     default:
       external: true
-      name: main_network
+      name: main-network
