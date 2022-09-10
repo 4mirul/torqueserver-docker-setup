@@ -6,7 +6,7 @@ services:
     image: pawelmalak/flame:latest
     container_name: flame
     volumes:
-      - flamedata:/app/data
+      - flame-data:/app/data
       - /var/run/docker.sock:/var/run/docker.sock # optional but required for Docker integration
     ports:
       - 5005:5005
@@ -22,17 +22,17 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true
       # traefik
-      - "traefik.enable=true"
+      # - "traefik.enable=true"
       ## HTTP Routers
-      - "traefik.http.routers.flame-rtr.entrypoints=https"
-      - "traefik.http.routers.flame-rtr.rule=Host(`flame.$DOMAINNAME_CLOUD_SERVER`,`$DOMAINNAME_CLOUD_SERVER`,`www.$DOMAINNAME_CLOUD_SERVER`)"
-      - "traefik.http.routers.flame-rtr.tls=true"
+      # - "traefik.http.routers.flame-rtr.entrypoints=https"
+      # - "traefik.http.routers.flame-rtr.rule=Host(`flame.$DOMAINNAME_CLOUD_SERVER`,`$DOMAINNAME_CLOUD_SERVER`,`www.$DOMAINNAME_CLOUD_SERVER`)"
+      # - "traefik.http.routers.flame-rtr.tls=true"
       ## Middlewares
       # - "traefik.http.routers.flame-rtr.middlewares=chain-basic-auth@file"
       # - "traefik.http.routers.flame-rtr.middlewares=chain-no-auth@file"
       ## HTTP Services
-      - "traefik.http.routers.flame-rtr.service=flame-svc"
-      - "traefik.http.services.flame-svc.loadbalancer.server.port=5005"
+      # - "traefik.http.routers.flame-rtr.service=flame-svc"
+      # - "traefik.http.services.flame-svc.loadbalancer.server.port=5005"
 # # optional but required for Docker secrets (1)
 # secrets:
 #   password:
@@ -40,7 +40,7 @@ services:
 networks:
   default:
     external: true
-    name: main_network
+    name: main-network
 volumes:
-  flamedata:
+  flame-data:
     external: true

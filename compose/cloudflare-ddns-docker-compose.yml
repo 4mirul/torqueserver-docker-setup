@@ -10,7 +10,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - API_KEY=${API_KEY}
+      - API_KEY=${CLOUDFLARE_API_KEY}
       - ZONE=torqueserver.com
       # - SUBDOMAIN=
       - PROXIED=true
@@ -33,4 +33,4 @@ services:
 networks:
   default:
     external: true
-    name: main_network
+    name: main-network

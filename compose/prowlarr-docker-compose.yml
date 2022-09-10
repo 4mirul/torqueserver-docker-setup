@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   prowlarr:
-    image: ghcr.io/linuxserver/prowlarr:nightly-alpine
+    image: ghcr.io/linuxserver/prowlarr:develop
     container_name: prowlarr
     environment:
       - PUID=1000
@@ -17,7 +17,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=prowlarr
-      - flame.url=http://192.168.0.105:9696/
+      - flame.url=http://torqueserver.home:9696/
       - flame.icon=target
 networks:
   default:

@@ -6,43 +6,43 @@ services:
     image: jellyfin/jellyfin
     container_name: jellyfin
     user: 1000:1000
-    # network_mode: "host"
+    network_mode: "host"
     volumes:
       - jellyfin-config:/config
       - jellyfin-cache:/cache
-      - /mnt/disk0/tvseries:/data/tvshows:ro
-      - /mnt/disk1/movies:/data/movies:ro
+      - /mnt/disk0/tvseries:/data/tvshows
+      - /mnt/disk1/movies:/data/movies
     restart: "unless-stopped"
-    ports:
-      - "8096:8096"
+    # ports:
+    #   - "8096:8096"
     # Optional - alternative address used for autodiscovery
     environment:
-      - JELLYFIN_PublishedServerUrl=https://jellyfin.torqueserver.com
+      - TZ=Asia/Kuala_Lumpur
+      - JELLYFIN_PublishedServerUrl=http://torqueserver.home:8096
     devices:
       - /dev/dri:/dev/dri #optional
     labels:
       - flame.type=app # "app" works too
       - flame.name=jellyfin
-      - flame.url=https://jellyfin.torqueserver.com/
-      # - flame.url=http://192.168.0.126:8096
+      - flame.url=http://torqueserver.home:8096/
       - flame.icon=jellyfish
       - com.centurylinklabs.watchtower.enable=true
       # traefik
-      - "traefik.enable=true"
+      # - "traefik.enable=true"
       ## HTTP Routers
-      - "traefik.http.routers.jellyfin-rtr.entrypoints=https"
-      - "traefik.http.routers.jellyfin-rtr.rule=Host(`jellyfin.$DOMAINNAME_CLOUD_SERVER`)"
-      - "traefik.http.routers.jellyfin-rtr.tls=true"
+      # - "traefik.http.routers.jellyfin-rtr.entrypoints=https"
+      # - "traefik.http.routers.jellyfin-rtr.rule=Host(`jellyfin.$DOMAINNAME_CLOUD_SERVER`)"
+      # - "traefik.http.routers.jellyfin-rtr.tls=true"
       ## Middlewares
       # - "traefik.http.routers.jellyfin-rtr.middlewares=chain-basic-auth@file"
       # - "traefik.http.routers.jellyfin-rtr.middlewares=chain-no-auth@file"
       ## HTTP Services
-      - "traefik.http.routers.jellyfin-rtr.service=jellyfin-svc"
-      - "traefik.http.services.jellyfin-svc.loadbalancer.server.port=8096"
-networks:
-  default:
-    external: true
-    name: main_network
+      # - "traefik.http.routers.jellyfin-rtr.service=jellyfin-svc"
+      # - "traefik.http.services.jellyfin-svc.loadbalancer.server.port=8096"
+# networks:
+#   default:
+#     external: true
+#     name: main_network
 volumes:
   jellyfin-config:
     external: true

@@ -20,10 +20,9 @@ services:
       - flame.type=app # "app" works too
       - flame.name=sonarr
       - flame.url=http://torqueserver.home:8989/
-      # - flame.url=http://192.168.0.126:8989/
       - flame.icon=television-box
       - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
-    name: main_network
+    name: main-network
