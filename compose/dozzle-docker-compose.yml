@@ -6,8 +6,6 @@ services:
     container_name: dozzle
     image: amir20/dozzle:latest
     environment:
-      - PUID=1000
-      - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -23,4 +21,4 @@ services:
 networks:
   default:
     external: true
-    name: main_network
+    name: main-network
