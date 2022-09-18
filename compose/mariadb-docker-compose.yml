@@ -28,11 +28,9 @@
 version: "3"
 services:
   mariadb:
-    image: mariadb:10.8.3
+    image: mariadb:10.9.2
     container_name: mariadb
     environment:
-      - PUID=1000
-      - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - MARIADB_USER=mariadb
       - MARIADB_PASSWORD=${MARIADB_PASSWORD}
@@ -55,7 +53,7 @@ services:
       # - PMA_USER=root
       # - PMA_PASSWORD=${MARIADB_ROOT_PASSWORD}
     volumes:
-      - /opt/phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
+      # - /opt/phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
       - /opt/phpmyadmin/themes:/www/themes/
       - phpmyadminsessions:/sessions/
     ports:
@@ -70,8 +68,9 @@ services:
 networks:
   default:
     external: true
-    name: main_network
+    name: main-network
 volumes:
   phpmyadminsessions:
+    external: true
   mysqldata:
     external: true

@@ -8,8 +8,6 @@ services:
     container_name: wordpress
     restart: always
     environment:
-      PUID: 1000
-      PGID: 1000
       TZ: Asia/Kuala_Lumpur
       WORDPRESS_DB_HOST: mariadb
       WORDPRESS_DB_USER: wordpress
@@ -28,3 +26,4 @@ networks:
     name: main-network
 volumes:
   wordpress:
+    external: true
