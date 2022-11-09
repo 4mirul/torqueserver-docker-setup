@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   emulatorjs:
-    image: lscr.io/linuxserver/emulatorjs
+    image: lscr.io/linuxserver/emulatorjs:latest
     container_name: emulatorjs
     environment:
       - PUID=1000
@@ -11,13 +11,20 @@ services:
       - TZ=Asia/Kuala_Lumpur
       # - SUBFOLDER=/ #optional
     volumes:
+      - /opt/emulatorjs/config:/config
       - /mnt/disk1/emulatorjs/data:/data
     ports:
       - 3000:3000
       - 8043:80
       - 4001:4001 #optional
     restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=emulatorjs
+      - flame.url=http://torqueserver.home:8043/
+      - flame.icon=controller-classic
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
-    name: main
+    name: main-network
