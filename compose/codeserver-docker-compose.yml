@@ -29,4 +29,4 @@ services:
 networks:
   default:
     external: true
-    name: main_network
+    name: main-network
