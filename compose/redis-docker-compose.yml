@@ -4,7 +4,7 @@
 version: "3.2"
 services:
   redis:
-    image: "redis:7.0.0-alpine"
+    image: "redis:7.0-alpine"
     command: redis-server # --requirepass ${REDIS_PASSWORD}
     container_name: redis
     environment:
@@ -38,7 +38,7 @@ services:
 networks:
   default:
     external: true
-    name: main_network
+    name: main-network
 volumes:
   redisdata:
     external: true

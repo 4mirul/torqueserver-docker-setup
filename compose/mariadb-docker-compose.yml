@@ -28,7 +28,7 @@
 version: "3"
 services:
   mariadb:
-    image: mariadb:10.9.2
+    image: mariadb:10.9.4
     container_name: mariadb
     environment:
       - TZ=Asia/Kuala_Lumpur
@@ -54,10 +54,12 @@ services:
       # - PMA_PASSWORD=${MARIADB_ROOT_PASSWORD}
     volumes:
       # - /opt/phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
-      - /opt/phpmyadmin/themes:/www/themes/
+      # - /opt/phpmyadmin/themes:/www/themes/
       - phpmyadminsessions:/sessions/
     ports:
       - 8880:80
+    depends_on:
+      - "mariadb"
     labels:
       - flame.type=app # "app" works too
       - flame.name=phpmyadmin
