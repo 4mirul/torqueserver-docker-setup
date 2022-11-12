@@ -4,8 +4,7 @@ version: '3'
 services:
   postgres:
     container_name: postgres
-    # command: 'config_file=/etc/postgresql/postgresql.conf'
-    image: postgres:14.5
+    image: postgres:15-alpine
     environment:
       - TZ=Asia/Kuala_Lumpur
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -24,6 +23,8 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
     ports:
       - '8008:80'
+    depends_on:
+      - "postgres"
     labels:
       - flame.type=app # "app" works too
       - flame.name=pgadmin4
