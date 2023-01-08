@@ -16,7 +16,7 @@
 
 ## portainer
 
-- [Install](https://documentation.portainer.io/v2.0/deploy/ceinstalldocker/)
+- [Install](https://docs.portainer.io/start/install/server/docker)
 
 ### portainer install
 
