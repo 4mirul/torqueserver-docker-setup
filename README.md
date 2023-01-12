@@ -2,7 +2,7 @@
 
 @4mirul personal server docker setup.
 
-- docker cli
+- docker run
 - docker compose
 - docker swarm
 - kubernetes
