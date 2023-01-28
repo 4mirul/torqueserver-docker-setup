@@ -24,17 +24,26 @@ services:
       - EXTRA_DOMAINS= trqs.xyz,*.trqs.xyz
       - STAGING=false #optional
       # - MAXMINDDB_LICENSE_KEY= #optional
+      - DOCKER_MODS=linuxserver/mods:swag-dashboard
     volumes:
       - /opt/swag/config:/config
+      - /mnt/disk0/books:/share/books
+      - /mnt/disk1/movies:/share/movies
+      - /mnt/disk0/tvseries:/share/tvseries
       # - /opt/jellyfin/config/log:/jellyfin/log
       # - /opt/overseerr/config/logs:/overseerr/logs
       # - /opt/sonarr/config/logs:/sonarr/logs
       # - /opt/radarr/config/logs:/radarr/logs
     labels:
       - com.centurylinklabs.watchtower.enable=true
+      - flame.type=app # "app" works too
+      - flame.name=swag dashboard
+      - flame.url=https://dashboard.torqueserver.com/
+      - flame.icon=view-dashboard
     ports:
       - 443:443
       - 80:80 #optional
+      - 81:81
     restart: unless-stopped
   # authelia:
   #   image: authelia/authelia:latest
