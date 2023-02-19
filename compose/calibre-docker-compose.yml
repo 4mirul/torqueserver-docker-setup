@@ -5,6 +5,8 @@ services:
   calibre:
     image: lscr.io/linuxserver/calibre:latest
     container_name: calibre
+    security_opt:
+      - seccomp:unconfined #optional
     environment:
       - PUID=1000
       - PGID=1000
@@ -28,4 +30,4 @@ services:
 networks:
   default:
     external: true
-    name: main_network
+    name: main-network
