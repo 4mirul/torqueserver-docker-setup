@@ -20,7 +20,7 @@ services:
       - TZ=Asia/Kuala_Lumpur
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=all
-      - JELLYFIN_PublishedServerUrl=http://torqueserver.home:8096
+      - JELLYFIN_PublishedServerUrl=https://jellyfin.torqueserver.com/
     deploy:
       resources:
         reservations:
@@ -32,7 +32,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=jellyfin
-      - flame.url=http://torqueserver.home:8096/
+      - flame.url=https://jellyfin.torqueserver.com/
       - flame.icon=jellyfish
       - com.centurylinklabs.watchtower.enable=true
       # traefik
