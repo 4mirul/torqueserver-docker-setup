@@ -14,7 +14,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=jellyseerr
-      - flame.url=http://torqueserver.home:5051/
+      - flame.url=https://jellyseerr.torqueserver.com/
       - flame.icon=jellyfish-outline
       - com.centurylinklabs.watchtower.enable=true
 networks:
