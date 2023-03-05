@@ -1,0 +1,23 @@
+version: '3'
+services:
+  jellyseerr:
+    image: fallenbagel/jellyseerr:latest
+    container_name: jellyseerr
+    environment:
+      - LOG_LEVEL=debug
+      - TZ=Asia/Kuala_Lumpur
+    ports:
+      - 5051:5055
+    volumes:
+      - /opt/jellyseerr/config:/app/config
+    restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=jellyseerr
+      - flame.url=http://torqueserver.home:5051/
+      - flame.icon=jellyfish-outline
+      - com.centurylinklabs.watchtower.enable=true
+networks:
+  default:
+    external: true
+    name: main-network

@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   prowlarr:
-    image: ghcr.io/linuxserver/prowlarr:develop
+    image: ghcr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
     environment:
       - PUID=1000
