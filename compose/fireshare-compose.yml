@@ -1,0 +1,26 @@
+# https://github.com/ShaneIsrael/fireshare
+
+---
+version: '3'
+services:
+  fireshare:
+    container_name: fireshare
+    image: 'shaneisrael/fireshare:latest'
+    environment:
+      - ADMIN_PASSWORD=${PASS}
+    volumes:
+      - '/mnt/disk1/fireshare/data:/data:rw'
+      - '/mnt/disk1/fireshare/processed:/processed:rw'
+      - '/mnt/disk1/fireshare/clips:/videos:rw'
+    ports:
+      - '8085:80'
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=fireshare
+      - flame.url=http://torqueserver.home:8085/
+      - flame.icon=gamepad-round
+      - com.centurylinklabs.watchtower.enable=true
+networks:
+  default:
+    external: true
+    name: main-network
