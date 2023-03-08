@@ -15,11 +15,11 @@ services:
       WORDPRESS_DB_NAME: wordpress
     volumes:
       - wordpress:/var/www/html
-    labels:
-      - flame.type=app # "app" works too
-      - flame.name=torqueserver
-      - flame.url=https://torqueserver.com/
-      - flame.icon=server
+    labels: #wordpress+proxmox+custom
+      - flame.type=app
+      - flame.name=torqueserver;proxmox;dir
+      - flame.url=https://torqueserver.com/;https://proxmox.torqueserver.com/;https://dir.torqueserver.com/
+      - flame.icon=server;server-network;file-tree
 networks:
   default:
     external: true
