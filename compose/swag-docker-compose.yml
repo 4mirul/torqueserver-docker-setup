@@ -27,9 +27,9 @@ services:
       - DOCKER_MODS=linuxserver/mods:swag-dashboard
     volumes:
       - /opt/swag/config:/config
-      - /mnt/disk0/books:/share/books
-      - /mnt/disk1/movies:/share/movies
-      - /mnt/disk0/tvseries:/share/tvseries
+      #- /mnt/disk0/books:/share/books
+      #- /mnt/disk1/movies:/share/movies
+      #- /mnt/disk0/tvseries:/share/tvseries
       # - /opt/jellyfin/config/log:/jellyfin/log
       # - /opt/overseerr/config/logs:/overseerr/logs
       # - /opt/sonarr/config/logs:/sonarr/logs
