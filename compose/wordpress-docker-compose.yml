@@ -17,9 +17,9 @@ services:
       - wordpress:/var/www/html
     labels: #wordpress+proxmox+custom
       - flame.type=app
-      - flame.name=torqueserver;proxmox;dir
-      - flame.url=https://torqueserver.com/;https://proxmox.torqueserver.com/;https://dir.torqueserver.com/
-      - flame.icon=server;server-network;file-tree
+      - flame.name=wordpress;torqueserver;proxmox;dir
+      - flame.url=https://wp.torqueserver.com/;https://torqueserver.com/;https://proxmox.torqueserver.com/;https://dir.torqueserver.com/
+      - flame.icon=wordpress;server-network;file-tree
 networks:
   default:
     external: true

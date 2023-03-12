@@ -13,7 +13,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - URL=torqueserver.com
-      - SUBDOMAINS=*
+      - SUBDOMAINS=dashboard,dir,flame,jellyfin,jellyseerr,proxmox,wp,www
       - VALIDATION=dns
       # - CERTPROVIDER= #optional
       - DNSPLUGIN=cloudflare #optional
@@ -21,7 +21,7 @@ services:
       # - DUCKDNSTOKEN= #optional
       - EMAIL=admin@torqueserver.com #optional
       - ONLY_SUBDOMAINS=false #optional
-      - EXTRA_DOMAINS= trqs.xyz,*.trqs.xyz
+      # - EXTRA_DOMAINS=
       - STAGING=false #optional
       # - MAXMINDDB_LICENSE_KEY= #optional
       - DOCKER_MODS=linuxserver/mods:swag-dashboard
