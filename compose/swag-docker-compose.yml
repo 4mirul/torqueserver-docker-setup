@@ -24,14 +24,16 @@ services:
       # - EXTRA_DOMAINS=
       - STAGING=false #optional
       # - MAXMINDDB_LICENSE_KEY= #optional
-      - DOCKER_MODS=linuxserver/mods:swag-dashboard
+      - DOCKER_MODS=linuxserver/mods:swag-dashboard|linuxserver/mods:swag-f2bdiscord
+      - DISC_HOOK=${DISC_HOOK}
+      - DISC_ME=${DISC_ME}
     volumes:
       - /opt/swag/config:/config
       - /mnt/disk0/books:/share/books
       - /mnt/disk1/movies:/share/movies
       - /mnt/disk0/tvseries:/share/tvseries
       - /opt/jellyseerr/config/logs:/jellyseerr/logs
-      - /var/lib/docker/volumes/jellyfin-config/data/log:/jellyfin/log
+      - jellyfin-config:/jellyfin
     labels:
       - com.centurylinklabs.watchtower.enable=true
       - flame.type=app # "app" works too
@@ -64,3 +66,7 @@ networks:
   default:
     external: true
     name: main-network
+
+volumes:
+  jellyfin-config:
+    external: true
