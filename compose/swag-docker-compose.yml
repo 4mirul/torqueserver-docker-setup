@@ -30,10 +30,8 @@ services:
       - /mnt/disk0/books:/share/books
       - /mnt/disk1/movies:/share/movies
       - /mnt/disk0/tvseries:/share/tvseries
-      # - /opt/jellyfin/config/log:/jellyfin/log
-      # - /opt/overseerr/config/logs:/overseerr/logs
-      # - /opt/sonarr/config/logs:/sonarr/logs
-      # - /opt/radarr/config/logs:/radarr/logs
+      - /opt/jellyseerr/config/logs:/jellyseerr/logs
+      - /var/lib/docker/volumes/jellyfin-config/data/log:/jellyfin/log
     labels:
       - com.centurylinklabs.watchtower.enable=true
       - flame.type=app # "app" works too
