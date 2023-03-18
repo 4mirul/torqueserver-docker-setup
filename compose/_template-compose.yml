@@ -1,0 +1,32 @@
+# https://example.com/
+---
+version: "3"
+services:
+  app-name:
+    container_name: container-name
+    image: "alpine:latest"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - "volume-name1:/data"
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=app-name
+      - flame.url=https://torqueserver.home:80/
+      - flame.icon=docker
+networks:
+  default:
+    external: true
+    name: main-network
+volumes:
+  volume-name1:
+    external: true
+  volume-name2:
+    external: true
+  volume-name3:
+    external: true
