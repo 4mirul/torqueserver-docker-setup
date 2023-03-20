@@ -19,7 +19,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=jfa-go
-      - flame.url=http://torqueserver.home:8056/
+      - flame.url=https://jfa.torqueserver.com/
       - flame.icon=jellyfish
 networks:
   default:
