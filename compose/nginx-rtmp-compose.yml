@@ -1,0 +1,16 @@
+# https://hub.docker.com/r/alfg/nginx-rtmp/
+# always running nginx-rtmp server
+---
+version: "3"
+services:
+  nginx-rtmp:
+    container_name: nginx-rtmp
+    image: alfg/nginx-rtmp
+    ports:
+      - "1935:1935"
+      - "8780:80"
+    restart: always
+networks:
+  default:
+    external: true
+    name: main-network
