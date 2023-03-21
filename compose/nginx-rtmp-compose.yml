@@ -10,6 +10,12 @@ services:
       - "1935:1935"
       - "8780:80"
     restart: always
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=rtmp
+      - flame.url=http://torqueserver.home:8780/player.html?url=http://torqueserver.home:8780/live/hello.m3u8
+      - flame.icon=video-box
+      - com.centurylinklabs.watchtower.enable=true
 networks:
   default:
     external: true
