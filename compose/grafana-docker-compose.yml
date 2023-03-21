@@ -9,12 +9,10 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      # - GF_PATHS_PLUGINS=/opt/plugins
     volumes:
-      - grafanastorage:/var/lib/grafana
-      - grafanaconfig:/etc/grafana
-      - grafanalog:/var/log/grafana
-      # - /opt/grafana/plugins:/opt/plugins
+      - grafana-storage:/var/lib/grafana
+      # - grafana-config:/etc/grafana
+      # - grafana-log:/var/log/grafana
     ports:
       - "3001:3000"
     restart: unless-stopped
@@ -27,14 +25,14 @@ services:
 networks:
   default:
     external: true
-    name: main_network
+    name: main-network
 volumes:
-  grafanastorage:
+  grafana-storage:
     external: true
-  grafanaconfig:
-    external: true
-  grafanalog:
-    external: true
+  # grafana-config:
+  #   external: true
+  # grafana-log:
+  #   external: true
 # dashboard id
 # Node Exporter for Prometheus Dashboard EN v20201010 - 11074
 # Node Exporter Full - 1860

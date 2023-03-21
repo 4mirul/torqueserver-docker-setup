@@ -15,7 +15,7 @@ services:
     ports:
       - 8123:8123 #optional
     # devices:
-      # - /path/to/device:/path/to/device #optional
+    # - /path/to/device:/path/to/device #optional
     restart: unless-stopped
     labels:
       - flame.type=app # "app" works too
@@ -26,4 +26,4 @@ services:
 networks:
   default:
     external: true
-    name: main_network
+    name: main-network
