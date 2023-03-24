@@ -1,0 +1,19 @@
+# https://example.com/
+---
+version: "3"
+services:
+  it-tools:
+    container_name: it-tools
+    image: corentinth/it-tools
+    ports:
+      - 8907:80
+    restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=it-tools
+      - flame.url=http://torqueserver.home:8907/
+      - flame.icon=tools
+networks:
+  default:
+    external: true
+    name: main-network
