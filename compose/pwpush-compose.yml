@@ -15,7 +15,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=pwpush
-      - flame.url=http://torqueserver.home:5100/
+      - flame.url=https://pwpush.torqueserver.com/
       - flame.icon=key
     networks:
       - main-network

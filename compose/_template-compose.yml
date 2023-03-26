@@ -2,9 +2,9 @@
 ---
 version: "3"
 services:
-  app-name:
-    container_name: container-name
-    image: "alpine:latest"
+  app_name:
+    container_name: container_name
+    image: alpine:latest
     environment:
       - PUID=1000
       - PGID=1000
@@ -12,11 +12,11 @@ services:
     volumes:
       - "volume-name1:/data"
     ports:
-      - "80:80"
+      - 80:80
     restart: unless-stopped
     labels:
       - flame.type=app # "app" works too
-      - flame.name=app-name
+      - flame.name=app_name
       - flame.url=http://torqueserver.home:80/
       - flame.icon=docker
     networks:

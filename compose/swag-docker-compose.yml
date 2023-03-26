@@ -13,7 +13,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - URL=torqueserver.com
-      - SUBDOMAINS=dashboard,dir,flame,jellyfin,jellyseerr,proxmox,wp,www,docs,jfa,hastebin
+      - SUBDOMAINS=dashboard,dir,flame,jellyfin,jellyseerr,proxmox,wp,www,docs,jfa,hastebin,umami,pwpush
       - VALIDATION=dns
       # - CERTPROVIDER= #optional
       - DNSPLUGIN=cloudflare #optional

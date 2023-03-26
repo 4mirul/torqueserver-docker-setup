@@ -1,0 +1,27 @@
+# https://example.com/
+---
+version: "3"
+services:
+  umami:
+    container_name: umami
+    image: ghcr.io/umami-software/umami:postgresql-latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - DATABASE_URL=postgresql://postgres@postgres:5432/umami #remove password option because postgres nopassword
+      - DATABASE_TYPE=postgresql
+      - HASH_SALT=replace-me-with-a-random-string
+    ports:
+      - "3100:3000"
+    restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=umami
+      - flame.url=https://umami.torqueserver.com/
+      - flame.icon=finance
+    networks:
+      - main-network
+networks:
+  main-network:
+    external: true
