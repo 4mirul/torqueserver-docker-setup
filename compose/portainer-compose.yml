@@ -2,32 +2,30 @@
 ---
 version: "3"
 services:
-  app-name:
-    container_name: container-name
-    image: "alpine:latest"
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce:latest
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - "volume-name1:/data"
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
     ports:
-      - "80:80"
+      - "8000:8000"
+      - "9000:9000"
     restart: unless-stopped
     labels:
       - flame.type=app # "app" works too
-      - flame.name=app-name
-      - flame.url=http://torqueserver.home:80/
-      - flame.icon=docker
+      - flame.name=portainer
+      - flame.url=http://torqueserver.home:9000/
+      - flame.icon=image-multiple
     networks:
       - main-network
 networks:
   main-network:
     external: true
 volumes:
-  volume-name1:
-    external: true
-  volume-name2:
-    external: true
-  volume-name3:
+  portainer_data:
     external: true

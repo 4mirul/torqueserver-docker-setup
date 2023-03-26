@@ -1,0 +1,27 @@
+# https://example.com/
+---
+version: "3"
+services:
+  oasis:
+    container_name: oasis
+    image: machengim/oasis
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/oasis/data:/opt/oasis/data
+      - /mnt/disk0/books:/home/storage/books
+    ports:
+      - "8790:8000"
+    restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=oasis
+      - flame.url=http://torqueserver.home:8790/
+      - flame.icon=file
+    networks:
+      - main-network
+networks:
+  main-network:
+    external: true

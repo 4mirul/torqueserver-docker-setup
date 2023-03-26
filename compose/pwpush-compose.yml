@@ -1,0 +1,24 @@
+# https://example.com/
+---
+version: "3"
+services:
+  pwpush:
+    container_name: pwpush
+    image: "pglombardo/pwpush-ephemeral:release"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    ports:
+      - "5100:5100"
+    restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=pwpush
+      - flame.url=http://torqueserver.home:5100/
+      - flame.icon=key
+    networks:
+      - main-network
+networks:
+  main-network:
+    external: true

@@ -13,17 +13,18 @@ services:
     ports:
       - 3001:2368
     volumes:
-      - 'ghostdata:/var/lib/ghost/content'
+      - 'ghost-data:/var/lib/ghost/content'
     restart: unless-stopped
     labels:
       - flame.type=app # "app" works too
       - flame.name=ghost
       - flame.url=http://torqueserver.home:3001/
       - flame.icon=ghost
+    networks:
+      - main-network
 networks:
-  default:
+  main-network:
     external: true
-    name: main-network
 volumes:
-  ghostdata:
+  ghost-data:
     external: true
