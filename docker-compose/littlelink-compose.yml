@@ -13,9 +13,9 @@ services:
       - UMAMI_WEBSITE_ID=${UMAMI_WEBSITE_ID}
       - UMAMI_APP_URL=https://umami.torqueserver.com/umami.js
       - META_TITLE=Muhammad Amirul
-      - META_DESCRIPTION=Self-learning  | Gamer | Homelab | 🇲🇾
+      - META_DESCRIPTION=Self-Learning Developer  | Homelab | Gamer | 🇲🇾
       - META_AUTHOR=4mirul
-      - META_KEYWORDS=HomeLab, HTML, CSS
+      - META_KEYWORDS=HomeLab, Links, LittleLink
       - LANG=en
       - META_INDEX_STATUS=all
       - OG_SITE_NAME=Muhammad Amirul
@@ -30,29 +30,29 @@ services:
       - FAVICON_URL=https://avatars.githubusercontent.com/u/11393393?v=4
       - AVATAR_URL=https://avatars.githubusercontent.com/u/11393393?v=4
       - AVATAR_2X_URL=https://avatars.githubusercontent.com/u/11393393?v=4
-      - AVATAR_ALT=Amirul Profile Pic
+      - AVATAR_ALT=4mirul GitHub Profile Picture
       - NAME=Muhammad Amirul
-      - BIO=Self-learning  | Gamer | Homelab | 🇲🇾
+      - BIO=Self-Learning Developer  | Homelab | Gamer | 🇲🇾
       # use ENV variable names for order, listed buttons will be boosted to the top
-      - BUTTON_ORDER=YOUTUBE,TWITCH,TWITTER,GITHUB,INSTAGRAM,LINKED_IN,DISCORD,FACEBOOK,TIKTOK,PATREON,GEAR,DOCUMENTATION
+      - BUTTON_ORDER=AMIRUL,TORQUESERVER,YOUTUBE,TWITCH,TWITTER,GITHUB,INSTAGRAM,LINKED_IN,DISCORD,FACEBOOK,TIKTOK,PATREON
       # you can render an unlimited amount of custom buttons by adding
       # the CUSTOM_BUTTON_* variables and by using a comma as a separator.
-      # - CUSTOM_BUTTON_TEXT=Documentation,Recommended Gear
-      # - CUSTOM_BUTTON_URL=https://l.technotim.live/docs,https://l.technotim.live/gear
-      # - CUSTOM_BUTTON_COLOR=#000000,#000000
-      # - CUSTOM_BUTTON_TEXT_COLOR=#ffffff,#ffffff
-      # - CUSTOM_BUTTON_ALT_TEXT=Tech documentation site for my videos and more,Recommended Gear
-      # - CUSTOM_BUTTON_NAME=DOCUMENTATION,GEAR
-      # - CUSTOM_BUTTON_ICON=fas file-alt,fas fa-cog
-      - GITHUB=https://www.4mirul.com/
-      - TWITTER=https://www.4mirul.com/
-      - INSTAGRAM=https://www.4mirul.com/
-      - LINKED_IN=https://www.4mirul.com/
-      - YOUTUBE=https://www.4mirul.com/
-      - TWITCH=https://www.4mirul.com/
-      - DISCORD=https://www.4mirul.com/
-      - FACEBOOK=https://www.4mirul.com/
-      - PATREON=https://www.4mirul.com/
+      - CUSTOM_BUTTON_TEXT=Amirul's Portfolio Website,Torqueserver homepage
+      - CUSTOM_BUTTON_URL=https://www.4mirul.com/,https://torqueserver.com/
+      - CUSTOM_BUTTON_COLOR=#000000,#000000
+      - CUSTOM_BUTTON_TEXT_COLOR=#ffffff,#ffffff
+      - CUSTOM_BUTTON_ALT_TEXT=Amirul's Portfolio Website,Torqueserver homepage
+      - CUSTOM_BUTTON_NAME=AMIRUL,TORQUESERVER
+      - CUSTOM_BUTTON_ICON=fa-solid fa-user-secret,fa-solid fa-t
+      - GITHUB=https://github.com/4mirul
+      - TWITTER=https://twitter.com/01000001mirul
+      - INSTAGRAM=https://www.instagram.com/94mirul/
+      - LINKED_IN=https://www.linkedin.com/in/muhammadamirulabdaziz/
+      - YOUTUBE=https://www.youtube.com/channel/UCNCgSnPUSnCUWQpJPUqIDjw
+      - TWITCH=https://www.twitch.tv/trqs_gaming
+      - DISCORD=https://discord.gg/YQHBp2Q7XP
+      - FACEBOOK=https://www.facebook.com/94mirul
+      - PATREON=https://www.patreon.com/4mirul
       - FOOTER=Muhammad Amirul © 2023
     ports:
       - 8076:3000
