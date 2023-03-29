@@ -34,12 +34,12 @@ services:
       - NAME=Muhammad Amirul
       - BIO=Self-Learning Developer  | Homelab | Gamer | 🇲🇾
       # use ENV variable names for order, listed buttons will be boosted to the top
-      - BUTTON_ORDER=AMIRUL,TORQUESERVER,YOUTUBE,TWITCH,TWITTER,GITHUB,INSTAGRAM,LINKED_IN,DISCORD,FACEBOOK,TIKTOK,PATREON
+      - BUTTON_ORDER=AMIRUL,TORQUESERVER,EMAIL,BUYMEACOFFEE,PAYPAL,PATREON,WHATSAPP,GITHUB,STEAM,DISCORD,LINKED_IN,STACKOVERFLOW,DEVTO,DOCKER,MEDIUM,GITEA,WORDPRESS,FIGMA,GHOST,YOUTUBE,TWITCH,TWITTER,INSTAGRAM,FACEBOOK,MASTODON,REDDIT
       # you can render an unlimited amount of custom buttons by adding
       # the CUSTOM_BUTTON_* variables and by using a comma as a separator.
       - CUSTOM_BUTTON_TEXT=Amirul's Portfolio Website,Torqueserver homepage
       - CUSTOM_BUTTON_URL=https://www.4mirul.com/,https://torqueserver.com/
-      - CUSTOM_BUTTON_COLOR=#000000,#000000
+      - CUSTOM_BUTTON_COLOR=#000000,#222222
       - CUSTOM_BUTTON_TEXT_COLOR=#ffffff,#ffffff
       - CUSTOM_BUTTON_ALT_TEXT=Amirul's Portfolio Website,Torqueserver homepage
       - CUSTOM_BUTTON_NAME=AMIRUL,TORQUESERVER
@@ -48,11 +48,26 @@ services:
       - TWITTER=https://twitter.com/01000001mirul
       - INSTAGRAM=https://www.instagram.com/94mirul/
       - LINKED_IN=https://www.linkedin.com/in/muhammadamirulabdaziz/
-      - YOUTUBE=https://www.youtube.com/channel/UCNCgSnPUSnCUWQpJPUqIDjw
       - TWITCH=https://www.twitch.tv/trqs_gaming
       - DISCORD=https://discord.gg/YQHBp2Q7XP
       - FACEBOOK=https://www.facebook.com/94mirul
       - PATREON=https://www.patreon.com/4mirul
+      - FIGMA=https://www.figma.com/@94mirul
+      - BUYMEACOFFEE=https://www.buymeacoffee.com/4mirul
+      - DEVTO=https://dev.to/4mirul
+      - DOCKER=https://hub.docker.com/u/4mirul
+      - EMAIL=admin@4mirul.com
+      - GHOST=https://ghost.torqueserver.com/
+      - GITEA=https://gitea.torqueserver.com/
+      - MASTODON=https://mastodon.social/@4mirul
+      - MEDIUM=https://medium.com/@4mirul
+      - PAYPAL=https://paypal.me/muhammadamirul
+      - REDDIT=https://www.reddit.com/user/muhammadamirul/
+      - STACKOVERFLOW=https://stackoverflow.com/users/7275730/amirul
+      - STEAM=https://steamcommunity.com/id/oyuu
+      - WHATSAPP=https://wa.me/message/O5J4QSAZAP4QM1
+      - WORDPRESS=https://wp.torqueserver.com/
+      - YOUTUBE=https://www.youtube.com/channel/UCNCgSnPUSnCUWQpJPUqIDjw
       - FOOTER=Muhammad Amirul © 2023
     ports:
       - 8076:3000
