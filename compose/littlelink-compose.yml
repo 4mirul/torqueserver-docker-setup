@@ -1,0 +1,71 @@
+# https://example.com/
+---
+version: "3"
+services:
+  littlelink:
+    container_name: littlelink
+    image: ghcr.io/techno-tim/littlelink-server:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      # umami
+      - UMAMI_WEBSITE_ID=${UMAMI_WEBSITE_ID}
+      - UMAMI_APP_URL=https://umami.torqueserver.com/umami.js
+      - META_TITLE=Muhammad Amirul
+      - META_DESCRIPTION=Self-learning  | Gamer | Homelab | 🇲🇾
+      - META_AUTHOR=4mirul
+      - META_KEYWORDS=HomeLab, HTML, CSS
+      - LANG=en
+      - META_INDEX_STATUS=all
+      - OG_SITE_NAME=Muhammad Amirul
+      - OG_TITLE=Muhammad Amirul
+      - OG_DESCRIPTION=The home of Muhammad Amirul
+      - OG_URL=https://littlelink.torqueserver.com
+      - OG_IMAGE=https://avatars.githubusercontent.com/u/11393393?v=4
+      - OG_IMAGE_WIDTH=400
+      - OG_IMAGE_HEIGHT=400
+      # - GA_TRACKING_ID=G-XXXXXXXXXX
+      - THEME=Dark
+      - FAVICON_URL=https://avatars.githubusercontent.com/u/11393393?v=4
+      - AVATAR_URL=https://avatars.githubusercontent.com/u/11393393?v=4
+      - AVATAR_2X_URL=https://avatars.githubusercontent.com/u/11393393?v=4
+      - AVATAR_ALT=Amirul Profile Pic
+      - NAME=Muhammad Amirul
+      - BIO=Self-learning  | Gamer | Homelab | 🇲🇾
+      # use ENV variable names for order, listed buttons will be boosted to the top
+      - BUTTON_ORDER=YOUTUBE,TWITCH,TWITTER,GITHUB,INSTAGRAM,LINKED_IN,DISCORD,FACEBOOK,TIKTOK,PATREON,GEAR,DOCUMENTATION
+      # you can render an unlimited amount of custom buttons by adding
+      # the CUSTOM_BUTTON_* variables and by using a comma as a separator.
+      # - CUSTOM_BUTTON_TEXT=Documentation,Recommended Gear
+      # - CUSTOM_BUTTON_URL=https://l.technotim.live/docs,https://l.technotim.live/gear
+      # - CUSTOM_BUTTON_COLOR=#000000,#000000
+      # - CUSTOM_BUTTON_TEXT_COLOR=#ffffff,#ffffff
+      # - CUSTOM_BUTTON_ALT_TEXT=Tech documentation site for my videos and more,Recommended Gear
+      # - CUSTOM_BUTTON_NAME=DOCUMENTATION,GEAR
+      # - CUSTOM_BUTTON_ICON=fas file-alt,fas fa-cog
+      - GITHUB=https://www.4mirul.com/
+      - TWITTER=https://www.4mirul.com/
+      - INSTAGRAM=https://www.4mirul.com/
+      - LINKED_IN=https://www.4mirul.com/
+      - YOUTUBE=https://www.4mirul.com/
+      - TWITCH=https://www.4mirul.com/
+      - DISCORD=https://www.4mirul.com/
+      - FACEBOOK=https://www.4mirul.com/
+      - PATREON=https://www.4mirul.com/
+      - FOOTER=Muhammad Amirul © 2023
+    ports:
+      - 8076:3000
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=littlelink
+      - flame.url=http://link.torqueserver.com
+      - flame.icon=link
+    networks:
+      - main-network
+networks:
+  main-network:
+    external: true
