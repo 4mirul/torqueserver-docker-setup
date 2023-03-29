@@ -4,7 +4,7 @@
 
 - docker run
 - docker compose
-- docker swarm
+- docker stack
 - ~~kubernetes~~
 
 ## Install docker
