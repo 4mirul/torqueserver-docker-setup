@@ -11,7 +11,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=it-tools
-      - flame.url=http://torqueserver.home:8907/
+      - flame.url=https://it-tools.torqueserver.com/
       - flame.icon=tools
 networks:
   default:

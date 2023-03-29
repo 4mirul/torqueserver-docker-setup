@@ -5,26 +5,11 @@
 - docker run
 - docker compose
 - docker swarm
-- kubernetes
+- ~~kubernetes~~
 
 ## Install docker
 
 - [Install](https://docs.docker.com/engine/install/)
-
-## Install Portainer
-
-A web UI for docker.
-
-- [Install](https://docs.portainer.io/start/install/server/docker)
-
-### Installing Portainer
-
-```sh
-$ docker volume create portainer_data
-$ docker run -d -p 8000:8000 -p 9443:9443 -p 9000:9000 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
-# or with Flame dashboard label below, replace url if needed.
-$ docker run -d -p 8000:8000 -p 9443:9443 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data -l flame.type=app -l flame.name=portainer -l flame.url=http://192.168.0.105:9000/ -l flame.icon=image-multiple portainer/portainer-ce:latest
-```
 
 ## References
 
