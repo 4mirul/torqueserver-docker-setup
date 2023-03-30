@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - "volume-name1:/data"
+      - volume-name1:/data
     ports:
       - 80:80
     restart: unless-stopped
