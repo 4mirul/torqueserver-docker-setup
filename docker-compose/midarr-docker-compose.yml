@@ -1,6 +1,5 @@
 # https://github.com/midarrlabs/midarr-server
 ---
-
 services:
   midarr:
     container_name: midarr
@@ -8,35 +7,36 @@ services:
     ports:
       - 4000:4000
     volumes:
+      - /opt/midarr/database:/app/database
       - /mnt/disk1/movies:/movies
-      - /mnt/disk0/tvseries:/shows
+      - /mnt/disk0/tvseries:/tv
     environment:
       - TZ=Asia/Kuala_Lumpur
-#       App config
+      #       App config
       - APP_URL=http://torqueserver.home:4000
       # - APP_MAILER_FROM=
-        
-#       Database config
-      - DB_USERNAME=postgres
-      - DB_PASSWORD=${POSTGRES_PASSWORD}
-      - DB_DATABASE=midarr
-      - DB_HOSTNAME=postgres
 
-#       Initialise admin account
+      #       Database config
+      # - DB_USERNAME=postgres
+      # - DB_PASSWORD=${POSTGRES_PASSWORD}
+      # - DB_DATABASE=midarr
+      # - DB_HOSTNAME=postgres
+
+      #       Initialise admin account
       - SETUP_ADMIN_EMAIL=admin@torqueserver.com
       - SETUP_ADMIN_NAME=admin
       - SETUP_ADMIN_PASSWORD=${LONG_PASS} # minimum length 12
 
-#       Radarr integration
+      #       Radarr integration
       - RADARR_BASE_URL=http://radarr:7878
       - RADARR_API_KEY=${RADARR_API_KEY}
 
-#       Sonarr integration
+      #       Sonarr integration
       - SONARR_BASE_URL=http://sonarr:8989/
       - SONARR_API_KEY=${SONARR_API_KEY}
-        
-#       Sendgrid email integration
-      # - SENDGRID_API_KEY=someApiKey
+
+    #       Sendgrid email integration
+    # - SENDGRID_API_KEY=someApiKey
 
     restart: unless-stopped
     labels:
@@ -45,8 +45,8 @@ services:
       - flame.url=http://torqueserver.home:4000/
       - flame.icon=play
       - com.centurylinklabs.watchtower.enable=true
-
+    networks:
+      - main-network
 networks:
-    default:
-      external: true
-      name: main-network
+  main-network:
+    external: true
