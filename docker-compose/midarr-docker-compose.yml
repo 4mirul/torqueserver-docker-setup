@@ -7,7 +7,7 @@ services:
     ports:
       - 4000:4000
     volumes:
-      - /opt/midarr/database:/app/database
+      # - /opt/midarr/database:/app/database
       - /mnt/disk1/movies:/movies
       - /mnt/disk0/tvseries:/tv
     environment:
@@ -17,10 +17,10 @@ services:
       # - APP_MAILER_FROM=
 
       #       Database config
-      # - DB_USERNAME=postgres
-      # - DB_PASSWORD=${POSTGRES_PASSWORD}
-      # - DB_DATABASE=midarr
-      # - DB_HOSTNAME=postgres
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=${POSTGRES_PASSWORD}
+      - DB_DATABASE=midarr
+      - DB_HOSTNAME=postgres
 
       #       Initialise admin account
       - SETUP_ADMIN_EMAIL=admin@torqueserver.com
