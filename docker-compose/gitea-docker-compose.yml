@@ -26,22 +26,10 @@ services:
       - flame.url=https://gitea.torqueserver.com/
       - flame.icon=git
       - com.centurylinklabs.watchtower.enable=true
-      # traefik
-      - "traefik.enable=true"
-      ## HTTP Routers
-      - "traefik.http.routers.gitea-rtr.entrypoints=https"
-      - "traefik.http.routers.gitea-rtr.rule=Host(`gitea.$DOMAINNAME_CLOUD_SERVER`)"
-      - "traefik.http.routers.gitea-rtr.tls=true"
-      ## Middlewares
-      # - "traefik.http.routers.jellyfin-rtr.middlewares=chain-basic-auth@file"
-      - "traefik.http.routers.gitea-rtr.middlewares=chain-no-auth@file"
-      ## HTTP Services
-      - "traefik.http.routers.gitea-rtr.service=gitea-svc"
-      - "traefik.http.services.gitea-svc.loadbalancer.server.port=3000"
 networks:
   default:
     external: true
-    name: main_network
+    name: main-network
 volumes:
   gitea:
     external: true
