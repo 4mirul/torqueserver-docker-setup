@@ -1,0 +1,29 @@
+# https://noted.lol/answer-the-self-hosted-q-a-community-portal/
+---
+version: "3"
+services:
+  answer:
+    image: answerdev/answer
+    container_name: answer
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    ports:
+      - "9080:80"
+    restart: unless-stopped
+    volumes:
+      - answer-data:/data
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=answer
+      - flame.url=https://help.torqueserver.com/
+      - flame.icon=help
+      - com.centurylinklabs.watchtower.enable=true
+networks:
+  default:
+    external: true
+    name: main-network
+volumes:
+  answer-data:
+    external: true

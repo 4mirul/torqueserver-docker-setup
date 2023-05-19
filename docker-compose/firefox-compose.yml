@@ -1,0 +1,30 @@
+# https://github.com/linuxserver/docker-firefox
+---
+version: "2.1"
+services:
+  firefox:
+    image: lscr.io/linuxserver/firefox:latest
+    container_name: firefox
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/firefox/config:/config
+    # ports:
+    #   - 3000:3000
+    #   - 3001:3001
+    shm_size: "1gb"
+    restart: unless-stopped
+    labels:
+      - flame.type=app # "app" works too
+      - flame.name=firefox
+      - flame.url=https://firefox.torqueserver.com/
+      - flame.icon=firefox
+      - com.centurylinklabs.watchtower.enable=true
+networks:
+  default:
+    external: true
+    name: main-network
