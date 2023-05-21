@@ -17,7 +17,7 @@ services:
     labels:
       - flame.type=app # "app" works too
       - flame.name=answer
-      - flame.url=https://help.torqueserver.com/
+      - flame.url=https://answer.torqueserver.com/
       - flame.icon=help
       - com.centurylinklabs.watchtower.enable=true
 networks:

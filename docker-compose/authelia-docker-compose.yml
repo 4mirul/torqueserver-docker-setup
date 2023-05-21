@@ -1,39 +1,32 @@
 # https://github.com/linuxserver/docker-swag
 # https://docs.linuxserver.io/general/swag
-# https://www.smarthomebeginner.com/docker-authelia-tutorial/
 ---
-version: "2.1"
+version: "3.8"
 services:
   authelia:
-    image: authelia/authelia:latest
     container_name: authelia
+    image: docker.io/authelia/authelia:latest
+    restart: unless-stopped
+    networks:
+      default:
+        aliases: []
+    expose:
+      - 9091
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Kuala_Lumpur
-    ports:
-      - 9091:9091
+      AUTHELIA_JWT_SECRET_FILE: /secrets/JWT_SECRET
+      AUTHELIA_SESSION_SECRET_FILE: /secrets/SESSION_SECRET
+      AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE: /secrets/STORAGE_PASSWORD
+      AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE: /secrets/STORAGE_ENCRYPTION_KEY
     volumes:
       - /opt/authelia/config:/config
-    restart: unless-stopped
+      - /opt/authelia/secrets:/secrets
     labels:
       - flame.type=app # "app" works too
       - flame.name=authelia
       - flame.url=https://authelia.torqueserver.com/
-      - flame.icon=two-factor-authentication
+      - flame.icon=lock
       - com.centurylinklabs.watchtower.enable=true
-      # traefik
-      - "traefik.enable=true"
-      ## HTTP Routers
-      - "traefik.http.routers.authelia-rtr.entrypoints=https"
-      - "traefik.http.routers.authelia-rtr.rule=Host(`authelia.$DOMAINNAME_CLOUD_SERVER`)"
-      - 'traefik.http.routers.authelia.tls=true'
-      ## Middlewares
-      - "traefik.http.routers.authelia-rtr.middlewares=chain-authelia@file"
-      ## HTTP Services
-      - "traefik.http.routers.authelia-rtr.service=authelia-svc"
-      - "traefik.http.services.authelia-svc.loadbalancer.server.port=9091"
 networks:
   default:
     external: true
-    name: main_network
+    name: main-network
