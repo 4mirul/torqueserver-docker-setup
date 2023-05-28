@@ -11,7 +11,7 @@ services:
       - "67:67/udp"
       - "8087:80/tcp"
     environment:
-      TZ: 'Asia/Kuala_Lumpur'
+      TZ: "Asia/Kuala_Lumpur"
       # WEBPASSWORD: 'set a secure password here or it will be random'
     # Volumes store your data between container upgrades
     volumes:
@@ -28,7 +28,7 @@ services:
       - flame.icon=pi-hole
 
 networks:
-  main_network_overlay:
+  main-network_overlay:
     external: true
 
 volumes:

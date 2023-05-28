@@ -1,0 +1,51 @@
+# https://hub.docker.com/_/postgres/
+# https://hub.docker.com/r/dpage/pgadmin4
+---
+version: "3.1"
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:15
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_HOST_AUTH_METHOD=scram-sha-256
+      - POSTGRES_INITDB_ARGS=--auth-host=scram-sha-256
+    volumes:
+      - pg-data:/var/lib/postgresql/data/
+      - /opt/postgres/postgres.conf:/etc/postgresql/postgresql.conf
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+  pgadmin4:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - PGADMIN_DEFAULT_EMAIL=${ADMIN_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PASS}
+    ports:
+      - "8008:80"
+    depends_on:
+      - "postgres"
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=pgadmin4
+      - flame.url=http://${HOSTNAME}:8008/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=database # https://materialdesignicons.com/
+      - homepage.group=Database # homepage label https://github.com/benphelps/homepage
+      - homepage.name=pgadmin4
+      - homepage.icon=pgadmin.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8008/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main-network
+volumes:
+  pg-data:
+    external: true

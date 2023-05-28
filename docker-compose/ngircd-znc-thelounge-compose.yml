@@ -1,0 +1,70 @@
+# https://hub.docker.com/r/linuxserver/ngircd
+# https://hub.docker.com/r/linuxserver/znc
+# https://hub.docker.com/r/thelounge/thelounge
+---
+version: "3"
+services:
+  ngircd:
+    container_name: ngircd
+    image: lscr.io/linuxserver/ngircd:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/ngircd/config:/config
+    ports:
+      - 6667:6667
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+  znc:
+    container_name: znc
+    image: lscr.io/linuxserver/znc:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/znc/config:/config
+    ports:
+      - 6501:6501
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=znc
+      - flame.url=http://${HOSTNAME}:6501/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=transit-connection-variant # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=znc
+      - homepage.icon=znc.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:6501/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
+  thelounge:
+    container_name: thelounge
+    image: thelounge/thelounge:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/thelounge:/var/opt/thelounge
+    ports:
+      - 9099:9000
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=thelounge
+      - flame.url=https://thelounge.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=chat-processing # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=thelounge
+      - homepage.icon=thelounge.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=https://thelounge.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

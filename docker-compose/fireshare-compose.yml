@@ -1,25 +1,30 @@
 # https://github.com/ShaneIsrael/fireshare
-
 ---
-version: '3'
+version: "3"
 services:
   fireshare:
     container_name: fireshare
-    image: 'shaneisrael/fireshare:latest'
+    image: "shaneisrael/fireshare:latest"
     environment:
       - ADMIN_PASSWORD=${PASS}
     volumes:
-      - '/mnt/disk1/fireshare/data:/data:rw'
-      - '/mnt/disk1/fireshare/processed:/processed:rw'
-      - '/mnt/disk1/fireshare/clips:/videos:rw'
+      - "${DISK1}/fireshare/data:/data:rw"
+      - "${DISK1}/fireshare/processed:/processed:rw"
+      - "${DISK1}/fireshare/clips:/videos:rw"
     ports:
-      - '8085:80'
+      - "8085:80"
+    restart: unless-stopped
     labels:
-      - flame.type=app # "app" works too
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=fireshare
-      - flame.url=http://torqueserver.home:8085/
-      - flame.icon=gamepad-round
-      - com.centurylinklabs.watchtower.enable=true
+      - flame.url=http://${HOSTNAME}:8085/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=cloud-upload # https://materialdesignicons.com/
+      - homepage.group=Media # homepage label https://github.com/benphelps/homepage
+      - homepage.name=fireshare
+      - homepage.icon=mdi-cloud-upload # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8085/
+      - homepage.description=
 networks:
   default:
     external: true

@@ -1,0 +1,47 @@
+# https://hub.docker.com/_/mongo/
+# https://hub.docker.com/_/mongo-express
+---
+version: "3.1"
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=${PASS}
+    volumes:
+      - /opt/mongo/data:/data
+    ports:
+      - 27017:27017
+    restart: unless-stopped
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=${PASS}
+      - ME_CONFIG_MONGODB_URL=mongodb://root:${PASS}@mongo:27017/
+    ports:
+      - 8481:8081
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=mongo-express
+      - flame.url=http://${HOSTNAME}:8481/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=database # https://materialdesignicons.com/
+      - homepage.group=Database # homepage label https://github.com/benphelps/homepage
+      - homepage.name=mongo-express
+      - homepage.icon=mdi-database # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8481/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

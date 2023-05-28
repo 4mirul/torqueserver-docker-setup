@@ -1,0 +1,37 @@
+# https://hub.docker.com/r/linuxserver/code-server
+---
+version: "2.1"
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - PASSWORD=${PASS} #optional
+      # - HASHED_PASSWORD= #optional
+      # - SUDO_PASSWORD=${SUDO_PASS} #optional
+      # - SUDO_PASSWORD_HASH= #optional
+      # - PROXY_DOMAIN=code-server.my.domain #optional
+      # - DEFAULT_WORKSPACE=/config/workspace #optional
+    volumes:
+      - /opt/codeserver/config:/config
+    ports:
+      - 8443:8443
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=code-server
+      - flame.url=http://${HOSTNAME}:8443/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=microsoft-visual-studio-code # https://materialdesignicons.com/
+      - homepage.group=Editor # homepage label https://github.com/benphelps/homepage
+      - homepage.name=code-server
+      - homepage.icon=mdi-microsoft-visual-studio-code # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8443/
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

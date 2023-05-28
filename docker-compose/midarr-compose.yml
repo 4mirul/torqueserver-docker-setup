@@ -1,0 +1,50 @@
+# https://github.com/midarrlabs/midarr-server
+---
+services:
+  midarr:
+    container_name: midarr
+    image: ghcr.io/midarrlabs/midarr-server:latest
+    ports:
+      - 4000:4000
+    volumes:
+      # - /opt/midarr/database:/app/database
+      - ${DISK1}/movies:/movies
+      - ${DISK0}/tvseries:/tv
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+      #       App config
+      - APP_URL=http://${HOSTNAME}:4000
+      # - APP_MAILER_FROM=
+      #       Database config
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=${POSTGRES_PASSWORD}
+      - DB_DATABASE=midarr
+      - DB_HOSTNAME=${POSTGRES_USER}
+      #       Initialise admin account
+      - SETUP_ADMIN_EMAIL=${ADMIN_EMAIL}
+      - SETUP_ADMIN_NAME=admin
+      - SETUP_ADMIN_PASSWORD=${LONG_PASS} # minimum length 12
+      #       Radarr integration
+      - RADARR_BASE_URL=http://radarr:7878
+      - RADARR_API_KEY=${RADARR_API_KEY}
+      #       Sonarr integration
+      - SONARR_BASE_URL=http://sonarr:8989/
+      - SONARR_API_KEY=${SONARR_API_KEY}
+      #       Sendgrid email integration
+      # - SENDGRID_API_KEY=someApiKey
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=midarr
+      - flame.url=http://${HOSTNAME}:4000/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=play # https://materialdesignicons.com/
+      - homepage.group=Media # homepage label https://github.com/benphelps/homepage
+      - homepage.name=midarr
+      - homepage.icon=mdi-play # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:4000/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

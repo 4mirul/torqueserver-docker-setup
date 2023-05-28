@@ -1,4 +1,5 @@
 # https://github.com/usememos/memos
+---
 version: "3.2"
 services:
   memos:
@@ -10,12 +11,17 @@ services:
       - /opt/memos:/var/opt/memos
     restart: unless-stopped
     labels:
-      - flame.type=app # "app" works too
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=memos
-      - flame.url=http://torqueserver.home:5230/
-      - flame.icon=format-list-checks
-      - com.centurylinklabs.watchtower.enable=true
+      - flame.url=http://${HOSTNAME}:5230/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=format-list-checks # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=memos
+      - homepage.icon=memos.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:5230/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
 networks:
   default:
     external: true
-    name: main_network
+    name: main-network

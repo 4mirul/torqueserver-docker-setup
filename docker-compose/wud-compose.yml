@@ -1,4 +1,4 @@
-# https://example.com/
+# https://github.com/fmartinou/whats-up-docker
 ---
 version: "3"
 services:
@@ -12,13 +12,19 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
-      - 3001:3000
+      - 3201:3000
     restart: unless-stopped
     labels:
-      - flame.type=app # "app" works too
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=whatsupdocker
-      - flame.url=https://torqueserver.home:3001/
-      - flame.icon=docker
+      - flame.url=http://${HOSTNAME}:3201/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=docker # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=whatsupdocker
+      - homepage.icon=docker.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:3201/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
 networks:
   default:
     external: true

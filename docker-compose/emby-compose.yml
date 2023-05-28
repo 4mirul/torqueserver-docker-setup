@@ -1,0 +1,36 @@
+# https://hub.docker.com/r/linuxserver/emby
+# https://hub.docker.com/r/emby/embyserver/#!
+---
+version: "2.3"
+services:
+  emby:
+    image: emby/embyserver
+    container_name: emby
+    runtime: nvidia # Expose NVIDIA GPUs
+    network_mode: host # Enable DLNA and Wake-on-Lan
+    environment:
+      - UID=1000 # The UID to run emby as (default: 2)
+      - GID=100 # The GID to run emby as (default 2)
+      - GIDLIST=1000,44,103 # A comma-separated list of additional GIDs to run emby as (default: 2)
+    volumes:
+      - /opt/emby/config:/config # Configuration directory
+      - ${DISK0}/tvseries:/mnt/share1
+      - ${DISK1}/movies:/mnt/share2
+    # ports:
+    #   - 8097:8096 # HTTP port
+    #   - 8920:8920 # HTTPS port
+    devices:
+      - /dev/dri:/dev/dri # VAAPI/NVDEC/NVENC render nodes
+      # - /dev/vchiq:/dev/vchiq # MMAL/OMX on Raspberry Pi
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=emby
+      - flame.url=https://emby.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=emby # https://materialdesignicons.com/
+      - homepage.group=Media # homepage label https://github.com/benphelps/homepage
+      - homepage.name=emby
+      - homepage.icon=emby.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=https://emby.${DOMAIN}/
+      - homepage.description=

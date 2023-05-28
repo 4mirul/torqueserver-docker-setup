@@ -1,4 +1,4 @@
-# https://example.com/
+# https://hub.docker.com/r/pglombardo/pwpush-ephemeral
 ---
 version: "3"
 services:
@@ -9,16 +9,21 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-    ports:
-      - "5100:5100"
+    # ports:
+    #   - "5100:5100"
     restart: unless-stopped
     labels:
-      - flame.type=app # "app" works too
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=pwpush
-      - flame.url=https://pwpush.torqueserver.com/
-      - flame.icon=key
-    networks:
-      - main-network
+      - flame.url=https://pwpush.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=key # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=pwpush
+      - homepage.icon=pwpush.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=https://pwpush.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
 networks:
-  main-network:
+  default:
     external: true
+    name: main-network

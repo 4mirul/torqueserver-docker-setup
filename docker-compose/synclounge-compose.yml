@@ -1,0 +1,37 @@
+# https://hub.docker.com/r/linuxserver/synclounge
+---
+version: "2.1"
+services:
+  synclounge:
+    image: lscr.io/linuxserver/synclounge:latest
+    container_name: synclounge
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    # - AUTH_LIST=plexuser1,plexuser2,email1,machineid1 #optional
+    # - AUTOJOIN_ENABLED=false #optional
+    # - AUTOJOIN_ROOM=roomname #optional
+    ports:
+      - 8089:8088
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=synclounge
+      - flame.url=http://${HOSTNAME}:8089/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=plex # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=synclounge
+      - homepage.icon=synclounge.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8088/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
+      # - homepage.widget.type=homepage
+      # - homepage.widget.url=http://${HOST}:80/
+      # - homepage.widget.key=yourembyapikeyhere
+      # - homepage.widget.fields=["field1","field2"] # optional
+    # dns: ${PIHOLE_IP} # pihole dns
+networks:
+  default:
+    external: true
+    name: main-network

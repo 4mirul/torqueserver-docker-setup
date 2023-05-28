@@ -1,0 +1,35 @@
+# https://hub.docker.com/r/linuxserver/deluge
+---
+version: "2.1"
+services:
+  deluge:
+    image: ghcr.io/linuxserver/deluge
+    container_name: deluge
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - DELUGE_LOGLEVEL=error #optional
+    volumes:
+      - /opt/deluge/config:/config
+      - ${DISK0}/downloads:/downloads
+    ports:
+      - 8112:8112
+      - 6882:6881
+      - 6882:6881/udp
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=deluge
+      - flame.url=http://${HOSTNAME}:8112/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=download # https://materialdesignicons.com/
+      - homepage.group=Downloader # homepage label https://github.com/benphelps/homepage
+      - homepage.name=Deluge
+      - homepage.icon=deluge.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8112/
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

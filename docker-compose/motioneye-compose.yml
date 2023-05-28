@@ -1,0 +1,29 @@
+# https://github.com/ccrisan/motioneye/wiki/Install-In-Docker
+---
+version: "3"
+services:
+  motioneye:
+    image: ccrisan/motioneye:master-amd64
+    container_name: motioneye
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/motioneye:/etc/motioneye
+      - /var/lib/motioneye:/var/lib/motioneye
+    ports:
+      - 8765:8765
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=motioneye
+      - flame.url=http://${HOSTNAME}:8765/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=eye # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=motioneye
+      - homepage.icon=motioneye.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8765/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

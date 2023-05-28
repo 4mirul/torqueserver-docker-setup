@@ -12,12 +12,17 @@ services:
     ports:
       - "9808:80"
     restart: unless-stopped
-    labels:
-      - flame.type=app # "app" works too
-      - flame.name=retroarch
-      - flame.url=http://torqueserver.home:9808/
-      - flame.icon=gamepad
-      - com.centurylinklabs.watchtower.enable=true
+  labels:
+    - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+    - flame.type=app # flame label https://github.com/pawelmalak/flame
+    - flame.name=retroarch
+    - flame.url=http://${HOSTNAME}:9808/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+    - flame.icon=gamepad # https://materialdesignicons.com/
+    - homepage.group= # homepage label https://github.com/benphelps/homepage
+    - homepage.name=retroarch
+    - homepage.icon=mdi-gamepad # https://gethomepage.dev/en/configs/services/#icons
+    - homepage.href=http://${HOSTNAME}:9808/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+    - homepage.description=
 networks:
   default:
     external: true

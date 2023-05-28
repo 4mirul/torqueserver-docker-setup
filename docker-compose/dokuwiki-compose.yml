@@ -1,0 +1,32 @@
+# https://hub.docker.com/r/linuxserver/dokuwiki
+---
+version: "2.1"
+services:
+  dokuwiki:
+    image: lscr.io/linuxserver/dokuwiki:latest
+    container_name: dokuwiki
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/dokuwiki/config:/config
+    ports:
+      - 8688:80
+      - 4443:443 #optional
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=dokuwiki
+      - flame.url=http://${HOSTNAME}:8688/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=file-document # https://materialdesignicons.com/
+      - homepage.group=Documentation # homepage label https://github.com/benphelps/homepage
+      - homepage.name=dokuwiki
+      - homepage.icon=dokuwiki.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8688/
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

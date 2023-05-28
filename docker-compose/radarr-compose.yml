@@ -1,0 +1,33 @@
+# https://hub.docker.com/r/linuxserver/radarr
+---
+version: "2.1"
+services:
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/radarr/config:/config
+      - ${DISK1}/movies:/movies
+      - ${DISK0}/downloads:/downloads
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=radarr
+      - flame.url=http://${HOSTNAME}:7878/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=filmstrip # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=radarr
+      - homepage.icon=radarr.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:7878/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

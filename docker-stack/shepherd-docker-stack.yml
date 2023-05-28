@@ -9,10 +9,10 @@ services:
     deploy:
       placement:
         constraints:
-        - node.role == manager
+          - node.role == manager
     networks:
-      - main_network_overlay
+      - main-network_overlay
 
 networks:
-  main_network_overlay:
+  main-network_overlay:
     external: true

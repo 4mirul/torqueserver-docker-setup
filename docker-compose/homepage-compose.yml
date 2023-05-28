@@ -1,0 +1,36 @@
+# https://github.com/benphelps/homepage
+---
+version: "3.3"
+services:
+  homepage:
+    container_name: homepage
+    image: ghcr.io/benphelps/homepage:latest
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/homepage/config:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ${DISK0}:/disk0:ro
+      - ${DISK1}:/disk1:ro
+    ports:
+      - 3900:3000
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - flame.type=app # "app" works too
+      - flame.name=homepage
+      - flame.url=http://${HOSTNAME}:3900/
+      - flame.icon=home
+      - homepage.group=Home
+      - homepage.name=homepage
+      - homepage.icon=homepage.png
+      - homepage.href=http://${HOSTNAME}:3900/
+      - homepage.description=
+      # - homepage.widget.type=homepage
+      # - homepage.widget.url=http://${HOST}:3900/
+      # - homepage.widget.key=yourembyapikeyhere
+      # - homepage.widget.fields=["field1","field2"] # optional
+networks:
+  default:
+    external: true
+    name: main-network

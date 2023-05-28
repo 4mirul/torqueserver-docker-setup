@@ -1,0 +1,51 @@
+# https://hub.docker.com/r/linuxserver/netbox
+---
+version: "2.1"
+services:
+  netbox:
+    image: lscr.io/linuxserver/netbox:latest
+    container_name: netbox
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - SUPERUSER_EMAIL=${ADMIN_EMAIL}
+      - SUPERUSER_PASSWORD=${PASS}
+      # - ALLOWED_HOST=
+      - DB_NAME=netbox
+      - DB_USER=${POSTGRES_USER}
+      - DB_PASSWORD=${POSTGRES_PASSWORD}
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      # - REDIS_PASSWORD=<REDIS_PASSWORD>
+      # - REDIS_DB_TASK=<REDIS_DB_TASK>
+      # - REDIS_DB_CACHE=<REDIS_DB_CACHE>
+      # - BASE_PATH=<BASE_PATH> #optional
+      # - REMOTE_AUTH_ENABLED=<REMOTE_AUTH_ENABLED> #optional
+      # - REMOTE_AUTH_BACKEND=<REMOTE_AUTH_BACKEND> #optional
+      # - REMOTE_AUTH_HEADER=<REMOTE_AUTH_HEADER> #optional
+      # - REMOTE_AUTH_AUTO_CREATE_USER=<REMOTE_AUTH_AUTO_CREATE_USER> #optional
+      # - REMOTE_AUTH_DEFAULT_GROUPS=<REMOTE_AUTH_DEFAULT_GROUPS> #optional
+      # - REMOTE_AUTH_DEFAULT_PERMISSIONS=<REMOTE_AUTH_DEFAULT_PERMISSIONS> #optional
+    volumes:
+      - /opt/netbox/config:/config
+    ports:
+      - 8305:8000
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=netbox
+      - flame.url=http://${HOSTNAME}:8305/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=box # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=netbox
+      - homepage.icon=netbox.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8305/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

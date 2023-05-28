@@ -1,0 +1,37 @@
+# https://hub.docker.com/r/linuxserver/snipe-it
+---
+version: "2.1"
+services:
+  snipe-it:
+    image: lscr.io/linuxserver/snipe-it:latest
+    container_name: snipe-it
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - APP_URL=http://${HOSTNAME}:8085
+      - MYSQL_PORT_3306_TCP_ADDR=mariadb
+      - MYSQL_PORT_3306_TCP_PORT=3306
+      - MYSQL_DATABASE=snipeit
+      - MYSQL_USER=snipeit
+      - MYSQL_PASSWORD=${PASS}
+    volumes:
+      - /opt/snipeit/config:/config
+    ports:
+      - 8085:80
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=snipe-it
+      - flame.url=http://${HOSTNAME}:8085/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=desktop-classic # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=snipe-it
+      - homepage.icon=mdi-desktop-classic # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8085/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

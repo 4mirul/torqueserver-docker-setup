@@ -1,0 +1,34 @@
+# https://hub.docker.com/r/linuxserver/phpmyadmin
+---
+version: "2.1"
+services:
+  phpmyadmin:
+    image: lscr.io/linuxserver/phpmyadmin:latest
+    container_name: phpmyadmin
+    hostname: phpmyadmin
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      # - PMA_ARBITRARY=1 #optional
+      # - PMA_ABSOLUTE_URI=http://192.168.0.105:8808/ #optional
+    volumes:
+      - /opt/phpmyadmin/config:/config
+    ports:
+      - 8808:80
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=phpmyadmin
+      - flame.url=http://${HOSTNAME}:8808/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=database # https://materialdesignicons.com/
+      - homepage.group=Database # homepage label https://github.com/benphelps/homepage
+      - homepage.name=phpmyadmin
+      - homepage.icon=phpmyadmin.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8808/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

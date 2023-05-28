@@ -1,0 +1,48 @@
+# https://learn.netdata.cloud/docs/agent/packaging/docker/
+---
+version: "3"
+services:
+  netdata:
+    image: netdata/netdata:latest
+    container_name: netdata
+    hostname: netdata.${DOMAIN} # set to fqdn of host
+    ports:
+      - 19999:19999
+    restart: unless-stopped
+    cap_add:
+      - SYS_PTRACE
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - /opt/netdataconfig/netdata:/etc/netdata:ro
+      - netdatalib:/var/lib/netdata
+      - netdatacache:/var/cache/netdata
+      - /etc/passwd:/host/etc/passwd:ro
+      - /etc/group:/host/etc/group:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /etc/os-release:/host/etc/os-release:ro
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=netdata
+      - flame.url=http://${HOSTNAME}:19999/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=eye # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=netdata
+      - homepage.icon=netdata.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:19999/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network
+volumes:
+  netdatalib:
+    external: true
+  netdatacache:
+    external: true

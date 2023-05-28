@@ -13,11 +13,16 @@ services:
       - "3890:3000"
     restart: unless-stopped
     labels:
-      - flame.type=app # "app" works too
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=metabase
-      - flame.url=http://torqueserver.home:3890/
-      - flame.icon=database-sync
-      - com.centurylinklabs.watchtower.enable=true
+      - flame.url=http://${HOSTNAME}:3890/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=database-sync # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=metabase
+      - homepage.icon=metabase.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:3890/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
 networks:
   default:
     external: true

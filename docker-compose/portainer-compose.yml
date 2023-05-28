@@ -1,31 +1,37 @@
-# https://example.com/
+# https://docs.portainer.io/
 ---
 version: "3"
 services:
   portainer:
     container_name: portainer
     image: portainer/portainer-ce:latest
+    hostname: portainer
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
+      - portainer-data:/data
     ports:
       - "8000:8000"
-      - "9000:9000"
+      - "9443:9443"
     restart: unless-stopped
     labels:
-      - flame.type=app # "app" works too
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=portainer
-      - flame.url=http://torqueserver.home:9000/
-      - flame.icon=image-multiple
-    networks:
-      - main-network
+      - flame.url=https://portainer.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=image-multiple # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=portainer
+      - homepage.icon=portainer.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=https://portainer.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
 networks:
-  main-network:
+  default:
     external: true
+    name: main-network
 volumes:
-  portainer_data:
+  portainer-data:
     external: true

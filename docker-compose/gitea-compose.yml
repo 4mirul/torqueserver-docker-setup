@@ -1,0 +1,41 @@
+# https://docs.gitea.io/en-us/install-with-docker/
+---
+version: "3"
+services:
+  gitea:
+    image: gitea/gitea:latest
+    container_name: gitea
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - GITEA__database__DB_TYPE=mysql
+      - GITEA__database__HOST=mariadb:3306
+      - GITEA__database__NAME=gitea
+      - GITEA__database__USER=gitea
+      - GITEA__database__PASSWD=${PASS}
+    volumes:
+      - gitea:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    # ports:
+    #   - "2222:22"
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=gitea
+      - flame.url=https://gitea.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=git # https://materialdesignicons.com/
+      - homepage.group=Version Control # homepage label https://github.com/benphelps/homepage
+      - homepage.name=git
+      - homepage.icon=gitea.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=https://gitea.${DOMAIN}/
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network
+volumes:
+  gitea:
+    external: true

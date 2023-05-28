@@ -1,0 +1,34 @@
+# https://hub.docker.com/r/linuxserver/calibre-web
+---
+version: "2.1"
+services:
+  calibre-web:
+    image: lscr.io/linuxserver/calibre-web:latest
+    container_name: calibre-web
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - DOCKER_MODS=linuxserver/mods:universal-calibre #optional
+      # - OAUTHLIB_RELAX_TOKEN_SCOPE=1 #optional
+    volumes:
+      - /opt/calibre-web/config:/config
+      - ${DISK0}/books:/books
+    ports:
+      - 8083:8083
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=calibre-web
+      - flame.url=http://${HOSTNAME}:8083/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=bookshelf # https://materialdesignicons.com/
+      - homepage.group=Media # homepage label https://github.com/benphelps/homepage
+      - homepage.name=Calibre Web
+      - homepage.icon=calibre.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8083/
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

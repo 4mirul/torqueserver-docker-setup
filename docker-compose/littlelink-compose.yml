@@ -1,4 +1,4 @@
-# https://example.com/
+# https://github.com/techno-tim/littlelink-server
 ---
 version: "3"
 services:
@@ -9,78 +9,82 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      # umami
       - UMAMI_WEBSITE_ID=${UMAMI_WEBSITE_ID}
-      - UMAMI_APP_URL=https://umami.torqueserver.com/umami.js
-      - META_TITLE=Muhammad Amirul
-      - META_DESCRIPTION=Self-Learning Developer  | Homelab | Gamer | 🇲🇾
-      - META_AUTHOR=4mirul
-      - META_KEYWORDS=HomeLab, Links, LittleLink
+      - UMAMI_APP_URL=https://umami.${DOMAIN}/umami.js
+      - META_TITLE=${META_TITLE}
+      - META_DESCRIPTION=${META_DESCRIPTION}
+      - META_AUTHOR=${META_AUTHOR}
+      - META_KEYWORDS=${META_KEYWORDS}
       - LANG=en
       - META_INDEX_STATUS=all
-      - OG_SITE_NAME=Muhammad Amirul
-      - OG_TITLE=Muhammad Amirul
-      - OG_DESCRIPTION=The home of Muhammad Amirul
-      - OG_URL=https://littlelink.torqueserver.com
-      - OG_IMAGE=https://avatars.githubusercontent.com/u/11393393?v=4
+      - OG_SITE_NAME=${OG_SITE_NAME}
+      - OG_TITLE=${OG_TITLE}
+      - OG_DESCRIPTION=${OG_DESCRIPTION}
+      - OG_URL=${OG_URL}
+      - OG_IMAGE=${OG_IMAGE}
       - OG_IMAGE_WIDTH=400
       - OG_IMAGE_HEIGHT=400
       # - GA_TRACKING_ID=G-XXXXXXXXXX
       - THEME=Dark
-      - FAVICON_URL=https://avatars.githubusercontent.com/u/11393393?v=4
-      - AVATAR_URL=https://avatars.githubusercontent.com/u/11393393?v=4
-      - AVATAR_2X_URL=https://avatars.githubusercontent.com/u/11393393?v=4
-      - AVATAR_ALT=4mirul GitHub Profile Picture
-      - NAME=Muhammad Amirul
-      - BIO=Self-Learning Developer  | Homelab | Gamer | 🇲🇾
+      - FAVICON_URL=${FAVICON_URL}
+      - AVATAR_URL=${AVATAR_URL}
+      - AVATAR_2X_URL=${AVATAR_2X_URL}
+      - AVATAR_ALT=${AVATAR_ALT}
+      - NAME=${NAME}
+      - BIO=${BIO}
       # use ENV variable names for order, listed buttons will be boosted to the top
-      - BUTTON_ORDER=AMIRUL,TORQUESERVER,EMAIL,BUYMEACOFFEE,PAYPAL,PATREON,WHATSAPP,GITHUB,STEAM,DISCORD,LINKED_IN,STACKOVERFLOW,DEVTO,DOCKER,MEDIUM,GITEA,WORDPRESS,FIGMA,GHOST,YOUTUBE,TWITCH,TWITTER,INSTAGRAM,FACEBOOK,MASTODON,REDDIT
+      - BUTTON_ORDER=${BUTTON_ORDER}
       # you can render an unlimited amount of custom buttons by adding
       # the CUSTOM_BUTTON_* variables and by using a comma as a separator.
-      - CUSTOM_BUTTON_TEXT=Amirul's Portfolio Website,Torqueserver homepage
-      - CUSTOM_BUTTON_URL=https://www.4mirul.com/,https://torqueserver.com/
-      - CUSTOM_BUTTON_COLOR=#000000,#222222
-      - CUSTOM_BUTTON_TEXT_COLOR=#ffffff,#ffffff
-      - CUSTOM_BUTTON_ALT_TEXT=Amirul's Portfolio Website,Torqueserver homepage
-      - CUSTOM_BUTTON_NAME=AMIRUL,TORQUESERVER
-      - CUSTOM_BUTTON_ICON=fa-solid fa-user-secret,fa-solid fa-t
-      - GITHUB=https://github.com/4mirul
-      - TWITTER=https://twitter.com/01000001mirul
-      - INSTAGRAM=https://www.instagram.com/94mirul/
-      - LINKED_IN=https://www.linkedin.com/in/muhammadamirulabdaziz/
-      - TWITCH=https://www.twitch.tv/trqs_gaming
-      - DISCORD=https://discord.gg/YQHBp2Q7XP
-      - FACEBOOK=https://www.facebook.com/94mirul
-      - PATREON=https://www.patreon.com/4mirul
-      - FIGMA=https://www.figma.com/@94mirul
-      - BUYMEACOFFEE=https://www.buymeacoffee.com/4mirul
-      - DEVTO=https://dev.to/4mirul
-      - DOCKER=https://hub.docker.com/u/4mirul
-      - EMAIL=admin@4mirul.com
-      - GHOST=https://ghost.torqueserver.com/
-      - GITEA=https://gitea.torqueserver.com/
-      - MASTODON=https://mastodon.social/@4mirul
-      - MEDIUM=https://medium.com/@4mirul
-      - PAYPAL=https://paypal.me/muhammadamirul
-      - REDDIT=https://www.reddit.com/user/muhammadamirul/
-      - STACKOVERFLOW=https://stackoverflow.com/users/7275730/amirul
-      - STEAM=https://steamcommunity.com/id/oyuu
-      - WHATSAPP=https://wa.me/message/O5J4QSAZAP4QM1
-      - WORDPRESS=https://wp.torqueserver.com/
-      - YOUTUBE=https://www.youtube.com/channel/UCNCgSnPUSnCUWQpJPUqIDjw
-      - FOOTER=Muhammad Amirul © 2023
-    ports:
-      - 8076:3000
+      - CUSTOM_BUTTON_TEXT=${CUSTOM_BUTTON_TEXT}
+      - CUSTOM_BUTTON_URL=${CUSTOM_BUTTON_URL}
+      - CUSTOM_BUTTON_COLOR=${CUSTOM_BUTTON_COLOR}
+      - CUSTOM_BUTTON_TEXT_COLOR=${CUSTOM_BUTTON_TEXT_COLOR}
+      - CUSTOM_BUTTON_ALT_TEXT=${CUSTOM_BUTTON_ALT_TEXT}
+      - CUSTOM_BUTTON_NAME=${CUSTOM_BUTTON_NAME}
+      - CUSTOM_BUTTON_ICON=${CUSTOM_BUTTON_ICON}
+      - GITHUB=${GITHUB}
+      - TWITTER=${TWITTER}
+      - INSTAGRAM=${INSTAGRAM}
+      - LINKED_IN=${LINKED_IN}
+      - TWITCH=${TWITCH}
+      - DISCORD=${DISCORD}
+      - FACEBOOK=${FACEBOOK}
+      - PATREON=${PATREON}
+      - FIGMA=${FIGMA}
+      - BUYMEACOFFEE=${BUYMEACOFFEE}
+      - DEVTO=${DEVTO}
+      - DOCKER=${DOCKER}
+      - EMAIL=${EMAIL}
+      - GHOST=${GHOST}
+      - GITEA=${GITEA}
+      - MASTODON=${MASTODON}
+      - MEDIUM=${MEDIUM}
+      - PAYPAL=${PAYPAL}
+      - REDDIT=${REDDIT}
+      - STACKOVERFLOW=${STACKOVERFLOW}
+      - STEAM=${STEAM}
+      - WHATSAPP=${WHATSAPP}
+      - WORDPRESS=${WORDPRESS}
+      - YOUTUBE=${YOUTUBE}
+      - FOOTER=${FOOTER}
+    # ports:
+    #   - 8076:3000
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
     labels:
-      - flame.type=app # "app" works too
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=littlelink
-      - flame.url=http://link.torqueserver.com
-      - flame.icon=link
-    networks:
-      - main-network
+      - flame.url=https://link.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=link # https://materialdesignicons.com/
+      - homepage.group=Tools # homepage label https://github.com/benphelps/homepage
+      - homepage.name=littlelink
+      - homepage.icon=mdi-link # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=https://link.${DOMAIN}/
+      - homepage.description=
 networks:
-  main-network:
+  default:
     external: true
+    name: main-network

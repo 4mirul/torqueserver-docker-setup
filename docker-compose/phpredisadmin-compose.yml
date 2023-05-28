@@ -1,0 +1,34 @@
+# https://hub.docker.com/r/erikdubbelboer/phpredisadmin
+---
+version: "3"
+services:
+  phpredisadmin:
+    image: erikdubbelboer/phpredisadmin
+    container_name: phpredisadmin
+    hostname: phpredisadmin
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      # - ADMIN_USER=admin
+      # - ADMIN_PASS=${PASS}
+      - REDIS_1_HOST=redis
+      - REDIS_1_PORT=6379
+    ports:
+      - 8785:80
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=phpredisadmin
+      - flame.url=http://${HOSTNAME}:8785/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=database # https://materialdesignicons.com/
+      - homepage.group=Database # homepage label https://github.com/benphelps/homepage
+      - homepage.name=phpredisadmin
+      - homepage.icon=redis.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8785/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

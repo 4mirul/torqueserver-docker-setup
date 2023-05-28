@@ -1,0 +1,25 @@
+# https://github.com/containrrr/watchtower
+---
+version: "3"
+services:
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: watchtower
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - WATCHTOWER_NOTIFICATIONS=slack
+      - WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL=${DISCORD_WEBHOOK}/slack
+      - WATCHTOWER_POLL_INTERVAL=43200
+      - WATCHTOWER_LABEL_ENABLE=1
+      - WATCHTOWER_CLEANUP=true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main-network

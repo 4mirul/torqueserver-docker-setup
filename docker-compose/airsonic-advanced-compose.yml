@@ -1,0 +1,38 @@
+# https://hub.docker.com/r/linuxserver/airsonic-advanced
+---
+version: "2.1"
+services:
+  airsonic-advanced:
+    image: lscr.io/linuxserver/airsonic-advanced
+    container_name: airsonic-advanced
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      # - CONTEXT_PATH=<URL_BASE> #optional
+      # - JAVA_OPTS=<options> #optional
+    volumes:
+      - /opt/airsonic-advanced/config:/config
+      - ${DISK0}/music:/music
+      - ${DISK0}/playlists:/playlists
+      - ${DISK0}/podcasts:/podcasts
+    ports:
+      - 4040:4040
+    devices:
+      - /dev/snd:/dev/snd #optional
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=airsonic
+      - flame.url=https://airsonic.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=music # https://materialdesignicons.com/
+      - homepage.group=media # homepage label https://github.com/benphelps/homepage
+      - homepage.name=airsonic
+      - homepage.icon=airsonic.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=https://airsonic.${DOMAIN}/
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

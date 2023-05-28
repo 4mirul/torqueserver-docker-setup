@@ -1,4 +1,6 @@
-version: '3'
+# https://github.com/Fallenbagel/jellyseerr
+---
+version: "3"
 services:
   jellyseerr:
     image: fallenbagel/jellyseerr:latest
@@ -12,11 +14,16 @@ services:
       - /opt/jellyseerr/config:/app/config
     restart: unless-stopped
     labels:
-      - flame.type=app # "app" works too
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=jellyseerr
-      - flame.url=https://jellyseerr.torqueserver.com/
-      - flame.icon=jellyfish-outline
-      - com.centurylinklabs.watchtower.enable=true
+      - flame.url=http://${HOSTNAME}:5051/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=jellyfish-outline # https://materialdesignicons.com/
+      - homepage.group=Media # homepage label https://github.com/benphelps/homepage
+      - homepage.name=jellyseerr
+      - homepage.icon=jellyseerr.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:5051/
+      - homepage.description=
 networks:
   default:
     external: true

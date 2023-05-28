@@ -4,7 +4,7 @@
 version: "2.1"
 services:
   swag:
-    image: ghcr.io/linuxserver/swag:latest
+    image: lscr.io/linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -12,7 +12,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - URL=torqueserver.com
+      - URL=${DOMAIN}
       - SUBDOMAINS=wildcard
       - VALIDATION=dns
       # - CERTPROVIDER= #optional
@@ -23,50 +23,30 @@ services:
       - ONLY_SUBDOMAINS=false #optional
       # - EXTRA_DOMAINS=
       - STAGING=false #optional
-      # - MAXMINDDB_LICENSE_KEY= #optional
       - DOCKER_MODS=linuxserver/mods:swag-dashboard
-      - DISC_HOOK=${DISC_HOOK}
-      - DISC_ME=${DISC_ME}
     volumes:
       - /opt/swag/config:/config
-      - /mnt/disk0/books:/share/books
-      - /mnt/disk1/movies:/share/movies
-      - /mnt/disk0/tvseries:/share/tvseries
+      - ${DISK0}/books:/share/books
+      - ${DISK1}/movies:/share/movies
+      - ${DISK0}/tvseries:/share/tvseries
       - /opt/jellyseerr/config/logs:/jellyseerr/logs
-      - jellyfin-config:/jellyfin
     labels:
-      - com.centurylinklabs.watchtower.enable=true
-      - flame.type=app # "app" works too
-      - flame.name=swag dashboard
-      - flame.url=https://dashboard.torqueserver.com/
-      - flame.icon=view-dashboard
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=swag
+      - flame.url=https://dashboard.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=view-dashboard # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=swag
+      - homepage.icon=nginx.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=https://dashboard.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
     ports:
       - 443:443
       - 80:80 #optional
       - 81:81
     restart: unless-stopped
-  # authelia:
-  #   image: authelia/authelia:latest
-  #   container_name: authelia
-  #   environment:
-  #     - PUID=1000
-  #     - PGID=1000
-  #     - TZ=Asia/Kuala_Lumpur
-  #   volumes:
-  #     - /opt/authelia/config:/config
-  #   ports:
-  #     - 9091:9091
-  #   restart: unless-stopped
-  #   labels:
-  #     - flame.type=app # "app" works too
-  #     - flame.name=authelia
-  #     - flame.url=https://authelia.torqueserver.com
-  #     - flame.icon=two-factor-authentication
 networks:
   default:
     external: true
     name: main-network
-
-volumes:
-  jellyfin-config:
-    external: true

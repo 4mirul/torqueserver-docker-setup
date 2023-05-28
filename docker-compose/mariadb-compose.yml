@@ -1,0 +1,60 @@
+# https://hub.docker.com/r/linuxserver/mariadb
+# https://hub.docker.com/_/mariadb/
+# https://hub.docker.com/_/phpmyadmin
+---
+version: "3"
+services:
+  mariadb:
+    image: mariadb:10.9
+    container_name: mariadb
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+      - MARIADB_USER=mariadb
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+    volumes:
+      - mysqldata:/var/lib/mysql
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      # - PMA_ARBITRARY=1
+      - PMA_HOST=mariadb
+      - PMA_PORT=3306
+      # - PMA_USER=root
+      # - PMA_PASSWORD=${MARIADB_ROOT_PASSWORD}
+    volumes:
+      # - /opt/phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
+      # - /opt/phpmyadmin/themes:/www/themes/
+      - phpmyadminsessions:/sessions/
+    ports:
+      - 8880:80
+    depends_on:
+      - "mariadb"
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=phpmyadmin
+      - flame.url=http://${HOSTNAME}:8880/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=database # https://materialdesignicons.com/
+      - homepage.group=Database # homepage label https://github.com/benphelps/homepage
+      - homepage.name=phpmyadmin
+      - homepage.icon=phpmyadmin.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8880/
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network
+volumes:
+  phpmyadminsessions:
+    external: true
+  mysqldata:
+    external: true

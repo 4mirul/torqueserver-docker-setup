@@ -1,0 +1,29 @@
+# https://hub.docker.com/r/diouxx/glpi
+---
+version: "3.8"
+services:
+  glpi:
+    image: diouxx/glpi
+    container_name: glpi
+    ports:
+      - "8324:80"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=glpi
+      - flame.url=https://glpi.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=ticket # https://materialdesignicons.com/
+      - homepage.group=Ticketing # homepage label https://github.com/benphelps/homepage
+      - homepage.name=glpi
+      - homepage.icon=glpi.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=https://glpi.${DOMAIN}/
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

@@ -1,0 +1,41 @@
+# https://github.com/pi-hole/docker-pi-hole
+# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+---
+version: "3"
+services:
+  pihole:
+    container_name: pihole
+    hostname: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp" # to disable dnsamq for ubuntu/debian run the following; `sudo systemctl stop systemd-resolved`; `sudo systemctl disable systemd-resolved`
+      - "67:67/udp" # Only required if you are using Pi-hole as your DHCP server
+      - "8087:80/tcp"
+    environment:
+      TZ: "Asia/Kuala_Lumpur"
+      # WEBPASSWORD: ${PASS} # 'set a secure password here or it will be random'
+    # Volumes store your data between container upgrades
+    volumes:
+      - "/opt/pihole/etc/pihole/:/etc/pihole/"
+      - "/opt/pihole/etc/dnsmasq.d/:/etc/dnsmasq.d/"
+    # Recommended but not required (DHCP needs NET_ADMIN)
+    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=pihole
+      - flame.url=http://${HOSTNAME}:8087/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=pi-hole # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=pihole
+      - homepage.icon=pi-hole.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8087/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

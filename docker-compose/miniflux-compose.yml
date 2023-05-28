@@ -1,0 +1,31 @@
+# https://miniflux.app/docs/installation.html#docker
+---
+version: "3"
+services:
+  miniflux:
+    container_name: miniflux
+    image: miniflux/miniflux:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - DATABASE_URL=postgres://${MINIFLUX_DB_USER}:${MINIFLUX_DB_PASS}@postgres:5432/miniflux?sslmode=disable
+      # - RUN_MIGRATIONS=1 # for the first time
+    ports:
+      - 8690:8080
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=miniflux
+      - flame.url=http://${HOSTNAME}:8690/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=rss-box # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=miniflux
+      - homepage.icon=miniflux.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8690/
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

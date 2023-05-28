@@ -1,0 +1,35 @@
+# https://hub.docker.com/r/linuxserver/bookstack
+---
+version: "2"
+services:
+  bookstack:
+    image: lscr.io/linuxserver/bookstack
+    container_name: bookstack
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - APP_URL=http://${HOSTNAME}:6875/
+      - DB_HOST=mariadb
+      - DB_USER=bookstack
+      - DB_PASS=${DB_PASS}
+      - DB_DATABASE=bookstack
+    volumes:
+      - /opt/bookstack/config:/config
+    ports:
+      - 6875:80
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=bookstack
+      - flame.url=http://${HOSTNAME}:6875/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=book-open # https://materialdesignicons.com/
+      - homepage.group=Documentation # homepage label https://github.com/benphelps/homepage
+      - homepage.name=bookstack
+      - homepage.icon=bookstack.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:6875/
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

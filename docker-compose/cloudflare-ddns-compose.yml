@@ -1,0 +1,22 @@
+# https://hub.docker.com/r/oznu/cloudflare-ddns/#!
+---
+version: "2"
+services:
+  cloudflare-ddns:
+    container_name: cloudflare-ddns
+    image: oznu/cloudflare-ddns:latest
+    restart: always
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - API_KEY=${CLOUDFLARE_API_KEY}
+      - ZONE=${DOMAIN}
+      # - SUBDOMAIN=
+      - PROXIED=true
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+networks:
+  default:
+    external: true
+    name: main-network

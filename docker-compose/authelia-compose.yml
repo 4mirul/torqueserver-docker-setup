@@ -1,0 +1,38 @@
+# https://github.com/linuxserver/docker-swag
+# https://docs.linuxserver.io/general/swag
+# https://github.com/authelia/authelia
+---
+version: "3.8"
+services:
+  authelia:
+    container_name: authelia
+    image: docker.io/authelia/authelia:latest
+    restart: unless-stopped
+    networks:
+      default:
+        aliases: []
+    expose:
+      - 9091
+    # environment:
+    #   AUTHELIA_JWT_SECRET_FILE: /secrets/JWT_SECRET
+    #   AUTHELIA_SESSION_SECRET_FILE: /secrets/SESSION_SECRET
+    #   AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE: /secrets/STORAGE_PASSWORD
+    #   AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE: /secrets/STORAGE_ENCRYPTION_KEY
+    volumes:
+      - /opt/authelia/config:/config
+      - /opt/authelia/secrets:/secrets
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=authelia
+      - flame.url=http://${HOSTNAME}:9091/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=lock # https://materialdesignicons.com/
+      - homepage.group=Authentication # homepage label https://github.com/benphelps/homepage
+      - homepage.name=authelia
+      - homepage.icon=authelia.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:9091/
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

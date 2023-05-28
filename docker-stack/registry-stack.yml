@@ -11,8 +11,8 @@ services:
     volumes:
       - registry_data:/var/lib/registry
     networks:
-      - main_network_overlay
-  
+      - main-network_overlay
+
   docker_registry_ui:
     image: joxit/docker-registry-ui:latest
     ports:
@@ -24,15 +24,15 @@ services:
       - DELETE_IMAGES=true
       - SINGLE_REGISTRY=true
     networks:
-      - main_network_overlay
+      - main-network_overlay
     labels:
       - flame.type=application # "app" works too
       - flame.name=docker-registry-ui
       - flame.url=http://192.168.0.126:8088/
       - flame.icon=docker
-      
+
 networks:
-  main_network_overlay:
+  main-network_overlay:
     external: true
 
 volumes:

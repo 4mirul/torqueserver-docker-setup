@@ -1,0 +1,21 @@
+# https://github.com/linuxserver/docker-hishtory-server
+---
+version: "3"
+services:
+  hishtory-server:
+    image: lscr.io/linuxserver/hishtory-server:latest
+    container_name: hishtory-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - HISHTORY_POSTGRES_DB=postgresql://${HISHTORY_DB_USER}:${HISHTORY_DB_PASS}@postgres:5432/hishtory?sslmode=disable
+    ports:
+      - 1880:8080
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+networks:
+  default:
+    external: true
+    name: main-network

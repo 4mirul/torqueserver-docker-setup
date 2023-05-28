@@ -1,0 +1,32 @@
+# https://hub.docker.com/r/linuxserver/overseerr
+---
+version: "2.1"
+services:
+  overseerr:
+    image: ghcr.io/linuxserver/overseerr:latest
+    container_name: overseerr
+    hostname: overseerr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/overseerr/config:/config
+    ports:
+      - 5055:5055
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=overseerr
+      - flame.url=http://${HOSTNAME}:5055/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=eye-circle # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=overseerr
+      - homepage.icon=overseerr.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:5055/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

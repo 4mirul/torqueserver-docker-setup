@@ -1,0 +1,40 @@
+# https://hub.docker.com/r/aapanel/aapanel#!
+---
+version: "3"
+services:
+  aapanel:
+    container_name: aapanel
+    image: "aapanel/aapanel:lib"
+    volumes:
+      - "websitedata:/www/wwwroot"
+      - "mysqldata:/www/server/data"
+      - "vhost:/www/server/panel/vhost"
+    ports:
+      - "8886:8888"
+      - "22:21"
+      - "443:443"
+      - "80:80"
+      - "889:888"
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # "app" works too
+      - flame.name=aapanel
+      - flame.url=http://${HOSTNAME}:8886/aapanel
+      - flame.icon=alpha-a
+      - homepage.group=group_name # homepage label https://github.com/benphelps/homepage
+      - homepage.name=aapanel
+      - homepage.icon=aapanel.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8886/aapanel
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network
+volumes:
+  websitedata:
+    external: true
+  mysqldata:
+    external: true
+  vhost:
+    external: true

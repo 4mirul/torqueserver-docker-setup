@@ -1,0 +1,31 @@
+# https://hub.docker.com/r/linuxserver/thelounge
+---
+version: "2.1"
+services:
+  thelounge:
+    container_name: thelounge
+    image: thelounge/thelounge:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/thelounge:/var/opt/thelounge
+    ports:
+      - 9099:9000
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=thelounge
+      - flame.url=https://thelounge.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=chat-processing # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=thelounge
+      - homepage.icon=thelounge.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=https://thelounge.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

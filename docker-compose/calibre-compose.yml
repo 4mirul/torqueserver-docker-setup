@@ -1,0 +1,39 @@
+# https://hub.docker.com/r/linuxserver/calibre
+---
+version: "2.1"
+services:
+  calibre:
+    image: lscr.io/linuxserver/calibre:latest
+    container_name: calibre
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      # - PASSWORD=${PASS} #optional
+      # - CLI_ARGS= #optional
+    volumes:
+      - /opt/calibre/config:/config
+      - ${DISK0}/books:/home #optional
+      - ${DISK0}/downloads/books:/media/downloads
+    ports:
+      - 8383:8080
+      - 8182:8181
+      - 8082:8081
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=calibre desktop gui
+      - flame.url=http://${HOSTNAME}:8383/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=bookshelf # https://materialdesignicons.com/
+      - homepage.group=Media # homepage label https://github.com/benphelps/homepage
+      - homepage.name=calibre
+      - homepage.icon=calibre.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8383/
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

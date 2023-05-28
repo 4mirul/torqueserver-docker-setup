@@ -1,4 +1,4 @@
-# https://noted.lol/answer-the-self-hosted-q-a-community-portal/
+# https://github.com/answerdev/answer
 ---
 version: "3"
 services:
@@ -15,11 +15,16 @@ services:
     volumes:
       - answer-data:/data
     labels:
-      - flame.type=app # "app" works too
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=answer
-      - flame.url=https://answer.torqueserver.com/
-      - flame.icon=help
-      - com.centurylinklabs.watchtower.enable=true
+      - flame.url=https://answer.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=chat-question # https://materialdesignicons.com/
+      - homepage.group=Q&A Platform # homepage label https://github.com/benphelps/homepage
+      - homepage.name=answer
+      - homepage.icon=mdi-chat-question # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=https://answer.${DOMAIN}/
+      - homepage.description=
 networks:
   default:
     external: true

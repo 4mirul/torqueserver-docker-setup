@@ -1,0 +1,35 @@
+# https://hub.docker.com/_/ghost/
+version: "3.1"
+services:
+  ghost:
+    container_name: ghost
+    image: ghost:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      # - NODE_ENV=development
+      - url=http://${HOSTNAME}:3001/
+    ports:
+      - 3001:2368
+    volumes:
+      - "ghost-data:/var/lib/ghost/content"
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=ghost
+      - flame.url=http://${HOSTNAME}:3001/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=ghost # https://materialdesignicons.com/
+      - homepage.group=Blogs # homepage label https://github.com/benphelps/homepage
+      - homepage.name=ghost
+      - homepage.icon=ghost.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:3001/
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network
+volumes:
+  ghost-data:
+    external: true

@@ -1,0 +1,42 @@
+# https://github.com/AnalogJ/scrutiny#docker
+---
+version: "3.5"
+services:
+  scrutiny:
+    image: ghcr.io/analogj/scrutiny:master-omnibus
+    container_name: scrutiny
+    cap_add:
+      - SYS_RAWIO
+      - SYS_ADMIN # nvme
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/scrutiny/config:/opt/scrutiny/config
+      # - /opt/influxdb2:/opt/scrutiny/influxdb
+      - /run/udev:/run/udev:ro
+    ports:
+      - 8480:8080
+      # - 8086:8086
+    devices:
+      - /dev/sda:/dev/sda
+      - /dev/sdb:/dev/sdb
+      - /dev/nvme0:/dev/nvme0
+      - /dev/nvme1:/dev/nvme1
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=scrutiny
+      - flame.url=http://${HOSTNAME}:8480/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=harddisk # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=scrutiny
+      - homepage.icon=scrutiny.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8480/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

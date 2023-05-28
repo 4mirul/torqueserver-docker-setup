@@ -1,4 +1,4 @@
-# https://example.com/
+# https://github.com/machengim/oasis
 ---
 version: "3"
 services:
@@ -11,17 +11,22 @@ services:
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/oasis/data:/opt/oasis/data
-      - /mnt/disk0/books:/home/storage/books
+      - ${DISK0}/books:/home/storage/books
     ports:
       - "8790:8000"
     restart: unless-stopped
     labels:
-      - flame.type=app # "app" works too
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=oasis
-      - flame.url=http://torqueserver.home:8790/
-      - flame.icon=file
-    networks:
-      - main-network
+      - flame.url=http://${HOSTNAME}:8790/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=file # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=oasis
+      - homepage.icon=mdi-file # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8790/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
 networks:
-  main-network:
+  default:
     external: true
+    name: main-network

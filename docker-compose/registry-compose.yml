@@ -1,0 +1,62 @@
+# https://hub.docker.com/_/registry
+# https://hub.docker.com/r/joxit/docker-registry-ui
+---
+version: "3"
+services:
+  registry:
+    container_name: registry
+    image: "registry:latest"
+    ports:
+      - 5000:5000
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/registry:/etc/docker/registry
+      - registry-data:/var/lib/registry
+    restart: unless-stopped
+  registry-ui:
+    container_name: registry-ui
+    image: joxit/docker-registry-ui:latest
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+      - REGISTRY_TITLE=Torqueserver Docker Registry
+      - REGISTRY_URL=http://registry:5000/ # https://registry.${DOMAIN}/
+      # - PULL_URL=
+      # - DELETE_IMAGES=
+      - SHOW_CONTENT_DIGEST=true
+      # - CATALOG_ELEMENTS_LIMIT=
+      # - SINGLE_REGISTRY=true
+      - NGINX_PROXY_PASS_URL=http://registry:5000/
+      # - NGINX_PROXY_HEADER_*=
+      # - NGINX_PROXY_PASS_HEADER_*=
+      # - NGINX_LISTEN_PORT=
+      # - DEFAULT_REGISTRIES=
+      # - READ_ONLY_REGISTRIES=
+      - SHOW_CATALOG_NB_TAGS=true
+      # - HISTORY_CUSTOM_LABELS=
+      # - USE_CONTROL_CACHE_HEADER=
+      # - THEME=dark
+      # - THEME_*
+    depends_on:
+      - registry
+    restart: unless-stopped
+    ports:
+      - 8766:80
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=registry-ui
+      - flame.url=http://${HOSTNAME}:8766/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=docker # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=registry-ui
+      - homepage.icon=docker.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8766/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network
+volumes:
+  registry-data:
+    external: true

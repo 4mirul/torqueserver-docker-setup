@@ -1,0 +1,35 @@
+# https://hub.docker.com/r/linuxserver/emulatorjs
+---
+version: "2.1"
+services:
+  emulatorjs:
+    image: lscr.io/linuxserver/emulatorjs:latest
+    container_name: emulatorjs
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      # - SUBFOLDER=/ #optional
+    volumes:
+      - /opt/emulatorjs/config:/config
+      - ${DISK1}/emulatorjs/data:/data
+    ports:
+      - 3000:3000
+      - 8043:80
+      # - 4001:4001 #optional
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=emulatorjs;emulatorjs management
+      - flame.url=http://${HOSTNAME}:8043/;http://${HOSTNAME}:3000/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=controller-classic;controller-classic # https://materialdesignicons.com/
+      - homepage.group=Games # homepage label https://github.com/benphelps/homepage
+      - homepage.name=emulatorjs
+      - homepage.icon=emulatorjs.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8043/
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

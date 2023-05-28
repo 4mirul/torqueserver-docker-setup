@@ -1,0 +1,43 @@
+# https://hub.docker.com/_/drupal
+---
+version: "2"
+services:
+  drupal:
+    container_name: drupal
+    image: drupal:latest
+    ports:
+      - 8082:80
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - drupal-modules:/var/www/html/modules
+      - drupal-profiles:/var/www/html/profiles
+      - drupal-sites:/var/www/html/sites
+      - drupal-themes:/var/www/html/themes
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=drupal
+      - flame.url=http://${HOSTNAME}:8082/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=drupal # https://materialdesignicons.com/
+      - homepage.group=Documentation # homepage label https://github.com/benphelps/homepage
+      - homepage.name=drupal
+      - homepage.icon=drupal.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8082/
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network
+volumes:
+  drupal-modules:
+    external: true
+  drupal-profiles:
+    external: true
+  drupal-sites:
+    external: true
+  drupal-themes:
+    external: true

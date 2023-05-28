@@ -1,0 +1,38 @@
+# https://hub.docker.com/r/linuxserver/wikijs
+---
+version: "2.1"
+services:
+  wikijs:
+    image: lscr.io/linuxserver/wikijs:latest
+    container_name: wikijs
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - DB_TYPE=sqlite
+      # - DB_HOST= #optional
+      # - DB_PORT= #optional
+      # - DB_NAME= #optional
+      # - DB_USER= #optional
+      # - DB_PASS= #optional
+    volumes:
+      - /opt/wikijs/config:/config
+      - /opt/wikijs/data:/data
+    ports:
+      - 3006:3000
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=wikijs
+      - flame.url=http://${HOSTNAME}:3006/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=book-open-variant # https://materialdesignicons.com/
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.name=wikijs
+      - homepage.icon=wikijs.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:3006/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

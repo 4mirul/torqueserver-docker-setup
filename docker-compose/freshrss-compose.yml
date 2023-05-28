@@ -1,0 +1,31 @@
+# https://github.com/linuxserver/docker-freshrss
+---
+version: "3"
+services:
+  freshrss:
+    container_name: freshrss
+    image: lscr.io/linuxserver/freshrss:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/freshrss/config:/config
+    ports:
+      - 5690:80
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=freshrss
+      - flame.url=https://freshrss.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=rss-box # https://materialdesignicons.com/
+      - homepage.group=Tools # homepage label https://github.com/benphelps/homepage
+      - homepage.name=freshrss
+      - homepage.icon=freshrss.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=https://freshrss.${DOMAIN}/
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

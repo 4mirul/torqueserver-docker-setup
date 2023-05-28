@@ -19,11 +19,17 @@ services:
     shm_size: "1gb"
     restart: unless-stopped
     labels:
-      - flame.type=app # "app" works too
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=firefox
-      - flame.url=https://firefox.torqueserver.com/
-      - flame.icon=firefox
-      - com.centurylinklabs.watchtower.enable=true
+      - flame.url=https://firefox.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=firefox # https://materialdesignicons.com/
+      - homepage.group=Tools # homepage label https://github.com/benphelps/homepage
+      - homepage.name=Firefox
+      - homepage.icon=firefox.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=https://firefox.${DOMAIN}/
+      - homepage.description=
+    dns: ${PIHOLE_IP} # pihole dns
 networks:
   default:
     external: true
