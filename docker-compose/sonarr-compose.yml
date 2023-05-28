@@ -20,12 +20,12 @@ services:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=sonarr
-      - flame.url=http://${HOSTNAME}:80/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.url=http://${HOSTNAME}:8989/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=television-box # https://materialdesignicons.com/
       - homepage.group= # homepage label https://github.com/benphelps/homepage
       - homepage.name=sonarr
       - homepage.icon=sonarr.png # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=http://${HOSTNAME}:80/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.href=http://${HOSTNAME}:8989/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - homepage.description=
 networks:
   default:
