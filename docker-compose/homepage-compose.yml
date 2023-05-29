@@ -21,7 +21,7 @@ services:
       - flame.name=homepage
       - flame.url=http://${HOSTNAME}:3900/
       - flame.icon=home
-      - homepage.group=Home
+      - homepage.group=Personal Homepage
       - homepage.name=homepage
       - homepage.icon=homepage.png
       - homepage.href=http://${HOSTNAME}:3900/

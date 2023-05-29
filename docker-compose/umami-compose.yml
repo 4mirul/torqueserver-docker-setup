@@ -21,7 +21,7 @@ services:
       - flame.name=umami
       - flame.url=https://umami.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=finance # https://materialdesignicons.com/
-      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Monitoring and Analytics # homepage label https://github.com/benphelps/homepage
       - homepage.name=umami
       - homepage.icon=umami.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=https://umami.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name

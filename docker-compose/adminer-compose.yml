@@ -18,7 +18,7 @@ services:
       - flame.name=adminer
       - flame.url=http://${HOSTNAME}:8970/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=database # https://materialdesignicons.com/
-      - homepage.group=Databases # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Database Management Systems # homepage label https://github.com/benphelps/homepage
       - homepage.name=adminer
       - homepage.icon=adminer.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:8970/

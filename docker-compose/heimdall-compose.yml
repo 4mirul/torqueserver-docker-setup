@@ -21,7 +21,7 @@ services:
       - flame.name=heimdall
       - flame.url=http://${HOSTNAME}:8888/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=crown # https://materialdesignicons.com/
-      - homepage.group=Homepage # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Personal Homepage # homepage label https://github.com/benphelps/homepage
       - homepage.name=heimdall
       - homepage.icon=heimdall.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:8888/

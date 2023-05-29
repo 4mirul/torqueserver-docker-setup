@@ -19,7 +19,7 @@ services:
       - flame.name=jellyseerr
       - flame.url=http://${HOSTNAME}:5051/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=jellyfish-outline # https://materialdesignicons.com/
-      - homepage.group=Media # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Media Request and Management # homepage label https://github.com/benphelps/homepage
       - homepage.name=jellyseerr
       - homepage.icon=jellyseerr.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:5051/

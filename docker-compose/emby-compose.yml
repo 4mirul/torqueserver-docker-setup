@@ -29,7 +29,7 @@ services:
       - flame.name=emby
       - flame.url=https://emby.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=emby # https://materialdesignicons.com/
-      - homepage.group=Media # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Media Servers/Streaming # homepage label https://github.com/benphelps/homepage
       - homepage.name=emby
       - homepage.icon=emby.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=https://emby.${DOMAIN}/

@@ -27,7 +27,7 @@ services:
       - flame.name=wikijs
       - flame.url=http://${HOSTNAME}:3006/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=book-open-variant # https://materialdesignicons.com/
-      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Knowledge/Content Management Systems # homepage label https://github.com/benphelps/homepage
       - homepage.name=wikijs
       - homepage.icon=wikijs.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:3006/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name

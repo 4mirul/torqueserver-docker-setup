@@ -1,0 +1,39 @@
+Database Management Systems
+Media Servers/Streaming
+Media Request and Management
+Knowledge/Content Management Systems
+Games
+Authentication and Authorization Services
+Download Managers
+Monitoring and Analytics
+File Management/Synchronization
+Web Tools and Services
+Personal Homepage
+Indexing & Search
+Camera Management
+Web Servers
+IT Service Management
+Network Monitoring and Management
+Container Management
+IRC Servers and Clients
+
+Media Servers/Streaming: Plex, Jellyfin, Emby, Kodi
+File Management/Synchronization: Nextcloud, ownCloud, Seafile, Syncthing
+Download Managers: Sonarr, Radarr, Lidarr, SABnzbd, NZBGet
+Home Automation: Home Assistant, OpenHAB, Domoticz, SmartThings
+Virtual Private Networks (VPNs): OpenVPN, WireGuard, NordVPN, ExpressVPN
+Web Servers: Apache, Nginx, IIS, Lighttpd
+Content Management Systems (CMS): WordPress, Drupal, Joomla, Ghost
+Version Control Systems (VCS): Git, Subversion (SVN), Mercurial
+Messaging/Chat: Slack, Discord, Rocket.Chat, Mattermost
+Video Conferencing: Zoom, Microsoft Teams, Google Meet, Jitsi
+Email Services: Postfix, Sendmail, Microsoft Exchange, Gmail
+Monitoring/Analytics: Grafana, Zabbix, Prometheus, Google Analytics
+Data Visualization: Tableau, Power BI, D3.js, Matplotlib
+Collaboration/Project Management: Trello, Asana, Basecamp, Jira
+Security/Identity: LastPass, 1Password, KeePass, Okta
+Content Delivery Networks (CDNs): Cloudflare, Akamai, Fastly, Amazon CloudFront
+Continuous Integration/Deployment (CI/CD): Jenkins, Travis CI, GitLab CI/CD, CircleCI
+Database Management: MySQL, PostgreSQL, MongoDB, Oracle
+DNS Services: BIND, Cloudflare DNS, Google Cloud DNS
+Containerization/Orchestration: Docker, Kubernetes, OpenShift, Rancher

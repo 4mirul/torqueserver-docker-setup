@@ -26,7 +26,7 @@ services:
       - flame.name=snipe-it
       - flame.url=http://${HOSTNAME}:8085/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=desktop-classic # https://materialdesignicons.com/
-      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.group=IT Service Management # homepage label https://github.com/benphelps/homepage
       - homepage.name=snipe-it
       - homepage.icon=mdi-desktop-classic # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:8085/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name

@@ -21,7 +21,7 @@ services:
       - flame.name=dokuwiki
       - flame.url=http://${HOSTNAME}:8688/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=file-document # https://materialdesignicons.com/
-      - homepage.group=Documentation # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Knowledge/Content Management Systems # homepage label https://github.com/benphelps/homepage
       - homepage.name=dokuwiki
       - homepage.icon=dokuwiki.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:8688/

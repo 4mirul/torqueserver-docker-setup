@@ -20,7 +20,7 @@ services:
       - flame.name=wordpress
       - flame.url=https://wp.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=wordpress # https://materialdesignicons.com/
-      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Knowledge/Content Management Systems # homepage label https://github.com/benphelps/homepage
       - homepage.name=wordpress
       - homepage.icon=wordpress.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=https://wp.${HOSTNAME}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name

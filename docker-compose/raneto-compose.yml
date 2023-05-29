@@ -20,7 +20,7 @@ services:
       - flame.name=raneto
       - flame.url=http://${HOSTNAME}:3003/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=language-markdown # https://materialdesignicons.com/
-      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Knowledge/Content Management Systems # homepage label https://github.com/benphelps/homepage
       - homepage.name=raneto
       - homepage.icon=raneto.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:3003/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name

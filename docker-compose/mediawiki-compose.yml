@@ -25,7 +25,7 @@ services:
       - flame.name=mediawiki
       - flame.url=https://mediawiki.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=wikipedia # https://materialdesignicons.com/
-      - homepage.group=Content Management System # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Knowledge/Content Management Systems # homepage label https://github.com/benphelps/homepage
       - homepage.name=mediawiki
       - homepage.icon=mediawiki.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=https://mediawiki.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name

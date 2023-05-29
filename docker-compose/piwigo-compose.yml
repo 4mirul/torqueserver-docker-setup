@@ -23,7 +23,7 @@ services:
       - flame.name=piwigo
       - flame.url=https://piw.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=image # https://materialdesignicons.com/
-      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Media Servers/Streaming # homepage label https://github.com/benphelps/homepage
       - homepage.name=piwigo
       - homepage.icon=piwigo.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=https://piw.${DOMAIN}/

@@ -27,7 +27,7 @@ services:
       - flame.name=airsonic
       - flame.url=https://airsonic.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=music # https://materialdesignicons.com/
-      - homepage.group=media # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Media Servers/Streaming # homepage label https://github.com/benphelps/homepage
       - homepage.name=airsonic
       - homepage.icon=airsonic.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=https://airsonic.${DOMAIN}/

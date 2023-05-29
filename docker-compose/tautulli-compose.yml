@@ -20,7 +20,7 @@ services:
       - flame.name=tautulli
       - flame.url=http://${HOSTNAME}:8181/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=chart-timeline # https://materialdesignicons.com/
-      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Media Request and Management # homepage label https://github.com/benphelps/homepage
       - homepage.name=tautulli
       - homepage.icon=tautulli.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:8181/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name

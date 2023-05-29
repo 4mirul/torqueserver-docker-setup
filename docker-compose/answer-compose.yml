@@ -20,7 +20,7 @@ services:
       - flame.name=answer
       - flame.url=https://answer.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=chat-question # https://materialdesignicons.com/
-      - homepage.group=Q&A Platform # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Knowledge/Content Management Systems # homepage label https://github.com/benphelps/homepage
       - homepage.name=answer
       - homepage.icon=mdi-chat-question # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=https://answer.${DOMAIN}/

@@ -44,7 +44,7 @@ services:
       - flame.name=jellyfin
       - flame.url=https://jellyfin.${DOMAIN}/
       - flame.icon=jellyfish
-      - homepage.group=Media
+      - homepage.group=Media Servers/Streaming
       - homepage.name=jellyfin
       - homepage.icon=jellyfin.png
       - homepage.href=https://jellyfin.${DOMAIN}/

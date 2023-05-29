@@ -23,7 +23,7 @@ services:
       - flame.name=phpmyadmin
       - flame.url=http://${HOSTNAME}:8808/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=database # https://materialdesignicons.com/
-      - homepage.group=Database # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Database Management Systems # homepage label https://github.com/benphelps/homepage
       - homepage.name=phpmyadmin
       - homepage.icon=phpmyadmin.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:8808/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name

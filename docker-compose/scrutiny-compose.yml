@@ -31,7 +31,7 @@ services:
       - flame.name=scrutiny
       - flame.url=http://${HOSTNAME}:8480/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=harddisk # https://materialdesignicons.com/
-      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Web Tools and Services # homepage label https://github.com/benphelps/homepage
       - homepage.name=scrutiny
       - homepage.icon=scrutiny.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:8480/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name

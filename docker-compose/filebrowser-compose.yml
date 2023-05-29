@@ -22,7 +22,7 @@ services:
       - flame.name=filebrowser
       - flame.url=http://${HOSTNAME}:7880/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=folder # https://materialdesignicons.com/
-      - homepage.group=Tools # homepage label https://github.com/benphelps/homepage
+      - homepage.group=File Management/Synchronization # homepage label https://github.com/benphelps/homepage
       - homepage.name=filebrowser
       - homepage.icon=filebrowser.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:7880/

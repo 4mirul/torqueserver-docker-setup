@@ -23,7 +23,7 @@ services:
       - flame.name=phpredisadmin
       - flame.url=http://${HOSTNAME}:8785/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=database # https://materialdesignicons.com/
-      - homepage.group=Database # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Database Management Systems # homepage label https://github.com/benphelps/homepage
       - homepage.name=phpredisadmin
       - homepage.icon=redis.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:8785/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name

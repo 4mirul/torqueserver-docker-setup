@@ -20,7 +20,7 @@ services:
       - flame.name=whatsupdocker
       - flame.url=http://${HOSTNAME}:3201/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=docker # https://materialdesignicons.com/
-      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Container Management # homepage label https://github.com/benphelps/homepage
       - homepage.name=whatsupdocker
       - homepage.icon=docker.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:3201/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name

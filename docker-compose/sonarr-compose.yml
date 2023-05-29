@@ -22,7 +22,7 @@ services:
       - flame.name=sonarr
       - flame.url=http://${HOSTNAME}:8989/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=television-box # https://materialdesignicons.com/
-      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Media Request and Management # homepage label https://github.com/benphelps/homepage
       - homepage.name=sonarr
       - homepage.icon=sonarr.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:8989/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name

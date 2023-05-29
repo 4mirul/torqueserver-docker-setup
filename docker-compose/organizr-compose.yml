@@ -18,7 +18,7 @@ services:
       - flame.name=organizr
       - flame.url=http://${HOSTNAME}:8088/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=dock-window # https://materialdesignicons.com/
-      - homepage.group=Media # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Media Request and Management # homepage label https://github.com/benphelps/homepage
       - homepage.name=organizr
       - homepage.icon=organizr.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:8088/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name

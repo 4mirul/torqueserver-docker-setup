@@ -18,7 +18,7 @@ services:
       - flame.name=metabase
       - flame.url=http://${HOSTNAME}:3890/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=database-sync # https://materialdesignicons.com/
-      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Database Management Systems # homepage label https://github.com/benphelps/homepage
       - homepage.name=metabase
       - homepage.icon=metabase.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:3890/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name

@@ -24,7 +24,7 @@ services:
       - flame.name=grafana
       - flame.url=http://${HOSTNAME}:3001/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=chart-bar # https://materialdesignicons.com/
-      - homepage.group=Monitoring # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Monitoring and Analytics # homepage label https://github.com/benphelps/homepage
       - homepage.name=grafana
       - homepage.icon=grafana.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:3001/

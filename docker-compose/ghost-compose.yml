@@ -21,7 +21,7 @@ services:
       - flame.name=ghost
       - flame.url=http://${HOSTNAME}:3001/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=ghost # https://materialdesignicons.com/
-      - homepage.group=Blogs # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Knowledge/Content Management Systems # homepage label https://github.com/benphelps/homepage
       - homepage.name=ghost
       - homepage.icon=ghost.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:3001/

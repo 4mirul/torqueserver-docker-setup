@@ -21,7 +21,7 @@ services:
       - flame.name=pgadmin4
       - flame.url=http://${HOSTNAME}:8889/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=database # https://materialdesignicons.com/
-      - homepage.group=Database # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Database Management Systems # homepage label https://github.com/benphelps/homepage
       - homepage.name=pgadmin4
       - homepage.icon=pgadmin4.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:8889/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name

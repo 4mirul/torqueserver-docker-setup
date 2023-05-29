@@ -23,7 +23,7 @@ services:
       - flame.name=calibre-web
       - flame.url=http://${HOSTNAME}:8083/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=bookshelf # https://materialdesignicons.com/
-      - homepage.group=Media # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Media Servers/Streaming # homepage label https://github.com/benphelps/homepage
       - homepage.name=Calibre Web
       - homepage.icon=calibre.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:8083/

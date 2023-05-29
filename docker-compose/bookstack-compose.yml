@@ -24,7 +24,7 @@ services:
       - flame.name=bookstack
       - flame.url=http://${HOSTNAME}:6875/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=book-open # https://materialdesignicons.com/
-      - homepage.group=Documentation # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Knowledge/Content Management Systems # homepage label https://github.com/benphelps/homepage
       - homepage.name=bookstack
       - homepage.icon=bookstack.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:6875/

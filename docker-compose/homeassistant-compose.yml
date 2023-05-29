@@ -23,7 +23,7 @@ services:
       - flame.name=homeassistant
       - flame.url=http://${HOSTNAME}:3900/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=home # https://materialdesignicons.com/
-      - homepage.group=Tools # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Home Automation # homepage label https://github.com/benphelps/homepage
       - homepage.name=homeassistant
       - homepage.icon=homeassistant.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:8123/

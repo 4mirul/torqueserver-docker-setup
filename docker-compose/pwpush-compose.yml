@@ -18,7 +18,7 @@ services:
       - flame.name=pwpush
       - flame.url=https://pwpush.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=key # https://materialdesignicons.com/
-      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Web Tools and Services # homepage label https://github.com/benphelps/homepage
       - homepage.name=pwpush
       - homepage.icon=pwpush.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=https://pwpush.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name

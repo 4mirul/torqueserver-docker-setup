@@ -19,7 +19,7 @@ services:
       - flame.name=nginx-proxy-manager
       - flame.url=http://${HOSTNAME}:81/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=arrow-decision # https://materialdesignicons.com/
-      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Web Servers # homepage label https://github.com/benphelps/homepage
       - homepage.name=nginx-proxy-manager
       - homepage.icon=nginx-proxy-manager.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:81/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name

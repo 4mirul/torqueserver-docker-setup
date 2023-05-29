@@ -36,7 +36,7 @@ services:
       - flame.name=swag
       - flame.url=https://dashboard.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=view-dashboard # https://materialdesignicons.com/
-      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Web Servers # homepage label https://github.com/benphelps/homepage
       - homepage.name=swag
       - homepage.icon=nginx.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=https://dashboard.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name

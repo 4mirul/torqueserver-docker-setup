@@ -24,7 +24,7 @@ services:
       - flame.name=syncthing
       - flame.url=http://${HOSTNAME}:8384/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=file-sync # https://materialdesignicons.com/
-      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.group=File Management/Synchronization # homepage label https://github.com/benphelps/homepage
       - homepage.name=syncthing
       - homepage.icon=syncthing.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:8384/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name

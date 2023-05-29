@@ -9,8 +9,9 @@ services:
     environment:
       - TZ=Asia/Kuala_Lumpur
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_HOST_AUTH_METHOD=scram-sha-256
-      - POSTGRES_INITDB_ARGS=--auth-host=scram-sha-256
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      # - POSTGRES_HOST_AUTH_METHOD=scram-sha-256
+      # - POSTGRES_INITDB_ARGS=--auth-host=scram-sha-256
     volumes:
       - pg-data:/var/lib/postgresql/data/
       - /opt/postgres/postgres.conf:/etc/postgresql/postgresql.conf
@@ -36,7 +37,7 @@ services:
       - flame.name=pgadmin4
       - flame.url=http://${HOSTNAME}:8008/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=database # https://materialdesignicons.com/
-      - homepage.group=Database # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Database Management Systems # homepage label https://github.com/benphelps/homepage
       - homepage.name=pgadmin4
       - homepage.icon=pgadmin.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:8008/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name

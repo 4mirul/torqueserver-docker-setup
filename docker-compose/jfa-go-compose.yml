@@ -22,7 +22,7 @@ services:
       - flame.name=jfa-go
       - flame.url=https://jfa.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=jellyfish # https://materialdesignicons.com/
-      - homepage.group=Tools # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Media Request and Management # homepage label https://github.com/benphelps/homepage
       - homepage.name=jfa-go
       - homepage.icon=jellyfin.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=https://jfa.${DOMAIN}/

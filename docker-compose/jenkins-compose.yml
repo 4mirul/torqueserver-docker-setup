@@ -16,7 +16,7 @@ services:
       - flame.name=jenkins
       - flame.url=http://${HOSTNAME}:8180/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=account-tie # https://materialdesignicons.com/
-      - homepage.group=CI/CD tools # homepage label https://github.com/benphelps/homepage
+      - homepage.group=CI/CD Deployment # homepage label https://github.com/benphelps/homepage
       - homepage.name=jenkins
       - homepage.icon=jenkins.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:8180/

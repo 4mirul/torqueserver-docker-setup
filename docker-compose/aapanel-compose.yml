@@ -22,7 +22,7 @@ services:
       - flame.name=aapanel
       - flame.url=http://${HOSTNAME}:8886/aapanel
       - flame.icon=alpha-a
-      - homepage.group=group_name # homepage label https://github.com/benphelps/homepage
+      - homepage.group= # homepage label https://github.com/benphelps/homepage
       - homepage.name=aapanel
       - homepage.icon=aapanel.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:8886/aapanel

@@ -9,7 +9,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - UMAMI_WEBSITE_ID=${UMAMI_WEBSITE_ID}
+      # - UMAMI_WEBSITE_ID=${UMAMI_WEBSITE_ID}
       - UMAMI_APP_URL=https://umami.${DOMAIN}/umami.js
       - META_TITLE=${META_TITLE}
       - META_DESCRIPTION=${META_DESCRIPTION}
@@ -79,7 +79,7 @@ services:
       - flame.name=littlelink
       - flame.url=https://link.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=link # https://materialdesignicons.com/
-      - homepage.group=Tools # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Web Tools and Services # homepage label https://github.com/benphelps/homepage
       - homepage.name=littlelink
       - homepage.icon=mdi-link # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=https://link.${DOMAIN}/

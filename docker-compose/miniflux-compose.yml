@@ -20,7 +20,7 @@ services:
       - flame.name=miniflux
       - flame.url=http://${HOSTNAME}:8690/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=rss-box # https://materialdesignicons.com/
-      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Web Tools and Services # homepage label https://github.com/benphelps/homepage
       - homepage.name=miniflux
       - homepage.icon=miniflux.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:8690/

@@ -20,7 +20,7 @@ services:
       - flame.name=prowlarr
       - flame.url=http://${HOSTNAME}:9696/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=target # https://materialdesignicons.com/
-      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Indexing & Search # homepage label https://github.com/benphelps/homepage
       - homepage.name=prowlarr
       - homepage.icon=prowlarr.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=http://${HOSTNAME}:9696/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name

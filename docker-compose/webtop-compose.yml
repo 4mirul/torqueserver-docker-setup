@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   webtop:
-    image: lscr.io/linuxserver/webtop:arch-openbox
+    image: lscr.io/linuxserver/webtop:latest
     container_name: webtop
     security_opt:
       - seccomp:unconfined #optional
@@ -28,8 +28,8 @@ services:
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=webtop
       - flame.url=https://webtop.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - flame.icon=arch # https://materialdesignicons.com/
-      - homepage.group= # homepage label https://github.com/benphelps/homepage
+      - flame.icon=linux # https://materialdesignicons.com/
+      - homepage.group=Web Tools and Services # homepage label https://github.com/benphelps/homepage
       - homepage.name=webtop
       - homepage.icon=webtop.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=https://webtop.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
