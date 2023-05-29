@@ -37,12 +37,12 @@ services:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=midarr
-      - flame.url=http://${HOSTNAME}:4000/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.url=https://midarr.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=play # https://materialdesignicons.com/
       - homepage.group=Media Servers/Streaming # homepage label https://github.com/benphelps/homepage
       - homepage.name=midarr
       - homepage.icon=mdi-play # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=http://${HOSTNAME}:4000/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.href=https://midarr.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - homepage.description=
 networks:
   default:

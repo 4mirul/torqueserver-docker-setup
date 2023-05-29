@@ -3,7 +3,7 @@
 version: "2.1"
 services:
   webtop:
-    image: lscr.io/linuxserver/webtop:latest
+    image: lscr.io/linuxserver/webtop:alpine-openbox
     container_name: webtop
     security_opt:
       - seccomp:unconfined #optional
@@ -11,8 +11,9 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - SUBFOLDER=/ #optional
-      - TITLE=Webtop #optional
+      # - SUBFOLDER=/ #optional
+      # - TITLE=Webtop #optional
+      # - DRINODE=/dev/dri/renderD128
     volumes:
       - /opt/webtop/config:/config
       - /var/run/docker.sock:/var/run/docker.sock #optional
