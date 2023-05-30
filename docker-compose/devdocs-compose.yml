@@ -1,0 +1,37 @@
+# https://github.com/freeCodeCamp/devdocs
+
+# # First, build the image
+# git clone https://github.com/freeCodeCamp/devdocs.git && cd devdocs
+# docker build -t thibaut/devdocs .
+
+# # Finally, start a DevDocs container (access http://localhost:9292)
+# docker run --name devdocs -d -p 9292:9292 thibaut/devdocs
+---
+version: "3"
+services:
+  devdocs:
+    image: thibaut/devdocs
+    container_name: devdocs
+    hostname: devdocs
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    ports:
+      - 9292:9292
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=devdocs
+      - flame.url=https://devdocs.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=file-document # https://materialdesignicons.com/
+      - homepage.group=Knowledge/Content Management Systems # homepage label https://github.com/benphelps/homepage
+      - homepage.name=devdocs
+      - homepage.icon=readthedocs-light.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=https://devdocs.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

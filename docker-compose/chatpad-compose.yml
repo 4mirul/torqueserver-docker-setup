@@ -1,0 +1,32 @@
+# https://example.com/
+---
+version: "3"
+services:
+  chatpad:
+    image: ghcr.io/deiucanta/chatpad:latest
+    container_name: chatpad
+    hostname: chatpad
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    # volumes:
+    #   - /path/to/config:/config
+    ports:
+      - 8689:80
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=chatpad
+      - flame.url=http://${HOSTNAME}:8689/ # local http://${HOSTNAME}:8689/ or subdomain https://chatpad.${DOMAIN}/ or subfolder https://${DOMAIN}/chatpad
+      - flame.icon=chat # https://materialdesignicons.com/
+      - homepage.group=Web Tools and Services # homepage label https://github.com/benphelps/homepage
+      - homepage.name=chatpad
+      - homepage.icon=chatpad.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8689/ # local http://${HOSTNAME}:8689/ or subdomain https://chatpad.${DOMAIN}/ or subfolder https://${DOMAIN}/chatpad
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network
