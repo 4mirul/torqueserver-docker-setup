@@ -28,7 +28,7 @@ services:
       - flame.url=https://gitea.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=git # https://materialdesignicons.com/
       - homepage.group=Version Control # homepage label https://github.com/benphelps/homepage
-      - homepage.name=git
+      - homepage.name=gitea
       - homepage.icon=gitea.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=https://gitea.${DOMAIN}/
       - homepage.description=
