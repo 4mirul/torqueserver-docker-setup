@@ -1,0 +1,30 @@
+# https://www.focalboard.com/download/personal-edition/docker/
+---
+version: "3"
+services:
+  focalboard:
+    image: mattermost/focalboard
+    container_name: focalboard
+    hostname: focalboard
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    ports:
+      - 8590:8000
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=focalboard
+      - flame.url=http://${HOSTNAME}:8590/ # local http://${HOSTNAME}:8590/ or subdomain https://focalboard.${DOMAIN}/ or subfolder https://${DOMAIN}/focalboard
+      - flame.icon=focalboard # https://materialdesignicons.com/
+      - homepage.group=Web Tools and Services # homepage label https://github.com/benphelps/homepage
+      - homepage.name=focalboard
+      - homepage.icon=atlassian-trello.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:8590/ # local http://${HOSTNAME}:8590/ or subdomain https://focalboard.${DOMAIN}/ or subfolder https://${DOMAIN}/focalboard
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network
