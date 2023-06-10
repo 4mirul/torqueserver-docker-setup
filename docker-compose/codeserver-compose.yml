@@ -18,8 +18,8 @@ services:
     volumes:
       - /opt/codeserver/config:/config
       - /:/torqueserver
-    # ports:
-    #   - 8443:8443
+    ports:
+      - 8443:8443
     restart: unless-stopped
     labels:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
