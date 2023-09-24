@@ -18,11 +18,11 @@ services:
       - flame.name=asf
       - flame.url=http://${HOSTNAME}:1242/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=steam # https://materialdesignicons.com/
-      - homepage.group=Games # homepage label https://github.com/benphelps/homepage
-      - homepage.name=asf
-      - homepage.icon=archisteamfarm.png # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=http://${HOSTNAME}:1242/
-      - homepage.description=
+      # - homepage.group=Games # homepage label https://github.com/benphelps/homepage
+      # - homepage.name=asf
+      # - homepage.icon=archisteamfarm.png # https://gethomepage.dev/en/configs/services/#icons
+      # - homepage.href=http://${HOSTNAME}:1242/
+      # - homepage.description=
 networks:
   default:
     external: true

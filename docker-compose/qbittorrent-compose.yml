@@ -6,8 +6,8 @@ services:
     image: lscr.io/linuxserver/qbittorrent:latest
     container_name: qbittorrent
     environment:
-      - PUID=1000
-      - PGID=1000
+      # - PUID=1000
+      # - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - WEBUI_PORT=8080
     volumes:
@@ -24,11 +24,11 @@ services:
       - flame.name=qbittorrent
       - flame.url=http://${HOSTNAME}:8080/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=download # https://materialdesignicons.com/
-      - homepage.group=Download Managers # homepage label https://github.com/benphelps/homepage
-      - homepage.name=qbittorrent
-      - homepage.icon=qbittorrent.png # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=http://${HOSTNAME}:8080/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - homepage.description=
+      # - homepage.group=Download Managers # homepage label https://github.com/benphelps/homepage
+      # - homepage.name=qbittorrent
+      # - homepage.icon=qbittorrent.png # https://gethomepage.dev/en/configs/services/#icons
+      # - homepage.href=http://${HOSTNAME}:8080/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      # - homepage.description=
 networks:
   default:
     external: true

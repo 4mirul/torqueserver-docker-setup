@@ -6,12 +6,12 @@ services:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
     environment:
-      - PUID=1000
-      - PGID=1000
+      # - PUID=1000
+      # - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/radarr/config:/config
-      - ${DISK1}/movies:/movies
+      - ${DISK0}/movies:/movies
       - ${DISK0}/downloads:/downloads
     ports:
       - 7878:7878
@@ -22,11 +22,11 @@ services:
       - flame.name=radarr
       - flame.url=http://${HOSTNAME}:7878/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=filmstrip # https://materialdesignicons.com/
-      - homepage.group=Media Request and Management # homepage label https://github.com/benphelps/homepage
-      - homepage.name=radarr
-      - homepage.icon=radarr.png # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=http://${HOSTNAME}:7878/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - homepage.description=
+      # - homepage.group=Media Request and Management # homepage label https://github.com/benphelps/homepage
+      # - homepage.name=radarr
+      # - homepage.icon=radarr.png # https://gethomepage.dev/en/configs/services/#icons
+      # - homepage.href=http://${HOSTNAME}:7878/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      # - homepage.description=
 networks:
   default:
     external: true

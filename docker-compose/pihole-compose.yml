@@ -14,7 +14,7 @@ services:
       - "8087:80/tcp"
     environment:
       TZ: "Asia/Kuala_Lumpur"
-      # WEBPASSWORD: ${PASS} # 'set a secure password here or it will be random'
+      WEBPASSWORD: ${PASS} # 'set a secure password here or it will be random'
     # Volumes store your data between container upgrades
     volumes:
       - "/opt/pihole/etc/pihole/:/etc/pihole/"
@@ -28,13 +28,13 @@ services:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=pihole
-      - flame.url=http://${HOSTNAME}:8087/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.url=http://${HOSTNAME}:8087/admin # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=pi-hole # https://materialdesignicons.com/
-      - homepage.group=Network Monitoring and Management # homepage label https://github.com/benphelps/homepage
-      - homepage.name=pihole
-      - homepage.icon=pi-hole.png # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=http://${HOSTNAME}:8087/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - homepage.description=
+      # - homepage.group=Network Monitoring and Management # homepage label https://github.com/benphelps/homepage
+      # - homepage.name=pihole
+      # - homepage.icon=pi-hole.png # https://gethomepage.dev/en/configs/services/#icons
+      # - homepage.href=http://${HOSTNAME}:8087/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      # - homepage.description=
     networks:
       default:
         ipv4_address: ${PIHOLE_IP}

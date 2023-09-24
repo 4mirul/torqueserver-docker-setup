@@ -7,28 +7,28 @@ services:
     container_name: plex
     hostname: plex
     network_mode: host
-    runtime: nvidia # Expose NVIDIA GPUs
+    # runtime: nvidia # Expose NVIDIA GPUs
     environment:
-      - PUID=1000
-      - PGID=1000
+      # - PUID=1000
+      # - PGID=1000
       - VERSION=docker
       - TZ=Asia/Kuala_Lumpur
       # - PLEX_CLAIM= ${PLEX_CLAIM}
-      - NVIDIA_VISIBLE_DEVICES=all
+      # - NVIDIA_VISIBLE_DEVICES=all
 
     volumes:
       - /opt/plex/config:/config
       - ${DISK0}/tvseries:/tv
-      - ${DISK1}/movies:/movies
+      - ${DISK0}/movies:/movies
     restart: unless-stopped
     labels:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=plex
-      - flame.url=https://plex.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.url=http://${HOSTNAME}:32400/web/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=plex # https://materialdesignicons.com/
-      - homepage.group=Media Servers/Streaming # homepage label https://github.com/benphelps/homepage
-      - homepage.name=plex
-      - homepage.icon=plex.png # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=https://plex.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - homepage.description=
+      # - homepage.group=Media Servers/Streaming # homepage label https://github.com/benphelps/homepage
+      # - homepage.name=plex
+      # - homepage.icon=plex.png # https://gethomepage.dev/en/configs/services/#icons
+      # - homepage.href=https://plex.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      # - homepage.description=
