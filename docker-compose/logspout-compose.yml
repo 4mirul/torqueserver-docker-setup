@@ -6,8 +6,8 @@ services:
     container_name: logspout
     image: gliderlabs/logspout:latest
     environment:
-      - PUID=1000
-      - PGID=1000
+      # - PUID=1000
+      # - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - ALLOW_TTY=true
     volumes:
@@ -21,11 +21,11 @@ services:
       - flame.name=logspout
       - flame.url=http://${HOSTNAME}:3902/logs # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=math-log # https://materialdesignicons.com/
-      - homepage.group=Monitoring and Analytics # homepage label https://github.com/benphelps/homepage
-      - homepage.name=logspout
-      - homepage.icon=mdi-math-log # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=http://${HOSTNAME}:3902/logs
-      - homepage.description=
+      # - homepage.group=Monitoring and Analytics # homepage label https://github.com/benphelps/homepage
+      # - homepage.name=logspout
+      # - homepage.icon=mdi-math-log # https://gethomepage.dev/en/configs/services/#icons
+      # - homepage.href=http://${HOSTNAME}:3902/logs
+      # - homepage.description=
 networks:
   default:
     external: true

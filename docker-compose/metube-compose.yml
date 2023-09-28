@@ -3,14 +3,14 @@
 version: "3"
 services:
   metube:
-    image: alexta69/metube
+    image: ghcr.io/alexta69/metube
     container_name: metube
     environment:
-      - PUID=1000
-      - PGID=1000
+      # - PUID=1000
+      # - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
-      - ${DISK0}/downloads:/downloads
+      - ${DISK0}/downloads/metube:/downloads
     ports:
       - 8081:8081
     restart: unless-stopped
@@ -20,11 +20,11 @@ services:
       - flame.name=metube
       - flame.url=http://${HOSTNAME}:8081/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=youtube # https://materialdesignicons.com/
-      - homepage.group=Download Managers # homepage label https://github.com/benphelps/homepage
-      - homepage.name=metube
-      - homepage.icon=metube.png # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=http://${HOSTNAME}:8081/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - homepage.description=
+      # - homepage.group=Download Managers # homepage label https://github.com/benphelps/homepage
+      # - homepage.name=metube
+      # - homepage.icon=metube.png # https://gethomepage.dev/en/configs/services/#icons
+      # - homepage.href=http://${HOSTNAME}:8081/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      # - homepage.description=
 networks:
   default:
     external: true

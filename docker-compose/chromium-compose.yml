@@ -1,0 +1,35 @@
+# https://hub.docker.com/r/linuxserver/chromium
+---
+version: "2.1"
+services:
+  chromium:
+    image: lscr.io/linuxserver/chromium:latest
+    container_name: chromium
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      # - PUID=1000
+      # - PGID=1000
+      - TZ=Asia/KualaLumpur
+      - CHROME_CLI=http://torqueserver.home:5005/ #optional
+      # - CUSTOM_USER=admin
+      # - PASSWORD=${PASS}
+    volumes:
+      - /opt/chromium/config:/config
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 3000:3000
+      - 3001:3001
+    shm_size: "1gb"
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=chromium
+      - flame.url=https://chromium.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=google-chrome # https://materialdesignicons.com/
+    dns: ${PIHOLE_IP} # pihole dns
+networks:
+  default:
+    external: true
+    name: main-network

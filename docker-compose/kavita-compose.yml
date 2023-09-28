@@ -1,0 +1,27 @@
+# https://wiki.kavitareader.com/en/install/docker-install
+---
+version: "3.9"
+services:
+  kavita:
+    image: kizaing/kavita:latest 
+    container_name: kavita
+    volumes:
+      - /mnt/disk0/books:/books
+      - /opt/kavita/config:/kavita/config
+    ports:
+      - 5000:5000
+    environment:
+      # - PUID=1000
+      # - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=kavita
+      - flame.url=https://kavita.${DOMAIN}
+      - flame.icon=book
+networks:
+  default:
+    external: true
+    name: main-network

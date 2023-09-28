@@ -9,15 +9,15 @@ services:
     cap_add:
       - NET_ADMIN
     environment:
-      - PUID=1000
-      - PGID=1000
+      # - PUID=1000
+      # - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - URL=${DOMAIN}
       - SUBDOMAINS=wildcard
       - VALIDATION=dns
       # - CERTPROVIDER= #optional
       - DNSPLUGIN=cloudflare #optional
-      - PROPAGATION= 60
+      - PROPAGATION=60
       # - DUCKDNSTOKEN= #optional
       - EMAIL=admin@torqueserver.com #optional
       - ONLY_SUBDOMAINS=false #optional
@@ -26,25 +26,29 @@ services:
       - DOCKER_MODS=linuxserver/mods:swag-dashboard
     volumes:
       - /opt/swag/config:/config
-      - ${DISK0}/books:/share/books
-      - ${DISK1}/movies:/share/movies
-      - ${DISK0}/tvseries:/share/tvseries
-      - /opt/jellyseerr/config/logs:/jellyseerr/logs
     labels:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=swag
       - flame.url=https://dashboard.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=view-dashboard # https://materialdesignicons.com/
-      - homepage.group=Web Servers # homepage label https://github.com/benphelps/homepage
-      - homepage.name=swag
-      - homepage.icon=nginx.png # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=https://dashboard.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - homepage.description=
+      # - homepage.group=Web Servers # homepage label https://github.com/benphelps/homepage
+      # - homepage.name=swag
+      # - homepage.icon=nginx.png # https://gethomepage.dev/en/configs/services/#icons
+      # - homepage.href=https://dashboard.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      # - homepage.description=
     ports:
       - 443:443
       - 80:80 #optional
       - 81:81
+    restart: unless-stopped
+  authelia:
+    image: ghcr.io/authelia/authelia
+    container_name: authelia
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/authelia/config:/config
     restart: unless-stopped
 networks:
   default:
