@@ -21,13 +21,13 @@ services:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=portainer
-      - flame.url=https://portainer.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.url=https://torqueserver.home:9443/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=image-multiple # https://materialdesignicons.com/
-      - homepage.group=Container Management # homepage label https://github.com/benphelps/homepage
-      - homepage.name=portainer
-      - homepage.icon=portainer.png # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=https://portainer.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - homepage.description=
+      # - homepage.group=Container Management # homepage label https://github.com/benphelps/homepage
+      # - homepage.name=portainer
+      # - homepage.icon=portainer.png # https://gethomepage.dev/en/configs/services/#icons
+      # - homepage.href=https://portainer.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      # - homepage.description=
 networks:
   default:
     external: true

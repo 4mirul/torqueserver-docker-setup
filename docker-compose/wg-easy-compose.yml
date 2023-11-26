@@ -1,2 +1,37 @@
 # https://hub.docker.com/r/weejewel/wg-easy#!
 ---
+version: "3"
+services:
+  wg-easy:
+    container_name: wg-easy
+    image: corentinth/it-tools
+    environment:
+      - PASSWORD=${PASS}
+      - WG_HOST=wg.torqueserver.com
+    sysctls:
+      - net.ipv4.ip_forward=1
+      - net.ipv4.conf.all.src_valid_mark=1
+    cap_add:
+      - SYS_MODULE
+      - NET_ADMIN
+    ports:
+      - '51821:51821/tcp'
+      - '51820:51820/udp'
+    volumes:
+      - '/opt/wg-easy:/etc/wireguard'
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=wg-easy
+      - flame.url=http://torqueserver.home:51821/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=vpn # https://materialdesignicons.com/
+      # - homepage.group=Web Tools and Services # homepage label https://github.com/benphelps/homepage
+      # - homepage.name=it-tools
+      # - homepage.icon=it-tools.png # https://gethomepage.dev/en/configs/services/#icons
+      # - homepage.href=https://it-tools.${DOMAIN}/
+      # - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

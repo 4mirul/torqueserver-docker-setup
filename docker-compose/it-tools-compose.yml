@@ -12,13 +12,13 @@ services:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=it-tools
-      - flame.url=https://it-tools.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.url=http://torqueserver.home:8907/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=tools # https://materialdesignicons.com/
-      - homepage.group=Web Tools and Services # homepage label https://github.com/benphelps/homepage
-      - homepage.name=it-tools
-      - homepage.icon=it-tools.png # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=https://it-tools.${DOMAIN}/
-      - homepage.description=
+      # - homepage.group=Web Tools and Services # homepage label https://github.com/benphelps/homepage
+      # - homepage.name=it-tools
+      # - homepage.icon=it-tools.png # https://gethomepage.dev/en/configs/services/#icons
+      # - homepage.href=https://it-tools.${DOMAIN}/
+      # - homepage.description=
 networks:
   default:
     external: true
