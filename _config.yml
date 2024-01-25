@@ -1,7 +1,10 @@
 title: Torqueserver Docker Setup
 description: Id exercitation labore sint laborum tempor Lorem sit deserunt cillum velit. Est ea incididunt exercitation id. Ex deserunt et deserunt sint duis consequat pariatur laborum non. Nisi aliquip est qui aute do aliqua labore aliquip est veniam Lorem est.
-author: Mr. Y. Yoda
+author: 4mirul
 show_downloads: false
+remote_theme: pages-themes/hacker@v0.2.0
+plugins:
+- jekyll-remote-theme # add this line to the plugins list if you already have one
 social:
   name: URLs
   links:
