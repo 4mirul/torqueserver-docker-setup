@@ -4,7 +4,3 @@ author: 4mirul
 remote_theme: pages-themes/hacker@v0.2.0
 plugins:
 - jekyll-remote-theme # add this line to the plugins list if you already have one
-social:
-  name: URLs
-  links:
-    - https://github.com/4mirul
