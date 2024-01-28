@@ -7,10 +7,6 @@ services:
     image: "redis:7-alpine"
     command: redis-server # --requirepass ${REDIS_PASSWORD}
     container_name: redis
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Kuala_Lumpur
     volumes:
       - redisdata:/data
       # - /opt/redis/redis.conf:/usr/local/etc/redis/redis.conf
@@ -20,10 +16,6 @@ services:
   redisinsight:
     image: "redislabs/redisinsight:latest"
     container_name: redisinsight
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Kuala_Lumpur
     volumes:
       - redisinsight:/db
     ports:
@@ -37,11 +29,11 @@ services:
       - flame.name=redisinsight
       - flame.url=http://${HOSTNAME}:8002/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=database # https://materialdesignicons.com/
-      - homepage.group=Database Management Systems # homepage label https://github.com/benphelps/homepage
-      - homepage.name=redisinsight
-      - homepage.icon=redis.png # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=http://${HOSTNAME}:8002/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - homepage.description=
+      # - homepage.group=Database Management Systems # homepage label https://github.com/benphelps/homepage
+      # - homepage.name=redisinsight
+      # - homepage.icon=redis.png # https://gethomepage.dev/en/configs/services/#icons
+      # - homepage.href=http://${HOSTNAME}:8002/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      # - homepage.description=
 networks:
   default:
     external: true
