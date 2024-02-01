@@ -18,7 +18,7 @@ services:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=znc
-      - flame.url=http://${HOSTNAME}:6501/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.url=https://znc.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=transit-connection-variant # https://materialdesignicons.com/
       # - homepage.group=IRC Servers and Clients # homepage label https://github.com/benphelps/homepage
       # - homepage.name=znc
