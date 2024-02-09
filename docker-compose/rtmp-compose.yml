@@ -1,0 +1,21 @@
+# https://hub.docker.com/r/alqutami/rtmp-hls
+---
+version: "3"
+services:
+  rtmphls:
+    container_name: rtmphls
+    image: alqutami/rtmp-hls
+    ports:
+      - 8780:8080
+      - 1935:1935
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=rtmp-hls
+      - flame.url=http://rtmp.${DOMAIN}:8780/players/rtmp_hls.html # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=view-stream # https://materialdesignicons.com/
+networks:
+  default:
+    external: true
+    name: main-network
