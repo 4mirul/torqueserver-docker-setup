@@ -13,7 +13,7 @@ services:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=rtmp-hls
-      - flame.url=http://rtmp.${DOMAIN}:8780/players/rtmp_hls.html # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.url=http://rtmp.${DOMAIN}:8780/players/hls_hlsjs.html # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=view-stream # https://materialdesignicons.com/
 networks:
   default:

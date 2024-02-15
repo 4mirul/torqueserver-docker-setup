@@ -83,7 +83,7 @@ services:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # "app" works too
       - flame.name=authentik
-      - flame.url=http://${HOSTNAME}:9080
+      - flame.url=https://authentik.${DOMAIN}/
       - flame.icon=alpha-a
     env_file:
       - .env
