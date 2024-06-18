@@ -1,11 +1,11 @@
 # https://hub.docker.com/_/postgres/
 # https://hub.docker.com/r/dpage/pgadmin4
 ---
-version: "3.1"
+version: "3.9"
 services:
   postgres:
     container_name: postgres
-    image: postgres:15
+    image: postgres:16
     environment:
       - TZ=Asia/Kuala_Lumpur
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -37,11 +37,11 @@ services:
       - flame.name=pgadmin4
       - flame.url=http://${HOSTNAME}:8008/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=database # https://materialdesignicons.com/
-      - homepage.group=Database Management Systems # homepage label https://github.com/benphelps/homepage
-      - homepage.name=pgadmin4
-      - homepage.icon=pgadmin.png # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=http://${HOSTNAME}:8008/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - homepage.description=
+      # - homepage.group=Database Management Systems # homepage label https://github.com/benphelps/homepage
+      # - homepage.name=pgadmin4
+      # - homepage.icon=pgadmin.png # https://gethomepage.dev/en/configs/services/#icons
+      # - homepage.href=http://${HOSTNAME}:8008/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      # - homepage.description=
     restart: unless-stopped
 networks:
   default:

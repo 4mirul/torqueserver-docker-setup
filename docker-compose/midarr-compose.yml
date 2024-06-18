@@ -8,7 +8,7 @@ services:
       - 4000:4000
     volumes:
       # - /opt/midarr/database:/app/database
-      - ${DISK1}/movies:/movies
+      - ${DISK0}/movies:/movies
       - ${DISK0}/tvseries:/tv
     environment:
       - TZ=Asia/Kuala_Lumpur
@@ -25,10 +25,10 @@ services:
       - SETUP_ADMIN_NAME=admin
       - SETUP_ADMIN_PASSWORD=${LONG_PASS} # minimum length 12
       #       Radarr integration
-      - RADARR_BASE_URL=http://radarr:7878
+      - RADARR_BASE_URL=radarr:7878
       - RADARR_API_KEY=${RADARR_API_KEY}
       #       Sonarr integration
-      - SONARR_BASE_URL=http://sonarr:8989/
+      - SONARR_BASE_URL=sonarr:8989
       - SONARR_API_KEY=${SONARR_API_KEY}
       #       Sendgrid email integration
       # - SENDGRID_API_KEY=someApiKey
@@ -37,13 +37,8 @@ services:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=midarr
-      - flame.url=https://midarr.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.url=http://${HOSTNAME}:4000/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=play # https://materialdesignicons.com/
-      - homepage.group=Media Servers/Streaming # homepage label https://github.com/benphelps/homepage
-      - homepage.name=midarr
-      - homepage.icon=mdi-play # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=https://midarr.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - homepage.description=
 networks:
   default:
     external: true
