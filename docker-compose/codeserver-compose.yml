@@ -1,6 +1,6 @@
 # https://hub.docker.com/r/linuxserver/code-server
 ---
-version: "2.1"
+# version: "2.1"
 services:
   code-server:
     image: lscr.io/linuxserver/code-server:latest
@@ -11,7 +11,7 @@ services:
       - TZ=Asia/Kuala_Lumpur
       - PASSWORD=${PASS} #optional
       # - HASHED_PASSWORD= #optional
-      # - SUDO_PASSWORD=${SUDO_PASS} #optional
+      - SUDO_PASSWORD=${SUDO_PASS} #optional
       # - SUDO_PASSWORD_HASH= #optional
       - PROXY_DOMAIN=code.torqueserver.com #optional
       - DEFAULT_WORKSPACE=/torqueserver #optional
@@ -27,11 +27,11 @@ services:
       - flame.name=code-server
       - flame.url=https://code.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=microsoft-visual-studio-code # https://materialdesignicons.com/
-      - homepage.group=Web Tools and Services # homepage label https://github.com/benphelps/homepage
-      - homepage.name=code-server
-      - homepage.icon=mdi-microsoft-visual-studio-code # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=https://code.${DOMAIN}/
-      - homepage.description=
+      # - homepage.group=Web Tools and Services # homepage label https://github.com/benphelps/homepage
+      # - homepage.name=code-server
+      # - homepage.icon=mdi-microsoft-visual-studio-code # https://gethomepage.dev/en/configs/services/#icons
+      # - homepage.href=https://code.${DOMAIN}/
+      # - homepage.description=
 networks:
   default:
     external: true

@@ -1,0 +1,25 @@
+# https://example.com/
+---
+services:
+  redisinsight:
+    image: redis/redisinsight:latest
+    container_name: redisinsight
+    hostname: redisinsight
+    volumes:
+      - redisinsight:/data
+    ports:
+      - 5540:5540
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=redisinsight
+      - flame.url=http://${HOSTNAME}:5540/ # local http://${HOSTNAME}:5540/ or subdomain https://redisinsight.${DOMAIN}/ or subfolder https://${DOMAIN}/redisinsight
+      - flame.icon=alpha-r # https://materialdesignicons.com/
+volumes:
+  redisinsight:
+    external: true
+networks:
+  default:
+    external: true
+    name: main-network

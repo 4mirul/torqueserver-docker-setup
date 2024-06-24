@@ -1,7 +1,6 @@
 # https://hub.docker.com/r/linuxserver/mariadb
 # https://hub.docker.com/_/mariadb/
 ---
-version: "3"
 services:
   mariadb:
     image: mariadb:11

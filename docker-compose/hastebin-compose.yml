@@ -1,7 +1,6 @@
 # https://hub.docker.com/r/rlister/hastebin/#!
 # https://github.com/toptal/haste-server
 ---
-version: "3"
 services:
   hastebin:
     container_name: hastebin

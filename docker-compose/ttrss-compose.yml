@@ -1,2 +1,27 @@
-# https://hub.docker.com/r/nventiveux/ttrss/
+# https://example.com/
 ---
+services:
+  ttrss:
+    image: wangqiru/ttrss
+    container_name: ttrss
+    hostname: ttrss
+    environment:
+      - SELF_URL_PATH=https://rss.${DOMAIN}
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=ttrss
+      - DB_USER=postgres
+      - DB_PASS=${PASS}
+    ports:
+      - 8720:80
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=ttrss
+      - flame.url=https://rss.${DOMAIN}/ # local http://${HOSTNAME}:8720/ or subdomain https://tinytinyrss.${DOMAIN}/ or subfolder https://${DOMAIN}/tinytinyrss
+      - flame.icon=rss-box # https://materialdesignicons.com/
+networks:
+  default:
+    external: true
+    name: main-network

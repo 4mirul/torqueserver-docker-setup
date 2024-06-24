@@ -1,54 +1,29 @@
 # https://jellyfin.org/docs/
 # https://jellyfin.org/docs/general/administration/hardware-acceleration/
 ---
-version: "3.5"
 services:
   jellyfin:
     image: jellyfin/jellyfin
     container_name: jellyfin
     hostname: jellyfin
-    runtime: nvidia # Expose NVIDIA GPUs
-    user: 1000:1000
     network_mode: "host"
     volumes:
       - jellyfin-config:/config
       - jellyfin-cache:/cache
-      - ${DISK0}/tvseries:/data/tvshows
-      - ${DISK1}/movies:/data/movies
+      - ${DISK0}/tvseries:/data/tvseries
+      - ${DISK0}/movies:/data/movies
+      - /dev/dri:/dev/dri
     restart: "unless-stopped"
-    # ports:
-    #   - "8096:8096"
-    # Optional - alternative address used for autodiscovery
     environment:
-      - TZ=Asia/Kuala_Lumpur
       - JELLYFIN_PublishedServerUrl=https://jellyfin.${DOMAIN}/
-      - NVIDIA_DRIVER_CAPABILITIES=all
-      - NVIDIA_VISIBLE_DEVICES=all
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - capabilities: [gpu]
     devices:
-      - /dev/dri/renderD128:/dev/dri/renderD128
-      - /dev/dri/card0:/dev/dri/card0
-      - /dev/nvidia-caps:/dev/nvidia-caps
-      - /dev/nvidia0:/dev/nvidia0
-      - /dev/nvidiactl:/dev/nvidiactl
-      - /dev/nvidia-modeset:/dev/nvidia-modeset
-      - /dev/nvidia-uvm:/dev/nvidia-uvm
-      - /dev/nvidia-uvm-tools:/dev/nvidia-uvm-tools
+      - /dev/dri:/dev/dri
     labels:
       - com.centurylinklabs.watchtower.enable=true
       - flame.type=app # "app" works too
       - flame.name=jellyfin
       - flame.url=https://jellyfin.${DOMAIN}/
       - flame.icon=jellyfish
-      - homepage.group=Media Servers/Streaming
-      - homepage.name=jellyfin
-      - homepage.icon=jellyfin.png
-      - homepage.href=https://jellyfin.${DOMAIN}/
-      - homepage.description=
 volumes:
   jellyfin-config:
     external: true
