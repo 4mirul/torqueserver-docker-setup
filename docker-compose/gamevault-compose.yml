@@ -2,12 +2,12 @@
 ---
 # version: "3"
 services:
-  gamevault-backend:
+  gamevault:
     image: phalcode/gamevault-backend:latest
     container_name: gamevault
     hostname: gamevault
     environment:
-      DB_HOST: gamevault
+      DB_HOST: postgres
       DB_USERNAME: postgres
       DB_PASSWORD: ${PASS}
       # Uncomment and insert your RAWG API Key here if you have one (http://rawg.io/login?forward=developer)
