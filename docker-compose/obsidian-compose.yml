@@ -1,0 +1,30 @@
+---
+services:
+  obsidian:
+    image: lscr.io/linuxserver/obsidian:latest
+    container_name: obsidian
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      # - PUID=1000
+      # - PGID=1000
+      - TZ=Etc/Kuala_Lumpur
+    volumes:
+      - /opt/obsidian/config:/config
+    ports:
+      - 3003:3000
+      - 3004:3001
+    devices:
+      - /dev/dri:/dev/dri #optional
+    shm_size: "1gb"
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=obsidian
+      - flame.url=http://${HOSTNAME}:3003/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=view-dashboard # https://materialdesignicons.com/
+networks:
+  default:
+    external: true
+    name: main-network

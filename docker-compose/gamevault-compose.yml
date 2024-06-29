@@ -1,0 +1,32 @@
+# https://gamevau.lt/docs/server-docs/setup/docker-compose
+---
+# version: "3"
+services:
+  gamevault-backend:
+    image: phalcode/gamevault-backend:latest
+    container_name: gamevault
+    hostname: gamevault
+    environment:
+      DB_HOST: gamevault
+      DB_USERNAME: postgres
+      DB_PASSWORD: ${PASS}
+      # Uncomment and insert your RAWG API Key here if you have one (http://rawg.io/login?forward=developer)
+      # RAWG_API_KEY: YOURAPIKEYHERE
+    volumes:
+      # Mount the folder where your games are
+      - ${DISK0}/gamevault/games:/files
+      # Mount the folder where GameVault should store its images
+      - ${DISK0}/gamevault/images:/images
+    ports:
+      - 8089:8080/tcp
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=gamevault
+      - flame.url=http://${HOSTNAME}:8089/ # local http://${HOSTNAME}:8087/ or subdomain https://gamevault.${DOMAIN}/ or subfolder https://${DOMAIN}/gamevault
+      - flame.icon=vault # https://materialdesignicons.com/
+networks:
+  default:
+    external: true
+    name: main-network
