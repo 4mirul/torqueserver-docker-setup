@@ -19,7 +19,7 @@ services:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=ttrss
-      - flame.url=https://rss.${DOMAIN}/ # local http://${HOSTNAME}:8720/ or subdomain https://tinytinyrss.${DOMAIN}/ or subfolder https://${DOMAIN}/tinytinyrss
+      - flame.url=https://ttrss.${DOMAIN}/ # local http://${HOSTNAME}:8720/ or subdomain https://tinytinyrss.${DOMAIN}/ or subfolder https://${DOMAIN}/tinytinyrss
       - flame.icon=rss-box # https://materialdesignicons.com/
 networks:
   default:

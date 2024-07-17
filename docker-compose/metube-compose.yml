@@ -1,6 +1,5 @@
 # https://github.com/alexta69/metube
 ---
-version: "3"
 services:
   metube:
     image: ghcr.io/alexta69/metube
@@ -18,13 +17,8 @@ services:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=metube
-      - flame.url=http://${HOSTNAME}:8081/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.url=https://metube.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=youtube # https://materialdesignicons.com/
-      # - homepage.group=Download Managers # homepage label https://github.com/benphelps/homepage
-      # - homepage.name=metube
-      # - homepage.icon=metube.png # https://gethomepage.dev/en/configs/services/#icons
-      # - homepage.href=http://${HOSTNAME}:8081/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      # - homepage.description=
 networks:
   default:
     external: true
