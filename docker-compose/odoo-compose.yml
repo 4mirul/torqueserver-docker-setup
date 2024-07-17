@@ -1,0 +1,35 @@
+# https://example.com/
+---
+services:
+  odoo:
+    image: odoo:latest
+    container_name: odoo
+    hostname: odoo
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+      - HOST=postgres
+      - USER=odoo
+      - PASSWORD=${PASS}
+    # volumes:
+    #   - /path/to/config:/config
+    #   - ${DISK0}:/disk0
+    #   - ${DISK0}:/disk1
+    #   - volume-name1:/data
+    #   - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 8069:8069
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=odoo
+      - flame.url=https://odoo.${DOMAIN}/ # local http://${HOSTNAME}:8069/ or subdomain https://odoo.${DOMAIN}/ or subfolder https://${DOMAIN}/odoo
+      - flame.icon=ticket # https://materialdesignicons.com/
+    #dns:
+# volumes:
+#   volume-name1:
+#     external: true
+networks:
+  default:
+    external: true
+    name: main-network

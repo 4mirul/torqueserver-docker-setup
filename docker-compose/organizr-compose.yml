@@ -1,5 +1,5 @@
 # https://docs.organizr.app/
-version: "3.6"
+# version: "3.6"
 services:
   organizr:
     container_name: organizr
@@ -18,11 +18,6 @@ services:
       - flame.name=organizr
       - flame.url=http://${HOSTNAME}:8088/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=dock-window # https://materialdesignicons.com/
-      - homepage.group=Media Request and Management # homepage label https://github.com/benphelps/homepage
-      - homepage.name=organizr
-      - homepage.icon=organizr.png # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=http://${HOSTNAME}:8088/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - homepage.description=
 networks:
   default:
     external: true

@@ -16,7 +16,7 @@ services:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=dozzle
-      - flame.url=http://${HOSTNAME}:9998/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.url=https://dozzle.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=math-log # https://materialdesignicons.com/
       # - homepage.group=Monitoring and Analytics # homepage label https://github.com/benphelps/homepage
       # - homepage.name=dozzle

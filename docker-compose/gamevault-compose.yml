@@ -25,7 +25,7 @@ services:
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=gamevault
       - flame.url=http://${HOSTNAME}:8089/ # local http://${HOSTNAME}:8087/ or subdomain https://gamevault.${DOMAIN}/ or subfolder https://${DOMAIN}/gamevault
-      - flame.icon=vault # https://materialdesignicons.com/
+      - flame.icon=gamepad # https://materialdesignicons.com/
 networks:
   default:
     external: true
