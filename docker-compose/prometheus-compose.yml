@@ -7,7 +7,7 @@ services:
     container_name: prometheus
     hostname: prometheus
     ports:
-      - 9090:9090
+      - 9091:9090
     volumes:
       - /opt/prometheus:/etc/prometheus
     restart: unless-stopped
@@ -15,7 +15,7 @@ services:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=prometheus
-      - flame.url=http://${HOSTNAME}:9090/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.url=http://${HOSTNAME}:9091/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=finance # https://materialdesignicons.com/
 networks:
   default:
