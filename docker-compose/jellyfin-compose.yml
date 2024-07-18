@@ -12,6 +12,7 @@ services:
       - jellyfin-cache:/cache
       - ${DISK0}/tvseries:/data/tvseries
       - ${DISK0}/movies:/data/movies
+      - ${DISK0}/videos:/data/videos
       - /dev/dri:/dev/dri
     restart: "unless-stopped"
     environment:
