@@ -1,16 +1,11 @@
 # https://prometheus.io/docs/prometheus/latest/installation/
 # https://github.com/prometheus/prometheus/blob/main/documentation/examples/prometheus.yml
 ---
-version: "3"
 services:
   prometheus:
     image: prom/prometheus
     container_name: prometheus
     hostname: prometheus
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Kuala_Lumpur
     ports:
       - 9090:9090
     volumes:
@@ -22,11 +17,6 @@ services:
       - flame.name=prometheus
       - flame.url=http://${HOSTNAME}:9090/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=finance # https://materialdesignicons.com/
-      - homepage.group=Monitoring and Analytics # homepage label https://github.com/benphelps/homepage
-      - homepage.name=prometheus
-      - homepage.icon=prometheus.png # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=http://${HOSTNAME}:9090/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - homepage.description=
 networks:
   default:
     external: true

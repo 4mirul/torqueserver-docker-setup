@@ -1,0 +1,49 @@
+# https://hub.docker.com/_/mongo/
+# https://hub.docker.com/_/mongo-express
+# https://github.com/DrSnowbird/mongo-compass-docker/blob/master/docker-compose.yml
+---
+services:
+  mongo:
+    container_name: mongo
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
+      #MONGODB_AUTH_DATABASE: admin
+    ports:
+      - "27017:27017"
+    volumes:
+      - /opt/mongo/workspace:/workspace
+      - type: volume
+        source: mongodb-data
+        target: /data/db
+    restart: unless-stopped
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: ${PASS}
+      #ME_CONFIG_MONGODB_AUTH_DATABASE: admin
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PASS}
+      ME_CONFIG_MONGODB_URL: mongo://root:${MONGO_PASS}@mongo:27017/ 
+    depends_on:
+      - mongo
+    ports:
+      - 28081:8081
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=mongo-express
+      - flame.url=http://${HOSTNAME}:28081/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=database # https://materialdesignicons.com/
+volumes:
+  mongodb-data:
+    external: true
+networks:
+  default:
+    external: true
+    name: main-network

@@ -1,7 +1,6 @@
 # https://grafana.com/docs/grafana/latest/installation/docker/
 # https://hub.docker.com/r/grafana/grafana-oss
 ---
-version: "3"
 services:
   grafana:
     image: grafana/grafana-oss:latest
@@ -10,25 +9,20 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-polystat-panel,grafana-worldmap-panel,natel-discrete-panel,vonage-status-panel,marcusolsson-treemap-panel,grafana-xyzchart-panel,grafana-guidedtour-panel
+      # - GF_INSTALL_PLUGINS=grafana-clock-panel,vonage-status-panel,yesoreyeram-boomtable-panel,grafana-polystat-panel,grafana-worldmap-panel,natel-discrete-panel,vonage-status-panel,marcusolsson-treemap-panel,grafana-xyzchart-panel,grafana-guidedtour-panel,redis-datasource,natel-discrete-panel,natel-discrete-panel,jdbranham-diagram-panel,agenty-flowcharting-panel
     volumes:
       - grafana-data:/var/lib/grafana
       - grafana-config:/etc/grafana
       - grafana-log:/var/log/grafana
     ports:
-      - "3001:3000"
+      - "3002:3000"
     restart: unless-stopped
     labels:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=grafana
-      - flame.url=http://${HOSTNAME}:3001/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.url=https://grafana.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=chart-bar # https://materialdesignicons.com/
-      - homepage.group=Monitoring and Analytics # homepage label https://github.com/benphelps/homepage
-      - homepage.name=grafana
-      - homepage.icon=grafana.png # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=http://${HOSTNAME}:3001/
-      - homepage.description=
 networks:
   default:
     external: true

@@ -1,6 +1,5 @@
 # https://github.com/prometheus/node_exporter
 ---
-version: "3.8"
 services:
   node_exporter:
     image: quay.io/prometheus/node-exporter:latest
