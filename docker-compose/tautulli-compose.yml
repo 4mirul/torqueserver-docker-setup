@@ -1,30 +1,25 @@
 # https://hub.docker.com/r/linuxserver/tautulli
+# https://hub.docker.com/r/tautulli/tautulli
 ---
-version: "2.1"
 services:
   tautulli:
-    image: lscr.io/linuxserver/tautulli:latest
+    image: ghcr.io/tautulli/tautulli
     container_name: tautulli
+    restart: unless-stopped
+    volumes:
+      - /opt/tautulli/config:/config
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-    volumes:
-      - /opt/tautulli/config:/config
     ports:
       - 8181:8181
-    restart: unless-stopped
     labels:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=tautulli
       - flame.url=http://${HOSTNAME}:8181/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=chart-timeline # https://materialdesignicons.com/
-      - homepage.group=Media Request and Management # homepage label https://github.com/benphelps/homepage
-      - homepage.name=tautulli
-      - homepage.icon=tautulli.png # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=http://${HOSTNAME}:8181/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - homepage.description=
 networks:
   default:
     external: true

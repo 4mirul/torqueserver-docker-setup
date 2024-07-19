@@ -1,10 +1,9 @@
 # https://github.com/benphelps/homepage
 ---
-version: "3.3"
 services:
   homepage:
     container_name: homepage
-    image: ghcr.io/benphelps/homepage:latest
+    image: ghcr.io/gethomepage/homepage:latest
     environment:
       - TZ=Asia/Kuala_Lumpur
     volumes:

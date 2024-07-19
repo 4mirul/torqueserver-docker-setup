@@ -1,6 +1,5 @@
 # https://github.com/containrrr/watchtower
 ---
-version: "3"
 services:
   watchtower:
     image: containrrr/watchtower:latest
@@ -14,11 +13,15 @@ services:
       - WATCHTOWER_POLL_INTERVAL=14400
       - WATCHTOWER_LABEL_ENABLE=1
       - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_HTTP_API_METRICS=true
+      - WATCHTOWER_HTTP_API_TOKEN=token
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     labels:
       - com.centurylinklabs.watchtower.enable=true
     restart: unless-stopped
+    ports:
+      - 8085:8080
 networks:
   default:
     external: true
