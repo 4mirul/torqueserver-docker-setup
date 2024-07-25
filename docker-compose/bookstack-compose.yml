@@ -1,6 +1,5 @@
 # https://hub.docker.com/r/linuxserver/bookstack
 ---
-version: "2"
 services:
   bookstack:
     image: lscr.io/linuxserver/bookstack
@@ -8,10 +7,10 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - APP_URL=http://${HOSTNAME}:6875/
+      - APP_URL=https://bookstack.${DOMAIN}/
       - DB_HOST=mariadb
       - DB_USER=bookstack
-      - DB_PASS=${DB_PASS}
+      - DB_PASS=${PASS}
       - DB_DATABASE=bookstack
     volumes:
       - /opt/bookstack/config:/config
@@ -22,12 +21,12 @@ services:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=bookstack
-      - flame.url=http://${HOSTNAME}:6875/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.url=https://bookstack.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=book-open # https://materialdesignicons.com/
-      - homepage.group=Knowledge/Content Management Systems # homepage label https://github.com/benphelps/homepage
-      - homepage.name=bookstack
-      - homepage.icon=bookstack.png # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=http://${HOSTNAME}:6875/
+      - homepage.group=Content Management # homepage label https://github.com/benphelps/homepage
+      - homepage.name=Bookstack
+      - homepage.icon=bookstack.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
+      - homepage.href=https://bookstack.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - homepage.description=
 networks:
   default:

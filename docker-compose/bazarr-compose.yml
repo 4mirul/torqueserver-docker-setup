@@ -1,13 +1,12 @@
 # https://hub.docker.com/r/linuxserver/bazarr
 ---
-version: "2.1"
 services:
   bazarr:
     image: lscr.io/linuxserver/bazarr:latest
     container_name: bazarr
     environment:
-      # - PUID=1000
-      # - PGID=1000
+      - PUID=1000
+      - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/bazarr/config:/config
@@ -22,11 +21,15 @@ services:
       - flame.name=bazarr
       - flame.url=http://${HOSTNAME}:6767/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=subtitles # https://materialdesignicons.com/
-      # - homepage.group=Download Managers # homepage label https://github.com/benphelps/homepage
-      # - homepage.name=bazarr
-      # - homepage.icon=bazarr.png # https://gethomepage.dev/en/configs/services/#icons
-      # - homepage.href=http://${HOSTNAME}:6767/
-      # - homepage.description=
+      - homepage.group=Servarr # homepage label https://github.com/benphelps/homepage
+      - homepage.name=Bazarr
+      - homepage.icon=bazarr.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=http://${HOSTNAME}:6767/
+      - homepage.description=
+      - homepage.widget.type=bazarr
+      - homepage.widget.url=http://${HOSTNAME}:6767 # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.widget.key=${BAZARR_API_KEY}
+      - homepage.widget.fields=["missingEpisodes","missingMovies"] # optional
 networks:
   default:
     external: true

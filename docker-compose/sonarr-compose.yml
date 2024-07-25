@@ -1,13 +1,12 @@
 # https://hub.docker.com/r/linuxserver/sonarr
 ---
-version: "2.1"
 services:
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
     environment:
-      # - PUID=1000
-      # - PGID=1000
+      - PUID=1000
+      - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/sonarr/config:/config
@@ -21,12 +20,16 @@ services:
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=sonarr
       - flame.url=http://${HOSTNAME}:8989/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - flame.icon=television-box # https://materialdesignicons.com/
-      # - homepage.group=Media Request and Management # homepage label https://github.com/benphelps/homepage
-      # - homepage.name=sonarr
-      # - homepage.icon=sonarr.png # https://gethomepage.dev/en/configs/services/#icons
-      # - homepage.href=http://${HOSTNAME}:8989/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      # - homepage.description=
+      - flame.icon=television-box # https://pictogrammers.com/library/mdi/
+      - homepage.group=Servarr # homepage label https://github.com/benphelps/homepage
+      - homepage.name=Sonarr
+      - homepage.icon=sonarr.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
+      - homepage.href=http://${HOSTNAME}:8989/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
+      - homepage.widget.type=sonarr
+      - homepage.widget.url=http://${HOSTNAME}:8989 # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.widget.key=${SONARR_API_KEY}
+      - homepage.widget.fields=["wanted","queued","series"] # optional
 networks:
   default:
     external: true

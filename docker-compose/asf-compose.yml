@@ -1,6 +1,5 @@
 # https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Docker
 ---
-version: "3"
 services:
   asf:
     image: justarchi/archisteamfarm:latest
@@ -16,13 +15,13 @@ services:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=asf
-      - flame.url=http://${HOSTNAME}:1242/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - flame.icon=steam # https://materialdesignicons.com/
-      # - homepage.group=Games # homepage label https://github.com/benphelps/homepage
-      # - homepage.name=asf
-      # - homepage.icon=archisteamfarm.png # https://gethomepage.dev/en/configs/services/#icons
-      # - homepage.href=http://${HOSTNAME}:1242/
-      # - homepage.description=
+      - flame.url=http://${HOSTNAME}:1242/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=steam # https://pictogrammers.com/library/mdi/
+      - homepage.group=Games # homepage label https://github.com/benphelps/homepage
+      - homepage.name=ASF
+      - homepage.icon=steam.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
+      - homepage.href=http://${HOSTNAME}:1242/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.description=
 networks:
   default:
     external: true

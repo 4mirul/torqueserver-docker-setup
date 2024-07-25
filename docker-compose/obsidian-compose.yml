@@ -6,11 +6,12 @@ services:
     security_opt:
       - seccomp:unconfined #optional
     environment:
-      # - PUID=1000
-      # - PGID=1000
+      - PUID=1000
+      - PGID=1000
       - TZ=Etc/Kuala_Lumpur
     volumes:
-      - /opt/obsidian/config:/config
+      - /opt/obsidian/config:/config/
+      - ${DISK0}/obsidian:/obsidian
     ports:
       - 3003:3000
       - 3004:3001
@@ -22,7 +23,7 @@ services:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=obsidian
-      - flame.url=http://${HOSTNAME}:3003/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.url=https://obsidian.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=view-dashboard # https://materialdesignicons.com/
 networks:
   default:

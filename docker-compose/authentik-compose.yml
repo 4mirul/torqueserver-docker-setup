@@ -49,8 +49,19 @@ services:
       - flame.name=authentik
       - flame.url=https://authentik.${DOMAIN}/
       - flame.icon=alpha-a
+      - homepage.group=Authenticator # homepage label https://gethomepage.dev/
+      - homepage.name=Authentik
+      - homepage.icon=authentik.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
+      - homepage.href=https://authentik.${DOMAIN}/
+      - homepage.description=
+      - homepage.widget.type=authentik
+      - homepage.widget.url=http://${HOSTNAME}:9080 # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - homepage.widget.key=${AUTHENTIK_TOKEN}
+      - homepage.widget.fields=["users","loginsLast24H","failedLoginsLast24H"] # optional
     env_file:
       - .env
+    depends_on:
+      - server
 networks:
   default:
     external: true

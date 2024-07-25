@@ -1,2 +1,33 @@
 # https://hub.docker.com/r/linuxserver/hedgedoc
+# https://docs.hedgedoc.org/setup/docker/
 ---
+services:
+  hedgedoc:
+    image: quay.io/hedgedoc/hedgedoc:latest
+    container_name: hedgedoc
+    environment:
+      - CMD_DB_URL=postgres://hedgedoc:${SPASS}@postgres:5432/hedgedoc
+      - CMD_DOMAIN=hedgedoc.torqueserver.com
+      - CMD_URL_ADDPORT=false
+      - CMD_PROTOCOL_USESSL=true
+      - CMD_PORT=80
+      # - CMD_ALLOW_EMAIL_REGISTER=true
+      - NODE_ENV=production
+    volumes:
+      - hedgedoc-uploads:/hedgedoc/public/uploads
+    ports:
+      - 3005:80
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - flame.type=app # "app" works too
+      - flame.name=hedgedoc
+      - flame.url=https://hedgedoc.${DOMAIN}/
+      - flame.icon=book-open
+networks:
+  default:
+    external: true
+    name: main-network
+volumes:
+  hedgedoc-uploads:
+    external: true

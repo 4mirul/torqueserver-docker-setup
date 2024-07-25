@@ -12,7 +12,12 @@ services:
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=alertmanager
       - flame.url=http://${HOSTNAME}:9093/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - flame.icon=alarm # https://materialdesignicons.com/
+      - flame.icon=alarm # https://pictogrammers.com/library/mdi/
+      - homepage.group=Monitoring # homepage label https://gethomepage.dev/
+      - homepage.name=Alertmanager
+      - homepage.icon=alertmanager.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
+      - homepage.href=http://${HOSTNAME}:9093/
+      - homepage.description=
 networks:
   default:
     external: true

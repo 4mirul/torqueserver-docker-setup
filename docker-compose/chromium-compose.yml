@@ -1,6 +1,5 @@
 # https://hub.docker.com/r/linuxserver/chromium
 ---
-version: "2.1"
 services:
   chromium:
     image: lscr.io/linuxserver/chromium:latest
@@ -8,8 +7,8 @@ services:
     security_opt:
       - seccomp:unconfined #optional
     environment:
-      # - PUID=1000
-      # - PGID=1000
+      - PUID=1000
+      - PGID=1000
       - TZ=Asia/KualaLumpur
       - CHROME_CLI=http://torqueserver.home:5005/ #optional
       # - CUSTOM_USER=admin
@@ -28,6 +27,11 @@ services:
       - flame.name=chromium
       - flame.url=https://chromium.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=google-chrome # https://materialdesignicons.com/
+      - homepage.group=Browser # homepage label https://github.com/benphelps/homepage
+      - homepage.name=Chromium
+      - homepage.icon=chromium.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.href=https://chromium.${DOMAIN}/
+      - homepage.description=
     dns: ${PIHOLE_IP} # pihole dns
 networks:
   default:
