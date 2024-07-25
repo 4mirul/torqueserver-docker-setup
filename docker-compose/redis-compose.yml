@@ -10,6 +10,8 @@ services:
       - redisdata:/data
       # - /opt/redis/redis.conf:/usr/local/etc/redis/redis.conf
     restart: unless-stopped
+    ports:
+      - 6379:6379
     labels:
       - com.centurylinklabs.watchtower.enable=true
 networks:
