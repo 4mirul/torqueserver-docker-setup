@@ -1,5 +1,6 @@
 # https://prometheus.io/docs/prometheus/latest/installation/
 # https://github.com/prometheus/prometheus/blob/main/documentation/examples/prometheus.yml
+# https://samber.github.io/awesome-prometheus-alerts/
 ---
 services:
   prometheus:
@@ -10,6 +11,8 @@ services:
       - 9091:9090
     volumes:
       - /opt/prometheus:/etc/prometheus
+    extra_hosts:
+      host.docker.internal: host-gateway
     restart: unless-stopped
     labels:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
@@ -17,6 +20,15 @@ services:
       - flame.name=prometheus
       - flame.url=http://${HOSTNAME}:9091/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=finance # https://materialdesignicons.com/
+      - homepage.group=Monitoring # homepage label https://gethomepage.dev/latest/
+      - homepage.name=Prometheus
+      - homepage.icon=prometheus.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
+      - homepage.href=http://${HOSTNAME}:9091/ # local http://${{HOSTNAME}}:{port_out}/ or subdomain https://{name}.${{DOMAIN}}/ or subfolder https://${{DOMAIN}}/{name}
+      - homepage.description=
+      - homepage.widget.type=prometheus
+      - homepage.widget.url=http://${HOSTNAME}:9091/
+      - homepage.widget.key=
+      - homepage.widget.fields=["targets_up","targets_down","targets_total"] # optional
 networks:
   default:
     external: true

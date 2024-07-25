@@ -1,0 +1,46 @@
+# link
+---
+services:
+  {name}:
+    image: alpine:latest
+    container_name: {name}
+    hostname: {name}
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /path/to/config:/config
+      - ${{DISK0}}:/disk0
+      - ${{DISK0}}:/disk1
+      - volume-name1:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - {port_out}:{port_in}
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name={name}
+      - flame.url=http://${{HOSTNAME}}:{port_out}/ # local http://${{HOSTNAME}}:{port_out}/ or subdomain https://{name}.${{DOMAIN}}/ or subfolder https://${{DOMAIN}}/{name}
+      - flame.icon=icon_name # https://materialdesignicons.com/
+      - homepage.group={group_name} # homepage label https://gethomepage.dev/latest/
+      - homepage.name={name}
+      - homepage.icon=icon_name.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
+      - homepage.href=http://${{HOSTNAME}}:{port_out}/ # local http://${{HOSTNAME}}:{port_out}/ or subdomain https://{name}.${{DOMAIN}}/ or subfolder https://${{DOMAIN}}/{name}
+      - homepage.description=
+      - homepage.widget.type=homepage
+      - homepage.widget.url=http://${{HOST}}:{port_out}/
+      - homepage.widget.key=yourembyapikeyhere
+      - homepage.widget.fields=["field1","field2"] # optional
+    dns:
+    networks:
+      default:
+        ipv4_address: ${IP}
+volumes:
+  volume-name1:
+    external: true
+networks:
+  default:
+    external: true
+    name: main-network

@@ -21,9 +21,9 @@ services:
       - flame.name=bazarr
       - flame.url=http://${HOSTNAME}:6767/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=subtitles # https://materialdesignicons.com/
-      - homepage.group=Servarr # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Servarr # homepage label https://gethomepage.dev/latest/
       - homepage.name=Bazarr
-      - homepage.icon=bazarr.png # https://gethomepage.dev/en/configs/services/#icons
+      - homepage.icon=bazarr.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
       - homepage.href=http://${HOSTNAME}:6767/
       - homepage.description=
       - homepage.widget.type=bazarr
