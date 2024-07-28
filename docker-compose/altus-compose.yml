@@ -1,0 +1,34 @@
+# https://docs.linuxserver.io/images/docker-altus/
+---
+services:
+  altus:
+    image: lscr.io/linuxserver/altus:latest
+    container_name: altus
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/altus/config:/config
+    ports:
+      # - 3025:3000
+      # - 3026:3001
+    shm_size: "1gb"
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=altus
+      - flame.url=http://${HOSTNAME}:3025/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=chat # https://materialdesignicons.com/
+      - homepage.group=Tools # homepage label https://gethomepage.dev/latest/
+      - homepage.name=Altus
+      - homepage.icon=altus.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
+      - homepage.href=http://${HOSTNAME}:3025/ # local http://${{HOSTNAME}}:{port_out}/ or subdomain https://{name}.${{DOMAIN}}/ or subfolder https://${{DOMAIN}}/{name}
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network
