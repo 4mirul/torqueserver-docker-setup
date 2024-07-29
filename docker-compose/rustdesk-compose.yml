@@ -6,7 +6,7 @@ services:
     image: rustdesk/rustdesk-server:latest
     command: hbbs
     volumes:
-      - ./data:/root
+      - /opt/rustdesk/data:/root
     network_mode: "host"
     depends_on:
       - hbbr
@@ -16,6 +16,6 @@ services:
     image: rustdesk/rustdesk-server:latest
     command: hbbr
     volumes:
-      - ./data:/root
+      - /opt/rustdesk/data:/root
     network_mode: "host"
     restart: unless-stopped
