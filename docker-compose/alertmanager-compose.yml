@@ -2,6 +2,7 @@ services:
   alertmanager:
     image: prom/alertmanager
     container_name: alertmanager
+    command: --config.file=/alertmanager/alertmanager.yml --log.level=debug
     volumes:
       - "/opt/alertmanager/alertmanager.yml:/alertmanager/alertmanager.yml"
     ports:

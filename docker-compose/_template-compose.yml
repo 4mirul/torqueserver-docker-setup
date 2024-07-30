@@ -23,7 +23,7 @@ services:
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name={name}
       - flame.url=http://${{HOSTNAME}}:{port_out}/ # local http://${{HOSTNAME}}:{port_out}/ or subdomain https://{name}.${{DOMAIN}}/ or subfolder https://${{DOMAIN}}/{name}
-      - flame.icon=icon_name # https://materialdesignicons.com/
+      - flame.icon=icon_name # https://pictogrammers.com/library/mdi/
       - homepage.group={group_name} # homepage label https://gethomepage.dev/latest/
       - homepage.name={name}
       - homepage.icon=icon_name.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png

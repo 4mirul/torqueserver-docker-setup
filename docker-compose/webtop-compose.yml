@@ -1,9 +1,8 @@
 # https://hub.docker.com/r/linuxserver/webtop
 ---
-version: "2.1"
 services:
   webtop:
-    image: lscr.io/linuxserver/webtop:alpine-openbox
+    image: lscr.io/linuxserver/webtop:debian-openbox
     container_name: webtop
     security_opt:
       - seccomp:unconfined #optional
@@ -12,7 +11,7 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       # - SUBFOLDER=/ #optional
-      # - TITLE=Webtop #optional
+      - TITLE=Webtop #optional
       # - DRINODE=/dev/dri/renderD128
     volumes:
       - /opt/webtop/config:/config
@@ -30,7 +29,7 @@ services:
       - flame.name=webtop
       - flame.url=https://webtop.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=linux # https://materialdesignicons.com/
-      - homepage.group=Web Tools and Services # homepage label https://github.com/benphelps/homepage
+      - homepage.group=Tools
       - homepage.name=webtop
       - homepage.icon=webtop.png # https://gethomepage.dev/en/configs/services/#icons
       - homepage.href=https://webtop.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
