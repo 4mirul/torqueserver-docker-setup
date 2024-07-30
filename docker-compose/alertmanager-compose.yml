@@ -1,3 +1,5 @@
+# https://samber.github.io/awesome-prometheus-alerts/
+---
 services:
   alertmanager:
     image: prom/alertmanager
