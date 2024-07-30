@@ -14,7 +14,7 @@ services:
     tty: true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./config:/.config/jesseduffield/lazydocker
+      - /opt/lazydocker/config:/.config/jesseduffield/lazydocker
 networks:
   default:
     external: true
