@@ -4,7 +4,7 @@ services:
   filebrowser:
     image: filebrowser/filebrowser
     container_name: filebrowser
-    user: "${UID}:${GID}"
+    # user: "${UID}:${GID}"
     volumes:
       - /:/srv
       - /opt/filebrowser/database.db:/database.db # If you don't already have a database file, make sure to create a new empty file under the path you specified. Otherwise, Docker will create an empty folder instead of an empty file, resulting in an error when mounting the database into the container.
@@ -15,7 +15,7 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
-      - flame.name=ilebrowser
+      - flame.name=filebrowser
       - flame.url=https://filebrowser.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=folder # https://materialdesignicons.com/
       - homepage.group=File Management # homepage label https://github.com/benphelps/homepage
