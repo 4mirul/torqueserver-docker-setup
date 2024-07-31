@@ -25,10 +25,10 @@ services:
       - homepage.icon=prometheus.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
       - homepage.href=http://${HOSTNAME}:9091/ # local http://${{HOSTNAME}}:{port_out}/ or subdomain https://{name}.${{DOMAIN}}/ or subfolder https://${{DOMAIN}}/{name}
       - homepage.description=
-      - homepage.widget.type=prometheus
-      - homepage.widget.url=http://${HOSTNAME}:9091/
-      - homepage.widget.key=
-      - homepage.widget.fields=["targets_up","targets_down","targets_total"] # optional
+      # - homepage.widget.type=prometheus
+      # - homepage.widget.url=http://${HOSTNAME}:9091/
+      # - homepage.widget.key=
+      # - homepage.widget.fields=["targets_up","targets_down","targets_total"] # optional
 networks:
   default:
     external: true

@@ -26,10 +26,10 @@ services:
       - homepage.icon=sonarr.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
       - homepage.href=http://${HOSTNAME}:8989/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - homepage.description=
-      - homepage.widget.type=sonarr
-      - homepage.widget.url=http://${HOSTNAME}:8989 # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - homepage.widget.key=${SONARR_API_KEY}
-      - homepage.widget.fields=["wanted","queued","series"] # optional
+      # - homepage.widget.type=sonarr
+      # - homepage.widget.url=http://${HOSTNAME}:8989 # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      # - homepage.widget.key=${SONARR_API_KEY}
+      # - homepage.widget.fields=["wanted","queued","series"] # optional
 networks:
   default:
     external: true

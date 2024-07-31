@@ -26,10 +26,10 @@ services:
       - homepage.icon=bazarr.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
       - homepage.href=http://${HOSTNAME}:6767/
       - homepage.description=
-      - homepage.widget.type=bazarr
-      - homepage.widget.url=http://${HOSTNAME}:6767 # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - homepage.widget.key=${BAZARR_API_KEY}
-      - homepage.widget.fields=["missingEpisodes","missingMovies"] # optional
+      # - homepage.widget.type=bazarr
+      # - homepage.widget.url=http://${HOSTNAME}:6767 # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      # - homepage.widget.key=${BAZARR_API_KEY}
+      # - homepage.widget.fields=["missingEpisodes","missingMovies"] # optional
 networks:
   default:
     external: true
