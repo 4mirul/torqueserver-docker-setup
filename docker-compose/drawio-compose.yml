@@ -1,0 +1,38 @@
+# https://github.com/jgraph/docker-drawio/
+---
+services:
+  drawio:
+    image: jgraph/drawio
+    container_name: drawio
+    # ports:
+    #   - 8080:8080
+    #   - 8443:8443
+    environment:
+      PUBLIC_DNS: drawio.torqueserver.com
+      # ORGANISATION_UNIT: unit
+      # ORGANISATION: org
+      CITY: Pokok Sena
+      STATE: Kedah
+      COUNTRY_CODE: MY
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://domain:8080 || exit 1"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=drawio
+      - flame.url=https://drawio.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=pencil # https://pictogrammers.com/library/mdi/
+      - homepage.group=Tools # homepage label https://gethomepage.dev/
+      - homepage.name=Drawio
+      - homepage.icon=drawio.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
+      - homepage.href=https://drawio.${DOMAIN}/
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network
