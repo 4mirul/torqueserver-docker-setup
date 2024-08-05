@@ -1,30 +1,30 @@
 # https://forgejo.org/docs/next/admin/installation-docker/
 ---
 services:
-  server:
-    image: codeberg.org/forgejo/forgejo:7
+  forgejo:
+    image: codeberg.org/forgejo/forgejo:8
     container_name: forgejo
-    environment:
-      - USER_UID=1000
-      - USER_GID=1000
+    # environment:
+    #   - USER_UID=1000
+    #   - USER_GID=1000
     restart: always
     volumes:
       - /opt/forgejo:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
-      - '3030:3000'
-      - '222:22'
+      # - '3030:3000'
+      - '2222:22'
     labels:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=forgejo
-      - flame.url=http://${HOSTNAME}:3030/
+      - flame.url=https://forgejo.${DOMAIN}/
       - flame.icon=git
       - homepage.group=Tools # homepage label https://gethomepage.dev/latest/
       - homepage.name=Forgejo
       - homepage.icon=forgejo.png
-      - homepage.href=http://${HOSTNAME}:3030/
+      - homepage.href=https://forgejo.${DOMAIN}/
       - homepage.description=
 networks:
   default:

@@ -2,7 +2,7 @@
 ---
 services:
   {name}:
-    image: alpine:latest
+    image: {image}
     container_name: {name}
     hostname: {name}
     environment:
@@ -15,10 +15,13 @@ services:
       - ${{DISK0}}:/disk1
       - volume-name1:/data
       - /var/run/docker.sock:/var/run/docker.sock
+    extra_hosts:
+      host.docker.internal: host-gateway
     ports:
       - {port_out}:{port_in}
     restart: unless-stopped
     labels:
+      - autoheal-app=true
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name={name}
@@ -32,7 +35,7 @@ services:
       - homepage.widget.type=homepage
       - homepage.widget.url=http://${{HOST}}:{port_out}/
       - homepage.widget.key=yourembyapikeyhere
-      - homepage.widget.fields=["field1","field2"] # optional
+      - homepage.widget.fields=["field1","field2"]
     dns:
     networks:
       default:
