@@ -15,7 +15,7 @@ services:
     volumes:
       - /opt/authentik/media:/media
       - /opt/authentik/custom-templates:/templates
-      - /opt/authentik/custom.css:/web/dist/custom.css
+      # - /opt/authentik/custom.css:/web/dist/custom.css
     env_file:
       - .env
     ports:

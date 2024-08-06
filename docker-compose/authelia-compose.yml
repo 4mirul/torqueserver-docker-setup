@@ -2,7 +2,6 @@
 # https://docs.linuxserver.io/general/swag
 # https://github.com/authelia/authelia
 ---
-version: "3.8"
 services:
   authelia:
     container_name: authelia
@@ -13,11 +12,12 @@ services:
         aliases: []
     expose:
       - 9091
-    # environment:
-    #   AUTHELIA_JWT_SECRET_FILE: /secrets/JWT_SECRET
-    #   AUTHELIA_SESSION_SECRET_FILE: /secrets/SESSION_SECRET
-    #   AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE: /secrets/STORAGE_PASSWORD
-    #   AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE: /secrets/STORAGE_ENCRYPTION_KEY
+    secrets: ['JWT_SECRET', 'SESSION_SECRET', 'STORAGE_PASSWORD', 'STORAGE_ENCRYPTION_KEY']
+    environment:
+      AUTHELIA_IDENTITY_VALIDATION_RESET_PASSWORD_JWT_SECRET_FILE: '/run/secrets/JWT_SECRET'
+      AUTHELIA_SESSION_SECRET_FILE: '/run/secrets/SESSION_SECRET'
+      AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE: '/run/secrets/STORAGE_PASSWORD'
+      AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE: '/run/secrets/STORAGE_ENCRYPTION_KEY'
     volumes:
       - /opt/authelia/config:/config
       - /opt/authelia/secrets:/secrets
@@ -25,14 +25,23 @@ services:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=authelia
-      - flame.url=http://${HOSTNAME}:9091/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.url=https://authelia.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=lock # https://materialdesignicons.com/
       - homepage.group=Authentication and Authorization Services # homepage label https://github.com/benphelps/homepage
-      - homepage.name=authelia
+      - homepage.name=Authelia
       - homepage.icon=authelia.png # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=http://${HOSTNAME}:9091/
+      - homepage.href=https://authelia.${DOMAIN}/
       - homepage.description=
 networks:
   default:
     external: true
     name: main-network
+secrets:
+  JWT_SECRET:
+    file: '/opt/authelia/secrets/JWT_SECRET'
+  SESSION_SECRET:
+    file: '/opt/authelia/secrets/SESSION_SECRET'
+  STORAGE_PASSWORD:
+    file: '/opt/authelia/secrets/STORAGE_PASSWORD'
+  STORAGE_ENCRYPTION_KEY:
+    file: '/opt/authelia/secrets/STORAGE_ENCRYPTION_KEY'
