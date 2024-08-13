@@ -1,0 +1,54 @@
+# https://hub.docker.com/_/influxdb/
+# https://www.influxdata.com/blog/running-influxdb-2-0-and-telegraf-using-docker/#docker-compose
+---
+services:
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=${PASS}
+      - DOCKER_INFLUXDB_INIT_ORG=torqueserver
+      - DOCKER_INFLUXDB_INIT_BUCKET=my-bucket
+      - DOCKER_INFLUXDB_INIT_RETENTION=1w
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-super-secret-auth-token
+    volumes:
+      # Mount for influxdb data directory and configuration
+      - influxdbv2-data:/var/lib/influxdb2:rw
+      - influxdbv2-config:/etc/influxdb2
+    ports:
+      - "8086:8086"
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=influxdb
+      - flame.url=http://${HOSTNAME}:8086/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=chart-bar # https://materialdesignicons.com/
+      - homepage.group=Monitoring # homepage label https://gethomepage.dev/
+      - homepage.name=InfluxDB
+      - homepage.icon=influxdb.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
+      - homepage.href=http://${HOSTNAME}:8086/
+      - homepage.description=
+  telegraf:
+    image: telegraf:latest
+    container_name: telegraf
+    depends_on:
+      - influxdb
+    volumes:
+      # Mount for telegraf config
+      - /opt/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: main-network
+volumes:
+  influxdbv2-data:
+    external: true
+  influxdbv2-config:
+    external: true

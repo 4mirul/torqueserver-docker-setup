@@ -1,0 +1,26 @@
+# https://www.audiobookshelf.org/docs#docker-compose-install
+---
+services:
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    container_name: audiobookshelf
+    ports:
+      - 13378:80
+    volumes:
+      - /mnt/disk0/audiobooks:/audiobooks
+      - /mnt/disk0/podcasts:/podcasts
+      - /opt/audiobookshelf/config:/config
+      - /opt/audiobookshelf/metadata:/metadata
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=audiobookshelf
+      - flame.url=http://${HOSTNAME}:13378/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=book # https://pictogrammers.com/library/mdi/
+networks:
+  default:
+    external: true
+    name: main-network

@@ -10,9 +10,11 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      # - SUBFOLDER=/ #optional
+      - SUBFOLDER=/ #optional
       - TITLE=Webtop #optional
-      # - DRINODE=/dev/dri/renderD128
+      - DRINODE=/dev/dri/renderD128
+      - CUSTOM_USER=${WEBTOP_USER}
+      - PASSWORD=${WEBTOP_PASS}
     volumes:
       - /opt/webtop/config:/config
       - /var/run/docker.sock:/var/run/docker.sock #optional
@@ -21,7 +23,7 @@ services:
       # - 3001:3001
     devices:
       - /dev/dri:/dev/dri #optional
-    shm_size: "1gb" #optional
+    shm_size: "2gb" #optional
     restart: unless-stopped
     labels:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update

@@ -1,14 +1,13 @@
 #https://hub.docker.com/r/linuxserver/homeassistant
 ---
-version: "2.1"
 services:
   homeassistant:
     image: lscr.io/linuxserver/homeassistant:latest
     container_name: homeassistant
     network_mode: host
     environment:
-      - PUID=1000
-      - PGID=1000
+      # - PUID=1000
+      # - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /opt/homeassistant/config:/config
@@ -21,10 +20,10 @@ services:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=homeassistant
-      - flame.url=http://${HOSTNAME}:3900/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.url=https://homeassistant.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=home # https://materialdesignicons.com/
       - homepage.group=Home Automation # homepage label https://github.com/benphelps/homepage
-      - homepage.name=homeassistant
+      - homepage.name=Homeassistant
       - homepage.icon=homeassistant.png # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=http://${HOSTNAME}:8123/
+      - homepage.href=https://homeassistant.${DOMAIN}/
       - homepage.description=

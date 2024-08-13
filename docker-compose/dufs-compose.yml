@@ -1,0 +1,26 @@
+# https://github.com/sigoden/dufs
+---
+services:
+  dufs:
+    image: sigoden/dufs
+    container_name: dufs
+    # ports:
+      # - 5000:5000
+    volumes:
+      - /:/data
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=dufs
+      - flame.url=https://dufs.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=file # https://pictogrammers.com/library/mdi/
+      - homepage.group=File Management # homepage label https://gethomepage.dev/
+      - homepage.name=Dufs
+      - homepage.icon=filebrowser.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
+      - homepage.href=https://dufs.${DOMAIN}/
+      - homepage.description=
+networks:
+  default:
+    external: true
+    name: main-network

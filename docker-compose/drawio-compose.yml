@@ -15,7 +15,7 @@ services:
       STATE: Kedah
       COUNTRY_CODE: MY
     healthcheck:
-      test: ["CMD-SHELL", "curl -f https://${DOMAIN} || exit 1"]
+      test: ["CMD-SHELL", "curl -f https://drawio.${DOMAIN} || exit 1"]
       interval: 1m30s
       timeout: 10s
       retries: 5
@@ -29,7 +29,7 @@ services:
       - flame.icon=pencil # https://pictogrammers.com/library/mdi/
       - homepage.group=Tools # homepage label https://gethomepage.dev/
       - homepage.name=Drawio
-      - homepage.icon=drawio.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
+      - homepage.icon=draw-io.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
       - homepage.href=https://drawio.${DOMAIN}/
       - homepage.description=
 networks:

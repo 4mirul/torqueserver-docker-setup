@@ -1,0 +1,28 @@
+# https://grafana.com/docs/loki/latest/installation/docker/
+---
+services:
+  loki:
+    image: grafana/loki:latest
+    container_name: loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/loki-config.yaml
+    volumes:
+      - "/opt/loki/loki-config.yaml:/etc/loki/loki-config.yaml"
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+  promtail:
+    image: grafana/promtail:latest
+    container_name: promtail
+    volumes:
+      - /var/log:/var/log
+      - "/opt/loki/promtail-config.yaml:/etc/promtail/promtail-config.yaml"
+    command: -config.file=/etc/promtail/promtail-config.yaml
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+networks:
+  default:
+    external: true
+    name: main-network

@@ -5,17 +5,14 @@ services:
   grafana:
     image: grafana/grafana-oss:latest
     container_name: grafana
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Kuala_Lumpur
+    # environment:
       # - GF_INSTALL_PLUGINS=grafana-clock-panel,vonage-status-panel,yesoreyeram-boomtable-panel,grafana-polystat-panel,grafana-worldmap-panel,natel-discrete-panel,vonage-status-panel,marcusolsson-treemap-panel,grafana-xyzchart-panel,grafana-guidedtour-panel,redis-datasource,natel-discrete-panel,natel-discrete-panel,jdbranham-diagram-panel,agenty-flowcharting-panel
     volumes:
       - grafana-data:/var/lib/grafana
       - grafana-config:/etc/grafana
       - grafana-log:/var/log/grafana
-    ports:
-      - "3002:3000"
+    # ports:
+    #   - "3002:3000"
     restart: unless-stopped
     labels:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
@@ -23,6 +20,11 @@ services:
       - flame.name=grafana
       - flame.url=https://grafana.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=chart-bar # https://materialdesignicons.com/
+      - homepage.group=MOnitoring # homepage label https://gethomepage.dev/
+      - homepage.name=Grafana
+      - homepage.icon=grafana.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
+      - homepage.href=https://grafana.${DOMAIN}/ 
+      - homepage.description=
 networks:
   default:
     external: true
