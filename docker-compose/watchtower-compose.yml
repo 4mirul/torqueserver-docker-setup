@@ -9,19 +9,19 @@ services:
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - WATCHTOWER_NOTIFICATIONS=slack
-      - WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL=${DISCORD_WEBHOOK}/slack
+      - WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL=${WATCHTOWER_DISCORD_WEBHOOK}/slack
       - WATCHTOWER_POLL_INTERVAL=14400
       - WATCHTOWER_LABEL_ENABLE=1
       - WATCHTOWER_CLEANUP=true
       - WATCHTOWER_HTTP_API_METRICS=true
-      - WATCHTOWER_HTTP_API_TOKEN=token
+      - WATCHTOWER_HTTP_API_TOKEN=${WATCHTOWER_HTTP_API_TOKEN}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     labels:
       - com.centurylinklabs.watchtower.enable=true
     restart: unless-stopped
     ports:
-      - 8085:8080
+      - 8088:8080
 networks:
   default:
     external: true

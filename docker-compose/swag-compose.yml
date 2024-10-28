@@ -8,8 +8,8 @@ services:
     cap_add:
       - NET_ADMIN
     environment:
-      # - PUID=1000
-      # - PGID=1000
+      - PUID=1000
+      - PGID=1000
       - TZ=Asia/Kuala_Lumpur
       - URL=${DOMAIN}
       - SUBDOMAINS=wildcard
@@ -34,17 +34,9 @@ services:
     ports:
       - 443:443
       - 80:80 #optional
-      - 81:81
+      # - 81:81
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    restart: unless-stopped
-  authelia:
-    image: ghcr.io/authelia/authelia
-    container_name: authelia
-    environment:
-      - TZ=Asia/Kuala_Lumpur
-    volumes:
-      - /opt/authelia/config:/config
     restart: unless-stopped
 networks:
   default:

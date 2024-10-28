@@ -6,6 +6,10 @@ services:
     image: "redis:7.0"
     command: redis-server # --requirepass ${REDIS_PASSWORD}
     container_name: redis
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: Asia/Kuala_Lumpur
     volumes:
       - redisdata:/data
       # - /opt/redis/redis.conf:/usr/local/etc/redis/redis.conf
