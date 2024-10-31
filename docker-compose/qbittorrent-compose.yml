@@ -12,10 +12,10 @@ services:
     volumes:
       - /opt/qbittorrent/config:/config
       - ${DISK0}/downloads:/downloads
-    ports:
-      - 6881:6881
-      - 6881:6881/udp
-      - 8080:8080
+    # ports:
+    #   - 6881:6881
+    #   - 6881:6881/udp
+    #   - 8080:8080
     restart: unless-stopped
     labels:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
@@ -23,16 +23,6 @@ services:
       - flame.name=qbittorrent
       - flame.url=https://qb.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=download # https://materialdesignicons.com/
-      - homepage.group=Tools
-      - homepage.name=qBittorrent
-      - homepage.icon=qbittorrent.png
-      - homepage.href=https://qb.${DOMAIN}/
-      - homepage.description=
-      # - homepage.widget.type=qbittorrent
-      # - homepage.widget.url=http://${HOSTNAME}:8080/
-      # - homepage.widget.username=admin
-      # - homepage.widget.password=${PASS}
-      # - homepage.widget.fields=["leech","download","seed","upload"]
 networks:
   default:
     external: true
