@@ -23,7 +23,7 @@ services:
       # AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE: '/run/secrets/STORAGE_ENCRYPTION_KEY'
     volumes:
       - /opt/authelia/config:/config
-      - /opt/authelia/secrets:/secrets
+      # - /opt/authelia/secrets:/secrets
     labels:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame

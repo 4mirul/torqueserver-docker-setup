@@ -11,10 +11,10 @@ services:
     restart: unless-stopped
     labels:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
-      - flame.type=app # flame label https://github.com/pawelmalak/flame
-      - flame.name=logspout
-      - flame.url=http://${LOGSPOUT_IP}:80/logs # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - flame.icon=math-log # https://materialdesignicons.com/
+    #   - flame.type=app # flame label https://github.com/pawelmalak/flame
+    #   - flame.name=logspout
+    #   - flame.url=http://${LOGSPOUT_IP}:80/logs # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+    #   - flame.icon=math-log # https://materialdesignicons.com/
     networks:
       default:
         ipv4_address: ${LOGSPOUT_IP}

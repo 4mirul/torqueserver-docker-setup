@@ -1,16 +1,17 @@
 # https://github.com/amir20/dozzle
 ---
-version: "3"
 services:
   dozzle:
     container_name: dozzle
     image: amir20/dozzle:latest
     environment:
+      - PUID=1000
+      - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    ports:
-      - 9998:8080
+    # ports:
+    #   - 9998:8080
     restart: unless-stopped
     labels:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
@@ -18,11 +19,6 @@ services:
       - flame.name=dozzle
       - flame.url=https://dozzle.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=math-log # https://materialdesignicons.com/
-      # - homepage.group=Monitoring and Analytics # homepage label https://github.com/benphelps/homepage
-      # - homepage.name=dozzle
-      # - homepage.icon=dozzle.png # https://gethomepage.dev/en/configs/services/#icons
-      # - homepage.href=http://${HOSTNAME}:9998/
-      # - homepage.description=
 networks:
   default:
     external: true
