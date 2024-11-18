@@ -9,6 +9,8 @@ services:
     volumes:
       - /opt/asf/config:/app/config
     environment:
+      - PUID=1000
+      - PGID=1000
       - TZ=Asia/Kuala_Lumpur
     restart: unless-stopped
     labels:
@@ -17,11 +19,6 @@ services:
       - flame.name=asf
       - flame.url=http://${HOSTNAME}:1242/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=steam # https://pictogrammers.com/library/mdi/
-      - homepage.group=Games # homepage label https://github.com/benphelps/homepage
-      - homepage.name=ASF
-      - homepage.icon=steam.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
-      - homepage.href=http://${HOSTNAME}:1242/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - homepage.description=
 networks:
   default:
     external: true
