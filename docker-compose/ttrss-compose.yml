@@ -1,4 +1,6 @@
 # https://example.com/
+# username: admin
+# password: password
 ---
 services:
   ttrss:
@@ -6,12 +8,12 @@ services:
     container_name: ttrss
     hostname: ttrss
     environment:
-      - SELF_URL_PATH=https://rss.${DOMAIN}
+      - SELF_URL_PATH=https://ttrss.${DOMAIN}
       - DB_HOST=postgres
       - DB_PORT=5432
       - DB_NAME=ttrss
       - DB_USER=postgres
-      - DB_PASS=${PASS}
+      - DB_PASS=${TTRSS_PASS}
     ports:
       - 8720:80
     restart: unless-stopped
