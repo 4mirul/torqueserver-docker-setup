@@ -17,13 +17,8 @@ services:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=hastebin
-      - flame.url=https://paste.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.url=https://hastebin.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=file-code # https://materialdesignicons.com/
-      # - homepage.group=Web Tools and Services # homepage label https://github.com/benphelps/homepage
-      # - homepage.name=hastebin
-      # - homepage.icon=pastebin.png # https://gethomepage.dev/en/configs/services/#icons
-      # - homepage.href=https://hastebin.${DOMAIN}/
-      # - homepage.description=
 networks:
   default:
     external: true
