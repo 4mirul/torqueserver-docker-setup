@@ -1,6 +1,5 @@
 # https://hub.docker.com/r/linuxserver/phpmyadmin
 ---
-version: "2.1"
 services:
   phpmyadmin:
     image: lscr.io/linuxserver/phpmyadmin:latest
@@ -21,7 +20,7 @@ services:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=phpmyadmin
-      - flame.url=http://${HOSTNAME}:8808/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.url=http://${LOCAL_HOSTNAME}:8808/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=database # https://materialdesignicons.com/
 networks:
   default:

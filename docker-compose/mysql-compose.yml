@@ -1,2 +1,25 @@
 # https://hub.docker.com/_/mysql
 ---
+services:
+  mysql:
+    image: mysql:9.1
+    container_name: mysql
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: unless-stopped
+    # ports:
+    #   - 3306:3306
+networks:
+  default:
+    external: true
+    name: main-network
+volumes:
+  mysql_data:
+    external: true
