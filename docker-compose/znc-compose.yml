@@ -1,6 +1,5 @@
 # https://hub.docker.com/r/linuxserver/znc
 ---
-version: "2.1"
 services:
   znc:
     container_name: znc
@@ -20,11 +19,6 @@ services:
       - flame.name=znc
       - flame.url=https://znc.${DOMAIN}/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=transit-connection-variant # https://materialdesignicons.com/
-      # - homepage.group=IRC Servers and Clients # homepage label https://github.com/benphelps/homepage
-      # - homepage.name=znc
-      # - homepage.icon=znc.png # https://gethomepage.dev/en/configs/services/#icons
-      # - homepage.href=http://${HOSTNAME}:6501/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      # - homepage.description=
 networks:
   default:
     external: true
