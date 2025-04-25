@@ -2,7 +2,7 @@
 ---
 services:
   webtop:
-    image: lscr.io/linuxserver/webtop:debian-openbox
+    image: lscr.io/linuxserver/webtop:debian-openbox-e6f0d5d2-ls102
     container_name: webtop
     security_opt:
       - seccomp:unconfined #optional
@@ -15,12 +15,14 @@ services:
       - DRINODE=/dev/dri/renderD128
       - CUSTOM_USER=${WEBTOP_USER}
       - PASSWORD=${WEBTOP_PASS}
+      - DOCKER_MODS=linuxserver/mods:universal-package-install 
+      - INSTALL_PACKAGES=${INSTALL_PACKAGES}
     volumes:
       - /opt/webtop/config:/config
       - /var/run/docker.sock:/var/run/docker.sock #optional
-    # ports:
-      # - 3330:3000
-      # - 3001:3001
+    ports:
+      - 3330:3000
+      - 3001:3001
     devices:
       - /dev/dri:/dev/dri #optional
     shm_size: "2gb" #optional

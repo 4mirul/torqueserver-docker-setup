@@ -1,0 +1,27 @@
+---
+services:
+  blender:
+    image: lscr.io/linuxserver/blender:latest
+    container_name: blender
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+      - SUBFOLDER=/ #optional
+    volumes:
+      - /opt/blender:/config
+    ports:
+      - 3030:3000
+      - 3031:3001
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=blender
+      - flame.url=http://${HOSTNAME}:3030/
+networks:
+  default:
+    external: true
+    name: main-network

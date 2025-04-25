@@ -12,10 +12,10 @@ services:
     volumes:
       - /opt/qbittorrent/config:/config
       - ${DISK0}/downloads:/downloads
-    # ports:
+    ports:
     #   - 6881:6881
     #   - 6881:6881/udp
-    #   - 8080:8080
+      - 8080:8080
     restart: unless-stopped
     labels:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update

@@ -9,7 +9,10 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kuala_Lumpur
-      - PMA_ARBITRARY=1 #optional
+      - PMA_HOST=${PMA_HOST}
+      - PMA_USER=${PMA_USER}
+      - PMA_PASSWORD=${PMA_PASSWORD}
+      # - PMA_ARBITRARY=1 #optional
       # - PMA_ABSOLUTE_URI=http://192.168.0.105:8808/ #optional
     volumes:
       - /opt/phpmyadmin/config:/config
