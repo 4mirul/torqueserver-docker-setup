@@ -1,2 +1,36 @@
 # https://hub.docker.com/r/linuxserver/lidarr
 ---
+services:
+  lidarr:
+    image: lscr.io/linuxserver/lidarr:latest
+    container_name: lidarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    volumes:
+      - /opt/lidarr/config:/config
+      - ${DISK0}/music:/music
+      - ${DISK0}/downloads:/downloads
+    ports:
+      - 8686:8686
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=lidarr
+      - flame.url=http://${HOSTNAME}:8686/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=music # https://materialdesignicons.com/
+      # - homepage.group=Servarr # homepage label https://gethomepage.dev/latest/
+      # - homepage.name=Bazarr
+      # - homepage.icon=bazarr.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
+      # - homepage.href=http://${HOSTNAME}:6767/
+      # - homepage.description=
+      # - homepage.widget.type=bazarr
+      # - homepage.widget.url=http://${HOSTNAME}:6767 # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      # - homepage.widget.key=${BAZARR_API_KEY}
+      # - homepage.widget.fields=["missingEpisodes","missingMovies"] # optional
+networks:
+  default:
+    external: true
+    name: main-network

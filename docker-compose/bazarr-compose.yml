@@ -21,11 +21,11 @@ services:
       - flame.name=bazarr
       - flame.url=http://${HOSTNAME}:6767/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=subtitles # https://materialdesignicons.com/
-      - homepage.group=Servarr # homepage label https://gethomepage.dev/latest/
-      - homepage.name=Bazarr
-      - homepage.icon=bazarr.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
-      - homepage.href=http://${HOSTNAME}:6767/
-      - homepage.description=
+      # - homepage.group=Servarr # homepage label https://gethomepage.dev/latest/
+      # - homepage.name=Bazarr
+      # - homepage.icon=bazarr.png # https://pictogrammers.com/library/mdi/ or https://github.com/walkxcode/dashboard-icons/tree/main/png
+      # - homepage.href=http://${HOSTNAME}:6767/
+      # - homepage.description=
       # - homepage.widget.type=bazarr
       # - homepage.widget.url=http://${HOSTNAME}:6767 # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       # - homepage.widget.key=${BAZARR_API_KEY}

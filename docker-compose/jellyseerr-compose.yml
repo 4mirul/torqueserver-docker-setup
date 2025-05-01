@@ -1,11 +1,12 @@
 # https://github.com/Fallenbagel/jellyseerr
 ---
-version: "3"
 services:
   jellyseerr:
     image: fallenbagel/jellyseerr:latest
     container_name: jellyseerr
     environment:
+      - PUID=1000
+      - PGID=1000
       - LOG_LEVEL=debug
       - TZ=Asia/Kuala_Lumpur
     ports:
@@ -19,11 +20,6 @@ services:
       - flame.name=jellyseerr
       - flame.url=http://${HOSTNAME}:5051/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=jellyfish-outline # https://materialdesignicons.com/
-      - homepage.group=Media Request and Management # homepage label https://github.com/benphelps/homepage
-      - homepage.name=jellyseerr
-      - homepage.icon=jellyseerr.png # https://gethomepage.dev/en/configs/services/#icons
-      - homepage.href=http://${HOSTNAME}:5051/
-      - homepage.description=
 networks:
   default:
     external: true
