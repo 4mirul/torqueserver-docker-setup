@@ -17,7 +17,7 @@ services:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=asf
-      - flame.url=http://${HOSTNAME}:1242/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.url=http://${HOST}:1242/ # local http://${HOSTNAME}:80/ or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=steam # https://pictogrammers.com/library/mdi/
 networks:
   default:

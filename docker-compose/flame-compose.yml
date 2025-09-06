@@ -9,8 +9,8 @@ services:
     volumes:
       - flame-data:/app/data
       - /var/run/docker.sock:/var/run/docker.sock # optional but required for Docker integration
-    # ports:
-    #   - 5005:5005
+    ports:
+      - 5005:5005
     environment:
       - PUID=1000
       - PGID=1000
@@ -20,9 +20,9 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
-      - flame.name=flame dashboard;pihole #;proxmox;shell in a box;docs;netdata;webmin;pterodactyl #;torqueserver documents;shell in a box;torqueserver;proxmox;dir
-      - flame.url=http://flame.${DOMAIN}/;http://192.168.0.100/admin/  #;https://proxmox.${DOMAIN}/;https://sh.${DOMAIN};https://docs.${DOMAIN};http://${HOSTNAME}:19999/;https://webmin.${DOMAIN}/;https://pterodactyl.${DOMAIN}/ #;https://docs.${DOMAIN}/;https://sh.${DOMAIN}/;https://${DOMAIN}/;https://proxmox.${DOMAIN}/;https://dir.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - flame.icon=fire-circle;chart-bar #;server-network;ssh;file-document-multiple-outline;chart-bar;server;gamepad #;file-document-multiple-outline;ssh;server-network;file-tree # https://materialdesignicons.com/
+      - flame.name=flame dashboard;nifi;wildfly #;proxmox;shell in a box;docs;netdata;webmin;pterodactyl #;torqueserver documents;shell in a box;torqueserver;proxmox;dir
+      - flame.url=http://${HOST}:5005/;http://${HOST}:9080;https://wildfly.${DOMAIN} #;https://docs.${DOMAIN}/;https://sh.${DOMAIN}/;https://${DOMAIN}/;https://proxmox.${DOMAIN}/;https://dir.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=fire-circle;chart-bar;server #;server-network;ssh;file-document-multiple-outline;chart-bar;server;gamepad #;file-document-multiple-outline;ssh;server-network;file-tree # https://materialdesignicons.com/
 networks:
   default:
     external: true

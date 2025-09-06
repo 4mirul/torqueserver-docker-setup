@@ -10,14 +10,14 @@ services:
       - TZ=Asia/Kuala_Lumpur
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    # ports:
-    #   - 9998:8080
+    ports:
+      - 8082:8080
     restart: unless-stopped
     labels:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=dozzle
-      - flame.url=https://dozzle.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.url=http://${HOST}:8082/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
       - flame.icon=math-log # https://materialdesignicons.com/
 networks:
   default:

@@ -2,7 +2,7 @@
 ---
 services:
   webtop:
-    image: lscr.io/linuxserver/webtop:debian-openbox-e6f0d5d2-ls102
+    image: lscr.io/linuxserver/webtop:debian-openbox-version-7d33a58c
     container_name: webtop
     security_opt:
       - seccomp:unconfined #optional

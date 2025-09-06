@@ -2,7 +2,7 @@
 ---
 services:
   mysql:
-    image: mysql:9.1
+    image: mysql:9.4.0
     container_name: mysql
     environment:
       - PUID=1000
@@ -14,8 +14,8 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     restart: unless-stopped
-    # ports:
-    #   - 3306:3306
+    ports:
+      - 3306:3306
 networks:
   default:
     external: true
