@@ -20,7 +20,7 @@ services:
       - flame.type=app # flame label https://github.com/pawelmalak/flame
       - flame.name=Business Central;KIE Server;KIE Server Swagger docs;jBPM case management;WildFly Admin Console
       - flame.url=http://${LOCAL_HOSTNAME}:8088/business-central;http://${LOCAL_HOSTNAME}:8088/kie-server/services/rest/server;http://${LOCAL_HOSTNAME}:8088/kie-server/docs;http://${LOCAL_HOSTNAME}:8088/jbpm-casemgmt;http://${LOCAL_HOSTNAME}:9991
-      - flame.icon=briefcase;cog;server;file-document-box-multiple;briefcase;wildfly
+      - flame.icon=briefcase;cog;server;briefcase;wildfly
 networks:
   default:
     external: true
