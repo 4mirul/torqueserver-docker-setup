@@ -20,9 +20,9 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
       - flame.type=app # flame label https://github.com/pawelmalak/flame
-      - flame.name=flame dashboard;nifi #;proxmox;shell in a box;docs;netdata;webmin;pterodactyl #;torqueserver documents;shell in a box;torqueserver;proxmox;dir
-      - flame.url=http://${HOST}:5005/;http://${HOST}:9080 #;https://docs.${DOMAIN}/;https://sh.${DOMAIN}/;https://${DOMAIN}/;https://proxmox.${DOMAIN}/;https://dir.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
-      - flame.icon=fire-circle;chart-bar #;server-network;ssh;file-document-multiple-outline;chart-bar;server;gamepad #;file-document-multiple-outline;ssh;server-network;file-tree # https://materialdesignicons.com/
+      - flame.name=flame dashboard;nifi;MyBroker #;proxmox;shell in a box;docs;netdata;webmin;pterodactyl #;torqueserver documents;shell in a box;torqueserver;proxmox;dir
+      - flame.url=http://${HOST}:5005/;http://${HOST}:9080;http://${HOST2}:8161 #;https://docs.${DOMAIN}/;https://sh.${DOMAIN}/;https://${DOMAIN}/;https://proxmox.${DOMAIN}/;https://dir.${DOMAIN}/ # or subdomain https://app_name.${DOMAIN}/ or subfolder https://${DOMAIN}/app_name
+      - flame.icon=fire-circle;chart-bar;vector-square #;server-network;ssh;file-document-multiple-outline;chart-bar;server;gamepad #;file-document-multiple-outline;ssh;server-network;file-tree # https://materialdesignicons.com/
 networks:
   default:
     external: true
