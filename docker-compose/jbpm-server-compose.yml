@@ -1,0 +1,30 @@
+# https://www.jbpm.org/learn/gettingStartedUsingDocker.html
+---
+services:
+  jbpm-server:
+    container_name: jbpm-server
+    image: jboss/jbpm-server-full:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kuala_Lumpur
+    ports:
+      - 8088:8080
+      - 8001:8001
+      - 9991:9990
+    restart: unless-stopped
+    volumes:
+      - wildfly_conf:/opt/jboss/wildfly/standalone/configuration
+    labels:
+      - com.centurylinklabs.watchtower.enable=true # watchtower auto-update
+      - flame.type=app # flame label https://github.com/pawelmalak/flame
+      - flame.name=Business Central;KIE Server;KIE Server Swagger docs;jBPM case management;WildFly Admin Console
+      - flame.url=http://${LOCAL_HOSTNAME}:8088/business-central;http://${LOCAL_HOSTNAME}:8088/kie-server/services/rest/server;http://${LOCAL_HOSTNAME}:8088/kie-server/docs;http://${LOCAL_HOSTNAME}:8088/jbpm-casemgmt;http://${LOCAL_HOSTNAME}:9991
+      - flame.icon=briefcase;cog;server;file-document-box-multiple;briefcase;wildfly
+networks:
+  default:
+    external: true
+    name: main-network
+volumes:
+  wildfly_conf:
+    external: true
